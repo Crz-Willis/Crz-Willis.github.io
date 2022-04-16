@@ -2798,23 +2798,3 @@ mjx-container[display='true'] + br {
     padding: 10px 12px;
   }
 }
-body {
-  background: url("/images/background.jpeg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: 50% 50%;
-  background-size: 100% 100%;
-}
-.main-inner {
-  opacity: 0.9;
-}
-.sidebar {
-  opacity: 0.9;
-}
-.header-inner {
-  opacity: 0.9;
-}
-.footer-inner {
-  color: #000;
-  opacity: 0.9;
-}
