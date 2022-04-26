@@ -47,6 +47,36 @@
       </tags>
   </entry>
   <entry>
+    <title>洛谷 P5300 [GXOI/GZOI2019]与或和</title>
+    <url>/2022/04/26/luogu-P5300/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>单调栈好题</p>
+<span id="more"></span>
+
+<p><a href="https://www.luogu.com.cn/problem/P5300">传送门</a></p>
+<p>大致题意：给你$n\times n$的矩阵，让你求矩阵中所有子矩阵的与$\&amp;$和或$|$的和。<br>数据范围：$n\leq 2000,a_{i,j}\leq 2^{31}-1$</p>
+<p>大致题解：拆位考虑，对于与运算，我们对每一个$a_{i,j}$计算以它为右下角的全1子矩阵个数，对于或运算，我们计算以$a_{i,j}$为右下角的全0子矩阵个数，然后用$i\times j$减去全0子矩阵的个数即可。</p>
+<p>下面讨论怎么使用单调栈来维护以$a_{i,j}$为右下角的全1&#x2F;0子矩阵个数。</p>
+<p>预处理$s_{i,j}$为以$a_{i,j}$上方连续的1&#x2F;0的个数，然后我们依次枚举一个点，计算以它为右下角的全1&#x2F;0的子矩阵的个数。</p>
+<p>我们设$f_{i,j}$是以$a_{i,j}$为右下角的全1&#x2F;0子矩阵的个数，维护一个单调递增的栈，当未发生弹栈的时候，我们有</p>
+<p>$$f_{i,j}&#x3D;f_{i,j-1}+s_{i,j}$$</p>
+<p>其中第一部分是从左边延伸过来的，第二部分是从$a_{i,j}$向上延伸的。</p>
+<p>具体见图：<img src="/2022/04/26/luogu-P5300/image.png"></p>
+<p>当发生弹栈的时候，意味着左边的延伸不过去了，需要减掉，我们有</p>
+<p>$$f_{i,j}&#x3D;f_{i,j}-(s_{i,j}-s_{i,st.top()})*(st.top()-st.(top-1)())$$</p>
+<p>其中$st.(top-1)()$表示栈顶的下一个元素。</p>
+<p>具体见图（3弹栈的时候）：</p>
+<p><img src="/2022/04/26/luogu-P5300/image2.png"></p>
+<p>这样就维护了答案。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> GCC optimize(1)</span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> GCC optimize(2)</span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> GCC optimize(3)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cassert&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;climits&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;functional&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;deque&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> pb push_back</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> se second</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IOS ios::sync_with_stdio(0), cin.tie(0), cout.tie(0)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mem(a,x) memset(a, x, sizeof(a))</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span> ull;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">double</span> ld;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">double</span> db;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;ll, ll&gt; P;</span><br><span class="line"><span class="type">const</span> <span class="type">double</span> pi = <span class="built_in">acos</span>(<span class="number">-1</span>);</span><br><span class="line"><span class="type">const</span> ll mod = <span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="type">const</span> ll INF = <span class="number">2e9</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn=<span class="number">2000</span>+<span class="number">10</span>;</span><br><span class="line"><span class="function">ll <span class="title">qp</span> <span class="params">(ll a, ll b, ll mod)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ll ans = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (b)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (b &amp; <span class="number">1</span>)</span><br><span class="line">			ans = ans * a % mod;</span><br><span class="line">		a = a * a % mod;</span><br><span class="line">		b &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="type">int</span> a[maxn][maxn];</span><br><span class="line"><span class="type">int</span> up[maxn][maxn];</span><br><span class="line">ll ans1,ans2;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	IOS;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">			cin&gt;&gt;a[i][j];</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">0</span>;k&lt;<span class="number">31</span>;k++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">mem</span>(up[<span class="number">0</span>],<span class="number">0</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">if</span>(a[i][j]&amp;(<span class="number">1</span>&lt;&lt;k))</span><br><span class="line">					up[i][j]=up[i<span class="number">-1</span>][j]+<span class="number">1</span>;</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">					up[i][j]=<span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			stack&lt;<span class="type">int</span>&gt; s;</span><br><span class="line">			s.<span class="built_in">push</span>(<span class="number">0</span>);</span><br><span class="line">			up[i][<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">			up[i][n+<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">			ll bns=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">			&#123;</span><br><span class="line">				bns+=up[i][j];</span><br><span class="line">				<span class="keyword">while</span>(s.<span class="built_in">size</span>()&amp;&amp;up[i][j]&lt;up[i][s.<span class="built_in">top</span>()])</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="type">int</span> x = s.<span class="built_in">top</span>();</span><br><span class="line">					s.<span class="built_in">pop</span>();</span><br><span class="line">					bns=bns-(x-s.<span class="built_in">top</span>())*(up[i][x]-up[i][j]);</span><br><span class="line">				&#125;</span><br><span class="line">				s.<span class="built_in">push</span>(j);</span><br><span class="line">				ans1=(ans1+(bns&lt;&lt;k))%mod;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">mem</span>(up[<span class="number">0</span>],<span class="number">0</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">if</span>((a[i][j]&amp;(<span class="number">1</span>&lt;&lt;k))==<span class="number">0</span>)</span><br><span class="line">					up[i][j]=up[i<span class="number">-1</span>][j]+<span class="number">1</span>;</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">					up[i][j]=<span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			stack&lt;<span class="type">int</span>&gt; s;</span><br><span class="line">			up[i][<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">			up[i][n+<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">			s.<span class="built_in">push</span>(<span class="number">0</span>);</span><br><span class="line">			ll bns=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">			&#123;</span><br><span class="line">				bns=bns+up[i][j];</span><br><span class="line">				<span class="keyword">while</span>(s.<span class="built_in">size</span>()&amp;&amp;up[i][j]&lt;up[i][s.<span class="built_in">top</span>()])</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="type">int</span> x = s.<span class="built_in">top</span>();</span><br><span class="line">					s.<span class="built_in">pop</span>();</span><br><span class="line">					bns=bns-(x-s.<span class="built_in">top</span>())*(up[i][x]-up[i][j]);</span><br><span class="line">				&#125;</span><br><span class="line">				s.<span class="built_in">push</span>(j);</span><br><span class="line">				ans2=(ans2+((<span class="number">1ll</span>*i*j-bns)&lt;&lt;k))%mod;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;ans1&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;ans2&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>算法竞赛</category>
+        <category>单调栈</category>
+      </categories>
+      <tags>
+        <tag>单调栈</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>polya</title>
     <url>/2022/04/16/polya/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><a href="https://www.luogu.com.cn/problem/P4980">传送门</a></p>
@@ -85,7 +115,7 @@
   <entry>
     <title>随机事件复习笔记</title>
     <url>/2022/04/22/%E9%9A%8F%E6%9C%BA%E4%BA%8B%E4%BB%B6%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>推免复习概率论，写写笔记</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>随机事件复习笔记</p>
 <span id="more"></span>
 
 <h3 id="概率的公理化定义"><a href="#概率的公理化定义" class="headerlink" title="概率的公理化定义"></a>概率的公理化定义</h3><p>在一个随机现象中，用来表示任一个随机事件$A$发生可能性大小的实数成为该事件的概率，并规定：<br>（1）非负性公理：对任一事件$A$，必有$P(A)\geq 0$<br>（2）正则化公理：必然事件的概率$P(\Omega)&#x3D;1$<br>（3）可列可加性公理：若$A_1,A_2,\cdots$是一列互不相容事件，则有：$P(\bigcup\limits_{n&#x3D;1}^\infty A_i)&#x3D;\sum\limits_{i&#x3D;1}^\infty P(A_i)$</p>
@@ -183,6 +213,71 @@
         <tag>贝叶斯公式</tag>
         <tag>概率</tag>
         <tag>独立性</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>随机变量及其分布复习笔记</title>
+    <url>/2022/04/23/%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>随机变量及其分布复习笔记</p>
+<span id="more"></span>
+
+<h2 id="随机变量"><a href="#随机变量" class="headerlink" title="随机变量"></a>随机变量</h2><h3 id="什么是随机变量"><a href="#什么是随机变量" class="headerlink" title="什么是随机变量"></a>什么是随机变量</h3><p>用来表示随机现象结果的变量就是随机变量，常用大写字母$X,Y,Z$表示，而随机变量所取的值常用小写字母 $x,y,z$表示。若用等号或不等号把$X$和$x$联系起来就能表示事件，比如“$X&#x3D;x$”,“$Y\leq y$” , “$z_1&lt; Z \leq z_2$”都是事件。</p>
+<p>怎么用数学语言表示？</p>
+<p>$Def:$定义在样本空间$\Omega$上的实值函数$X&#x3D;X(\omega)$称为随机变量。在实数集上仅取有限个或可列个孤立点的随机变量成为离散型随机变量，可能取值在实数轴上的一个区间$(a,b)$的随机变量称为连续型随机变量，其中$a$可以是$-\infty$，$b$可以是$+\infty$。</p>
+<p>可以看到，随机变量就是将样本空间上的每一个事件映射到一个实数的函数。</p>
+<p>例如抛出$n(n\geq3)$枚硬币，设随机变量$X$为硬币正面朝上的次数，再设$\omega&#x3D;$朝上的硬币次数为$3$次。则我们可以令$X(\omega)&#x3D;3$。这是非常符合直觉的。</p>
+<h3 id="随机变量的分布函数"><a href="#随机变量的分布函数" class="headerlink" title="随机变量的分布函数"></a>随机变量的分布函数</h3><p>$Def$：设$X$是一个随机变量，对任意实数$x$，事件$X\leq x$的概率是$x$的函数，记为：$F(x)&#x3D;P(X\leq x)$这个函数称为$X$的累积分布函数，简称分布函数。</p>
+<p>分布函数的一些基本性质：<br>（1）$0\leq F(x)\leq 1$（因为$F(x)$是概率）<br>（2）$\lim\limits_{x\rightarrow -\infty} F(x)&#x3D;0$（事件$X&lt;-\infty$是不可能事件）<br>（3）$\lim\limits_{x\rightarrow +\infty} F(x)&#x3D;1$（事件$X&lt;+\infty$是必然事件）<br>（4）$F(x)$是非降函数，即对$\forall x_1&lt;x_2$，有$F(x_1)\leq F(x_2)$。这是因为事件$X\leq x_2$包含$X\leq x_1$。<br>（5）$F(x)$右连续，即$\lim\limits_{x-&gt;x_0^+}F(x)&#x3D;F(x_0)$<br>对（5）的极限成立做一个简要证明。<br>$Proof$：令$A_n&#x3D;{X \leq x_0 +  \frac{1}{n}}$，则$\bigcap\limits_{n&#x3D;1}^\infty A_n&#x3D;{X\leq x_0}$，则<br>$$\lim\limits_{x-&gt;x_0^+}F(x)&#x3D;\lim\limits_{n\rightarrow \infty}F(x_0+\frac{1}{n})&#x3D;\lim\limits_{n\rightarrow \infty}P(A_n)&#x3D;P(\lim\limits_{n\rightarrow \infty}A_n)&#x3D;P(\bigcap\limits_{n&#x3D;1}^\infty A_n)&#x3D;P(X\leq x_0)&#x3D;F(x_0)$$</p>
+<p>注记：上面的推到不严谨，其中第3，4个等号需要证明，感兴趣的读者可以翻阅实变函数中的集合论部分。<br>注记2：对于上面的（3）（4）（5），需要证明极限的存在性，其中（3）（4）的极限存在性可以类似于上面的证明给出，（5）的极限存在性可以用确界定理给出。（这几部分的证明都可以去翻阅实变函数的教材）<br>注记3：分布函数并不是左连续的，反例很容易给出。</p>
+<h2 id="离散型随机变量"><a href="#离散型随机变量" class="headerlink" title="离散型随机变量"></a>离散型随机变量</h2><h3 id="分布列"><a href="#分布列" class="headerlink" title="分布列"></a>分布列</h3><p>$Def$：设$X$是离散随机变量，它的所有可能取值为$x_1,x_2,\cdots , x_n , \cdots$，假如$X$取$x_i$的概率为：$P(X&#x3D;x_i)&#x3D;p(x_i)$，且满足<br>（1）非负性：$p(x_i)\geq 0$<br>（2）正则性：$\sum\limits_{i&#x3D;1}^\infty p(x_i)&#x3D;1$<br>则称这组概率${p(x_i)}$为随机变量$X$的分布列，或$X$的概率分布。</p>
+<p>若已知$X$的分布列，则可以很容易的写出$X$的分布函数：$F(x_0)&#x3D;\sum\limits_{x_i\leq x} p(x_i)$</p>
+<p>离散型随机变量的分布列还可以用如下表格来表示：</p>
+<table>
+<thead>
+<tr>
+<th>$X$</th>
+<th>$x_1$</th>
+<th>$x_2$</th>
+<th>$\cdots$</th>
+<th>$x_n$</th>
+<th>$\cdots$</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$P$</td>
+<td>$p_1$</td>
+<td>$p_2$</td>
+<td>$\cdots$</td>
+<td>$p_n$</td>
+<td>$\cdots$</td>
+</tr>
+</tbody></table>
+<p>除了表格，其还可以用线条图或者概率分布直方图来表示一个随机变量。</p>
+<h3 id="伯努利概型中的一些分布"><a href="#伯努利概型中的一些分布" class="headerlink" title="伯努利概型中的一些分布"></a>伯努利概型中的一些分布</h3><h4 id="二项分布"><a href="#二项分布" class="headerlink" title="二项分布"></a>二项分布</h4><p>$Def$：令$X$为$n$重伯努利试验中成功出现的次数，则$X$是一个随机变量。用$B_{n,k}$表示$n$重伯努利试验中成功出现$k$次，则有$B_{n,k}&#x3D;$“$X&#x3D;k$”，其中$X$的可能取值为$0,1,\cdots ,n$，它取这些值的概率为：$$P(X&#x3D;k)&#x3D;C_n^k\cdot p^k\cdot (1-p)^{(n-k)},k&#x3D;0,1,\cdots ,n$$我们称这个概率分布为二项分布，记为$b(n,p)$。在概率论中“随机变量$X$的概率分布为二项分布$b(n,p)$”常被说成“随机变量$X$服从二项分布$b(n,p)$，<font color="#dd0000">记做$X\sim b(n,p)$</font>。</p>
+<h4 id="两点分布"><a href="#两点分布" class="headerlink" title="两点分布"></a>两点分布</h4><p>$n&#x3D;1$的二项分布$b(1,p)$就称为两点分布（也称伯努利分布或者0-1分布）。其概率分布为：<br>$$<br>P(X&#x3D;k)&#x3D;\begin{cases}<br>p &amp; k&#x3D;1 \\<br>(1-p) &amp; k&#x3D;0<br>\end{cases}<br>$$</p>
+<h4 id="几何分布"><a href="#几何分布" class="headerlink" title="几何分布"></a>几何分布</h4><p>我们讨论在伯努利试验中首次出现成功出现在第$k$次的概率，记成功的概率为$p$。若想第$k$次试验首次出现成功，我们需要在前$k-1$次试验中均失败，并且恰好在第$k$次试验出现成功。记$$g(k,p)&#x3D;(1-p)^{k-1}p ~~~~ k&#x3D;1,2,\cdots$$<br>我们称这个分布为几何分布</p>
+<p>注记：这个分布的样本空间不是有限的。</p>
+<h3 id="泊松分布"><a href="#泊松分布" class="headerlink" title="泊松分布"></a>泊松分布</h3><p>如果随机变量$X$有如下的概率分布：</p>
+<p>$$P(X&#x3D;k)&#x3D;\frac{\lambda^k}{k!}e^{-\lambda}$$</p>
+<p>就称$X$服从参数设$\lambda$的泊松分布。<font color="#dd0000">记做$X\sim P(\lambda)$</font>。</p>
+<p>泊松分布的由来？</p>
+<p>先看一个例子：<br>$eg$：某年龄段的保险者中，一年中每个人死亡的概率为$0.005$，现有$10000$个这类人参加保险，保险公司想知道在未来一年中有$40$个人死亡的概率</p>
+<p>我们从二项分布可以知道$b(40;10000,0,005)&#x3D;C_{10000}^{40}(0.005)^{40}(0.995)^{9960}$（<font color="#dd0000">我们用$b(k,n,p)$表示$n$重伯努利试验中$A$出现$k$次的概率</font>）而直接计算这个数值相当困难，我们需要有更好的计算方法。</p>
+<p>于是我们有泊松逼近定理：</p>
+<p>$Th$：在独立试验中，以$p_n$代表事件$A$在试验中出现的概率。它与试验总数$n$有关，如果$np_n\rightarrow\lambda$，则当$n\rightarrow \infty$是，</p>
+<p>$$b(k;n,p_n)\rightarrow\frac{\lambda^k}{k!}e^{-\lambda}$$</p>
+<p>$Proof$：记$\lambda_n&#x3D;np_n$，则<br>$b(k;n,p_n)&#x3D;C_n^kp_n^k(1-p)^{n-k}&#x3D;\frac{n(n-1)\cdots(n-k+1)}{k!}(\frac{\lambda_n}{n})^k(1-\frac{\lambda_n}{n})^{n-k} $<br>$&#x3D;\frac{\lambda_n^k}{k!}(1-\frac{1}{n})\cdots (1-\frac{k-1}{n})(1-\frac{\lambda_n}{n})^{n-k}$</p>
+<p>对于固定的$k$有<br>$$\lim\limits_{n\rightarrow\infty}\lambda_n^k&#x3D;\lambda^k，~~ \lim\limits_{n\rightarrow\infty}(1-\frac{\lambda_n}{n}^{n-k})&#x3D;e^{-\lambda}$$<br>和<br>$$\lim\limits_{n\rightarrow\infty}(1-\frac{1}{n})\cdots (1-\frac{k-1}{n})&#x3D;1$$</p>
+<p>因此$$\lim\limits_{n\rightarrow\infty}b(k;n,p_n)&#x3D;\frac{\lambda^k}{k!}e^{-\lambda}$$</p>
+<p>在应用中，当$p$相当小（一般当$p\leq0.1$时）我们用如下的近似公式：$$b(k;n,p)\approx\frac{(np)^k}{k!}e^{-np}$$</p>
+<p>这就解决了上面二项分布不容易算的问题。</p>
+]]></content>
+      <categories>
+        <category>概率论</category>
+        <category>随机变量及其分布</category>
+      </categories>
+      <tags>
+        <tag>随机变量</tag>
       </tags>
   </entry>
 </search>
