@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"crz-willis.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="复习非线性规划">
+<meta property="og:type" content="article">
+<meta property="og:title" content="非线性规划">
+<meta property="og:url" content="https://crz-willis.github.io/2022/05/26/%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92/index.html">
+<meta property="og:site_name" content="Crz-Willis&#39;s blog">
+<meta property="og:description" content="复习非线性规划">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-26T06:00:02.000Z">
+<meta property="article:modified_time" content="2022-05-29T06:25:40.067Z">
+<meta property="article:author" content="Willis">
+<meta property="article:tag" content="运筹学">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://crz-willis.github.io/2022/05/26/%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://crz-willis.github.io/2022/05/26/%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92/","path":"2022/05/26/非线性规划/","title":"非线性规划"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>非线性规划 | Crz-Willis's blog</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+  <!--下面一行插入复制代码，注意换成自己的github地址：href="https://Crz-Willis.github.io/"-->
+  <a target="_blank" rel="noopener" href="https://github.com/Crz-Willis/Crz-Willis.github.io" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#70B7FD; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Crz-Willis's blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">sdu数学学院菜鸡</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fhome fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签<span class="badge">14</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类<span class="badge">11</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E6%96%B9%E6%B3%95%E6%A6%82%E8%BF%B0"><span class="nav-number">2.</span> <span class="nav-text">非线性规划方法概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%B8%E8%A7%84%E5%88%92%E7%90%86%E8%AE%BA"><span class="nav-number">3.</span> <span class="nav-text">凸规划理论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%B8%E5%87%BD%E6%95%B0%E5%8F%8A%E5%85%B6%E6%80%A7%E8%B4%A8"><span class="nav-number">3.1.</span> <span class="nav-text">凸函数及其性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%B8%E8%A7%84%E5%88%92%E5%8F%8A%E5%85%B6%E6%80%A7%E8%B4%A8"><span class="nav-number">3.2.</span> <span class="nav-text">凸规划及其性质</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E7%BB%B4%E6%90%9C%E7%B4%A2%E6%96%B9%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">一维搜索方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0-618%E6%B3%95"><span class="nav-number">4.1.</span> <span class="nav-text">0.618法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Newton%E6%B3%95"><span class="nav-number">4.2.</span> <span class="nav-text">Newton法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A0%E7%BA%A6%E6%9D%9F%E6%9C%80%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95"><span class="nav-number">5.</span> <span class="nav-text">无约束最优化方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E4%BC%98%E6%80%A7%E6%9D%A1%E4%BB%B6"><span class="nav-number">5.1.</span> <span class="nav-text">最优性条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E9%80%9F%E4%B8%8B%E9%99%8D%E6%B3%95"><span class="nav-number">5.2.</span> <span class="nav-text">最速下降法</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Willis"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Willis</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Crz-Willis" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Crz-Willis" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/3298404" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;3298404" rel="noopener" target="_blank"><i class="fa fa-video-camera fa-fw"></i>bilibili</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://codeforces.com/profile/Crz-Willis" title="codeforces → https:&#x2F;&#x2F;codeforces.com&#x2F;profile&#x2F;Crz-Willis" rel="noopener" target="_blank"><i class="fa fa-tag fa-fw"></i>codeforces</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/181790" title="luogu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;181790" rel="noopener" target="_blank"><i class="fa fa-tag fa-fw"></i>luogu</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://crz-willis.github.io/2022/05/26/%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Willis">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crz-Willis's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="非线性规划 | Crz-Willis's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          非线性规划
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-26 14:00:02" itemprop="dateCreated datePublished" datetime="2022-05-26T14:00:02+08:00">2022-05-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-05-29 14:25:40" itemprop="dateModified" datetime="2022-05-29T14:25:40+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BF%90%E7%AD%B9%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">运筹学</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BF%90%E7%AD%B9%E5%AD%A6/%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92/" itemprop="url" rel="index"><span itemprop="name">非线性规划</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>复习非线性规划</p>
+<span id="more"></span>
+
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>令$\pmb{x}&#x3D;(x_1,x_2,\cdots，x_n)$是$n$维欧氏空间$\mathbf{R}^n$中的一个点.$f(\pmb{x}),g_i(\pmb{x}), ~ i&#x3D;1,\cdots p ~ $和$ ~ h_j(\pmb{x}), ~ j&#x3D;1,\cdots q$是定义在$\mathbf{R}^n$上的实值函数。我们称如下形式的数学模型为数学规划（Mathematical Programming，简记为MP）<br>$$<br>\begin{cases}<br>\min  &amp; f(\pmb{x}) \\<br>s.t. &amp; g_i(\pmb{x})\leq 0, &amp; i&#x3D;1,\cdots, p \\<br> ~   &amp; h_j(\pmb{x})&#x3D;0, &amp; j&#x3D;1,\cdots, q \\<br>\end{cases}<br>$$<br>令<br>$$X&#x3D;\{x\in \mathbf{R}^n | g_i(\pmb{x})\leq 0 , ~ h_j(\pmb{x})&#x3D;0 \}$$<br>称$X$为（MP）的约束集或可行域，对任意的$\pmb{x}\in X$，称$\pmb{x}$为（MP）的可行解或可行点。故（MP）可简记为</p>
+<p>$$\min_{\pmb{x}\in X}f(\pmb{x})$$</p>
+<p>当$f(\pmb{x}),g_i(\pmb{x}),h_j(\pmb{x})$都为$\pmb{x}$的线性函数的时候，（MP）即为线性规划，否则称为非线性规划。</p>
+<p><font color="#dd0000"> 以下讨论都针对的是非线性规划。</font><br /></p>
+<p>当$X&#x3D;\mathbf{R}^n$时，将其简记为</p>
+<p>$$\min f(\pmb{x})$$</p>
+<p>称其为无约束线性规划，否则称为约束非线性规划。</p>
+<p>$Def$：对于非线性规划（MP），若$\pmb{x}^{*} \in X$并且有$$f(\pmb{x}^*)\leq f(\pmb{x}), ~~ \forall \pmb{x} \in X$$</p>
+<p>则称$\pmb{x}^{*}$是（MP）的整体最优解，称$f(\pmb{x}^{*} ) $为整体最优值。</p>
+<p>若有$$f(\pmb{x}^*) &lt; f(\pmb{x}) ,~~ \forall \pmb{x} \in X,\pmb{x} \neq \pmb{x}^*$$</p>
+<p>则称$\pmb{x}^{*}$是（MP）的严格整体最优解，称$ f(\pmb{x}^{*} ) $为严格整体最优值。</p>
+<p>$Def$：对于非线性规划（MP），若$\pmb{x}^{*} \in X$，并且存在一个邻域$N_{\delta}(\pmb{x}^{*}) &#x3D; \{ \pmb{x} \in   \mathbf{R}^n | ~~ \lVert \pmb{x} - \pmb{x}^{*} \rVert &lt;\delta \}$ （$\delta &gt;0$是实数），使$$f(\pmb{x}^*)\leq f(\pmb{x}), ~~ \forall \pmb{x} \in N_\delta(\pmb{x}^{*}) \cap X$$</p>
+<p>则称$\pmb{x}^{*}$是（MP）的局部最优解，称$f(\pmb{x}^{*} ) $为局部最优值。</p>
+<p>若有$$f(\pmb{x}^*) &lt; f(\pmb{x}) ,~~ \forall \pmb{x} \in N_\delta(\pmb{x}^{*}) \cap X,\pmb{x} \neq \pmb{x}^*$$</p>
+<p>则称$\pmb{x}^{*}$是（MP）的严格局部最优解，称$ f(\pmb{x}^{*} ) $为严格局部最优值。</p>
+<h2 id="非线性规划方法概述"><a href="#非线性规划方法概述" class="headerlink" title="非线性规划方法概述"></a>非线性规划方法概述</h2><p>对于无约束的最优化问题，根据lagrange乘数法，我们可以求目标函数$f(x_1,x_2,\cdots x_n)$的驻点，即要求解使$\nabla f(\pmb{x})&#x3D;(\frac{\partial f}{\partial x_1},\frac{\partial f}{\partial x_2},\cdots,\frac{\partial f}{\partial x_n})&#x3D;\pmb{0}$</p>
+<p>这样的解法有许多缺点。<br>首先：我们这里要求$f$是连续可微的，但是很多现实问题的函数不保证有这样良好的性质。<br>其次：对于lagrange乘数法所形成的方程组，除非在极简单的情况，一般没有有效的解法。<br>最后：微分学中的条件极值所出现的约束均为等式约束，但实际应用中存在着大量的不等式问题。</p>
+<p>我们尝试去用迭代的方法解决最优化问题。</p>
+<p>$Def$：设$f:\mathbf{R}^n \rightarrow \mathbf{R},\bar{\pmb{x}}\in \mathbf{R}^n,\pmb{p}\in\mathbf{R}^n, \pmb{p}\neq \pmb{0}$，若存在$\delta &gt;0$，使得<br>$$f(\bar{\pmb{x}}+t\pmb{p}) &lt; f(\bar{\pmb{x}}), ~~ \forall t \in (0,\delta)$$</p>
+<p>则称向量$\pmb{p}$是函数在点$\bar{\pmb{x}}$处的下降方向。</p>
+<p>注记：若$f(\pmb{x})$在点$\bar{\pmb{x}}$处可导，则$-\nabla f(\bar{\pmb{x}})$就是$f(\pmb{x})$在$\bar{\pmb{x}}$处下降最快的方向。</p>
+<p>$Def$：设$X\subset \mathbf{R}^n$，$\bar{\pmb{x}} \in X , ~~ \pmb{p}\in \mathbf{R}^n, ~~ \pmb{p} \neq \pmb{0}$，若存在$t&gt;0$，使得<br>$$\bar{\pmb{x}}+t\pmb{p}\in X$$<br>则称向量$\pmb{p}$是点$\bar{\pmb{x}}$关于$X$的可行方向。</p>
+<p>若一个向量$\pmb{p}$既是目标函数$f$在点$\bar{\pmb{x}}$处的下降方向，又是该点关于可行区域$X$的可行方向，则叫做函数$f$在$\bar{\pmb{x}}$处关于区域$X$的可行下降方向。</p>
+<p>现在给出用基本迭代格式求解（MP）的一般步骤<br>step1：选取初始点$\pmb{x}^0, ~~ k:&#x3D;0$；<br>step2：构造搜索方向$\pmb{p}^k$；<br>step3：根据$\pmb{p}^k$，确定步长$t_k$；<br>step4：令$\pmb{x}^{k+1}&#x3D;\pmb{x}^k+t_k\pmb{p}^k$。</p>
+<p>若$x^{k+1}$已满足某种终止条件，停止迭代，输出近似最优解$\pmb{x}^{k+1}$，否则令$k:&#x3D;k+1$，转回第2步。</p>
+<p>对无约束最优化问题一般要求$\pmb{p}^k$是下降方向，在约束最优化问题一般要求$\pmb{p}^k$是可行下降方向。</p>
+<p>注记：常用停止规则：</p>
+<p>$1.\lVert x^{k+1}-x^k \rVert &lt; \epsilon$<br>$2.\frac{\lVert x^{k+1}-x^k \rVert}{\lVert x^k \rVert} &lt; \epsilon$<br>$3.\lVert \nabla f(x^k) \rVert &lt; \epsilon$<br>$4.|f(x^{k+1})-f(x^k)| &lt; \epsilon$</p>
+<p>其中1，2称为绝对误差和相对误差</p>
+<h2 id="凸规划理论"><a href="#凸规划理论" class="headerlink" title="凸规划理论"></a>凸规划理论</h2><h3 id="凸函数及其性质"><a href="#凸函数及其性质" class="headerlink" title="凸函数及其性质"></a>凸函数及其性质</h3><p>设$S \subset \mathbf{R}^n$是非空凸集，$f:S \rightarrow \mathbf{R}$。如果对任意的$\alpha \in (0,1)$，有<br>$$f(\alpha \pmb{x}^1 + (1-\alpha)\pmb{x}^2) \leq \alpha f(\pmb{x}^1)+(1-\alpha)f(\pmb{x}^2), ~~~ \forall \pmb{x}^1,\pmb{x}^2 \in S$$</p>
+<p>则称$f$是$S$上的凸函数。</p>
+<p>如果对于任意的$\alpha \in (0,1)$，有<br>$$f(\alpha \pmb{x}^1 + (1-\alpha)\pmb{x}^2) &lt; \alpha f(\pmb{x}^1)+(1-\alpha)f(\pmb{x}^2), ~~~ \forall \pmb{x}^1,\pmb{x}^2 \in S， ~~ \pmb{x}^1 \neq \pmb{x}^2$$</p>
+<p>则称$f$是$S$上的严格凸函数。</p>
+<p>若$-f$上$S$上的（严格）凸函数，则称$f$是$S$上的（严格）凹函数。</p>
+<p>$eg$：线性函数$f(\pmb{x})&#x3D;\pmb{\alpha}^T\pmb{x} + \beta$，其中$\pmb{\alpha},\pmb{x}\in \mathbf{R}^n, \beta \in \mathbf{R}$，在$\mathbf{R}^n$上即是凸函数也是凹函数。</p>
+<p>$Th$：设$S\subset \mathbf{R}^n$是非空凸集<br>（1）若$f:\mathbf{R}^n \rightarrow \mathbf{R}$是$S$上的凸函数，$\alpha\geq 0$，则$\alpha f$是$S$上的凸函数；<br>（2）若$f_1,f_2:\mathbf{R}^n \rightarrow\mathbf{R}$都是$S$上的凸函数，则$f_1+f_2$是$S$上的凸函数。</p>
+<p>$Th$：设$S\subset \mathbf{R}^n$是非空凸集，$f:S\rightarrow \mathbf{R}$是凸函数，$c\in \mathbf{R}$，则集合<br>$$H_s(f,c)&#x3D;\{ \pmb{x} \in S | f(\pmb{x}) \leq c\}$$<br>是凸集。</p>
+<p>一般地说，上述定理的逆定理并不成立。我们称集合$H_s(f,c)$为函数$f$在集合$S$上关于数$c$的水平集。</p>
+<p>$Th$:设$S \subset \mathbf{R}^n$是非空开凸集，$f:s\rightarrow \mathbf{R}$可微，则<br>（1）$f$是$S$上的凸函数的充分必要条件是：<br>$$\nabla f(\pmb{x}^1)^T(\pmb{x}^2-\pmb{x}^1) \leq f(\pmb{x}^2)-f(\pmb{x}^1), ~~~ \forall \pmb{x}^1, \pmb{x}^2 \in S$$<br>（2）$f$是$S$上的严格凸函数的充分必要条件是：<br>$$\nabla f(\pmb{x}^1)^T(\pmb{x}^2-\pmb{x}^1)  &lt; f(\pmb{x}^2)-f(\pmb{x}^1), ~~~ \forall \pmb{x}^1, \pmb{x}^2 \in S， \pmb{x}^1 \neq \pmb{x}^2$$</p>
+<p>$Proof$：（1）必要性：设$f$设$S$上的凸函数，根据凸函数的定义，对$\forall \alpha \in (0,1)$，有</p>
+<p>$$f(\alpha\pmb{x}^2+(1-\alpha)\pmb{x}^1)\leq \alpha f(\pmb{x}^2) +(1-\alpha)f(\pmb{x}^1), ~~~ \forall \pmb{x}^1,\pmb{x}^2 \in S$$</p>
+<p>故 $$\frac{f(\pmb{x}^1+\alpha(\pmb{x}^2-\pmb{x}^1))-f(\pmb{x}^1)}{\alpha} \leq  f(\pmb{x}^2)-f(\pmb{x}^1)$$</p>
+<p>由多元函数的Taylor公式知：</p>
+<p>$$f(\pmb{x}^1+\alpha(\pmb{x}^2-\pmb{x}^1))-f(\pmb{x}^1) &#x3D; \alpha \nabla f(\pmb{x}^1)^T(\pmb{x}^2-\pmb{x}^1) + o(\lVert \alpha(\pmb{x}^2-\pmb{x}^1)\rVert)$$</p>
+<p>代入上式有：</p>
+<p>$$ \nabla f(\pmb{x}^1)^T(\pmb{x}^2-\pmb{x}^1) + \frac{o(\lVert \alpha(\pmb{x}^2-\pmb{x}^1)\rVert)}{\alpha} \leq  f(\pmb{x}^2)-f(\pmb{x}^1)$$</p>
+<p>令$\alpha \rightarrow 0^+$，便得到</p>
+<p>$$\nabla f(\pmb{x}^1)^T(\pmb{x}^2-\pmb{x}^1) \leq f(\pmb{x}^2)-f(\pmb{x}^1)$$</p>
+<p>充分性：设</p>
+<p>$$\nabla f(\pmb{x}^1)^T(\pmb{x}^2-\pmb{x}^1) \leq f(\pmb{x}^2)-f(\pmb{x}^1), ~~~ \forall \pmb{x}^1, \pmb{x}^2 \in S$$</p>
+<p>对任意的$\alpha \in (0,1)$，取$\pmb{x}&#x3D;\alpha\pmb{x}^1+(1-\alpha)\pmb{x}^2$，则因为$S$是凸的，故$\pmb{x}\in S$，则对于$\pmb{x}^1,\pmb{x} \in S$,$\pmb{x}^2,\pmb{x} \in S$，分别有：</p>
+<p>$$f(\pmb{x})+\nabla f(\pmb{x})^T(\pmb{x}^1-\pmb{x})\leq f(\pmb{x}^1), ~~~\forall \pmb{x}^1 \in S$$</p>
+<p>$$f(\pmb{x})+\nabla f(\pmb{x})^T(\pmb{x}^2-\pmb{x})\leq f(\pmb{x}^2), ~~~\forall \pmb{x}^2 \in S$$</p>
+<p>做其线性组合，有</p>
+<p>$$f(\alpha \pmb{x}^1+(1-\alpha)\pmb{x}^2)&#x3D;f(\pmb{x})&#x3D;f(\pmb{x})+\nabla f(\pmb{x})^T(\alpha(\pmb{x}^1-\pmb{x})+(1-\alpha)(\pmb{x}^2-\pmb{x}))$$</p>
+<p>$$ \leq \alpha f(\pmb{x}^1)+(1-\alpha)f(\pmb{x}^2), ~~~ \forall \pmb{x}^1,\pmb{x}^2 \in S$$</p>
+<p>因为上式对$\forall \alpha \in(0,1)$成立，则$f$是凸函数。</p>
+<p>（2）证明与（1）类似。</p>
+<p>$Def$：一个函数$f:\mathbf{R}^n \rightarrow \mathbf{R}$在一点$\pmb{x} \in \mathbf{R}^n$的Hessian矩阵的定义是：</p>
+<p>$$\nabla ^2 f(\pmb{x})&#x3D;<br> \begin{pmatrix}<br>   \frac{\partial^2 f(\pmb{x})}{\partial x_1^2} &amp; \frac{\partial^2 f(\pmb{x})}{\partial x_1 \partial x_2} &amp; \cdots &amp; \frac{\partial^2 f(\pmb{x})}{\partial x_1 \partial x_n} \\<br>   \frac{\partial^2 f(\pmb{x})}{\partial x_2 \partial x_1} &amp;  \frac{\partial^2 f(\pmb{x})}{\partial x_2^2} &amp; \cdots &amp;  \frac{\partial^2 f(\pmb{x})}{\partial x_2 \partial x_n} \\<br>   \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\<br>    \frac{\partial^2 f(\pmb{x})}{\partial x_n \partial x_1}&amp;  \frac{\partial^2 f(\pmb{x})}{\partial x_n \partial x_2}&amp; \cdots &amp; \frac{\partial^2 f(\pmb{x})}{\partial x_n^2}<br>  \end{pmatrix}<br>$$<br>在数学分析中已知$f$在$\pmb{x}$处连续的时候有：<br>$$ \frac{\partial^2 f(\pmb{x})}{\partial x_i \partial x_j} &#x3D;  \frac{\partial^2 f(\pmb{x})}{\partial x_j \partial x_i}$$</p>
+<p>那么此时$\nabla ^2 f(\pmb{x})$是一个$n$阶对称矩阵。</p>
+<p>$Th$：设$S \subset \mathbf{R}^n$是非空开凸集，$f:S\rightarrow \mathbf{R}$二阶连续可导，则：<br>（1）$f$是$S$上的凸函数的充分必要条件是：$f$的Hessian矩阵在$S$上是半正定的。<br>（1）当$f$的Hessian矩阵在$S$上是正定的时候，$f$是$S$上的严格凸函数（逆命题不成立）。</p>
+<p>$eg$：设$f(\pmb{x})&#x3D;\frac{1}{2}\pmb{x}^T\pmb{Ax}+\pmb{b}^T\pmb{x}+c$，其中$\pmb{x}\in \mathbf{R}^n$,$\pmb{A}$是一个$n$阶正定矩阵，$\pmb{b}\in \mathbf{R}^n, ~~ c \in \mathbf{R}$。验证$f(\pmb{x})$是$\mathbf{R}^n$上的凸函数。称它为二次凸函数。</p>
+<p>$Sol$：$f(\pmb{x})$的Hessian矩阵为：</p>
+<p>$$\nabla ^2 f(\pmb{x})&#x3D;A$$</p>
+<p>则$f(\pmb{x})$是$\mathbf{R}^n$上的严格凸函数。</p>
+<h3 id="凸规划及其性质"><a href="#凸规划及其性质" class="headerlink" title="凸规划及其性质"></a>凸规划及其性质</h3><p>给定一个非线性规划问题：<br>$$<br>\begin{cases}<br>\min  &amp; f(\pmb{x}) \\<br>s.t. &amp; g_i(\pmb{x})\leq 0, &amp; i&#x3D;1,\cdots, p \\<br> ~   &amp; h_j(\pmb{x})&#x3D;0, &amp; j&#x3D;1,\cdots, q \\<br>\end{cases}<br>$$<br>记（MP）的约束集为：<br>$$X&#x3D;\{x\in \mathbf{R}^n | g_i(\pmb{x})\leq 0 , ~ h_j(\pmb{x})&#x3D;0 \}$$<br>如果（MP）的约束集$X$为凸集，目标函数$f$是$X$上的凸函数，则（MP）叫做非线性凸规划，简称凸规划。</p>
+<p>$Th$：对于非线性规划（MP），若$g_i(\pmb{x})(i&#x3D;1,\cdots,p)$皆为$\mathbf{R}^n$上的凸函数，$h_j(\pmb{x})(j&#x3D;1,\cdots, q)$皆为线性函数，并且$f$是$X$上的凸函数，则（MP）是凸规划。</p>
+<p>注记：此情况是一个判断凸规划的特殊情况。</p>
+<p>对于凸规划，有如下的重要性质：<br>$Th$：凸规划的任一局部睫都是它的整体最优解。</p>
+<p>$Proof$：设$\pmb{x}^*$是凸规划（MP）的一个局部最优解，由定义知，存在$\pmb{x}^*$的邻域$N_\delta(\pmb{x}^*)$，使得<br><font color="#dd0000">$$f(\pmb{x}^*) \leq f(\pmb{x}), ~~~ \forall \pmb{x} \in X \cap N_\delta(\pmb{x}^*)$$</font><br></p>
+<p>若$\pmb{x}^*$不是（MP）的整体最优解，由定义知，存在$\bar{\pmb{x}}\in X$，使得</p>
+<p>$$f(\bar{\pmb{x}}) &lt; f(\pmb{x}^*)$$</p>
+<p>又因为$f$是凸函数。因此有</p>
+<p><font color="#dd0000">$$f(\alpha \pmb{\bar{x}} + (1-\alpha)\pmb{x}^*) \leq \alpha f(\pmb{\bar{x}}) + (1-\alpha)f(\pmb{x}^*) &lt; \alpha f(\pmb{x}^*)+(1-\alpha)f(\pmb{x}^*)&#x3D;f(\pmb{x}^*)$$</font><br></p>
+<p>当$\alpha &gt; 0$充分小时，有</p>
+<p>$$\alpha \bar{x} + (1-\alpha) \pmb{x}^* \in X \cap N_\delta(\pmb{x}^*)$$</p>
+<p>那么就存在矛盾了。</p>
+<p>注记：由此可见，对于凸规划问题，一旦求得了它的一个局部最优解，实际上就得到了它的整体最优解。</p>
+<h2 id="一维搜索方法"><a href="#一维搜索方法" class="headerlink" title="一维搜索方法"></a>一维搜索方法</h2><p>一位搜索问题又称为线性搜索问题，是指目标函数为单变量的非线性规划问题，数学模型为：</p>
+<p>$$\min_{\begin{matrix}t \geq 0 \\ (0 \leq t \leq t_{max}) \end{matrix}}\varphi(t)$$</p>
+<p>其中$t \in \mathbf{R}$。<br>当$t$的取值为$t \geq 0 $的问题称为一维搜索问题。<br>当$t$的取值为$ 0\leq t \leq t_{max} $的问题称为有效一维搜索问题。</p>
+<h3 id="0-618法"><a href="#0-618法" class="headerlink" title="0.618法"></a>0.618法</h3><p>本方法是寻找单谷函数的极小值的一种方法。<br>单谷函数是指存在一个$t^* \in [a,b]$，使得$\varphi(t)$在$[a,t^*]$上严格递减，在$[t^*,b]$上严格递增，则称$\varphi(t)$是单谷的，区间$[a,b]$称为$\varphi(t)$的单谷区间。</p>
+<p>注记：（1）易知$t^*$是$\varphi(t)$在$[a,b]$上的唯一极小点<br>（2）单谷函数可以不可微，甚至不连续。</p>
+<p>我们给定问题</p>
+<p>$$\min_{a\leq t \leq b} \varphi(t)$$</p>
+<p>其中$[a,b]$是$\varphi(t)$的单谷区间，我们的目的是通过缩小区间$[a,b]$得到一个近似解。</p>
+<p>在$[a,b]$上任去两个点$t_1,t_2$。设$t_1 &lt; t_2$，由于$\varphi(t)$设单谷函数，由定义可知</p>
+<p>（1）若$\varphi(t_1) \leq \varphi(t_2)$，则$t^* \in [a,t_2]$<br>（2）若$\varphi(t_1) \geq \varphi(t_2)$，则$t^* \in [t_1,b]$</p>
+<p>因此，通过比较$\varphi(t_1)$和$\varphi(t_2)$的大小，可将搜索区间缩小为$[a,t_2]$或$[t_1,b]$。在缩小区间的时候我们可以逐渐得到精确解。</p>
+<p>我们分析如何去寻找$t_1$和$t_2$</p>
+<p>首先，我们不知道缩小后的区间是两个中的哪一个，所以我们令二者长度相等，即</p>
+<p>$$t_2-a &#x3D; b-t_1$$</p>
+<p>令<br>$$\omega &#x3D; \frac{t_2-a}{b-a} &#x3D; \frac{b-t_1}{b-a}$$</p>
+<p>表示搜索区间缩小的比，则有：</p>
+<p>$$t_1&#x3D;a+(1-\omega)(b-a)$$<br>$$t_2&#x3D; a+\omega(b-a)$$</p>
+<p>我们希望下一次迭代时，区间缩小比例仍为$\omega$。不妨设新的搜索区间为$[a,t_2]$并且$t_1$已经计算过函数值了。在新一轮迭代中，我们去两个探索点$t_{1}’ &lt; t_2’$，要求其中的一点是$t_1$，并且满足：<br>$$\frac{t_2’-a}{t_2-a}&#x3D;\frac{t_2-t_1’}{t_2-a}&#x3D;\omega$$</p>
+<p>带入可以得到</p>
+<p>$$t_2’ - a &#x3D; \omega^2(b-a), ~~~~~ t_2 - t_1’ &#x3D; \omega ^2 (b-a)$$</p>
+<p>令$t_2’ &#x3D; t_1 $，则由$t_1-a &#x3D; \omega^2 (b-a)$以及$t_1&#x3D;a+(1-\omega)(b-a)$ 有：<br>$$\omega ^2 &#x3D; 1- \omega $$</p>
+<p>解的方程组的解为：$\omega &#x3D; \frac{\sqrt{5}-1}{2}\approx 0.618$</p>
+<p>对搜索区间为$[t_1,b]$的情况，可以同样讨论，这时应取$t_1’&#x3D;t_2$，取$t_2’$为新的探索点。</p>
+<p>解问题$\min\limits_{a\leq t \leq b} \varphi(t)$的一般方法如下：</p>
+<p>$1.$确定单谷区间$[a,b]$，给定最后区间精度$\epsilon&gt;0$<br>$2.$计算最初两个探索点：<br>$$t_1&#x3D;a+0.382(b-a) &#x3D; b - 0.618(b-a)$$<br>$$t_2 &#x3D; a + 0.618(b-a)$$<br>并计算$\varphi_1 &#x3D; \varphi(t_1),~~~ \varphi_2 &#x3D; \varphi(t_2)$<br>$3.$若$\varphi_1 \leq \varphi_2$，转第四步，否则转第五步<br>$4.$若$t_2-a \leq \epsilon$，停止迭代，输出$t_1$，否则令$$b:&#x3D;t_2,~~~ t_2 :&#x3D;t_1,~~~ t_1 :&#x3D;a+0.382(b-a),~~ \varphi_2:&#x3D;\varphi_1 $$<br>计算$\varphi_1&#x3D;\varphi(t_1)$，转第三步。<br>$5.$若$b-t_1 \leq \epsilon$，停止迭代，输出$t_2$，否则令$$a:&#x3D;t_1,~~~ t_1 :&#x3D;t_2,~~~ t_2 :&#x3D;a+0.618(b-a),~~ \varphi_1:&#x3D;\varphi_2 $$<br>计算$\varphi_2&#x3D;\varphi(t_2)$，转第三步。</p>
+<p>$eg$：用0.618法求解<br>$$\min_{t\geq 0 } \varphi(t) &#x3D; t^3-2t+1$$</p>
+<p>其中$\varphi(t)$的单谷区间为$[0,3]$，$\epsilon &#x3D; 0.5$</p>
+<p>在求解过程中可以用表格求解：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$a$</td>
+<td>$0$</td>
+<td>$0 $</td>
+<td>$0 $</td>
+<td>$0.438$</td>
+<td>$0.708$</td>
+</tr>
+<tr>
+<td>$b$</td>
+<td>$3$</td>
+<td>$1.854$</td>
+<td>$1.146$</td>
+<td>$1.146$</td>
+<td>$1.146$</td>
+</tr>
+<tr>
+<td>$t_1$</td>
+<td>$1.146$</td>
+<td>$0.708$</td>
+<td>$0.438$</td>
+<td>$0.708$</td>
+<td></td>
+</tr>
+<tr>
+<td>$t_2$</td>
+<td>$1.854$</td>
+<td>$1.146$</td>
+<td>$0.708$</td>
+<td>$0.876$</td>
+<td></td>
+</tr>
+<tr>
+<td>$\varphi_1$</td>
+<td>$0.2131$</td>
+<td>$-0.0611$</td>
+<td>$0.2080$</td>
+<td>$-0.0611$</td>
+<td></td>
+</tr>
+<tr>
+<td>$\varphi_2$</td>
+<td>$3.6648$</td>
+<td>$0.2131$</td>
+<td>$-0.0611$</td>
+<td>$-0.0798$</td>
+<td></td>
+</tr>
+<tr>
+<td>关系</td>
+<td>$\varphi_1 &lt; \varphi_2$</td>
+<td>$\varphi_1 &lt; \varphi_2$</td>
+<td>$\varphi_1 &gt; \varphi_2$</td>
+<td>$\varphi_1 &gt; \varphi_2$</td>
+<td></td>
+</tr>
+<tr>
+<td>换$a$</td>
+<td></td>
+<td></td>
+<td>$\surd$</td>
+<td>$\surd$</td>
+<td></td>
+</tr>
+<tr>
+<td>换$b$</td>
+<td>$\surd$</td>
+<td>$\surd$</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>第四轮迭代开始有$b-a &#x3D; 1.146-0.708 &lt; 0.5$，停止迭代。</p>
+<p>我们考虑用python实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">phi</span>(<span class="params">t</span>):</span><br><span class="line">    <span class="keyword">return</span> t*t*t-<span class="number">2</span>*t+<span class="number">1</span></span><br><span class="line"></span><br><span class="line">a=<span class="number">0.0</span></span><br><span class="line">b=<span class="number">3.0</span></span><br><span class="line">turn=<span class="number">0</span></span><br><span class="line"><span class="keyword">while</span>(b-a&gt;<span class="number">0.5</span>):</span><br><span class="line">    turn=turn+<span class="number">1</span></span><br><span class="line">    t_1=a+((<span class="number">3</span>-math.sqrt(<span class="number">5</span>))/<span class="number">2</span>)*(b-a)</span><br><span class="line">    t_2=a+((math.sqrt(<span class="number">5</span>)-<span class="number">1</span>)/<span class="number">2</span>)*(b-a)</span><br><span class="line">    phi_1=phi(t_1)</span><br><span class="line">    phi_2=phi(t_2)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;turn &#123;&#125;, a = &#123;:.3f&#125;, b = &#123;:.3f&#125;, t_1 = &#123;:.3f&#125;, t_2 = &#123;:.3f&#125;, &quot;</span>.<span class="built_in">format</span>(turn, a, b, t_1, t_2))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;phi_1 = &#123;:.4f&#125;, phi_2 = &#123;:.4f&#125;&quot;</span>.<span class="built_in">format</span>(phi_1, phi_2))</span><br><span class="line">    <span class="keyword">if</span> phi_1 &gt; phi_2:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;phi_1 &gt; phi_2, change a&quot;</span>)</span><br><span class="line">        a=t_1</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;phi_1 &lt; phi_2, change b&quot;</span>)</span><br><span class="line">        b=t_2</span><br><span class="line">    <span class="built_in">print</span>()    </span><br></pre></td></tr></table></figure>
+
+<p>输出为：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">turn <span class="number">1</span>, a = <span class="number">0.000</span>, b = <span class="number">3.000</span>, t_1 = <span class="number">1.146</span>, t_2 = <span class="number">1.854</span>, </span><br><span class="line">phi_1 = <span class="number">0.2129</span>, phi_2 = <span class="number">3.6656</span></span><br><span class="line">phi_1 &lt; phi_2, change b</span><br><span class="line"></span><br><span class="line">turn <span class="number">2</span>, a = <span class="number">0.000</span>, b = <span class="number">1.854</span>, t_1 = <span class="number">0.708</span>, t_2 = <span class="number">1.146</span>, </span><br><span class="line">phi_1 = -<span class="number">0.0612</span>, phi_2 = <span class="number">0.2129</span></span><br><span class="line">phi_1 &lt; phi_2, change b</span><br><span class="line"></span><br><span class="line">turn <span class="number">3</span>, a = <span class="number">0.000</span>, b = <span class="number">1.146</span>, t_1 = <span class="number">0.438</span>, t_2 = <span class="number">0.708</span>, </span><br><span class="line">phi_1 = <span class="number">0.2085</span>, phi_2 = -<span class="number">0.0612</span></span><br><span class="line">phi_1 &gt; phi_2, change a</span><br><span class="line"></span><br><span class="line">turn <span class="number">4</span>, a = <span class="number">0.438</span>, b = <span class="number">1.146</span>, t_1 = <span class="number">0.708</span>, t_2 = <span class="number">0.875</span>, </span><br><span class="line">phi_1 = -<span class="number">0.0612</span>, phi_2 = -<span class="number">0.0800</span></span><br><span class="line">phi_1 &gt; phi_2, change a</span><br></pre></td></tr></table></figure>
+
+<p>由于存在精度损失，答案和课本上有些许出入。</p>
+<h3 id="Newton法"><a href="#Newton法" class="headerlink" title="Newton法"></a>Newton法</h3><p>考虑如下的一维搜索问题：</p>
+<p>$$min ~~ \varphi(t)$$</p>
+<p>其中$\varphi(t)$是二次可微的，且$\varphi’’(t) \neq 0$</p>
+<p>Newton法的基本思想是：用$\varphi(t)$在探索点$t_k$的二阶Taylor展开式$g(t)$来近似代替$\varphi(t)$,即</p>
+<p>$$\varphi(t) \approx g(t)&#x3D; \varphi(t_k) + \varphi’(t_k)(t-t_k)+\frac{\varphi’’(t_k)}{2}(t-t_k)^2$$</p>
+<p>然后用$g(t)$的最小点作为新的探索点$t_{k+1}$。据此，令</p>
+<p>$$g’(t)&#x3D;\varphi’(t_k)+ \varphi’’(t_k)(t-t_k)&#x3D;0$$</p>
+<p>得到解$t_{k+1} &#x3D; t_k - \frac{\varphi’(t_k)}{\varphi’’(t_k)}$</p>
+<p>开始设定一个点$t_1$，然后按照上述共识进行迭代计算，当$|\varphi’(t_k)|&lt;\epsilon$时，则迭代结束，此时$t_k$为$\varphi(t)$的最小点近似。</p>
+<p>求解Newton法的步骤：</p>
+<p>$1.$给定初始点$t_1,~~ \epsilon &gt;0 , ~~~ k:&#x3D;1$<br>$2.$如果$|\varphi’(t_k)|&lt; \epsilon $，停止迭代，输出$t_k$，否则，当$\varphi’’(t_k)&#x3D;0$时，停止，解题失败，当$\varphi’’(t_k)\neq 0$时，转第三步<br>$3.$计算$t_{k+1} &#x3D; t_k - \frac{\varphi’(t_k)}{\varphi’’(t_k)}$，如果$|t_{k+1}-t_k|&lt; \epsilon $，停止迭代，输出$t_{k+1}$；否则，$k:&#x3D;k+1$，转第二步。</p>
+<p>$eg$：用Newton法求函数的最优解：</p>
+<p>$$\min ~~ \varphi(t) &#x3D; \int_0^t \arctan xdx$$</p>
+<p>$Sol $：先求出</p>
+<p>$$\varphi’(t) &#x3D;\arctan t , ~~~~~ \varphi’’(t) &#x3D; \frac{1}{1+t^2}$$</p>
+<p>取$t_1&#x3D;1$，计算结果列于下表：</p>
+<table>
+<thead>
+<tr>
+<th>$k$</th>
+<th>$t_k$</th>
+<th>$\varphi’(t_k)$</th>
+<th>$1&#x2F;\varphi’’(t_k)$</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$1$</td>
+<td>$1$</td>
+<td>$0.7854$</td>
+<td>$2$</td>
+</tr>
+<tr>
+<td>$2$</td>
+<td>$-0.5708$</td>
+<td>$-0.5187$</td>
+<td>$1.3258$</td>
+</tr>
+<tr>
+<td>$3$</td>
+<td>$0.1169$</td>
+<td>$0.1164$</td>
+<td>$1.0137$</td>
+</tr>
+<tr>
+<td>$4$</td>
+<td>$-0.0011$</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>易知$t&#x3D;0$为$\varphi(t)$的精确解，用Newton迭代三次后得到的$t_4$已经非常接近近似解了。</p>
+<p>注记：Newton法的思想可以直接推广到求多变量函数$f(x_1,\cdots, x_n)$的无约束级值问题，只是将$\varphi’(t_k)$代替为$\nabla f(\pmb{x}^k)$，代替$\frac{1}{\varphi’’(t_k)}$的是$(\nabla ^2f(\pmb{x}^k))^{-1}$</p>
+<p>我们考虑用python实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">partial_phi</span>(<span class="params">t</span>):</span><br><span class="line">    <span class="keyword">return</span> np.arctan(t)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">partial_2_phi</span>(<span class="params">t</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>/(<span class="number">1</span>+t*t)</span><br><span class="line"></span><br><span class="line">t=<span class="number">1.0</span></span><br><span class="line">eps=<span class="number">1e-6</span></span><br><span class="line">turn=<span class="number">0</span></span><br><span class="line"><span class="keyword">while</span>(<span class="built_in">abs</span>(partial_phi(t))&gt;eps):</span><br><span class="line">    turn=turn+<span class="number">1</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;turn &#123;&#125;: t = &#123;:.6f&#125;&quot;</span>.<span class="built_in">format</span>(turn,t))</span><br><span class="line">    tmp=t-partial_phi(t)/partial_2_phi(t)</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">abs</span>(tmp-t)&lt;eps):</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    t=tmp    </span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;answer = &#123;&#125;&quot;</span>.<span class="built_in">format</span>(t))</span><br></pre></td></tr></table></figure>
+
+<p>输出为：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">turn <span class="number">1</span>: t = <span class="number">1.000000</span></span><br><span class="line">turn <span class="number">2</span>: t = -<span class="number">0.570796</span></span><br><span class="line">turn <span class="number">3</span>: t = <span class="number">0.116860</span></span><br><span class="line">turn <span class="number">4</span>: t = -<span class="number">0.001061</span></span><br><span class="line">answer = <span class="number">7.963096044106416e-10</span></span><br></pre></td></tr></table></figure>
+
+<p>但是取$t_1&#x3D;2$迭代的话，结果如下：</p>
+<table>
+<thead>
+<tr>
+<th>$k$</th>
+<th>$t_k$</th>
+<th>$\varphi’(t_k)$</th>
+<th>$1&#x2F;\varphi’’(t_k)$</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$1$</td>
+<td>$2$</td>
+<td>$1.1071$</td>
+<td>$5$</td>
+</tr>
+<tr>
+<td>$2$</td>
+<td>$-3.5357$</td>
+<td>$-1.2952$</td>
+<td>$13.50$</td>
+</tr>
+<tr>
+<td>$3$</td>
+<td>$13.95$</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>结果是发散的。</p>
+<p>从任意初始点开始的Newton迭代法产生的点列$\{ t_k \}$，一般来说，不一定收敛，即使收敛，其极限点也不一定是$\varphi(t)$的极小点，而只能保证它是$\varphi(t)$的驻点，但是当初始点充分接近$t^*$时，可以证明Newton法是收敛的，并且收敛速度很快。</p>
+<p>我们将这种性质称为局部收敛性。反之，若对任意的初始点，由方法产生的点列都收敛于最优解，则称该方法具有全局收敛性。</p>
+<h2 id="无约束最优化方法"><a href="#无约束最优化方法" class="headerlink" title="无约束最优化方法"></a>无约束最优化方法</h2><p>我们讨论$n$元函数的无约束非线性规划问题（UMP）：</p>
+<p>$$\min f(\pmb{x})$$</p>
+<p>的求解方法，其中$\pmb{x}&#x3D;(x_1,\cdots, x_n)^T \in \mathbf{R}^n, f:\mathbf{R}^n \rightarrow \mathbf{R}$，这些方法通常称为无约束最优化方法。</p>
+<p>无约束最优化方法大体分为两类：解析法和直接法。解析法在计算中需要用到导数信息（梯度，Hessian矩阵等），而直接法则是在计算过程中仅用到函数值的方法。</p>
+<h3 id="最优性条件"><a href="#最优性条件" class="headerlink" title="最优性条件"></a>最优性条件</h3><p>$Th$：设$f:\mathbf{R}^n \rightarrow \mathbf{R}$在点$\bar{x}\in \mathbf{R}^n$处可微。若存在$\pmb{p}\in \mathbf{R}^n$，使得</p>
+<p>$$\nabla f(\bar{\pmb{x}})^Tp&lt;0$$</p>
+<p>则$\pmb{p}$是$f$在点$\bar{\pmb{x}}$处的下降方向。</p>
+<p>$Th$：设$f:\mathbf{R}^n\rightarrow\mathbf{R}$在点$\pmb{x}^* \in \mathbf{R}^n$处可微，若$\pmb{x}^*$是（UMP）的局部最优解，则<br>$$\nabla f(\pmb{x}^*) &#x3D; \pmb{0}$$</p>
+<p>注记：梯度为0只是最优解的一个必要条件，在数学分析中我们学过，一个函数梯度为0的时候函数可能是极大点，可能是极小点甚至可能什么都不是。</p>
+<p>$Th$：设$f:\mathbf{R}^n\rightarrow\mathbf{R}$在点$\pmb{x}^* \in \mathbf{R}^n$处的Hessian矩阵存在，若$\nabla f(\pmb{x}^*) &#x3D; \pmb{0}$且$\nabla ^2 f(\pmb{x}^*)$正定，则$\pmb{x}^*$是（UMP）问题的严格局部最优解。</p>
+<p>注记：这样的性质我们只能找到一个局部的最优解。但是在凸函数中，我们有下列良好的性质：</p>
+<p>$Th$：$f:\mathbf{R}^n\rightarrow\mathbf{R}$在点$\pmb{x}^* \in \mathbf{R}^n$，$f$是$\mathbf{R}^n$上的可微凸函数。若有<br>$$\nabla f(\bar{\pmb{x}})^Tp&#x3D;0$$<br>则$x^*$是（UMP）的整体最优解。</p>
+<p>下面介绍两种解析。</p>
+<h3 id="最速下降法"><a href="#最速下降法" class="headerlink" title="最速下降法"></a>最速下降法</h3><p>核心思想是下降方向选负梯度方向时，函数下降的最快。</p>
+<p>下面列出步骤：</p>
+<p>$1.$选取初始点$\pmb{x}^0$，给定误差$\epsilon&gt;0$，令$k&#x3D;0$<br>$2.$计算$\nabla f(\pmb{x})^k$，若$\lVert \nabla f(\pmb{x}^k)  \rVert \leq \epsilon$，停止迭代，输出$\pmb{x}^k$；否则进行第3步<br>$3.$取$\pmb{p}^k&#x3D;-\nabla f(\pmb{x}^k)$<br>$4.$进行一维搜索，求$t_k$，使得$f(\pmb{x}^k+t_k\pmb{p}^k) &#x3D; \min\limits_{t \geq 0}f(\pmb{x}^k+t\pmb{p}^k)$，令$\pmb{x}^{k+1} &#x3D; \pmb{x}^k + t_k\pmb{p}^k$，$k&#x3D;k+1$，转第2步。</p>
+<p>$eg$：用最速下降法求解如下问题：<br>$$\min f(x_1,x_2)&#x3D;x_1^2 + 25 x_2^2$$</p>
+<p>其中初始点$\pmb{x}^0 &#x3D; (2,2)^T $，终止误差$\epsilon&#x3D;10^{-6}$</p>
+<p>我们使用python实现，代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line">INF = <span class="number">1000</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">grad_f</span>(<span class="params">x</span>): <span class="comment">#求f的梯度</span></span><br><span class="line">    l=[]</span><br><span class="line">    l.append(<span class="number">2</span> * x[<span class="number">0</span>])</span><br><span class="line">    l.append(<span class="number">50</span> * x[<span class="number">1</span>])</span><br><span class="line">    <span class="keyword">return</span> l</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">norm_2</span>(<span class="params">x</span>): <span class="comment">#2范数</span></span><br><span class="line">    <span class="keyword">return</span> math.sqrt(x[<span class="number">0</span>] ** <span class="number">2</span> + x[<span class="number">1</span>] ** <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f_t</span>(<span class="params">x, p, t</span>): <span class="comment">#在一维搜索时的函数,即f(x+t*p)</span></span><br><span class="line">    <span class="keyword">return</span> (x[<span class="number">0</span>] + t * p[<span class="number">0</span>]) ** <span class="number">2</span> + <span class="number">25</span> * (x[<span class="number">1</span>] + t * p[<span class="number">1</span>]) ** <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">search</span>(<span class="params">a, b, x, p, eps</span>): <span class="comment">#对t进行一维搜索</span></span><br><span class="line">    <span class="keyword">while</span>(b - a &gt; eps):</span><br><span class="line">        t_1 = a + ((<span class="number">3</span> - math.sqrt(<span class="number">5</span>)) / <span class="number">2</span>) * (b - a)</span><br><span class="line">        t_2 = a + ((math.sqrt(<span class="number">5</span>) - <span class="number">1</span>) / <span class="number">2</span>) * (b - a)</span><br><span class="line">        f_1 = f_t(x, p, t_1)</span><br><span class="line">        f_2 = f_t(x, p, t_2)</span><br><span class="line">        <span class="keyword">if</span> f_1 &gt; f_2:</span><br><span class="line">            <span class="keyword">if</span>(t_2 - a &lt;= eps):</span><br><span class="line">                <span class="keyword">return</span> t_1</span><br><span class="line">            a = t_1</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span>(b - t_1 &lt;= eps):</span><br><span class="line">                <span class="keyword">return</span> t_2</span><br><span class="line">            b = t_2</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">gradient_descent</span>(<span class="params">x, eps</span>):</span><br><span class="line">    turn = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span>(norm_2(x) &gt; eps):</span><br><span class="line">        turn = turn + <span class="number">1</span></span><br><span class="line">        grad = grad_f(x)</span><br><span class="line">        grad[<span class="number">0</span>] = -grad[<span class="number">0</span>]</span><br><span class="line">        grad[<span class="number">1</span>] = -grad[<span class="number">1</span>]</span><br><span class="line">        t = search(<span class="number">0</span>, INF, x, grad, <span class="number">1e-10</span>) <span class="comment"># 左端点，右端点，本轮迭代向量，负梯度向量，精度</span></span><br><span class="line">        x[<span class="number">0</span>] = x[<span class="number">0</span>] + t * grad[<span class="number">0</span>]</span><br><span class="line">        x[<span class="number">1</span>] = x[<span class="number">1</span>] + t * grad[<span class="number">1</span>]</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;now turn: &#123;&#125;, x = [&#123;:.10f&#125;, &#123;:.10f&#125;]&quot;</span>.<span class="built_in">format</span>(turn, x[<span class="number">0</span>], x[<span class="number">1</span>]))</span><br><span class="line">    <span class="keyword">return</span> x, turn</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">ans, turn = gradient_descent([<span class="number">2</span>,<span class="number">2</span>],<span class="number">1e-6</span>)  </span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;turn = &#123;&#125;, answer = [&#123;:.10f&#125;, &#123;:.10f&#125;]&quot;</span>.<span class="built_in">format</span>(turn, ans[<span class="number">0</span>], ans[<span class="number">1</span>]))</span><br></pre></td></tr></table></figure>
+
+<p>输出为：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">now turn: <span class="number">1</span>, x = [<span class="number">1.9198771278</span>, -<span class="number">0.0030718038</span>]</span><br><span class="line">now turn: <span class="number">2</span>, x = [<span class="number">0.0708877878</span>, <span class="number">0.0708877800</span>]</span><br><span class="line">now turn: <span class="number">3</span>, x = [<span class="number">0.0680479212</span>, -<span class="number">0.0001088767</span>]</span><br><span class="line">now turn: <span class="number">4</span>, x = [<span class="number">0.0025125388</span>, <span class="number">0.0025125387</span>]</span><br><span class="line">now turn: <span class="number">5</span>, x = [<span class="number">0.0024118829</span>, -<span class="number">0.0000038590</span>]</span><br><span class="line">now turn: <span class="number">6</span>, x = [<span class="number">0.0000890545</span>, <span class="number">0.0000890543</span>]</span><br><span class="line">now turn: <span class="number">7</span>, x = [<span class="number">0.0000854869</span>, -<span class="number">0.0000001368</span>]</span><br><span class="line">now turn: <span class="number">8</span>, x = [<span class="number">0.0000031564</span>, <span class="number">0.0000031564</span>]</span><br><span class="line">now turn: <span class="number">9</span>, x = [<span class="number">0.0000030300</span>, -<span class="number">0.0000000048</span>]</span><br><span class="line">now turn: <span class="number">10</span>, x = [<span class="number">0.0000001119</span>, <span class="number">0.0000001119</span>]</span><br><span class="line">turn = <span class="number">10</span>, answer = [<span class="number">0.0000001119</span>, <span class="number">0.0000001119</span>]</span><br></pre></td></tr></table></figure>
+
+<p>可以看到迭代10轮就收敛了到了一个离最优解$(0,0)^T$很接近的向量。</p>
+<p>注记：这里因为只有两个变量，所以直接使用了列表list，如果是高维的话可以使考虑使用numpy</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%BF%90%E7%AD%B9%E5%AD%A6/" rel="tag"># 运筹学</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/05/21/%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%90%86%E8%AE%BA%E7%AC%AC%E4%B8%80%E7%AB%A0%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="prev" title="线性系统理论第一章复习笔记">
+                  <i class="fa fa-chevron-left"></i> 线性系统理论第一章复习笔记
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Willis</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

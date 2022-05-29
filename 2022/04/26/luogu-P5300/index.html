@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://crz-willis.github.io/2022/04/26/luogu-P5300/image.png">
 <meta property="og:image" content="https://crz-willis.github.io/2022/04/26/luogu-P5300/image2.png">
 <meta property="article:published_time" content="2022-04-26T08:48:38.000Z">
-<meta property="article:modified_time" content="2022-04-26T09:26:45.524Z">
+<meta property="article:modified_time" content="2022-04-26T11:46:18.702Z">
 <meta property="article:author" content="Willis">
 <meta property="article:tag" content="单调栈">
 <meta name="twitter:card" content="summary">
@@ -93,7 +93,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fhome fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签<span class="badge">8</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类<span class="badge">7</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fhome fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签<span class="badge">14</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类<span class="badge">11</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -164,18 +164,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -258,7 +258,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2022-04-26 16:48:38 / 修改时间：17:26:45" itemprop="dateCreated datePublished" datetime="2022-04-26T16:48:38+08:00">2022-04-26</time>
+      <time title="创建时间：2022-04-26 16:48:38 / 修改时间：19:46:18" itemprop="dateCreated datePublished" datetime="2022-04-26T16:48:38+08:00">2022-04-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -295,7 +295,7 @@
 <span id="more"></span>
 
 <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5300">传送门</a></p>
-<p>大致题意：给你$n\times n$的矩阵，让你求矩阵中所有子矩阵的与$\&amp;$和或$|$的和。<br>数据范围：$n\leq 2000,a_{i,j}\leq 2^{31}-1$</p>
+<p>大致题意：给你$n\times n$的矩阵$A$，让你求矩阵中所有子矩阵的与$\&amp;$和或$|$的和。<br>数据范围：$n\leq 2000,a_{i,j}\leq 2^{31}-1$</p>
 <p>大致题解：拆位考虑，对于与运算，我们对每一个$a_{i,j}$计算以它为右下角的全1子矩阵个数，对于或运算，我们计算以$a_{i,j}$为右下角的全0子矩阵个数，然后用$i\times j$减去全0子矩阵的个数即可。</p>
 <p>下面讨论怎么使用单调栈来维护以$a_{i,j}$为右下角的全1&#x2F;0子矩阵个数。</p>
 <p>预处理$s_{i,j}$为以$a_{i,j}$上方连续的1&#x2F;0的个数，然后我们依次枚举一个点，计算以它为右下角的全1&#x2F;0的子矩阵的个数。</p>
@@ -330,6 +330,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2022/05/03/%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E6%95%B0%E5%AD%A6%E7%89%B9%E5%BE%81%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="next" title="随机变量的数学特征复习笔记">
+                  随机变量的数学特征复习笔记 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>

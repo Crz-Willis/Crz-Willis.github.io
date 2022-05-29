@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"crz-willis.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="简要介绍数学期望，方差，矩，分位数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="随机变量的数学特征复习笔记">
+<meta property="og:url" content="https://crz-willis.github.io/2022/05/03/%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E6%95%B0%E5%AD%A6%E7%89%B9%E5%BE%81%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Crz-Willis&#39;s blog">
+<meta property="og:description" content="简要介绍数学期望，方差，矩，分位数">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-03T06:05:58.000Z">
+<meta property="article:modified_time" content="2022-05-05T02:26:16.856Z">
+<meta property="article:author" content="Willis">
+<meta property="article:tag" content="方差">
+<meta property="article:tag" content="数学期望">
+<meta property="article:tag" content="矩">
+<meta property="article:tag" content="分位数">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://crz-willis.github.io/2022/05/03/%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E6%95%B0%E5%AD%A6%E7%89%B9%E5%BE%81%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://crz-willis.github.io/2022/05/03/%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E6%95%B0%E5%AD%A6%E7%89%B9%E5%BE%81%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/","path":"2022/05/03/随机变量的数学特征复习笔记/","title":"随机变量的数学特征复习笔记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>随机变量的数学特征复习笔记 | Crz-Willis's blog</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+  <!--下面一行插入复制代码，注意换成自己的github地址：href="https://Crz-Willis.github.io/"-->
+  <a target="_blank" rel="noopener" href="https://github.com/Crz-Willis/Crz-Willis.github.io" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#70B7FD; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Crz-Willis's blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">sdu数学学院菜鸡</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fhome fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签<span class="badge">14</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类<span class="badge">11</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E6%9C%9F%E6%9C%9B"><span class="nav-number">1.</span> <span class="nav-text">数学期望</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%87%BD%E6%95%B0%E7%9A%84%E6%95%B0%E5%AD%A6%E6%9C%9F%E6%9C%9B"><span class="nav-number">1.1.</span> <span class="nav-text">随机变量函数的数学期望</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E6%9C%9F%E6%9C%9B%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-number">1.2.</span> <span class="nav-text">数学期望的性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E6%9C%9F%E6%9C%9B%E7%9A%84%E6%B1%82%E6%B3%95"><span class="nav-number">1.3.</span> <span class="nav-text">数学期望的求法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E5%B7%AE"><span class="nav-number">2.</span> <span class="nav-text">方差</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E5%B7%AE%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-number">2.1.</span> <span class="nav-text">方差的性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%87%E6%AF%94%E9%9B%AA%E5%A4%AB%E4%B8%8D%E7%AD%89%E5%BC%8F"><span class="nav-number">2.2.</span> <span class="nav-text">切比雪夫不等式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E5%88%86%E5%B8%83%E7%9A%84%E6%95%B0%E5%AD%A6%E6%9C%9F%E6%9C%9B%E5%92%8C%E6%96%B9%E5%B7%AE"><span class="nav-number">3.</span> <span class="nav-text">常见分布的数学期望和方差</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A6%BB%E6%95%A3%E5%9E%8B"><span class="nav-number">3.1.</span> <span class="nav-text">离散型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E7%BB%AD%E5%9E%8B"><span class="nav-number">3.2.</span> <span class="nav-text">连续型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E6%95%B0%E5%AD%A6%E7%89%B9%E5%BE%81"><span class="nav-number">4.</span> <span class="nav-text">其他数学特征</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%A9"><span class="nav-number">4.1.</span> <span class="nav-text">矩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E4%BD%8D%E6%95%B0%E5%92%8C%E4%B8%AD%E4%BD%8D%E6%95%B0"><span class="nav-number">4.2.</span> <span class="nav-text">分位数和中位数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%97%E6%95%B0"><span class="nav-number">4.3.</span> <span class="nav-text">众数</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Willis"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Willis</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Crz-Willis" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Crz-Willis" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/3298404" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;3298404" rel="noopener" target="_blank"><i class="fa fa-video-camera fa-fw"></i>bilibili</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://codeforces.com/profile/Crz-Willis" title="codeforces → https:&#x2F;&#x2F;codeforces.com&#x2F;profile&#x2F;Crz-Willis" rel="noopener" target="_blank"><i class="fa fa-tag fa-fw"></i>codeforces</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/181790" title="luogu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;181790" rel="noopener" target="_blank"><i class="fa fa-tag fa-fw"></i>luogu</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://crz-willis.github.io/2022/05/03/%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E6%95%B0%E5%AD%A6%E7%89%B9%E5%BE%81%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Willis">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crz-Willis's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="随机变量的数学特征复习笔记 | Crz-Willis's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          随机变量的数学特征复习笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-03 14:05:58" itemprop="dateCreated datePublished" datetime="2022-05-03T14:05:58+08:00">2022-05-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-05-05 10:26:16" itemprop="dateModified" datetime="2022-05-05T10:26:16+08:00">2022-05-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%A6%82%E7%8E%87%E8%AE%BA/" itemprop="url" rel="index"><span itemprop="name">概率论</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%A6%82%E7%8E%87%E8%AE%BA/%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83/" itemprop="url" rel="index"><span itemprop="name">随机变量及其分布</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>简要介绍数学期望，方差，矩，分位数</p>
+<span id="more"></span>
+
+<h2 id="数学期望"><a href="#数学期望" class="headerlink" title="数学期望"></a>数学期望</h2><p>在日常生活中，求平均值是一个很常见的一种运算，例如求平均分，平均工资等。假设我们有$n$个样本，取值分别为$x_1,x_2,\cdots ,x_n$，则他们的平均值即为：<br>$$\bar{x}&#x3D;\frac{x_1+x_2+\cdots +x_n}{n}$$<br>加入我们给这些数一个权值$w_1,w_2,\cdots ,w_n$，则令</p>
+<p>$$\bar{x}&#x3D;\sum\limits_{i&#x3D;1}^n w_ix_i$$<br>称为这$n$个样本的加权平均。</p>
+<p>$Def$：设$X$为一离散型随机变量，它取值$x_1,x_2,\cdots $对应概率为$p_1,p_2,\cdots$，如果级数<br>$$\sum_{i&#x3D;1}^\infty x_ip_i$$<br>绝对收敛，则将其称为$X$的数学期望，简称期望，或均值，记为$EX$。</p>
+<p>注记：当$\sum\limits_{i&#x3D;1}^\infty |x_i|p_i$发散时，则说$X$的期望不存在。（此时即使$\sum\limits_{i&#x3D;1}^\infty x_ip_i$条件收敛，我们也可以通过调换顺序让其和为任意值。）</p>
+<p>$Def2$：设$X$设连续型随机变量，当积分$\int_{-\infty}^\infty x p(x)dx$绝对收敛时，我们称它为$X$的数学期望，记做$EX$</p>
+<p>从Riemann-Stieltjes积分的角度可以这么定义：<br>$Def3$：若$X$的分布函数为$F(x)$，则定义<br>$$EX&#x3D;\int_{-\infty}^\infty xdF(x)$$<br>为$X$的数学期望（我们这里还要求上述积分绝对收敛）。</p>
+<h3 id="随机变量函数的数学期望"><a href="#随机变量函数的数学期望" class="headerlink" title="随机变量函数的数学期望"></a>随机变量函数的数学期望</h3><p>$Th$：若$g(x)$是一元博雷尔函数，且$\eta &#x3D; g(\xi)$，则<br>$$\int_{-\infty}^{\infty}ydF_\eta(y)&#x3D;\int_{-\infty}^{\infty}g(x)dF_\xi(x)$$</p>
+<p>注记：等式左端是$\eta$的数学期望的计算公式，而右边是将$x$替换成了$g(x)$所得到的，我们可以证明这两者相等。</p>
+<p>在离散型场合，我们有<br>$$Eg(\xi)&#x3D;\sum\limits_{i&#x3D;1}^\infty g(x_i)p(x_i)$$<br>在连续型场合，我们有<br>$$Eg(\xi)&#x3D;\int_{-\infty}^{\infty}g(x)p(x)dx$$</p>
+<h3 id="数学期望的性质"><a href="#数学期望的性质" class="headerlink" title="数学期望的性质"></a>数学期望的性质</h3><p>性质1：设$a,b,c$为常数，若$a\leq \xi \leq b$，则$a\leq E\xi \leq b$，特别的$Ec&#x3D;c$。</p>
+<p>性质2：线性性：对任一常数$c_i ~ i&#x3D;1,2,\cdots n$和$b$有<br>$$E(\sum\limits_{i&#x3D;1}^n c_iX_i+b)&#x3D;\sum\limits_{i&#x3D;1}^n c_iEX_i+b$$<br>特别地<br>$$E(\sum\limits_{i&#x3D;1}^n X_i)&#x3D;\sum\limits_{i&#x3D;1}^n EX_i$$</p>
+<h3 id="数学期望的求法"><a href="#数学期望的求法" class="headerlink" title="数学期望的求法"></a>数学期望的求法</h3><p>我们在这里介绍几种分布的数学期望的求法。</p>
+<p>1.二项分布$X\sim b(n,p)$</p>
+<p>$$Ex&#x3D;\sum\limits_{k&#x3D;0}^n kC_n^kp^kq^{n-k}&#x3D;np\sum\limits_{k&#x3D;1}^nC_{n-1}^{k-1}p^{k-1}q^{n-k}&#x3D; np(p+q)^{n-1}&#x3D;np$$<br>注记：我们用到了组合恒等式$k\cdot C_n^k&#x3D;n\cdot C_{n-1}^{k-1}$和二项式定理。</p>
+<p>2.柯西分布$p(x)&#x3D;\frac{1}{\pi}\cdot \frac{1}{1+x^2}$<br>由于$$\int_{-\infty}^{\infty}|x|\frac{1}{\pi \cdot (1+x^2)}&#x3D;\infty$$<br>因此柯西分布的数学期望不存在。<br>注记：事实上，上述积分甚至不条件收敛，但是其有柯西主值0。</p>
+<p>3.正态分布$N(\mu,\sigma^2)$<br>令$Y&#x3D;\frac{X-\mu}{\sigma}$，则$Y\sim N(0,1)$我们有<br>$$EY&#x3D;\int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}}\cdot xe^\frac{-x^2}{2}dx&#x3D;0$$<br>那么$EX&#x3D;E(\sigma Y+\mu)&#x3D;\mu$<br>注记：正态分布的第一个分量是其数学期望。</p>
+<p>4.超几何分布的数学期望<br>设想一个不放回的抽样，令<br>$$<br>x_i&#x3D;\begin{cases}<br>1 &amp; 第i次抽得次品 \\<br>0 &amp; 第i次抽得好品<br>\end{cases}<br>$$<br>则$P(x_i&#x3D;1)&#x3D;\frac{M}{N}$，因此$EX_i&#x3D;\frac{M}{N}$，而$X&#x3D;X_1+\cdots + X_n$，表示$n$次不放回抽样中抽出的次品数。他服从上述超几何分布，则有<br>$$EX&#x3D;EX_1+\cdots EX_n&#x3D;\frac{nM}{N}$$</p>
+<h2 id="方差"><a href="#方差" class="headerlink" title="方差"></a>方差</h2><p>$Def$：设随机变量$X$的$EX^2$存在，则称偏差$X-EX$平方的数学期望$E[X-EX]^2$为随机变量$X$的方差，记为$DX$或者$Var(X)$。</p>
+<p>注记：<br>$$E(X-EX)^2&#x3D;E(X^2-2X\cdot EX+(EX)^2)&#x3D;EX^2-2EX\cdot EX+(EX)^2&#x3D;EX^2-(EX)^2$$<br>在实际计算的时候我们可以用此公式$来计算</p>
+<h3 id="方差的性质"><a href="#方差的性质" class="headerlink" title="方差的性质"></a>方差的性质</h3><p>性质1:常数的方差为0<br>性质2:$D(X+c)&#x3D;DX$，这里$c$是常数<br>性质3:$D(cX)&#x3D;c^2DX$，这里$c$是常数<br>性质4:若$c\neq EX$，则$DX&lt;E(X-c)^2$<br>$Proof$:因为<br>$$DX&#x3D;E(X-EX)^2&#x3D;E((X-c)-(EX-c))^2&#x3D;E(X-c)^2-(EX-c)^2$$<br>所以$EX\neq c$时，$DX&gt;E(X-c)^2$.<br>注记：对于随机变量$X$,若他的数学期望$EX$和方差$DX$都存在，且$DX&gt;0$，我们有时可以考虑标准化随机变量$X^*&#x3D;\frac{X-EX}{\sqrt{DX}}$，显然$EX^*&#x3D;0,DX^*&#x3D;1$，这正是称$X^*$为标准化随机变量的理由。</p>
+<h3 id="切比雪夫不等式"><a href="#切比雪夫不等式" class="headerlink" title="切比雪夫不等式"></a>切比雪夫不等式</h3><p>$Th$：对于任何具有有限方差的随机变量$X$，都有<br>$$P(|X-EX|\geq \epsilon)\leq \frac{DX}{\epsilon^2}$$</p>
+<p>$Proof$：设$F(x)$是$X$的分布函数，则显然有<br>$$DX&#x3D;\int_{-\infty}^\infty(x-EX)^2dF(x)\geq \int\limits_{|x-EX|\geq \epsilon}(x-EX)^2dF(x)\geq \int\limits_{|x-EX|\geq \epsilon}\epsilon^2 dF(x)$$<br>$$&#x3D;\epsilon^2 P(|X-EX|\geq \epsilon)$$</p>
+<p>注记：我们这里的积分仍然是$Riemann-Stieltjes$积分</p>
+<h2 id="常见分布的数学期望和方差"><a href="#常见分布的数学期望和方差" class="headerlink" title="常见分布的数学期望和方差"></a>常见分布的数学期望和方差</h2><p>下面给出一些最常见的分布的数学期望和方差</p>
+<h3 id="离散型"><a href="#离散型" class="headerlink" title="离散型"></a>离散型</h3><table>
+<thead>
+<tr>
+<th>分布名称</th>
+<th>概率分布或密度函数$p(x)$</th>
+<th>数学期望</th>
+<th>方差</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>退化分布</td>
+<td>$p_c&#x3D;1$ $(c$为常数$)$</td>
+<td>$c$</td>
+<td>$0$</td>
+</tr>
+<tr>
+<td>两点分布</td>
+<td>$p_k&#x3D;\begin{cases}q &amp; k&#x3D;0 \\ p &amp; k&#x3D;1 \end{cases},$     $~~~~ 0&lt;p&lt;1,q&#x3D;1-p$</td>
+<td>$p$</td>
+<td>$pq$</td>
+</tr>
+<tr>
+<td>二项分布</td>
+<td>$b(k;n,p)&#x3D;C_n^kp^kq^{n-k} ~~~ k&#x3D;0,1,\cdots n, ~~~ 0&lt;p&lt;1, ~~~ q&#x3D;1-p$</td>
+<td>$np$</td>
+<td>$npq$</td>
+</tr>
+<tr>
+<td>泊松分布</td>
+<td>$p(k;\lambda)&#x3D;\frac{\lambda^k}{k!}e^{-\lambda}, ~~~ k&#x3D;0,1,\cdots, ~~~ \lambda &gt;0$</td>
+<td>$\lambda$</td>
+<td>$\lambda$</td>
+</tr>
+<tr>
+<td>几何分布</td>
+<td>$g(k;p)&#x3D;q^{k-1}p, ~~~ k&#x3D;1,2,\cdots,~~~ 0&lt;p&lt;1, ~~~ q&#x3D;1-p$</td>
+<td>$\frac{1}{p}$</td>
+<td>$\frac{q}{p^2}$</td>
+</tr>
+<tr>
+<td>超几何分布</td>
+<td>$p_k&#x3D;\frac{C_M^k C_{N-M}^{n-k}}{C_N^n}, ~~~ M\leq N,n\leq N, ~~~ k&#x3D;0,1,\cdots min(M,n)$</td>
+<td>$ \frac{nM}{N}$</td>
+<td>$\frac{nM}{N}(1-\frac{M}{N})\cdot \frac{N-n}{N-1}$</td>
+</tr>
+</tbody></table>
+<h3 id="连续型"><a href="#连续型" class="headerlink" title="连续型"></a>连续型</h3><table>
+<thead>
+<tr>
+<th>分布名称</th>
+<th>概率分布或密度函数$p(x)$</th>
+<th>数学期望</th>
+<th>方差</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>正态分布$N(\mu,\sigma^2)$</td>
+<td>$p(x)&#x3D;\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}, ~~~ -\infty &lt; x &lt; \infty , ~~~ \mu ,\sigma &gt;0$</td>
+<td>$\mu$</td>
+<td>$\sigma^2$</td>
+</tr>
+<tr>
+<td>均匀分布 $U[a,b]$</td>
+<td>$p(x)&#x3D;\begin{cases}\frac{1}{b-a} &amp; a\leq x \leq b \\ 0 &amp; otherwise \end{cases}, ~~~ a&lt;b$</td>
+<td>$\frac{a+b}{2}$</td>
+<td>$\frac{(b-a)^2}{12}$</td>
+</tr>
+<tr>
+<td>指数分布$Exp(\lambda)$</td>
+<td>$p(x)&#x3D;\begin{cases}\lambda e^{-\lambda x} &amp; x\geq 0 \\ 0 &amp; x&lt;0 \end{cases} ~~~ \lambda &gt;0$</td>
+<td>$\frac{1}{\lambda}$</td>
+<td>$\frac{1}{\lambda^2}$</td>
+</tr>
+<tr>
+<td>$\chi^2$分布</td>
+<td>$p(x)&#x3D;\begin{cases}\frac{1}{2^{n&#x2F;2}\Gamma(\frac{n}{2})}x^{\frac{n}{2}-1}e^{-\frac{x}{2}} &amp; x\geq 0 \\ 0 &amp; x&lt;0 \end{cases} ~~~ n\in \mathbb{Z}$</td>
+<td>$n$</td>
+<td>$2n$</td>
+</tr>
+<tr>
+<td>柯西分布</td>
+<td>$p(x)&#x3D;\frac{1}{\pi}\cdot \frac{\lambda}{\lambda^2+(x-\mu)^2},~~~ -\infty &lt; x &lt; \infty, ~~~ \lambda&gt;0 $</td>
+<td>不存在</td>
+<td>不存在</td>
+</tr>
+</tbody></table>
+<h2 id="其他数学特征"><a href="#其他数学特征" class="headerlink" title="其他数学特征"></a>其他数学特征</h2><h3 id="矩"><a href="#矩" class="headerlink" title="矩"></a>矩</h3><p>$Def$：设$X$为随机变量，$c$为常数，$k$为正整数，则量$E(X-c)^k$（假如它存在）称为<font color="#dd0000">$X$分布关于$c$的$k$阶矩</font>。若$c&#x3D;0$，则量$EX^k$成为$X$分布的<font color="#dd0000">$k$阶原点矩</font>，记为$\mu_k$，若$c&#x3D;EX$，则量$E(X-EX)^k$称为$X$分布的<font color="#dd0000">$k$阶中心矩</font>，记为$\nu_k$。<br>注记1:一阶原点矩就是数学期望，二阶中心矩就是方差。在实际应用中很少应用四阶以上的矩。<br>注记2:由于$|X|^{k-1}\leq |X|^k+1$故$k$阶矩存在时，$k-1$阶矩也存在，从而低于$k$阶的矩都存在。<br>注记3:原点矩和中心矩可以互相表出。<br>$$\nu_k&#x3D;E(X-EX)^k&#x3D;E(X-\mu_1)^k&#x3D;\sum_{i&#x3D;0}^k C_k^i\mu_i(-\mu_1)^{k-i}$$<br>$$\mu_k&#x3D;EX^k&#x3D;E((X-\nu_1)+\nu_1)^k&#x3D;\sum_{i&#x3D;0}^k C_k^i \nu_{k-i}\mu_1^i$$</p>
+<h3 id="分位数和中位数"><a href="#分位数和中位数" class="headerlink" title="分位数和中位数"></a>分位数和中位数</h3><p>$Def$：对$0&lt;p&lt;1$，若$F(x_p)\leq p \leq F(x_p^+)$，则称$x_p$为分布函数$F(x)$的$p$分位数。其中$x_{0.5}$称为中位数。</p>
+<h3 id="众数"><a href="#众数" class="headerlink" title="众数"></a>众数</h3><p>$Def$：设$X$是离散型随机变量，则$X$的最可能取的值称为$X$分布的众数。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%96%B9%E5%B7%AE/" rel="tag"># 方差</a>
+              <a href="/tags/%E6%95%B0%E5%AD%A6%E6%9C%9F%E6%9C%9B/" rel="tag"># 数学期望</a>
+              <a href="/tags/%E7%9F%A9/" rel="tag"># 矩</a>
+              <a href="/tags/%E5%88%86%E4%BD%8D%E6%95%B0/" rel="tag"># 分位数</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/04/26/luogu-P5300/" rel="prev" title="洛谷 P5300 [GXOI/GZOI2019]与或和">
+                  <i class="fa fa-chevron-left"></i> 洛谷 P5300 [GXOI/GZOI2019]与或和
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/05/21/%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%90%86%E8%AE%BA%E7%AC%AC%E4%B8%80%E7%AB%A0%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="next" title="线性系统理论第一章复习笔记">
+                  线性系统理论第一章复习笔记 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Willis</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
