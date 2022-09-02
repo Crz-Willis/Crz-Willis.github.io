@@ -77,6 +77,26 @@
       </tags>
   </entry>
   <entry>
+    <title>破防了</title>
+    <url>/2022/09/02/pofang/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>保研破防</p>
+<span id="more"></span>
+
+<p>有点想说的，正好今天有空就写写吧。</p>
+<p>自从高考失利，谈恋爱失败后，我就把绝大部分心思放在了学习上。但是我现在有些后悔。</p>
+<p>2019年5月份的时候，我降级转专业到了数学学院，在数学院的三年时间里，我基本一心学习和音游。最后拿到了一个说得过去的绩点。虽然在某些考试之前有过没有睡着觉的经历，也有过心态爆炸的时候，但是我觉得都无伤大雅。</p>
+<p>转眼就到了21年5月，各大学校开始了夏令营的招生。我当时想仗着四块ACM银牌的优势跨专业保研到AI或者CS之类的专业。投了fdu，ruc和pku。结果全寄了。</p>
+<p>在全寄了之后，我就在想我到底哪个环节出了问题，后来感觉大家就业普遍减少，深造普遍变多，就导致研究生这条路更卷了。加上我是跨专业，就更加不占优势。所以经过一番考虑之后，我决定回到数学专业读运筹。</p>
+<p>但是此时翻看学校是发现，大部分学校的运筹学专业之开设了直博这一条路，但是我认为我的科研水平几乎为0，加上大部分人说直博都不会很好过，考虑到我之前的心理状态，我比较抵触走直博这条路，因为谁也不知道我会不会读着读着心态就崩了然后去重开。但是考虑到直博中间读不下去的话还可以转硕士，这也是一个可以后退的道路吧。大不了先直博进去，读不动了再quit也是一个选择。</p>
+<p>在此同时，家中的老人得了类风湿病一类的病，腿脚变得非常不方便，和家里人商量后，我们一致认为能在北京读研是最好的。</p>
+<p>在下了这个决定之后，我就叫同学将复习所需要的书都寄回到了家中，开始了复习。期间我逐渐的变得熬夜和睡不着觉，有的时候12点钟躺在床上，翻来覆去，两点半还睡不着觉。有的时候躺下了，想着到时候面试的时候我答不上来的样子，然后就一下子睡意全无了。结果到8月中的时候，精神越来越差，就逐渐开始摆烂了。</p>
+<p>与此同时，有些学校的预推免通知已经出来了，我就回到了济南准备材料。这之间还发生了不少事，不过都是后话了。但是清华的推荐信只要到了一封，剩下还有一封没有老师回我，但是31好就截止了，不知道能不能弄得上去。</p>
+<p>有的时候感觉要是待材料学院就好了，或者想要是在数学院多摆摆烂，混个保研擦边的绩点，留sdu算了。</p>
+<p>还有的时候想找个人倾诉倾诉，发泄一下情绪，又哪里找得到呢。</p>
+<p>不过路已经走到这里了，又哪里有回头的机会呢。</p>
+]]></content>
+  </entry>
+  <entry>
     <title>polya</title>
     <url>/2022/04/16/polya/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><a href="https://www.luogu.com.cn/problem/P4980">传送门</a></p>
@@ -110,6 +130,65 @@
       </categories>
       <tags>
         <tag>polya</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>线性系统理论复习</title>
+    <url>/2022/06/24/%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%90%86%E8%AE%BA/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>复习线性系统理论</p>
+<span id="more"></span>
+
+
+<h2 id="Ch2"><a href="#Ch2" class="headerlink" title="Ch2"></a>Ch2</h2><h3 id="能控性分解：对不完全能控的系统"><a href="#能控性分解：对不完全能控的系统" class="headerlink" title="能控性分解：对不完全能控的系统"></a>能控性分解：对不完全能控的系统</h3><p>假如有$\dot{x}&#x3D;Ax+Bu$<br>令$Q_c&#x3D;[B,AB,\cdots A^{n-1}B]$，从中取出$k$个线性无关的列$t_1,\cdots t_k$，令$T_1&#x3D;[t_1,\cdots t_k]$。再任选$n-k$个线性无关的向量$t_{k+1},\cdots, t_n$，令$T_2&#x3D;[t_{k+1},\cdots, t_n]$<br>令$T&#x3D;[T_1 ~~ T_2]$<br>则</p>
+<p>$$\hat{A}&#x3D;T^{-1}AT&#x3D;<br> \begin{bmatrix}<br>   A_{11} &amp; A_{12} \\<br>   0 &amp; A_{22}<br>  \end{bmatrix}<br>$$</p>
+<p>$$\hat{B}&#x3D;T^{-1}B&#x3D;<br> \begin{bmatrix}<br>   B_{1}  \\<br>   0<br>  \end{bmatrix}<br>$$</p>
+<p>则对于不完全能控系统，存在非奇异线性变换$x&#x3D;T\hat{x}$，使系统按能控性分解的规范表达式为：</p>
+<p>$$<br> \begin{bmatrix}\dot{x_1}  \\\dot{x_2}<br>\end{bmatrix} &#x3D;<br>\begin{bmatrix} A_{11} &amp; A_{12}  \\ 0 &amp; A_{22}<br>\end{bmatrix} \begin{bmatrix}{x_1}  \\{x_2}<br>\end{bmatrix} + \begin{bmatrix} B_1  \\0<br>\end{bmatrix} u<br>$$<br>其中$n-k$维子系统：$\dot{x_2}&#x3D;A_{22}x_2$ 完全不能控<br>$k$维子系统$\dot{x_1}&#x3D;A_{11}x_1+A_{12}x_2+B_1u$是完全能控的。</p>
+<h3 id="能控规范形：对单输入-单输出的完全能控的系统"><a href="#能控规范形：对单输入-单输出的完全能控的系统" class="headerlink" title="能控规范形：对单输入-单输出的完全能控的系统"></a>能控规范形：对单输入-单输出的完全能控的系统</h3><p>考虑完全能控的单输入-单输出系统：</p>
+<p>$$\begin{matrix}<br>\dot{x}&#x3D;Ax+bu \\<br>y&#x3D;cx<br>\end{matrix}$$<br>其中$A$为$n\times n$常阵，$b,c$分别为$n\times 1 , 1 \times n$的常阵。由于系统完全能控，有$rank[b ~ Ab ~ \cdots ~ A^{n-1}b]&#x3D;n$<br>令其特征多项式为：$det(sI-A)&#x3D;\alpha(s)&#x3D;s^n+a_{n-1}s^{n-1}+ \cdots + a_1s+a_0$<br>构造变换矩阵<br>$$P&#x3D;[e_1 ~ e_2 ~ \cdots ~ e_n]&#x3D;[A^{n-1}b ~ \cdots ~ Ab ~ b]\begin{bmatrix}<br>1 &amp; &amp;   \\<br>a_{n-1} &amp; \ddots\\<br>\vdots &amp;\ddots &amp; \ddots \\<br>a_1 &amp;\cdots &amp; a_{n-1}&amp; 1\\<br>\end{bmatrix}<br>$$</p>
+<p>引入非奇异线性变换$x&#x3D;P\bar{x}$，可以导出其能控规范型：</p>
+<p>$$\begin{matrix}<br>\dot{\bar{x}}&#x3D;A_c\bar{x}+b_cu \\ y&#x3D;c_c\bar{x}<br>\end{matrix}$$</p>
+<p>其中<br>$$A_c&#x3D;P^{-1}AP&#x3D;\begin{bmatrix}<br>0 &amp; 1&amp;   \\<br>\vdots &amp; &amp;\ddots\\<br>0 &amp; &amp; &amp; 1 \\<br>-a_0 &amp;-a_1 &amp; \cdots&amp; -a_{n-1}\\<br>\end{bmatrix},b_c&#x3D;P^{-1}b&#x3D; \begin{bmatrix}<br>0 \\<br>\vdots \\<br>0 \\<br>1 \\<br>\end{bmatrix}<br>$$<br>$$c_c&#x3D;cP&#x3D;[\beta_0 ~ \beta_1 ~ \cdots ~ \beta_{n-1}]$$</p>
+<h2 id="Ch3"><a href="#Ch3" class="headerlink" title="Ch3"></a>Ch3</h2><h3 id="闭环极点配置问题"><a href="#闭环极点配置问题" class="headerlink" title="闭环极点配置问题"></a>闭环极点配置问题</h3><p>给定线性定常系统$\dot{x}&#x3D;Ax+Bu$，其中$x$为$n$维状态向量，$u$为$p$维控制向量，$A,B$分别是$n\times n, n\times p$阶常阵。再给定$n$个所期望的闭环系统的极点$\alpha_1,\cdots \alpha_n$，其中复数共轭出现。我们想确定状态反馈$u&#x3D;Kx+v$，使得所导出的闭环系统$\dot{x}&#x3D;(A+BK)x+Bv$的极点为$\alpha_1,\cdots \alpha_n$。</p>
+<p>对于单输入单输出的系统来说，可以如下进行极点配置：</p>
+<p>计算$A$的特征多项式$det(sI-A)&#x3D;\alpha(s)&#x3D;s^n+a_{n-1}s^{n-1}+ \cdots + a_1s+a_0$</p>
+<p>计算$\alpha(s)&#x3D;(s-\alpha_1)\cdots (s-\alpha_n)&#x3D;s^n+\bar{a}_{n-1}s^{n-1}+\cdots \bar{a}_1s+\bar{a}_0$</p>
+<p>计算$\hat{K} &#x3D; [a_0 - \bar{a} _0 ~ a_1 - \bar{a} _1 ~ a _{n-1} - \bar{a} _{n-1}]$</p>
+<p>计算$T$以及$T^{-1}$，其中</p>
+<p>$$T&#x3D;[e_1 ~ e_2 ~ \cdots ~ e_n]&#x3D;[A^{n-1}b ~ \cdots ~ Ab ~ b]\begin{bmatrix}<br>1 &amp; &amp;   \\<br>a_{n-1} &amp; \ddots\\<br>\vdots &amp;\ddots &amp; \ddots \\<br>a_1 &amp;\cdots &amp; a_{n-1}&amp; 1\\<br>\end{bmatrix}<br>$$</p>
+<p>计算反馈矩阵$K&#x3D;\hat{K}T^{-1}$</p>
+<h2 id="Ch4"><a href="#Ch4" class="headerlink" title="Ch4"></a>Ch4</h2><h3 id="能观性分解：对不完全能观的系统"><a href="#能观性分解：对不完全能观的系统" class="headerlink" title="能观性分解：对不完全能观的系统"></a>能观性分解：对不完全能观的系统</h3><p>考虑不完全能观的线性定常系统：<br>$$\begin{matrix}<br>\dot{x}&#x3D;Ax+Bu \\<br>y&#x3D;Cx<br>\end{matrix}$$<br>令$Q_O&#x3D;\begin{bmatrix}<br>C \\<br>CA \\<br>\vdots \\<br>CA^{n-1} \\<br>\end{bmatrix}$，选取$m$个线性无关的行$h_1,h_2,\cdots h_m$，记$H&#x3D;\begin{bmatrix}<br>h_1 \\<br>h_2 \\<br>\vdots \\<br>h_m\\<br>\end{bmatrix}$</p>
+<p>再任取$n-m$个与$H_1$线性无关的行向量$h_m+1,\cdots h_m$，记$H_2&#x3D;\begin{bmatrix}<br>h_{m+1} \\<br>h_{m+2} \\<br>\vdots \\<br>h_n\\<br>\end{bmatrix}$<br>令$T&#x3D;\begin{bmatrix}<br>H_1 \\<br>H_2 \\<br>\end{bmatrix}$</p>
+<p>对系统做非奇异线性变换，$x&#x3D;T^{-1}\hat{x}$，则系统可以等价的化为：<br>$$\begin{matrix}<br>\dot{\hat{x}}&#x3D;\hat{A}\hat{x}+\hat{B}u \\ y&#x3D;\hat{C}\hat{x}<br>\end{matrix}$$<br>其中$\hat{A}&#x3D;TAT^{-1}&#x3D; \begin{bmatrix}<br>A_{11} &amp; 0 \\<br>A_{21} &amp; A_{22} \\<br>\end{bmatrix},\hat{B}&#x3D;TB&#x3D;\begin{bmatrix}<br>B_1 \\<br>B_2 \\<br>\end{bmatrix},\hat{C}&#x3D;CT^{-1}&#x3D;[C_1 ~~ 0]$<br>则能观性分解的规范表达式为：<br>$$<br>\begin{matrix}<br> \begin{bmatrix}\dot{x_1}  \\\dot{x_2}<br>\end{bmatrix} &#x3D;<br>\begin{bmatrix} A_{11} &amp; 0 \\ A_{21} &amp; A_{22}<br>\end{bmatrix} \begin{bmatrix}{x_1}  \\{x_2}<br>\end{bmatrix} + \begin{bmatrix} B_1  \\B_2<br>\end{bmatrix} u<br>\\<br>y&#x3D;\begin{bmatrix}{C_1}  &amp;{0}<br>\end{bmatrix}\begin{bmatrix}{x_1}  \\{x_2}<br>\end{bmatrix}<br>\end{matrix}<br>$$</p>
+<h3 id="能观规范型：对于单输入-单输出的完全能观系统"><a href="#能观规范型：对于单输入-单输出的完全能观系统" class="headerlink" title="能观规范型：对于单输入-单输出的完全能观系统"></a>能观规范型：对于单输入-单输出的完全能观系统</h3><p>考虑完全能观的单输入-单输出系统：<br>$$\begin{matrix}<br>\dot{x}&#x3D;Ax+bu \\ y&#x3D;cx<br>\end{matrix}$$<br>其中$A$为$n\times n$常阵，$b,c$分别为$n\times 1 , 1 \times n$的常阵<br>令其特征多项式为：$det(sI-A)&#x3D;\alpha(s)&#x3D;s^n+\alpha_{n-1}s^{n-1}+ \cdots + \alpha_1s+\alpha_0$</p>
+<p>构造变换矩阵<br>$$Q&#x3D;\begin{bmatrix}<br>e_1\\<br>e_2 \\<br>\vdots \\<br>e_n\\<br>\end{bmatrix}&#x3D;\begin{bmatrix}<br>1 &amp; \alpha_{n-1} &amp; \cdots &amp; \alpha_1\\<br> &amp; \ddots &amp; \ddots &amp; \vdots\\<br>&amp; &amp; \ddots &amp; \alpha_{n-1} \\<br>&amp; &amp; &amp; 1\\<br>\end{bmatrix}\begin{bmatrix}<br>cA^{n-1}\\<br>cA^{n-2} \\<br>\vdots \\<br>c\\<br>\end{bmatrix}$$</p>
+<p>则引入非奇异线性变换$\hat{x}&#x3D;Qx$，可以导出其能控规范型为：<br>$$\begin{matrix}<br>\dot{\hat{x}}&#x3D;A_O\hat{x}+b_O u \\ y&#x3D;c_O\hat{x}<br>\end{matrix}$$<br>其中$$A_O&#x3D;QAQ^{-1}&#x3D;\begin{bmatrix}<br>0 &amp; \cdots &amp; 0 &amp; -\alpha_{0}\\<br> 1 &amp;  &amp;  &amp; -\alpha_{1}\\<br>&amp; \ddots &amp; &amp;\vdots \\<br>&amp; &amp;1 &amp; -\alpha_{n-1}\\<br>\end{bmatrix},b_O&#x3D;Qb&#x3D;\begin{bmatrix}<br>\beta_0\\<br>\beta_1\\<br>\vdots \\<br>\beta_{n-1}\\<br>\end{bmatrix}C_O&#x3D;\begin{bmatrix}<br>0 &amp; \cdots &amp; 0 &amp; 1<br>\end{bmatrix}$$</p>
+<h3 id="对偶性原理："><a href="#对偶性原理：" class="headerlink" title="对偶性原理："></a>对偶性原理：</h3><p>称$<br>\begin{cases}<br>\dot{x} &amp; &#x3D; &amp; A_1x+B_1u \\<br>y &amp; &#x3D; &amp; C_1x<br>\end{cases}<br>$     和      $<br>\begin{cases}<br>\dot{z} &amp; &#x3D; &amp; -A_1^Tz+C_1^Tv \\<br>w &amp; &#x3D; &amp; B_1^Tz<br>\end{cases}<br>$互为对偶</p>
+<h2 id="Ch5"><a href="#Ch5" class="headerlink" title="Ch5"></a>Ch5</h2><h3 id="最小实现"><a href="#最小实现" class="headerlink" title="最小实现"></a>最小实现</h3><h4 id="单输入单输出系统的传递函数"><a href="#单输入单输出系统的传递函数" class="headerlink" title="单输入单输出系统的传递函数"></a>单输入单输出系统的传递函数</h4><p>$$G(s)&#x3D;\frac{c_{n-1}s^{n-1}+\cdots + c_1s+ c_0}{s^n+a_{n-1}s^{n-1}+\cdots + a_1s+a_0}$$</p>
+<p>其中$a_i,c_i,i&#x3D;0,1,\cdots n-1$为实常数。</p>
+<p>则可写出其能控型实现$$A&#x3D;\begin{bmatrix}<br>0 &amp; 1&amp;   \\<br>\vdots &amp; &amp;\ddots\\<br>0 &amp; &amp; &amp; 1 \\<br>-a_0 &amp;-a_1 &amp; \cdots&amp; -a_{n-1}\\<br>\end{bmatrix},b&#x3D; \begin{bmatrix}<br>0 \\<br>\vdots \\<br>0 \\<br>1 \\<br>\end{bmatrix},C&#x3D;\begin{bmatrix}<br>c_0 &amp; c_1 &amp; \cdots c_{n-1}<br>\end{bmatrix}$$</p>
+<p>和能观型实现：<br>$$A&#x3D;\begin{bmatrix}<br>0 &amp; \cdots &amp; 0 &amp; -\alpha_{0}\\<br> 1 &amp;  &amp;  &amp; -\alpha_{1}\\<br>&amp; \ddots &amp; &amp;\vdots \\<br>&amp; &amp;1 &amp; -\alpha_{n-1}\\<br>\end{bmatrix},b&#x3D;\begin{bmatrix}<br>c_0\\<br>c_1\\<br>\vdots \\<br>c_{n-1}\\<br>\end{bmatrix},C&#x3D;\begin{bmatrix}<br>0 &amp; \cdots &amp; 0 &amp; 1<br>\end{bmatrix}$$</p>
+<h4 id="单输入多输出系统："><a href="#单输入多输出系统：" class="headerlink" title="单输入多输出系统："></a>单输入多输出系统：</h4><p>传递函数矩阵$$G(s)&#x3D;\frac{C_{n-1}s^{n-1}+\cdots + C_1s+ c_0}{s^n+a_{n-1}s^{n-1}+\cdots + a_1s+a_0}$$</p>
+<p>其中$a_i,i&#x3D;0,1,\cdots n-1$为实常数,$C_i,i&#x3D;0,1,\cdots n-1$为$q\times 1$实常阵。</p>
+<p>可以写能控型实现：<br>$$A&#x3D;\begin{bmatrix}<br>0 &amp; 1&amp;   \\<br>\vdots &amp; &amp;\ddots\\<br>0 &amp; &amp; &amp; 1 \\<br>-a_0 &amp;-a_1 &amp; \cdots&amp; -a_{n-1}\\<br>\end{bmatrix},b&#x3D; \begin{bmatrix}<br>0 \\<br>\vdots \\<br>0 \\<br>1 \\<br>\end{bmatrix},C&#x3D;\begin{bmatrix}<br>C_0 &amp; C_1 &amp; \cdots C_{n-1}<br>\end{bmatrix}$$</p>
+<p>$A,B,C$分别为$n\times n,n\times 1, q\times n$常阵</p>
+<h4 id="单输出系统："><a href="#单输出系统：" class="headerlink" title="单输出系统："></a>单输出系统：</h4><p>传递函数矩阵$$G(s)&#x3D;\frac{C_{n-1}s^{n-1}+\cdots + C_1s+ c_0}{s^n+a_{n-1}s^{n-1}+\cdots + a_1s+a_0}$$</p>
+<p>其中$a_i,i&#x3D;0,1,\cdots n-1$为实常数,$C_i,i&#x3D;0,1,\cdots n-1$为$1\times p$实常阵。</p>
+<p>$$A&#x3D;\begin{bmatrix}<br>0 &amp; \cdots &amp; 0 &amp; -\alpha_{0}\\<br> 1 &amp;  &amp;  &amp; -\alpha_{1}\\<br>&amp; \ddots &amp; &amp;\vdots \\<br>&amp; &amp;1 &amp; -\alpha_{n-1}\\<br>\end{bmatrix},b&#x3D;\begin{bmatrix}<br>C_0\\<br>C_1\\<br>\vdots \\<br>C_{n-1}\\<br>\end{bmatrix},C&#x3D;\begin{bmatrix}<br>0 &amp; \cdots &amp; 0 &amp; 1<br>\end{bmatrix}$$</p>
+<p>$A,B,C$分别为$n\times n,n\times p, 1\times n$常阵</p>
+<h2 id="Ch6"><a href="#Ch6" class="headerlink" title="Ch6"></a>Ch6</h2><h3 id="全维状态观测器"><a href="#全维状态观测器" class="headerlink" title="全维状态观测器"></a>全维状态观测器</h3><p>考虑线性定常系统<br>$$\begin{matrix}<br>\dot{x}&#x3D;Ax+Bu &amp; x(0)&#x3D;x_0,t\geq 0 \\<br>y&#x3D;Cx<br>\end{matrix}$$</p>
+<p>其全维状态观测器的形式为：<br>$$\begin{matrix}<br>\dot{z}&#x3D;Fz+Gy+Hu &amp; z(0)&#x3D;z_0\\<br>\hat{x}&#x3D;z<br>\end{matrix}$$<br>可以推出全维状态观测器为<font color="#dd0000"> $\dot{z}&#x3D;(A-GC)z+Gy+Bu $</font><br /></p>
+<p>在全维状态观测器进行输出的动态反馈时，我们做$u&#x3D;Kz+v$<br>则作用于系统构成的闭环系统为：</p>
+<p>$$ \begin{bmatrix}\dot{x}  \\\dot{z}<br>\end{bmatrix} &#x3D;<br>\begin{bmatrix} A &amp; BK \\ GC &amp; A+GC-BK<br>\end{bmatrix} \begin{bmatrix}{x}  \\{z}<br>\end{bmatrix} + \begin{bmatrix} B  \\ B<br>\end{bmatrix} v<br>\\<br>y&#x3D;\begin{bmatrix}{C}  &amp;{0}<br>\end{bmatrix}\begin{bmatrix}{x}  \\{z}<br>\end{bmatrix}$$</p>
+<p>在题中，题目会给出观测器极点$a_1,a_2,\cdots a_n$，设$G&#x3D;\begin{bmatrix} G_1  \\ G_2 \\ \vdots \\G_n<br>\end{bmatrix} $<br>则可写出$A-GC$，进而可以写出$det(sI-A+GC)$，将其和$(s-a_1)\cdots(s-a_n)$比较，可以写出$G$，进而可以求得状态观测器。</p>
+<p>设计动态输出反馈时，会给出传递函数或者极点$\alpha_1,\cdots ,\alpha_n$（注意状态反馈不改变系统的零点）。设$K&#x3D;\begin{bmatrix} K_1 &amp; K_2 &amp; \cdots &amp; K_n<br>\end{bmatrix} $</p>
+<p>则可求出$det(sI-(A+BK))$，将其与$(s-\alpha_1)\cdots (s-\alpha_n)$比较，可以求出$K$，进而写出动态输出反馈$$</p>
+]]></content>
+      <categories>
+        <category>线性系统理论</category>
+      </categories>
+      <tags>
+        <tag>线性系统理论</tag>
       </tags>
   </entry>
   <entry>
@@ -213,65 +292,6 @@
         <tag>贝叶斯公式</tag>
         <tag>概率</tag>
         <tag>独立性</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>线性系统理论复习</title>
-    <url>/2022/06/24/%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%90%86%E8%AE%BA/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>复习线性系统理论</p>
-<span id="more"></span>
-
-
-<h2 id="Ch2"><a href="#Ch2" class="headerlink" title="Ch2"></a>Ch2</h2><h3 id="能控性分解：对不完全能控的系统"><a href="#能控性分解：对不完全能控的系统" class="headerlink" title="能控性分解：对不完全能控的系统"></a>能控性分解：对不完全能控的系统</h3><p>假如有$\dot{x}&#x3D;Ax+Bu$<br>令$Q_c&#x3D;[B,AB,\cdots A^{n-1}B]$，从中取出$k$个线性无关的列$t_1,\cdots t_k$，令$T_1&#x3D;[t_1,\cdots t_k]$。再任选$n-k$个线性无关的向量$t_{k+1},\cdots, t_n$，令$T_2&#x3D;[t_{k+1},\cdots, t_n]$<br>令$T&#x3D;[T_1 ~~ T_2]$<br>则</p>
-<p>$$\hat{A}&#x3D;T^{-1}AT&#x3D;<br> \begin{bmatrix}<br>   A_{11} &amp; A_{12} \\<br>   0 &amp; A_{22}<br>  \end{bmatrix}<br>$$</p>
-<p>$$\hat{B}&#x3D;T^{-1}B&#x3D;<br> \begin{bmatrix}<br>   B_{1}  \\<br>   0<br>  \end{bmatrix}<br>$$</p>
-<p>则对于不完全能控系统，存在非奇异线性变换$x&#x3D;T\hat{x}$，使系统按能控性分解的规范表达式为：</p>
-<p>$$<br> \begin{bmatrix}\dot{x_1}  \\\dot{x_2}<br>\end{bmatrix} &#x3D;<br>\begin{bmatrix} A_{11} &amp; A_{12}  \\ 0 &amp; A_{22}<br>\end{bmatrix} \begin{bmatrix}{x_1}  \\{x_2}<br>\end{bmatrix} + \begin{bmatrix} B_1  \\0<br>\end{bmatrix} u<br>$$<br>其中$n-k$维子系统：$\dot{x_2}&#x3D;A_{22}x_2$ 完全不能控<br>$k$维子系统$\dot{x_1}&#x3D;A_{11}x_1+A_{12}x_2+B_1u$是完全能控的。</p>
-<h3 id="能控规范形：对单输入-单输出的完全能控的系统"><a href="#能控规范形：对单输入-单输出的完全能控的系统" class="headerlink" title="能控规范形：对单输入-单输出的完全能控的系统"></a>能控规范形：对单输入-单输出的完全能控的系统</h3><p>考虑完全能控的单输入-单输出系统：</p>
-<p>$$\begin{matrix}<br>\dot{x}&#x3D;Ax+bu \\<br>y&#x3D;cx<br>\end{matrix}$$<br>其中$A$为$n\times n$常阵，$b,c$分别为$n\times 1 , 1 \times n$的常阵。由于系统完全能控，有$rank[b ~ Ab ~ \cdots ~ A^{n-1}b]&#x3D;n$<br>令其特征多项式为：$det(sI-A)&#x3D;\alpha(s)&#x3D;s^n+a_{n-1}s^{n-1}+ \cdots + a_1s+a_0$<br>构造变换矩阵<br>$$P&#x3D;[e_1 ~ e_2 ~ \cdots ~ e_n]&#x3D;[A^{n-1}b ~ \cdots ~ Ab ~ b]\begin{bmatrix}<br>1 &amp; &amp;   \\<br>a_{n-1} &amp; \ddots\\<br>\vdots &amp;\ddots &amp; \ddots \\<br>a_1 &amp;\cdots &amp; a_{n-1}&amp; 1\\<br>\end{bmatrix}<br>$$</p>
-<p>引入非奇异线性变换$x&#x3D;P\bar{x}$，可以导出其能控规范型：</p>
-<p>$$\begin{matrix}<br>\dot{\bar{x}}&#x3D;A_c\bar{x}+b_cu \\ y&#x3D;c_c\bar{x}<br>\end{matrix}$$</p>
-<p>其中<br>$$A_c&#x3D;P^{-1}AP&#x3D;\begin{bmatrix}<br>0 &amp; 1&amp;   \\<br>\vdots &amp; &amp;\ddots\\<br>0 &amp; &amp; &amp; 1 \\<br>-a_0 &amp;-a_1 &amp; \cdots&amp; -a_{n-1}\\<br>\end{bmatrix},b_c&#x3D;P^{-1}b&#x3D; \begin{bmatrix}<br>0 \\<br>\vdots \\<br>0 \\<br>1 \\<br>\end{bmatrix}<br>$$<br>$$c_c&#x3D;cP&#x3D;[\beta_0 ~ \beta_1 ~ \cdots ~ \beta_{n-1}]$$</p>
-<h2 id="Ch3"><a href="#Ch3" class="headerlink" title="Ch3"></a>Ch3</h2><h3 id="闭环极点配置问题"><a href="#闭环极点配置问题" class="headerlink" title="闭环极点配置问题"></a>闭环极点配置问题</h3><p>给定线性定常系统$\dot{x}&#x3D;Ax+Bu$，其中$x$为$n$维状态向量，$u$为$p$维控制向量，$A,B$分别是$n\times n, n\times p$阶常阵。再给定$n$个所期望的闭环系统的极点$\alpha_1,\cdots \alpha_n$，其中复数共轭出现。我们想确定状态反馈$u&#x3D;Kx+v$，使得所导出的闭环系统$\dot{x}&#x3D;(A+BK)x+Bv$的极点为$\alpha_1,\cdots \alpha_n$。</p>
-<p>对于单输入单输出的系统来说，可以如下进行极点配置：</p>
-<p>计算$A$的特征多项式$det(sI-A)&#x3D;\alpha(s)&#x3D;s^n+a_{n-1}s^{n-1}+ \cdots + a_1s+a_0$</p>
-<p>计算$\alpha(s)&#x3D;(s-\alpha_1)\cdots (s-\alpha_n)&#x3D;s^n+\bar{a}_{n-1}s^{n-1}+\cdots \bar{a}_1s+\bar{a}_0$</p>
-<p>计算$\hat{K} &#x3D; [a_0 - \bar{a} _0 ~ a_1 - \bar{a} _1 ~ a _{n-1} - \bar{a} _{n-1}]$</p>
-<p>计算$T$以及$T^{-1}$，其中</p>
-<p>$$T&#x3D;[e_1 ~ e_2 ~ \cdots ~ e_n]&#x3D;[A^{n-1}b ~ \cdots ~ Ab ~ b]\begin{bmatrix}<br>1 &amp; &amp;   \\<br>a_{n-1} &amp; \ddots\\<br>\vdots &amp;\ddots &amp; \ddots \\<br>a_1 &amp;\cdots &amp; a_{n-1}&amp; 1\\<br>\end{bmatrix}<br>$$</p>
-<p>计算反馈矩阵$K&#x3D;\hat{K}T^{-1}$</p>
-<h2 id="Ch4"><a href="#Ch4" class="headerlink" title="Ch4"></a>Ch4</h2><h3 id="能观性分解：对不完全能观的系统"><a href="#能观性分解：对不完全能观的系统" class="headerlink" title="能观性分解：对不完全能观的系统"></a>能观性分解：对不完全能观的系统</h3><p>考虑不完全能观的线性定常系统：<br>$$\begin{matrix}<br>\dot{x}&#x3D;Ax+Bu \\<br>y&#x3D;Cx<br>\end{matrix}$$<br>令$Q_O&#x3D;\begin{bmatrix}<br>C \\<br>CA \\<br>\vdots \\<br>CA^{n-1} \\<br>\end{bmatrix}$，选取$m$个线性无关的行$h_1,h_2,\cdots h_m$，记$H&#x3D;\begin{bmatrix}<br>h_1 \\<br>h_2 \\<br>\vdots \\<br>h_m\\<br>\end{bmatrix}$</p>
-<p>再任取$n-m$个与$H_1$线性无关的行向量$h_m+1,\cdots h_m$，记$H_2&#x3D;\begin{bmatrix}<br>h_{m+1} \\<br>h_{m+2} \\<br>\vdots \\<br>h_n\\<br>\end{bmatrix}$<br>令$T&#x3D;\begin{bmatrix}<br>H_1 \\<br>H_2 \\<br>\end{bmatrix}$</p>
-<p>对系统做非奇异线性变换，$x&#x3D;T^{-1}\hat{x}$，则系统可以等价的化为：<br>$$\begin{matrix}<br>\dot{\hat{x}}&#x3D;\hat{A}\hat{x}+\hat{B}u \\ y&#x3D;\hat{C}\hat{x}<br>\end{matrix}$$<br>其中$\hat{A}&#x3D;TAT^{-1}&#x3D; \begin{bmatrix}<br>A_{11} &amp; 0 \\<br>A_{21} &amp; A_{22} \\<br>\end{bmatrix},\hat{B}&#x3D;TB&#x3D;\begin{bmatrix}<br>B_1 \\<br>B_2 \\<br>\end{bmatrix},\hat{C}&#x3D;CT^{-1}&#x3D;[C_1 ~~ 0]$<br>则能观性分解的规范表达式为：<br>$$<br>\begin{matrix}<br> \begin{bmatrix}\dot{x_1}  \\\dot{x_2}<br>\end{bmatrix} &#x3D;<br>\begin{bmatrix} A_{11} &amp; 0 \\ A_{21} &amp; A_{22}<br>\end{bmatrix} \begin{bmatrix}{x_1}  \\{x_2}<br>\end{bmatrix} + \begin{bmatrix} B_1  \\B_2<br>\end{bmatrix} u<br>\\<br>y&#x3D;\begin{bmatrix}{C_1}  &amp;{0}<br>\end{bmatrix}\begin{bmatrix}{x_1}  \\{x_2}<br>\end{bmatrix}<br>\end{matrix}<br>$$</p>
-<h3 id="能观规范型：对于单输入-单输出的完全能观系统"><a href="#能观规范型：对于单输入-单输出的完全能观系统" class="headerlink" title="能观规范型：对于单输入-单输出的完全能观系统"></a>能观规范型：对于单输入-单输出的完全能观系统</h3><p>考虑完全能观的单输入-单输出系统：<br>$$\begin{matrix}<br>\dot{x}&#x3D;Ax+bu \\ y&#x3D;cx<br>\end{matrix}$$<br>其中$A$为$n\times n$常阵，$b,c$分别为$n\times 1 , 1 \times n$的常阵<br>令其特征多项式为：$det(sI-A)&#x3D;\alpha(s)&#x3D;s^n+\alpha_{n-1}s^{n-1}+ \cdots + \alpha_1s+\alpha_0$</p>
-<p>构造变换矩阵<br>$$Q&#x3D;\begin{bmatrix}<br>e_1\\<br>e_2 \\<br>\vdots \\<br>e_n\\<br>\end{bmatrix}&#x3D;\begin{bmatrix}<br>1 &amp; \alpha_{n-1} &amp; \cdots &amp; \alpha_1\\<br> &amp; \ddots &amp; \ddots &amp; \vdots\\<br>&amp; &amp; \ddots &amp; \alpha_{n-1} \\<br>&amp; &amp; &amp; 1\\<br>\end{bmatrix}\begin{bmatrix}<br>cA^{n-1}\\<br>cA^{n-2} \\<br>\vdots \\<br>c\\<br>\end{bmatrix}$$</p>
-<p>则引入非奇异线性变换$\hat{x}&#x3D;Qx$，可以导出其能控规范型为：<br>$$\begin{matrix}<br>\dot{\hat{x}}&#x3D;A_O\hat{x}+b_O u \\ y&#x3D;c_O\hat{x}<br>\end{matrix}$$<br>其中$$A_O&#x3D;QAQ^{-1}&#x3D;\begin{bmatrix}<br>0 &amp; \cdots &amp; 0 &amp; -\alpha_{0}\\<br> 1 &amp;  &amp;  &amp; -\alpha_{1}\\<br>&amp; \ddots &amp; &amp;\vdots \\<br>&amp; &amp;1 &amp; -\alpha_{n-1}\\<br>\end{bmatrix},b_O&#x3D;Qb&#x3D;\begin{bmatrix}<br>\beta_0\\<br>\beta_1\\<br>\vdots \\<br>\beta_{n-1}\\<br>\end{bmatrix}C_O&#x3D;\begin{bmatrix}<br>0 &amp; \cdots &amp; 0 &amp; 1<br>\end{bmatrix}$$</p>
-<h3 id="对偶性原理："><a href="#对偶性原理：" class="headerlink" title="对偶性原理："></a>对偶性原理：</h3><p>称$<br>\begin{cases}<br>\dot{x} &amp; &#x3D; &amp; A_1x+B_1u \\<br>y &amp; &#x3D; &amp; C_1x<br>\end{cases}<br>$     和      $<br>\begin{cases}<br>\dot{z} &amp; &#x3D; &amp; -A_1^Tz+C_1^Tv \\<br>w &amp; &#x3D; &amp; B_1^Tz<br>\end{cases}<br>$互为对偶</p>
-<h2 id="Ch5"><a href="#Ch5" class="headerlink" title="Ch5"></a>Ch5</h2><h3 id="最小实现"><a href="#最小实现" class="headerlink" title="最小实现"></a>最小实现</h3><h4 id="单输入单输出系统的传递函数"><a href="#单输入单输出系统的传递函数" class="headerlink" title="单输入单输出系统的传递函数"></a>单输入单输出系统的传递函数</h4><p>$$G(s)&#x3D;\frac{c_{n-1}s^{n-1}+\cdots + c_1s+ c_0}{s^n+a_{n-1}s^{n-1}+\cdots + a_1s+a_0}$$</p>
-<p>其中$a_i,c_i,i&#x3D;0,1,\cdots n-1$为实常数。</p>
-<p>则可写出其能控型实现$$A&#x3D;\begin{bmatrix}<br>0 &amp; 1&amp;   \\<br>\vdots &amp; &amp;\ddots\\<br>0 &amp; &amp; &amp; 1 \\<br>-a_0 &amp;-a_1 &amp; \cdots&amp; -a_{n-1}\\<br>\end{bmatrix},b&#x3D; \begin{bmatrix}<br>0 \\<br>\vdots \\<br>0 \\<br>1 \\<br>\end{bmatrix},C&#x3D;\begin{bmatrix}<br>c_0 &amp; c_1 &amp; \cdots c_{n-1}<br>\end{bmatrix}$$</p>
-<p>和能观型实现：<br>$$A&#x3D;\begin{bmatrix}<br>0 &amp; \cdots &amp; 0 &amp; -\alpha_{0}\\<br> 1 &amp;  &amp;  &amp; -\alpha_{1}\\<br>&amp; \ddots &amp; &amp;\vdots \\<br>&amp; &amp;1 &amp; -\alpha_{n-1}\\<br>\end{bmatrix},b&#x3D;\begin{bmatrix}<br>c_0\\<br>c_1\\<br>\vdots \\<br>c_{n-1}\\<br>\end{bmatrix},C&#x3D;\begin{bmatrix}<br>0 &amp; \cdots &amp; 0 &amp; 1<br>\end{bmatrix}$$</p>
-<h4 id="单输入多输出系统："><a href="#单输入多输出系统：" class="headerlink" title="单输入多输出系统："></a>单输入多输出系统：</h4><p>传递函数矩阵$$G(s)&#x3D;\frac{C_{n-1}s^{n-1}+\cdots + C_1s+ c_0}{s^n+a_{n-1}s^{n-1}+\cdots + a_1s+a_0}$$</p>
-<p>其中$a_i,i&#x3D;0,1,\cdots n-1$为实常数,$C_i,i&#x3D;0,1,\cdots n-1$为$q\times 1$实常阵。</p>
-<p>可以写能控型实现：<br>$$A&#x3D;\begin{bmatrix}<br>0 &amp; 1&amp;   \\<br>\vdots &amp; &amp;\ddots\\<br>0 &amp; &amp; &amp; 1 \\<br>-a_0 &amp;-a_1 &amp; \cdots&amp; -a_{n-1}\\<br>\end{bmatrix},b&#x3D; \begin{bmatrix}<br>0 \\<br>\vdots \\<br>0 \\<br>1 \\<br>\end{bmatrix},C&#x3D;\begin{bmatrix}<br>C_0 &amp; C_1 &amp; \cdots C_{n-1}<br>\end{bmatrix}$$</p>
-<p>$A,B,C$分别为$n\times n,n\times 1, q\times n$常阵</p>
-<h4 id="单输出系统："><a href="#单输出系统：" class="headerlink" title="单输出系统："></a>单输出系统：</h4><p>传递函数矩阵$$G(s)&#x3D;\frac{C_{n-1}s^{n-1}+\cdots + C_1s+ c_0}{s^n+a_{n-1}s^{n-1}+\cdots + a_1s+a_0}$$</p>
-<p>其中$a_i,i&#x3D;0,1,\cdots n-1$为实常数,$C_i,i&#x3D;0,1,\cdots n-1$为$1\times p$实常阵。</p>
-<p>$$A&#x3D;\begin{bmatrix}<br>0 &amp; \cdots &amp; 0 &amp; -\alpha_{0}\\<br> 1 &amp;  &amp;  &amp; -\alpha_{1}\\<br>&amp; \ddots &amp; &amp;\vdots \\<br>&amp; &amp;1 &amp; -\alpha_{n-1}\\<br>\end{bmatrix},b&#x3D;\begin{bmatrix}<br>C_0\\<br>C_1\\<br>\vdots \\<br>C_{n-1}\\<br>\end{bmatrix},C&#x3D;\begin{bmatrix}<br>0 &amp; \cdots &amp; 0 &amp; 1<br>\end{bmatrix}$$</p>
-<p>$A,B,C$分别为$n\times n,n\times p, 1\times n$常阵</p>
-<h2 id="Ch6"><a href="#Ch6" class="headerlink" title="Ch6"></a>Ch6</h2><h3 id="全维状态观测器"><a href="#全维状态观测器" class="headerlink" title="全维状态观测器"></a>全维状态观测器</h3><p>考虑线性定常系统<br>$$\begin{matrix}<br>\dot{x}&#x3D;Ax+Bu &amp; x(0)&#x3D;x_0,t\geq 0 \\<br>y&#x3D;Cx<br>\end{matrix}$$</p>
-<p>其全维状态观测器的形式为：<br>$$\begin{matrix}<br>\dot{z}&#x3D;Fz+Gy+Hu &amp; z(0)&#x3D;z_0\\<br>\hat{x}&#x3D;z<br>\end{matrix}$$<br>可以推出全维状态观测器为<font color="#dd0000"> $\dot{z}&#x3D;(A-GC)z+Gy+Bu $</font><br /></p>
-<p>在全维状态观测器进行输出的动态反馈时，我们做$u&#x3D;Kz+v$<br>则作用于系统构成的闭环系统为：</p>
-<p>$$ \begin{bmatrix}\dot{x}  \\\dot{z}<br>\end{bmatrix} &#x3D;<br>\begin{bmatrix} A &amp; BK \\ GC &amp; A+GC-BK<br>\end{bmatrix} \begin{bmatrix}{x}  \\{z}<br>\end{bmatrix} + \begin{bmatrix} B  \\ B<br>\end{bmatrix} v<br>\\<br>y&#x3D;\begin{bmatrix}{C}  &amp;{0}<br>\end{bmatrix}\begin{bmatrix}{x}  \\{z}<br>\end{bmatrix}$$</p>
-<p>在题中，题目会给出观测器极点$a_1,a_2,\cdots a_n$，设$G&#x3D;\begin{bmatrix} G_1  \\ G_2 \\ \vdots \\G_n<br>\end{bmatrix} $<br>则可写出$A-GC$，进而可以写出$det(sI-A+GC)$，将其和$(s-a_1)\cdots(s-a_n)$比较，可以写出$G$，进而可以求得状态观测器。</p>
-<p>设计动态输出反馈时，会给出传递函数或者极点$\alpha_1,\cdots ,\alpha_n$（注意状态反馈不改变系统的零点）。设$K&#x3D;\begin{bmatrix} K_1 &amp; K_2 &amp; \cdots &amp; K_n<br>\end{bmatrix} $</p>
-<p>则可求出$det(sI-(A+BK))$，将其与$(s-\alpha_1)\cdots (s-\alpha_n)$比较，可以求出$K$，进而写出动态输出反馈$$</p>
-]]></content>
-      <categories>
-        <category>线性系统理论</category>
-      </categories>
-      <tags>
-        <tag>线性系统理论</tag>
       </tags>
   </entry>
   <entry>
