@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"crz-willis.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="查漏补缺 参考书：高等代数北大第四版">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高等代数拾遗">
+<meta property="og:url" content="https://crz-willis.github.io/2022/09/05/%E9%AB%98%E7%AD%89%E4%BB%A3%E6%95%B0%E6%8B%BE%E9%81%97/index.html">
+<meta property="og:site_name" content="Crz-Willis&#39;s blog">
+<meta property="og:description" content="查漏补缺 参考书：高等代数北大第四版">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-09-05T06:06:16.000Z">
+<meta property="article:modified_time" content="2022-09-05T11:07:52.000Z">
+<meta property="article:author" content="Willis">
+<meta property="article:tag" content="高等代数">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://crz-willis.github.io/2022/09/05/%E9%AB%98%E7%AD%89%E4%BB%A3%E6%95%B0%E6%8B%BE%E9%81%97/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://crz-willis.github.io/2022/09/05/%E9%AB%98%E7%AD%89%E4%BB%A3%E6%95%B0%E6%8B%BE%E9%81%97/","path":"2022/09/05/高等代数拾遗/","title":"高等代数拾遗"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>高等代数拾遗 | Crz-Willis's blog</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+  <!--下面一行插入复制代码，注意换成自己的github地址：href="https://Crz-Willis.github.io/"-->
+  <a target="_blank" rel="noopener" href="https://github.com/Crz-Willis/Crz-Willis.github.io" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#70B7FD; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Crz-Willis's blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">sdu数学学院菜鸡</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fhome fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签<span class="badge">14</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类<span class="badge">9</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E9%A1%B9%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">多项式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%8C%E5%88%97%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">行列式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-number">3.</span> <span class="nav-text">线性方程组</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Willis"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Willis</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Crz-Willis" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Crz-Willis" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/3298404" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;3298404" rel="noopener" target="_blank"><i class="fa fa-video-camera fa-fw"></i>bilibili</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://codeforces.com/profile/Crz-Willis" title="codeforces → https:&#x2F;&#x2F;codeforces.com&#x2F;profile&#x2F;Crz-Willis" rel="noopener" target="_blank"><i class="fa fa-tag fa-fw"></i>codeforces</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/181790" title="luogu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;181790" rel="noopener" target="_blank"><i class="fa fa-tag fa-fw"></i>luogu</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://crz-willis.github.io/2022/09/05/%E9%AB%98%E7%AD%89%E4%BB%A3%E6%95%B0%E6%8B%BE%E9%81%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Willis">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crz-Willis's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="高等代数拾遗 | Crz-Willis's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          高等代数拾遗
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-09-05 14:06:16 / 修改时间：19:07:52" itemprop="dateCreated datePublished" datetime="2022-09-05T14:06:16+08:00">2022-09-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%AB%98%E7%AD%89%E4%BB%A3%E6%95%B0/" itemprop="url" rel="index"><span itemprop="name">高等代数</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>查漏补缺</p>
+<p>参考书：高等代数北大第四版</p>
+<span id="more"></span>
+
+<h2 id="多项式"><a href="#多项式" class="headerlink" title="多项式"></a>多项式</h2><p>这里列出两个重要的定理：</p>
+<p>$Th1:$如果不可约多项式$p(x)$是$f(x)$的$k$重因式$(k\geq 1)$，那么他是微商$f’(x)$的$k-1$重因式。</p>
+<p>$Cor:$多项式$f(x)$没有重因式的充分必要条件是$f(x)$与$f’(x)$互素。</p>
+<p>$Th2:$设$f(x)&#x3D;a_nx^n+a_{n-1}x^{n-1}+\cdots + a_0$是一个整系数多项式。如果有一个素数$p$，使得<br>$(1):p \nmid a_n$<br>$(2):p|a_{n-1},a_{n-2},\cdots, a_0$<br>$(3):p^2 \nmid a_0$<br>那么$f(x)$在有理数域上不可约。</p>
+<p>一个经典的例子是$x^n+2$在有理数域上不可约，从而任意次多项式都可能再有理数域上不可约。</p>
+<h2 id="行列式"><a href="#行列式" class="headerlink" title="行列式"></a>行列式</h2><p>本章主要是如何计算行列式，下面列出几个经典例子：</p>
+<p>1.计算：<br>$$<br>D_n&#x3D;\begin{vmatrix}<br>        a_1-b_1 &amp; a_1-b_2 &amp; \cdots &amp; a_1-b_n \\<br>        a_2-b_1 &amp; a_2-b_2 &amp; \cdots &amp; ya_2-b_n \\<br>        \vdots &amp; \vdots &amp; &amp;  \vdots \\<br>        a_n-b_1 &amp; a_n-b_2 &amp; \cdots &amp; a_n-b_n \\<br>\end{vmatrix}<br>$$</p>
+<p>在这里不列出详细过程，只列出答案：</p>
+<p>$n&#x3D;1$时，行列式值为$a_1-b_1$</p>
+<p>$n&#x3D;2$时，行列式值为$(a_1-a_2)(b_1-b_2)$</p>
+<p>$n\geq 3$时，行列式值为 $0$</p>
+<p>注记：计算行列式时，注意是否需要分类讨论。</p>
+<br>
+<br>
+
+<p>2.计算：<br>$$<br>D_n&#x3D;\begin{vmatrix}<br>        x &amp; y &amp; y &amp; \cdots &amp; y &amp; y \\<br>        z &amp; x &amp; y &amp; \cdots &amp; y &amp; y \\<br>        z &amp; z &amp; x &amp; \cdots &amp; y &amp; y \\<br>        \vdots &amp; \vdots &amp; \vdots &amp; &amp; \vdots &amp; \vdots \\<br>        z &amp; z &amp; z &amp; \cdots &amp; x &amp; y \\<br>        z &amp; z &amp; z &amp; \cdots &amp; z &amp; x<br>\end{vmatrix}<br>$$</p>
+<p>解：$x&#x3D;y$时，可以得到$D_n&#x3D;(x+(n-1)y)(x-y)^{n-1}$</p>
+<p>$x\neq y$时，一个很经典的算法是将行列式化为$<br>\begin{vmatrix}<br>        x-y &amp; y &amp; y &amp; \cdots &amp; y &amp; y \\<br>        z-x &amp; x &amp; y &amp; \cdots &amp; y &amp; y \\<br>        0 &amp; z &amp; x &amp; \cdots &amp; y &amp; y \\<br>        \vdots &amp; \vdots &amp; \vdots &amp; &amp; \vdots &amp; \vdots \\<br>        0 &amp; z &amp; z &amp; \cdots &amp; x &amp; y \\<br>        0 &amp; z &amp; z &amp; \cdots &amp; z &amp; x<br>\end{vmatrix}<br>$后按照第一列展开，得到递推式：$D_n&#x3D;(x-y)D_{n-1}-y<br>\begin{vmatrix}<br>        1 &amp; 1 &amp; \cdots &amp; 1 &amp; 1 \\<br>        z &amp; x &amp; \cdots &amp; y &amp; y \\<br>        \vdots &amp; \vdots &amp; &amp; \vdots &amp; \vdots \\<br>        z &amp; z &amp; \cdots &amp; x &amp; y \\<br>        z &amp; z &amp; \cdots &amp; z &amp; x<br>\end{vmatrix}<br>$<br>$&#x3D;<br>(x-y)D_{n-1}-y<br>\begin{vmatrix}<br>        1 &amp; 1 &amp; \cdots &amp; 1 &amp; 1 \\<br>        0 &amp; x-z &amp; \cdots &amp; y-z &amp; y-z \\<br>        \vdots &amp; \vdots &amp; &amp; \vdots &amp; \vdots \\<br>        0 &amp; 0 &amp; \cdots &amp; x-z &amp; y-z \\<br>        0 &amp; 0 &amp; \cdots &amp; 0 &amp; x-z<br>\end{vmatrix}<br>$</p>
+<p>$&#x3D;(x-y)D_{n-1}-y(x-z)^{n-1}$</p>
+<p>用同样的方法还可得到$D_n&#x3D;(x-z)D_{n-1}-z(x-y)^{n-1}$</p>
+<p>化简即有$D_n&#x3D;\frac{y(x-z)^n-z(x-y)^n}{y-z}$</p>
+<br>
+<br>
+
+<p>3.计算</p>
+<p>$$D_1&#x3D;\begin{vmatrix}<br>        1 &amp; 1 &amp; \cdots &amp; 1 \\<br>        x_1 &amp; x_2 &amp; \cdots &amp; x_{n} \\<br>        x_1^2 &amp; x_2^2 &amp; \cdots &amp; x_n^2 \\<br>        \vdots &amp; \vdots &amp; &amp; \vdots \\<br>        x_1^{n-2} &amp; x_2^{n-2} &amp; \cdots &amp; x_n^{n-2} \\<br>        x_1^{n} &amp; x_2^{n} &amp; \cdots &amp; x_n^{n}<br>\end{vmatrix}$$</p>
+<p>解：将其扩充为</p>
+<p>$D&#x3D;\begin{vmatrix}<br>        1 &amp; 1 &amp; \cdots &amp; 1 &amp; 1 \\<br>        x_1 &amp; x_2 &amp; \cdots &amp; x_{n} &amp; x_{n+1} \\<br>        x_1^2 &amp; x_2^2 &amp; \cdots &amp; x_n^2 &amp; x_{n+1}^2 \\<br>        \vdots &amp; \vdots &amp; &amp; \vdots &amp; \vdots \\<br>        x_1^{n-2} &amp; x_2^{n-2} &amp; \cdots &amp; x_n^{n-2} &amp; x_{n+1}^{n-2} \\<br>        x_1^{n-1} &amp; x_2^{n-1} &amp; \cdots &amp; x_n^{n-1} &amp; x_{n+1}^{n-1} \\<br>        x_1^{n} &amp; x_2^{n} &amp; \cdots &amp; x_n^{n} &amp; x_{n+1}^{n}<br>\end{vmatrix}$</p>
+<p>此行列式的值为$\prod\limits_{1\leq i &lt; j \leq n+1} (x_j-x_i)&#x3D;\prod\limits_{1\leq i &lt; j \leq n} (x_j-x_i) \times \prod\limits_{k&#x3D;1}^n(x_{n+1}-x_k)$<br>将扩充后的行列式按照最后一列展开，有<br>$D&#x3D;(-1)^{1+n+1}d_{1,n+1}+(-1)^{2+n+1}d_{2,n+1}+\cdots + (-1)^{n+1+n+1}d_{n+1,n+1}$<br>比较两边系数，有$(-1)^{n+n+1}D_1&#x3D;[x_{n+1}^{n-1}]D$，其中$[x^k]$表示$x^k$的系数。<br>$D_1&#x3D;(-1)^{n+n+1}\prod\limits_{1\leq i &lt; j \leq n} (x_j-x_i)\sum\limits_{k&#x3D;1}^n(-x_k)&#x3D;\prod\limits_{1\leq i &lt; j \leq n} (x_j-x_i)\sum\limits_{k&#x3D;1}^n x_k$</p>
+<p>注记：对于一个不熟悉的行列式来说，我们要将其往我们熟悉的行列式上靠。</p>
+<h2 id="线性方程组"><a href="#线性方程组" class="headerlink" title="线性方程组"></a>线性方程组</h2><p>这一章关于向量组的零碎的定理与推论较多，下面列出一些重要的和容易遗忘的：</p>
+<p>1.设$\pmb{\alpha}_1,\pmb{\alpha}_2,\cdots, \pmb{\alpha}_r$与$\pmb{\beta}_1,\pmb{\beta}_2,\cdots,\pmb{\beta}_s$是两个向量组，如果<br>(1):向量组$\pmb{\alpha}_1,\pmb{\alpha}_2,\cdots, \pmb{\alpha}_r$可由$\pmb{\beta}_1,\pmb{\beta}_2,\cdots,\pmb{\beta}_s$线性表出<br>(2):$r&gt;s$<br>则$\pmb{\alpha}_1,\pmb{\alpha}_2,\cdots, \pmb{\alpha}_r$一定线性相关。</p>
+<p>Cor1:如果向量组$\pmb{\alpha}_1,\pmb{\alpha}_2,\cdots, \pmb{\alpha}_r$可由$\pmb{\beta}_1,\pmb{\beta}_2,\cdots,\pmb{\beta}_s$线性表出，且$\pmb{\alpha}_1,\pmb{\alpha}_2,\cdots, \pmb{\alpha}_r$线性无关，则$r\leq s$</p>
+<p>Cor2:任意$n+1$个$n$维向量一定线性相关。</p>
+<p>Cor3:两个线性无关的等价向量组一定含有相同个数的向量。</p>
+<p>Cor4:假设向量$\pmb{\beta}$可以经向量组$\pmb{\alpha}_1,\pmb{\alpha}_2,\cdots, \pmb{\alpha}_r$线性表出，则表示法唯一的充要条件为$\pmb{\alpha}_1,\pmb{\alpha}_2,\cdots, \pmb{\alpha}_r$线性无关。</p>
+<p>注记：如果一个向量组成的向量组线性相关，那么它一定是零向量。</p>
+<br>
+
+<p>2.一个向量组的极大线性无关组都含有相同个数的向量。</p>
+<p>据此我们可以定义向量组的秩：向量组的极大无关组所含的向量个数称为此向量组的秩。</p>
+<br>
+
+<p>3.矩阵的行秩就是将矩阵行向量组的秩，类似的可以定义矩阵的列秩。</p>
+<p>Th1:矩阵的行秩与列秩相等，统称为矩阵的秩。</p>
+<p>Th2:一个$n\times n$的方阵的行列式为0的充要条件是其秩小于$n$</p>
+<p>3.5:在一个$s\times n$的矩阵$\pmb{A}$中任意选定$k$行和$k$列，位于这些选定的行和列的交点上的$k^2$个元素按照原来的次序所组成的$k$级行列式，称为$\pmb{A}$的一个$k$级子式。</p>
+<p>Th3:一个矩阵秩为$r$的充要条件为矩阵中有一个$r$级子式不为0，但是所有$r+1$级子式全为0。</p>
+<p>Th4:线性方程组$\pmb{Ax}&#x3D;\pmb{b}$有解的充要条件是$rank(\pmb{A})&#x3D;rank(\bar{\pmb{A}})$，这里的$\bar{\pmb{A}}$为$A$的增广矩阵。</p>
+<br>
+
+<p>4.线性方程组$\pmb{Ax}&#x3D;\pmb{b}$的导出组定义为$\pmb{Ax}&#x3D;\pmb{0}$</p>
+<p>定义其次线性方程组$\pmb{Ax}&#x3D;\pmb{0}$的基础解系$\pmb{\eta}_1,\pmb{\eta}_2,\cdots,\pmb{\eta}_r$如下：<br>(1):$\pmb{Ax}&#x3D;\pmb{0}$的任意一个解都可以表示为$\pmb{\eta}_1,\pmb{\eta}_2,\cdots,\pmb{\eta}_r$的线性组合。<br>(2):$\pmb{\eta}_1,\pmb{\eta}_2,\cdots,\pmb{\eta}_r$线性无关。</p>
+<p>Th1:其次线性方程组基础解系中的向量个数等于$n-rank(\pmb{A})$</p>
+<p>Cor1:与基础解系等价的线性无关的向量组也是基础解系。</p>
+<p>Th2:如果 $\pmb{\gamma}_0$ 是 $\pmb{Ax}&#x3D;\pmb{b}$ 的一个特解，那么 $\pmb{Ax}&#x3D;\pmb{b}$ 的任一解可表示为 $\pmb{\gamma}&#x3D;\pmb{\gamma}_0+\pmb{\eta}$ ，其中 $\pmb{\eta}$ 为导出组一解。因此当 $\pmb{\eta}$ 取遍导出组的全部解时，上式就取遍了 $\pmb{Ax}&#x3D;\pmb{b}$ 的全部解。</p>
+<p>Cor2：方程组 $\pmb{Ax}&#x3D;\pmb{b}$ 有解时，解是唯一的充要条件时它的导出组只有零解。</p>
+<p>下面列出两个习题：</p>
+<p>1.线性方程组 $\pmb{Ax}&#x3D;\pmb{0}$ 的系数矩阵为：</p>
+<p>$$\pmb{A}&#x3D;\begin{pmatrix}<br>        a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \\<br>        a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} \\<br>        \vdots &amp; \vdots &amp; &amp; \vdots \\<br>        a_{n-1,1} &amp; a_{n-1,2} &amp; \cdots &amp; a_{n-1,n}<br>\end{pmatrix}$$</p>
+<p>设$M_i$时从矩阵 $\pmb{A}$ 中划第 $i$ 列所剩下的 $(n-1)\times(n-1)$ 矩阵的行列式，证明：<br>(1): $(M_1,-M_2,\cdots (-1)^{n-1}M_n)$ 是方程组的一个解。<br>(2):如果$\pmb{A}$的秩为$n-1$，那么方程组的解全是 $(M_1,-M_2,\cdots (-1)^{n-1}M_n)$ 的倍数。</p>
+<p>证明：<br>(1):考虑行列式<br>$$A_i&#x3D;\begin{vmatrix}<br>        a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \\<br>        a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} \\<br>        \vdots &amp; \vdots &amp; &amp; \vdots \\<br>        a_{n-1,1} &amp; a_{n-1,2} &amp; \cdots &amp; a_{n-1,n} \\<br>        a_{i1} &amp; a_{i2} &amp; \cdots &amp; a_{in}<br>\end{vmatrix}&#x3D;0,i&#x3D;1,2,\cdots, n$$<br>按照最后一行展开，就有 $a_{i1}M_1-a_{i2}M_2+\cdots + (-1)^{n-1}a_{in}M_n&#x3D;0$<br>即 $(M_1,-M_2,\cdots (-1)^{n-1}M_n)$ 是原方程的一个解。<br>(2):若 $r(\pmb{A})&#x3D;n-1$，则其基础解系里只有一个解，所有解都为其倍数。所以只需证明(1)中求的一解非零即可。注意到 $r(\pmb{A})&#x3D;n-1$，则 $\pmb{A}$有一个$n-1$级子式不为 $0$，即(1)求的的解为非零解。<br><br></p>
+<p>2.设<br>$$A&#x3D;\begin{pmatrix}<br>        a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \\<br>        a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} \\<br>        \vdots &amp; \vdots &amp; &amp; \vdots \\<br>        a_{n1} &amp; a_{n2} &amp; \cdots &amp; a_{nn}<br>\end{pmatrix}$$<br>为一实数域上的矩阵，证明：<br>(1):如果 $|a_{ii}|&gt;\sum\limits_{j\neq i} |a_{ij}|, i&#x3D;1,2,\cdots,n $，那么 $|A|\neq 0$<br>(2):如果 $a_{ii}&gt;\sum\limits_{j\neq i} |a_{ij}|, i&#x3D;1,2,\cdots,n$ ，那么 $|A| &gt; 0$</p>
+<p>证明：<br>(1)只需证明 $\pmb{Ax}&#x3D;\pmb{0}$ 的解只有零解即可。<br>对于上述方程任一非零解 $\pmb{c}&#x3D;(c_1,c_2,\cdots,c_n)$ ，总可以选出 $c_i&gt;0$ 使得 $|c_i|\geq |c_j| , j&#x3D;1,2,\cdots,n$，那么 $|a_{i1}c_1+a_{i2}c_2+\cdots + a_{in}c_n| \geq |a_{ii}||c_i| - \sum\limits_{j\neq i}|a_{ij}c_i|  \geq |c_i|(|a_{ii}|-\sum\limits_{j\neq i}|a_{ij}|)&gt;0$<br>所以$\pmb{Ax}&#x3D;\pmb{0}$只有零解，这就证明了我们的结论。</p>
+<p>(2)运用数学归纳法证明。<br>$n&#x3D;1$ 时， $|\pmb{A}|&#x3D;a_{11}&gt;0$ ，结论对 $n&#x3D;1$ 成立。<br>假设结论对 $n-1$ 成立，下面我们对 $n$ 证明结论。<br>取$A$的第一行$n$个代数余子式$A_{11},A_{12},\cdots,A_{1n}$，则有<br>$$a_{11}A_{11}+a_{12}A_{12}+\cdots+a_{1n}A_{1n}&#x3D;|\pmb{A}|$$<br>$$a_{i1}A_{11}+a_{i2}A_{12}+\cdots+a_{in}A_{1n}&#x3D;0, i\neq 1$$<br>由(1)有： $|A|\neq 0$ ，所以 $A_{11},\cdots,A_{1n}$ 至少有一个不为0。<br>下面我们证明 $|A_{11}|\geq|A_{1i}|,i&#x3D;1,2,3,\cdots n$。<br>事实上，假若存在 $i\neq 1$ ，使得 $|A_{1i}|\geq |A_{1j}|, j&#x3D;1,2,\cdots, n$，此时必然有$|A_{1i}|&gt;0$，则<br>$$0&#x3D;|a_{i1}A_{11}+a_{i2}A_{12}+\cdots+a_{in}A_{1n}| $$<br>$$\geq |a_{ii}||A_{1i}|-\sum\limits_{j\neq i}|a_{ij}||A_{1j}|$$<br>$$\geq |a_{ii}||A_{1i}|-\sum\limits_{j\neq i}|a_{ij}||A_{1i}|$$<br>$$&#x3D; |A_{1i}|-(|a_{ii}|-\sum\limits_{j\neq i}|a_{ij}|)&gt;0$$<br>矛盾了，所以 $|A_{11}|\geq|A_{1i}|,i&#x3D;1,2,3,\cdots n$。<br>由归纳假设有$A_{11}&gt;0$，故$a_{11}A_{11}&gt;0$，于是<br>所以 $|\pmb{A}|&#x3D;a_{11}A_{11}+\sum\limits_{i&#x3D;2}^n a_{1i}A_{1i}\geq a_{11}A_{11}-\sum\limits_{i&#x3D;2}^n|a_{1i}||A_{1i}|\geq (a_{11}-\sum\limits{i&#x3D;2}^n|a_{1i}|)A_{11}&gt;0$<br>这就完成了归纳法。</p>
+<p>注记：形如(1)类型的矩阵称为严格对角占优矩阵，事实上，对于对称的严格对角占优的矩阵，我们可以证明其一定是正定矩阵。<br>这类矩阵在数值分析中也有重要的作用，例如其可以进行LU分解，也可以进行Jacobi迭代和G-S迭代和$0 &lt;\omega \leq 1$的松弛迭代等。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%AB%98%E7%AD%89%E4%BB%A3%E6%95%B0/" rel="tag"># 高等代数</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/09/02/pofang/" rel="prev" title="破防了">
+                  <i class="fa fa-chevron-left"></i> 破防了
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Willis</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

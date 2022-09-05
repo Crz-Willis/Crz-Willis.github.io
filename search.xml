@@ -135,7 +135,7 @@
   <entry>
     <title>线性系统理论复习</title>
     <url>/2022/06/24/%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%90%86%E8%AE%BA/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>复习线性系统理论</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>复习线性系统理论</p>
 <span id="more"></span>
 
 
@@ -516,6 +516,87 @@
         <tag>数学期望</tag>
         <tag>矩</tag>
         <tag>分位数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>高等代数拾遗</title>
+    <url>/2022/09/05/%E9%AB%98%E7%AD%89%E4%BB%A3%E6%95%B0%E6%8B%BE%E9%81%97/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>查漏补缺</p>
+<p>参考书：高等代数北大第四版</p>
+<span id="more"></span>
+
+<h2 id="多项式"><a href="#多项式" class="headerlink" title="多项式"></a>多项式</h2><p>这里列出两个重要的定理：</p>
+<p>$Th1:$如果不可约多项式$p(x)$是$f(x)$的$k$重因式$(k\geq 1)$，那么他是微商$f’(x)$的$k-1$重因式。</p>
+<p>$Cor:$多项式$f(x)$没有重因式的充分必要条件是$f(x)$与$f’(x)$互素。</p>
+<p>$Th2:$设$f(x)&#x3D;a_nx^n+a_{n-1}x^{n-1}+\cdots + a_0$是一个整系数多项式。如果有一个素数$p$，使得<br>$(1):p \nmid a_n$<br>$(2):p|a_{n-1},a_{n-2},\cdots, a_0$<br>$(3):p^2 \nmid a_0$<br>那么$f(x)$在有理数域上不可约。</p>
+<p>一个经典的例子是$x^n+2$在有理数域上不可约，从而任意次多项式都可能再有理数域上不可约。</p>
+<h2 id="行列式"><a href="#行列式" class="headerlink" title="行列式"></a>行列式</h2><p>本章主要是如何计算行列式，下面列出几个经典例子：</p>
+<p>1.计算：<br>$$<br>D_n&#x3D;\begin{vmatrix}<br>        a_1-b_1 &amp; a_1-b_2 &amp; \cdots &amp; a_1-b_n \\<br>        a_2-b_1 &amp; a_2-b_2 &amp; \cdots &amp; ya_2-b_n \\<br>        \vdots &amp; \vdots &amp; &amp;  \vdots \\<br>        a_n-b_1 &amp; a_n-b_2 &amp; \cdots &amp; a_n-b_n \\<br>\end{vmatrix}<br>$$</p>
+<p>在这里不列出详细过程，只列出答案：</p>
+<p>$n&#x3D;1$时，行列式值为$a_1-b_1$</p>
+<p>$n&#x3D;2$时，行列式值为$(a_1-a_2)(b_1-b_2)$</p>
+<p>$n\geq 3$时，行列式值为 $0$</p>
+<p>注记：计算行列式时，注意是否需要分类讨论。</p>
+<br>
+<br>
+
+<p>2.计算：<br>$$<br>D_n&#x3D;\begin{vmatrix}<br>        x &amp; y &amp; y &amp; \cdots &amp; y &amp; y \\<br>        z &amp; x &amp; y &amp; \cdots &amp; y &amp; y \\<br>        z &amp; z &amp; x &amp; \cdots &amp; y &amp; y \\<br>        \vdots &amp; \vdots &amp; \vdots &amp; &amp; \vdots &amp; \vdots \\<br>        z &amp; z &amp; z &amp; \cdots &amp; x &amp; y \\<br>        z &amp; z &amp; z &amp; \cdots &amp; z &amp; x<br>\end{vmatrix}<br>$$</p>
+<p>解：$x&#x3D;y$时，可以得到$D_n&#x3D;(x+(n-1)y)(x-y)^{n-1}$</p>
+<p>$x\neq y$时，一个很经典的算法是将行列式化为$<br>\begin{vmatrix}<br>        x-y &amp; y &amp; y &amp; \cdots &amp; y &amp; y \\<br>        z-x &amp; x &amp; y &amp; \cdots &amp; y &amp; y \\<br>        0 &amp; z &amp; x &amp; \cdots &amp; y &amp; y \\<br>        \vdots &amp; \vdots &amp; \vdots &amp; &amp; \vdots &amp; \vdots \\<br>        0 &amp; z &amp; z &amp; \cdots &amp; x &amp; y \\<br>        0 &amp; z &amp; z &amp; \cdots &amp; z &amp; x<br>\end{vmatrix}<br>$后按照第一列展开，得到递推式：$D_n&#x3D;(x-y)D_{n-1}-y<br>\begin{vmatrix}<br>        1 &amp; 1 &amp; \cdots &amp; 1 &amp; 1 \\<br>        z &amp; x &amp; \cdots &amp; y &amp; y \\<br>        \vdots &amp; \vdots &amp; &amp; \vdots &amp; \vdots \\<br>        z &amp; z &amp; \cdots &amp; x &amp; y \\<br>        z &amp; z &amp; \cdots &amp; z &amp; x<br>\end{vmatrix}<br>$<br>$&#x3D;<br>(x-y)D_{n-1}-y<br>\begin{vmatrix}<br>        1 &amp; 1 &amp; \cdots &amp; 1 &amp; 1 \\<br>        0 &amp; x-z &amp; \cdots &amp; y-z &amp; y-z \\<br>        \vdots &amp; \vdots &amp; &amp; \vdots &amp; \vdots \\<br>        0 &amp; 0 &amp; \cdots &amp; x-z &amp; y-z \\<br>        0 &amp; 0 &amp; \cdots &amp; 0 &amp; x-z<br>\end{vmatrix}<br>$</p>
+<p>$&#x3D;(x-y)D_{n-1}-y(x-z)^{n-1}$</p>
+<p>用同样的方法还可得到$D_n&#x3D;(x-z)D_{n-1}-z(x-y)^{n-1}$</p>
+<p>化简即有$D_n&#x3D;\frac{y(x-z)^n-z(x-y)^n}{y-z}$</p>
+<br>
+<br>
+
+<p>3.计算</p>
+<p>$$D_1&#x3D;\begin{vmatrix}<br>        1 &amp; 1 &amp; \cdots &amp; 1 \\<br>        x_1 &amp; x_2 &amp; \cdots &amp; x_{n} \\<br>        x_1^2 &amp; x_2^2 &amp; \cdots &amp; x_n^2 \\<br>        \vdots &amp; \vdots &amp; &amp; \vdots \\<br>        x_1^{n-2} &amp; x_2^{n-2} &amp; \cdots &amp; x_n^{n-2} \\<br>        x_1^{n} &amp; x_2^{n} &amp; \cdots &amp; x_n^{n}<br>\end{vmatrix}$$</p>
+<p>解：将其扩充为</p>
+<p>$D&#x3D;\begin{vmatrix}<br>        1 &amp; 1 &amp; \cdots &amp; 1 &amp; 1 \\<br>        x_1 &amp; x_2 &amp; \cdots &amp; x_{n} &amp; x_{n+1} \\<br>        x_1^2 &amp; x_2^2 &amp; \cdots &amp; x_n^2 &amp; x_{n+1}^2 \\<br>        \vdots &amp; \vdots &amp; &amp; \vdots &amp; \vdots \\<br>        x_1^{n-2} &amp; x_2^{n-2} &amp; \cdots &amp; x_n^{n-2} &amp; x_{n+1}^{n-2} \\<br>        x_1^{n-1} &amp; x_2^{n-1} &amp; \cdots &amp; x_n^{n-1} &amp; x_{n+1}^{n-1} \\<br>        x_1^{n} &amp; x_2^{n} &amp; \cdots &amp; x_n^{n} &amp; x_{n+1}^{n}<br>\end{vmatrix}$</p>
+<p>此行列式的值为$\prod\limits_{1\leq i &lt; j \leq n+1} (x_j-x_i)&#x3D;\prod\limits_{1\leq i &lt; j \leq n} (x_j-x_i) \times \prod\limits_{k&#x3D;1}^n(x_{n+1}-x_k)$<br>将扩充后的行列式按照最后一列展开，有<br>$D&#x3D;(-1)^{1+n+1}d_{1,n+1}+(-1)^{2+n+1}d_{2,n+1}+\cdots + (-1)^{n+1+n+1}d_{n+1,n+1}$<br>比较两边系数，有$(-1)^{n+n+1}D_1&#x3D;[x_{n+1}^{n-1}]D$，其中$[x^k]$表示$x^k$的系数。<br>$D_1&#x3D;(-1)^{n+n+1}\prod\limits_{1\leq i &lt; j \leq n} (x_j-x_i)\sum\limits_{k&#x3D;1}^n(-x_k)&#x3D;\prod\limits_{1\leq i &lt; j \leq n} (x_j-x_i)\sum\limits_{k&#x3D;1}^n x_k$</p>
+<p>注记：对于一个不熟悉的行列式来说，我们要将其往我们熟悉的行列式上靠。</p>
+<h2 id="线性方程组"><a href="#线性方程组" class="headerlink" title="线性方程组"></a>线性方程组</h2><p>这一章关于向量组的零碎的定理与推论较多，下面列出一些重要的和容易遗忘的：</p>
+<p>1.设$\pmb{\alpha}_1,\pmb{\alpha}_2,\cdots, \pmb{\alpha}_r$与$\pmb{\beta}_1,\pmb{\beta}_2,\cdots,\pmb{\beta}_s$是两个向量组，如果<br>(1):向量组$\pmb{\alpha}_1,\pmb{\alpha}_2,\cdots, \pmb{\alpha}_r$可由$\pmb{\beta}_1,\pmb{\beta}_2,\cdots,\pmb{\beta}_s$线性表出<br>(2):$r&gt;s$<br>则$\pmb{\alpha}_1,\pmb{\alpha}_2,\cdots, \pmb{\alpha}_r$一定线性相关。</p>
+<p>Cor1:如果向量组$\pmb{\alpha}_1,\pmb{\alpha}_2,\cdots, \pmb{\alpha}_r$可由$\pmb{\beta}_1,\pmb{\beta}_2,\cdots,\pmb{\beta}_s$线性表出，且$\pmb{\alpha}_1,\pmb{\alpha}_2,\cdots, \pmb{\alpha}_r$线性无关，则$r\leq s$</p>
+<p>Cor2:任意$n+1$个$n$维向量一定线性相关。</p>
+<p>Cor3:两个线性无关的等价向量组一定含有相同个数的向量。</p>
+<p>Cor4:假设向量$\pmb{\beta}$可以经向量组$\pmb{\alpha}_1,\pmb{\alpha}_2,\cdots, \pmb{\alpha}_r$线性表出，则表示法唯一的充要条件为$\pmb{\alpha}_1,\pmb{\alpha}_2,\cdots, \pmb{\alpha}_r$线性无关。</p>
+<p>注记：如果一个向量组成的向量组线性相关，那么它一定是零向量。</p>
+<br>
+
+<p>2.一个向量组的极大线性无关组都含有相同个数的向量。</p>
+<p>据此我们可以定义向量组的秩：向量组的极大无关组所含的向量个数称为此向量组的秩。</p>
+<br>
+
+<p>3.矩阵的行秩就是将矩阵行向量组的秩，类似的可以定义矩阵的列秩。</p>
+<p>Th1:矩阵的行秩与列秩相等，统称为矩阵的秩。</p>
+<p>Th2:一个$n\times n$的方阵的行列式为0的充要条件是其秩小于$n$</p>
+<p>3.5:在一个$s\times n$的矩阵$\pmb{A}$中任意选定$k$行和$k$列，位于这些选定的行和列的交点上的$k^2$个元素按照原来的次序所组成的$k$级行列式，称为$\pmb{A}$的一个$k$级子式。</p>
+<p>Th3:一个矩阵秩为$r$的充要条件为矩阵中有一个$r$级子式不为0，但是所有$r+1$级子式全为0。</p>
+<p>Th4:线性方程组$\pmb{Ax}&#x3D;\pmb{b}$有解的充要条件是$rank(\pmb{A})&#x3D;rank(\bar{\pmb{A}})$，这里的$\bar{\pmb{A}}$为$A$的增广矩阵。</p>
+<br>
+
+<p>4.线性方程组$\pmb{Ax}&#x3D;\pmb{b}$的导出组定义为$\pmb{Ax}&#x3D;\pmb{0}$</p>
+<p>定义其次线性方程组$\pmb{Ax}&#x3D;\pmb{0}$的基础解系$\pmb{\eta}_1,\pmb{\eta}_2,\cdots,\pmb{\eta}_r$如下：<br>(1):$\pmb{Ax}&#x3D;\pmb{0}$的任意一个解都可以表示为$\pmb{\eta}_1,\pmb{\eta}_2,\cdots,\pmb{\eta}_r$的线性组合。<br>(2):$\pmb{\eta}_1,\pmb{\eta}_2,\cdots,\pmb{\eta}_r$线性无关。</p>
+<p>Th1:其次线性方程组基础解系中的向量个数等于$n-rank(\pmb{A})$</p>
+<p>Cor1:与基础解系等价的线性无关的向量组也是基础解系。</p>
+<p>Th2:如果 $\pmb{\gamma}_0$ 是 $\pmb{Ax}&#x3D;\pmb{b}$ 的一个特解，那么 $\pmb{Ax}&#x3D;\pmb{b}$ 的任一解可表示为 $\pmb{\gamma}&#x3D;\pmb{\gamma}_0+\pmb{\eta}$ ，其中 $\pmb{\eta}$ 为导出组一解。因此当 $\pmb{\eta}$ 取遍导出组的全部解时，上式就取遍了 $\pmb{Ax}&#x3D;\pmb{b}$ 的全部解。</p>
+<p>Cor2：方程组 $\pmb{Ax}&#x3D;\pmb{b}$ 有解时，解是唯一的充要条件时它的导出组只有零解。</p>
+<p>下面列出两个习题：</p>
+<p>1.线性方程组 $\pmb{Ax}&#x3D;\pmb{0}$ 的系数矩阵为：</p>
+<p>$$\pmb{A}&#x3D;\begin{pmatrix}<br>        a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \\<br>        a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} \\<br>        \vdots &amp; \vdots &amp; &amp; \vdots \\<br>        a_{n-1,1} &amp; a_{n-1,2} &amp; \cdots &amp; a_{n-1,n}<br>\end{pmatrix}$$</p>
+<p>设$M_i$时从矩阵 $\pmb{A}$ 中划第 $i$ 列所剩下的 $(n-1)\times(n-1)$ 矩阵的行列式，证明：<br>(1): $(M_1,-M_2,\cdots (-1)^{n-1}M_n)$ 是方程组的一个解。<br>(2):如果$\pmb{A}$的秩为$n-1$，那么方程组的解全是 $(M_1,-M_2,\cdots (-1)^{n-1}M_n)$ 的倍数。</p>
+<p>证明：<br>(1):考虑行列式<br>$$A_i&#x3D;\begin{vmatrix}<br>        a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \\<br>        a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} \\<br>        \vdots &amp; \vdots &amp; &amp; \vdots \\<br>        a_{n-1,1} &amp; a_{n-1,2} &amp; \cdots &amp; a_{n-1,n} \\<br>        a_{i1} &amp; a_{i2} &amp; \cdots &amp; a_{in}<br>\end{vmatrix}&#x3D;0,i&#x3D;1,2,\cdots, n$$<br>按照最后一行展开，就有 $a_{i1}M_1-a_{i2}M_2+\cdots + (-1)^{n-1}a_{in}M_n&#x3D;0$<br>即 $(M_1,-M_2,\cdots (-1)^{n-1}M_n)$ 是原方程的一个解。<br>(2):若 $r(\pmb{A})&#x3D;n-1$，则其基础解系里只有一个解，所有解都为其倍数。所以只需证明(1)中求的一解非零即可。注意到 $r(\pmb{A})&#x3D;n-1$，则 $\pmb{A}$有一个$n-1$级子式不为 $0$，即(1)求的的解为非零解。<br><br></p>
+<p>2.设<br>$$A&#x3D;\begin{pmatrix}<br>        a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \\<br>        a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} \\<br>        \vdots &amp; \vdots &amp; &amp; \vdots \\<br>        a_{n1} &amp; a_{n2} &amp; \cdots &amp; a_{nn}<br>\end{pmatrix}$$<br>为一实数域上的矩阵，证明：<br>(1):如果 $|a_{ii}|&gt;\sum\limits_{j\neq i} |a_{ij}|, i&#x3D;1,2,\cdots,n $，那么 $|A|\neq 0$<br>(2):如果 $a_{ii}&gt;\sum\limits_{j\neq i} |a_{ij}|, i&#x3D;1,2,\cdots,n$ ，那么 $|A| &gt; 0$</p>
+<p>证明：<br>(1)只需证明 $\pmb{Ax}&#x3D;\pmb{0}$ 的解只有零解即可。<br>对于上述方程任一非零解 $\pmb{c}&#x3D;(c_1,c_2,\cdots,c_n)$ ，总可以选出 $c_i&gt;0$ 使得 $|c_i|\geq |c_j| , j&#x3D;1,2,\cdots,n$，那么 $|a_{i1}c_1+a_{i2}c_2+\cdots + a_{in}c_n| \geq |a_{ii}||c_i| - \sum\limits_{j\neq i}|a_{ij}c_i|  \geq |c_i|(|a_{ii}|-\sum\limits_{j\neq i}|a_{ij}|)&gt;0$<br>所以$\pmb{Ax}&#x3D;\pmb{0}$只有零解，这就证明了我们的结论。</p>
+<p>(2)运用数学归纳法证明。<br>$n&#x3D;1$ 时， $|\pmb{A}|&#x3D;a_{11}&gt;0$ ，结论对 $n&#x3D;1$ 成立。<br>假设结论对 $n-1$ 成立，下面我们对 $n$ 证明结论。<br>取$A$的第一行$n$个代数余子式$A_{11},A_{12},\cdots,A_{1n}$，则有<br>$$a_{11}A_{11}+a_{12}A_{12}+\cdots+a_{1n}A_{1n}&#x3D;|\pmb{A}|$$<br>$$a_{i1}A_{11}+a_{i2}A_{12}+\cdots+a_{in}A_{1n}&#x3D;0, i\neq 1$$<br>由(1)有： $|A|\neq 0$ ，所以 $A_{11},\cdots,A_{1n}$ 至少有一个不为0。<br>下面我们证明 $|A_{11}|\geq|A_{1i}|,i&#x3D;1,2,3,\cdots n$。<br>事实上，假若存在 $i\neq 1$ ，使得 $|A_{1i}|\geq |A_{1j}|, j&#x3D;1,2,\cdots, n$，此时必然有$|A_{1i}|&gt;0$，则<br>$$0&#x3D;|a_{i1}A_{11}+a_{i2}A_{12}+\cdots+a_{in}A_{1n}| $$<br>$$\geq |a_{ii}||A_{1i}|-\sum\limits_{j\neq i}|a_{ij}||A_{1j}|$$<br>$$\geq |a_{ii}||A_{1i}|-\sum\limits_{j\neq i}|a_{ij}||A_{1i}|$$<br>$$&#x3D; |A_{1i}|-(|a_{ii}|-\sum\limits_{j\neq i}|a_{ij}|)&gt;0$$<br>矛盾了，所以 $|A_{11}|\geq|A_{1i}|,i&#x3D;1,2,3,\cdots n$。<br>由归纳假设有$A_{11}&gt;0$，故$a_{11}A_{11}&gt;0$，于是<br>所以 $|\pmb{A}|&#x3D;a_{11}A_{11}+\sum\limits_{i&#x3D;2}^n a_{1i}A_{1i}\geq a_{11}A_{11}-\sum\limits_{i&#x3D;2}^n|a_{1i}||A_{1i}|\geq (a_{11}-\sum\limits{i&#x3D;2}^n|a_{1i}|)A_{11}&gt;0$<br>这就完成了归纳法。</p>
+<p>注记：形如(1)类型的矩阵称为严格对角占优矩阵，事实上，对于对称的严格对角占优的矩阵，我们可以证明其一定是正定矩阵。<br>这类矩阵在数值分析中也有重要的作用，例如其可以进行LU分解，也可以进行Jacobi迭代和G-S迭代和$0 &lt;\omega \leq 1$的松弛迭代等。</p>
+]]></content>
+      <categories>
+        <category>高等代数</category>
+      </categories>
+      <tags>
+        <tag>高等代数</tag>
       </tags>
   </entry>
 </search>
