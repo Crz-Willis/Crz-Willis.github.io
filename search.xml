@@ -3,7 +3,7 @@
   <entry>
     <title>ICPC 2021 昆明站游记</title>
     <url>/2022/04/16/kunming2021/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>拿到了人生的第一块“精神”金牌。</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>拿到了人生的第一块“精神”金牌。</p>
 <span id="more"></span>
 <h1 id="inf-Days-before-Day-inf"><a href="#inf-Days-before-Day-inf" class="headerlink" title="inf Days before Day -inf"></a>inf Days before Day -inf</h1><p>lzc要去实习，zh和wzx说想为ec热手，于是就叫上了我和他们一起打昆明站。</p>
 <h1 id="Day-inf"><a href="#Day-inf" class="headerlink" title="Day -inf"></a>Day -inf</h1><p>学校封校，去不了软件园校区，以为要被迫周烜双排了。</p>
@@ -49,7 +49,7 @@
   <entry>
     <title>洛谷 P5300 [GXOI/GZOI2019]与或和</title>
     <url>/2022/04/26/luogu-P5300/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>单调栈好题</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>单调栈好题</p>
 <span id="more"></span>
 
 <p><a href="https://www.luogu.com.cn/problem/P5300">传送门</a></p>
@@ -79,7 +79,7 @@
   <entry>
     <title>破防了</title>
     <url>/2022/09/02/pofang/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>保研破防</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>保研破防</p>
 <span id="more"></span>
 
 <p>有点想说的，正好今天有空就写写吧。</p>
@@ -99,7 +99,7 @@
   <entry>
     <title>polya</title>
     <url>/2022/04/16/polya/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><a href="https://www.luogu.com.cn/problem/P4980">传送门</a></p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><a href="https://www.luogu.com.cn/problem/P4980">传送门</a></p>
 <span id="more"></span>
 
 
@@ -194,7 +194,7 @@
   <entry>
     <title>随机事件复习笔记</title>
     <url>/2022/04/22/%E9%9A%8F%E6%9C%BA%E4%BA%8B%E4%BB%B6%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>随机事件复习笔记</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>随机事件复习笔记</p>
 <span id="more"></span>
 
 <h3 id="概率的公理化定义"><a href="#概率的公理化定义" class="headerlink" title="概率的公理化定义"></a>概率的公理化定义</h3><p>在一个随机现象中，用来表示任一个随机事件$A$发生可能性大小的实数成为该事件的概率，并规定：<br>（1）非负性公理：对任一事件$A$，必有$P(A)\geq 0$<br>（2）正则化公理：必然事件的概率$P(\Omega)&#x3D;1$<br>（3）可列可加性公理：若$A_1,A_2,\cdots$是一列互不相容事件，则有：$P(\bigcup\limits_{n&#x3D;1}^\infty A_i)&#x3D;\sum\limits_{i&#x3D;1}^\infty P(A_i)$</p>
@@ -297,7 +297,7 @@
   <entry>
     <title>随机变量及其分布复习笔记</title>
     <url>/2022/04/23/%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>随机变量及其分布复习笔记</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>随机变量及其分布复习笔记</p>
 <span id="more"></span>
 
 <h2 id="随机变量"><a href="#随机变量" class="headerlink" title="随机变量"></a>随机变量</h2><h3 id="什么是随机变量"><a href="#什么是随机变量" class="headerlink" title="什么是随机变量"></a>什么是随机变量</h3><p>用来表示随机现象结果的变量就是随机变量，常用大写字母$X,Y,Z$表示，而随机变量所取的值常用小写字母 $x,y,z$表示。若用等号或不等号把$X$和$x$联系起来就能表示事件，比如“$X&#x3D;x$”,“$Y\leq y$” , “$z_1&lt; Z \leq z_2$”都是事件。</p>
@@ -390,7 +390,7 @@
   <entry>
     <title>随机变量的数学特征复习笔记</title>
     <url>/2022/05/03/%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E6%95%B0%E5%AD%A6%E7%89%B9%E5%BE%81%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>简要介绍数学期望，方差，矩，分位数</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>简要介绍数学期望，方差，矩，分位数</p>
 <span id="more"></span>
 
 <h2 id="数学期望"><a href="#数学期望" class="headerlink" title="数学期望"></a>数学期望</h2><p>在日常生活中，求平均值是一个很常见的一种运算，例如求平均分，平均工资等。假设我们有$n$个样本，取值分别为$x_1,x_2,\cdots ,x_n$，则他们的平均值即为：<br>$$\bar{x}&#x3D;\frac{x_1+x_2+\cdots +x_n}{n}$$<br>加入我们给这些数一个权值$w_1,w_2,\cdots ,w_n$，则令</p>
@@ -521,10 +521,11 @@
   <entry>
     <title>高等代数拾遗</title>
     <url>/2022/09/05/%E9%AB%98%E7%AD%89%E4%BB%A3%E6%95%B0%E6%8B%BE%E9%81%97/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>查漏补缺</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>查漏补缺前五章</p>
 <p>参考书：高等代数北大第四版</p>
 <span id="more"></span>
 
+<p>这里讨论的多项式，向量组，矩阵都是在数域$P$上的。</p>
 <h2 id="多项式"><a href="#多项式" class="headerlink" title="多项式"></a>多项式</h2><p>这里列出两个重要的定理：</p>
 <p>$Th1:$如果不可约多项式$p(x)$是$f(x)$的$k$重因式$(k\geq 1)$，那么他是微商$f’(x)$的$k-1$重因式。</p>
 <p>$Cor:$多项式$f(x)$没有重因式的充分必要条件是$f(x)$与$f’(x)$互素。</p>
@@ -591,6 +592,47 @@
 <p>证明：<br>(1)只需证明 $\pmb{Ax}&#x3D;\pmb{0}$ 的解只有零解即可。<br>对于上述方程任一非零解 $\pmb{c}&#x3D;(c_1,c_2,\cdots,c_n)$ ，总可以选出 $c_i&gt;0$ 使得 $|c_i|\geq |c_j| , j&#x3D;1,2,\cdots,n$，那么 $|a_{i1}c_1+a_{i2}c_2+\cdots + a_{in}c_n| \geq |a_{ii}||c_i| - \sum\limits_{j\neq i}|a_{ij}c_i|  \geq |c_i|(|a_{ii}|-\sum\limits_{j\neq i}|a_{ij}|)&gt;0$<br>所以$\pmb{Ax}&#x3D;\pmb{0}$只有零解，这就证明了我们的结论。</p>
 <p>(2)运用数学归纳法证明。<br>$n&#x3D;1$ 时， $|\pmb{A}|&#x3D;a_{11}&gt;0$ ，结论对 $n&#x3D;1$ 成立。<br>假设结论对 $n-1$ 成立，下面我们对 $n$ 证明结论。<br>取$A$的第一行$n$个代数余子式$A_{11},A_{12},\cdots,A_{1n}$，则有<br>$$a_{11}A_{11}+a_{12}A_{12}+\cdots+a_{1n}A_{1n}&#x3D;|\pmb{A}|$$<br>$$a_{i1}A_{11}+a_{i2}A_{12}+\cdots+a_{in}A_{1n}&#x3D;0, i\neq 1$$<br>由(1)有： $|A|\neq 0$ ，所以 $A_{11},\cdots,A_{1n}$ 至少有一个不为0。<br>下面我们证明 $|A_{11}|\geq|A_{1i}|,i&#x3D;1,2,3,\cdots n$。<br>事实上，假若存在 $i\neq 1$ ，使得 $|A_{1i}|\geq |A_{1j}|, j&#x3D;1,2,\cdots, n$，此时必然有$|A_{1i}|&gt;0$，则<br>$$0&#x3D;|a_{i1}A_{11}+a_{i2}A_{12}+\cdots+a_{in}A_{1n}| $$<br>$$\geq |a_{ii}||A_{1i}|-\sum\limits_{j\neq i}|a_{ij}||A_{1j}|$$<br>$$\geq |a_{ii}||A_{1i}|-\sum\limits_{j\neq i}|a_{ij}||A_{1i}|$$<br>$$&#x3D; |A_{1i}|-(|a_{ii}|-\sum\limits_{j\neq i}|a_{ij}|)&gt;0$$<br>矛盾了，所以 $|A_{11}|\geq|A_{1i}|,i&#x3D;1,2,3,\cdots n$。<br>由归纳假设有$A_{11}&gt;0$，故$a_{11}A_{11}&gt;0$，于是<br>所以 $|\pmb{A}|&#x3D;a_{11}A_{11}+\sum\limits_{i&#x3D;2}^n a_{1i}A_{1i}\geq a_{11}A_{11}-\sum\limits_{i&#x3D;2}^n|a_{1i}||A_{1i}|\geq (a_{11}-\sum\limits{i&#x3D;2}^n|a_{1i}|)A_{11}&gt;0$<br>这就完成了归纳法。</p>
 <p>注记：形如(1)类型的矩阵称为严格对角占优矩阵，事实上，对于对称的严格对角占优的矩阵，我们可以证明其一定是正定矩阵。<br>这类矩阵在数值分析中也有重要的作用，例如其可以进行LU分解，也可以进行Jacobi迭代和G-S迭代和$0 &lt;\omega \leq 1$的松弛迭代等。</p>
+<h2 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h2><p>这一章关于矩阵的零碎的定理与推论较多，下面列出一些重要的和容易遗忘的：</p>
+<p>1.关于矩阵的秩：<br>(1):$rank(\pmb{A}+\pmb{B})\leq rank(\pmb{A})+rank(\pmb{B})$<br>(2):$rank(\pmb{AB})\leq min(rank(\pmb{A}),rank(\pmb{B}))$<br>(3):如果 $\pmb{A} &#x3D; \pmb{A_1} \pmb{A_2} \cdots  \pmb{A_t}$，那么 $rank(\pmb{A})\leq \min\limits_{1\leq j\leq t }rank(\pmb{A}_j)$<br>(4):设$\pmb{A}$是$s\times n$矩阵，如果$\pmb{P}$是$s\times s$可逆矩阵，$\pmb{Q}$是$n\times n$可逆矩阵，那么$rank(\pmb{A})&#x3D;rank(\pmb{PA})&#x3D;rank(\pmb{AQ})$<br>(5):设$\pmb{A}$,$\pmb{B}$是$n\times n$矩阵，如果$\pmb{AB}&#x3D;\pmb{0}$，那么$rank(\pmb{A})+rank(\pmb{B}) \leq n$<br>(6):设$\pmb{A}$是$s\times n$矩阵，$\pmb{B}$是$n\times m$矩阵，则$rank(\pmb{AB})\geq rank(\pmb{A})+rank(\pmb{B})-n$<br>(7):$rank(\pmb{A}^*)&#x3D;\begin{cases}<br>n&amp; rank(\pmb{A})&#x3D;n \\<br>1&amp; rank(\pmb{A})&#x3D;n-1 \\<br>0&amp; rank(\pmb{A})&lt; n-1 \\<br>\end{cases}<br>$</p>
+<br>
+
+<p>2.关于逆矩阵：下面均假设矩阵可逆<br>(1):如果$|\pmb{A}|&#x3D;d$，那么$|\pmb{A}^{-1}|&#x3D;d^{-1}$<br>(2):如果矩阵$\pmb{A},\pmb{B}$可逆，那么$\pmb{A}’$和$\pmb{AB}$也可逆，且成立$(\pmb{A}’)^{-1}&#x3D;(\pmb{A}^{-1})’$，$(\pmb{AB})^{-1}&#x3D;\pmb{B}^{-1}\pmb{A}^{-1}$<br>(3): $\pmb{A}^{-1}&#x3D;\frac{1}{d}\pmb{A}^*$<br>(4): $|\pmb{A}^*|&#x3D;|\pmb{A}|^{n-1}$<br>(5): $(\pmb{A}^*)^*&#x3D;|\pmb{A}|^{n-2}\pmb{A}$</p>
+<br>
+
+<p>3.关于初等矩阵<br>(1):矩阵$\pmb{A}$与$\pmb{B}$称作等价的，如果$\pmb{B}$可以由$\pmb{A}$经过一系列初等变换得到。<br>(2):任何一$s\times n$矩阵都与一形式为 $\begin{pmatrix}<br>        \pmb{E}_r &amp;  0 \\<br>        0 &amp; 0 \\<br>\end{pmatrix}$等价，其中$r$是矩阵的秩。<br>(3):矩阵$\pmb{A}$与$\pmb{B}$等价的充要条件是有初等矩阵$\pmb{P}_1, \pmb{P}_2, \cdots, \pmb{P}_l, \pmb{Q}_1,\pmb{Q}_2\cdots,\pmb{Q}_t$，使得$\pmb{A}&#x3D;\pmb{P}_1 \pmb{P}_2 \cdots \pmb{P}_l \pmb{B} \pmb{Q}_1 \pmb{Q}_2 \cdots \pmb{Q}_t$<br>(4):两个$s\times n$矩阵$\pmb{A},\pmb{B}$等价的充要条件为，存在可逆的$s$级矩阵$\pmb{P}$和可逆的$n$级矩阵$\pmb{Q}$，使得$\pmb{A}&#x3D;\pmb{PBQ}$<br>(5):$n$级矩阵$\pmb{A}$可逆的充要条件为他能成一系列初等矩阵的乘积。</p>
+<br>
+
+<p>4.经典结论<br>(1):设$\pmb{A},\pmb{B}$分别是$n\times m, m\times n$矩阵，则：<br>$$\begin{vmatrix}<br>        \pmb{E}_m &amp;  \pmb{B} \\<br>        \pmb{A} &amp; \pmb{E}_n \\<br>\end{vmatrix}&#x3D;|\pmb{E}_n-\pmb{AB}|&#x3D;|\pmb{E}_m-\pmb{BA}|$$</p>
+<p>Cor:设$\pmb{A},\pmb{B}$分别是$n\times m, m\times n$矩阵，则：<br>$$|\lambda \pmb{E}_n-\pmb{AB}|&#x3D;\lambda^{n-m}|\lambda\pmb{E}_m-\pmb{BA}|$$<br>提示：考虑$|\pmb{E}_n-(\frac{\pmb{A}}{\lambda})\pmb{B}|$，再用(1).</p>
+<p>(2):设$\pmb{A}$为$2\times 2$矩阵，证明：如果$\exists l \geq 2,s.t. \pmb{A}^l&#x3D;\pmb{0}$，那么$\pmb{A}^2&#x3D;\pmb{0}$</p>
+<p>提示：分$rank(\pmb{A})&#x3D;0$或者$1$讨论，注意$rank(\pmb{A})&#x3D;1$时，有$\pmb{A}^2&#x3D;k\pmb{A}$</p>
+<p>注记：本题有许多种做法，一个经典的做法是使用Jordan型，由此可以推出$n$阶幂零矩阵的幂零指数不超过$n$。</p>
+<p>(3):设$\pmb{A}$为$n\times n$矩阵，证明：如果$\pmb{A}^2&#x3D;\pmb{E}$，那么$rank(\pmb{A}+\pmb{E})+rank(\pmb{A}-\pmb{E})&#x3D;n$</p>
+<p>提示：考虑$(\pmb A-\pmb{E})(\pmb{A}+\pmb{E})&#x3D;\pmb{0}$以及$(\pmb{A}+\pmb{E})+(\pmb{A}-\pmb{E})&#x3D;2\pmb{A}$</p>
+<h2 id="二次型"><a href="#二次型" class="headerlink" title="二次型"></a>二次型</h2><p>我们用对称矩阵的角度来看二次型。</p>
+<p>(1):合同关系<br>两个$n\times n$矩阵$\pmb A, \pmb B$称作合同的，如果有可逆的$n\times n$矩阵$\pmb{C}$，使得$\pmb{B}&#x3D;\pmb{C}’\pmb{AC}$。<br>合同关系是一个等价关系。<br>任意一个对称矩阵都合同于一个对角矩阵，即$\exists \pmb{C}$，使得$\pmb{C}’\pmb{AC}$是对角型矩阵。<br>注记：进一步的，我们可以要求$C$是正交的。</p>
+<br>
+
+<p>(2):规范形<br>任意一个复系数的对称矩阵$\pmb{A}$合同于一个形式为 $\begin{pmatrix}<br>        \pmb{E}_r &amp;  0 \\<br>        0 &amp; 0 \\<br>\end{pmatrix}$的对角矩阵，从而有任意两个复数对称矩阵合同的充要条件是他们的秩相等。</p>
+<p>任意一个实系数的对称矩阵$\pmb{A}$合同于一个形式为 $\begin{pmatrix}<br>        \pmb{E_p} &amp;  0 &amp; 0 \\<br>        0 &amp; -\pmb{E_{r-p}} &amp; 0 \\<br>        0 &amp; 0 &amp; 0 \\\end{pmatrix}$的对角矩阵，其中对角线上$1$的个数$p$和$-1$的个数$r-p$都是唯一确定的，分别称为$\pmb{A}$的正、负惯性指数，它们的差$2p-r$称做$A$的符号差。</p>
+<br>
+(3):正定性
+
+<p>1.实二次型$\pmb{X}’\pmb{AX}$是正定的充要条件是矩阵$A$的顺序主子式全大于零。</p>
+<p>2.实二次型$\pmb{X}’\pmb{AX}$，其中$A$是对称矩阵，则下面命题等价：<br>(1)$\pmb{X}’\pmb{AX}$ 是半正定的；<br>(2)它的正惯性指数与秩相等；<br>(3)有可逆实矩阵$\pmb{C}$，使得$\pmb{C}’\pmb{AC}&#x3D;diag\{d_1,d_2,\cdots, d_n\},d_i \geq 0, i&#x3D;1,2,\cdots n$；<br>(4)有实矩阵$\pmb{C}$，使得$\pmb{A}&#x3D;\pmb{C}’\pmb{C}$；<br>(5)$\pmb{A}$的所有主子式皆大于零或等于零。</p>
+<p>注记：在(5)中，不能只要求顺序主子式全大于或等于零。</p>
+<p>列出几个习题：</p>
+<p>(1):设$\pmb{A}$是反对称矩阵，证明：$\pmb{A}$合同于</p>
+<p>$$\begin{pmatrix}<br>        0  &amp; 1 \\<br>        -1 &amp; 0 \\<br>           &amp;   &amp; 0 &amp; 1 \\<br>           &amp;   &amp; -1&amp; 0 \\<br>           &amp;   &amp;   &amp;  &amp; \ddots \\<br>           &amp;   &amp;   &amp;  &amp;       &amp; 0 &amp; 1 \\<br>           &amp;   &amp;   &amp;  &amp;       &amp; -1&amp; 0 \\<br>           &amp;   &amp;   &amp;  &amp;       &amp;   &amp;  &amp; 0 \\<br>           &amp;   &amp;   &amp;  &amp;       &amp;   &amp;  &amp;  &amp; \ddots \\<br>           &amp;   &amp;   &amp;  &amp;       &amp;   &amp;  &amp;  &amp; &amp; 0\\<br>\end{pmatrix}$$</p>
+<p>提示：可以使用归纳法证明。</p>
+<br>
+
+<p>(2):证明$rank(\pmb{A}’\pmb{A})&#x3D;rank(\pmb{A})$</p>
+<p>提示：可以从$\pmb{A}’\pmb{A}\pmb{X}&#x3D;0$和$\pmb{AX}&#x3D;\pmb{0}$的解的角度考虑。</p>
+<br>
+<br>
+
+<p>先写这么多吧，后面五章看看有没有时间，有时间再写吧。</p>
 ]]></content>
       <categories>
         <category>高等代数</category>
