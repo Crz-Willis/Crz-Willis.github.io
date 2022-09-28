@@ -3,7 +3,7 @@
   <entry>
     <title>ICPC 2021 昆明站游记</title>
     <url>/2022/04/16/kunming2021/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>拿到了人生的第一块“精神”金牌。</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>拿到了人生的第一块“精神”金牌。</p>
 <span id="more"></span>
 <h1 id="inf-Days-before-Day-inf"><a href="#inf-Days-before-Day-inf" class="headerlink" title="inf Days before Day -inf"></a>inf Days before Day -inf</h1><p>lzc要去实习，zh和wzx说想为ec热手，于是就叫上了我和他们一起打昆明站。</p>
 <h1 id="Day-inf"><a href="#Day-inf" class="headerlink" title="Day -inf"></a>Day -inf</h1><p>学校封校，去不了软件园校区，以为要被迫周烜双排了。</p>
@@ -47,59 +47,9 @@
       </tags>
   </entry>
   <entry>
-    <title>洛谷 P5300 [GXOI/GZOI2019]与或和</title>
-    <url>/2022/04/26/luogu-P5300/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>单调栈好题</p>
-<span id="more"></span>
-
-<p><a href="https://www.luogu.com.cn/problem/P5300">传送门</a></p>
-<p>大致题意：给你$n\times n$的矩阵$A$，让你求矩阵中所有子矩阵的与$\&amp;$和或$|$的和。<br>数据范围：$n\leq 2000,a_{i,j}\leq 2^{31}-1$</p>
-<p>大致题解：拆位考虑，对于与运算，我们对每一个$a_{i,j}$计算以它为右下角的全1子矩阵个数，对于或运算，我们计算以$a_{i,j}$为右下角的全0子矩阵个数，然后用$i\times j$减去全0子矩阵的个数即可。</p>
-<p>下面讨论怎么使用单调栈来维护以$a_{i,j}$为右下角的全1&#x2F;0子矩阵个数。</p>
-<p>预处理$s_{i,j}$为以$a_{i,j}$上方连续的1&#x2F;0的个数，然后我们依次枚举一个点，计算以它为右下角的全1&#x2F;0的子矩阵的个数。</p>
-<p>我们设$f_{i,j}$是以$a_{i,j}$为右下角的全1&#x2F;0子矩阵的个数，维护一个单调递增的栈，当未发生弹栈的时候，我们有</p>
-<p>$$f_{i,j}&#x3D;f_{i,j-1}+s_{i,j}$$</p>
-<p>其中第一部分是从左边延伸过来的，第二部分是从$a_{i,j}$向上延伸的。</p>
-<p>具体见图：<img src="/2022/04/26/luogu-P5300/image.png"></p>
-<p>当发生弹栈的时候，意味着左边的延伸不过去了，需要减掉，我们有</p>
-<p>$$f_{i,j}&#x3D;f_{i,j}-(s_{i,j}-s_{i,st.top()})*(st.top()-st.(top-1)())$$</p>
-<p>其中$st.(top-1)()$表示栈顶的下一个元素。</p>
-<p>具体见图（3弹栈的时候）：</p>
-<p><img src="/2022/04/26/luogu-P5300/image2.png"></p>
-<p>这样就维护了答案。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> GCC optimize(1)</span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> GCC optimize(2)</span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> GCC optimize(3)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cassert&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;climits&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;functional&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;deque&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> pb push_back</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> se second</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IOS ios::sync_with_stdio(0), cin.tie(0), cout.tie(0)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mem(a,x) memset(a, x, sizeof(a))</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span> ull;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">double</span> ld;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">double</span> db;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;ll, ll&gt; P;</span><br><span class="line"><span class="type">const</span> <span class="type">double</span> pi = <span class="built_in">acos</span>(<span class="number">-1</span>);</span><br><span class="line"><span class="type">const</span> ll mod = <span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="type">const</span> ll INF = <span class="number">2e9</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn=<span class="number">2000</span>+<span class="number">10</span>;</span><br><span class="line"><span class="function">ll <span class="title">qp</span> <span class="params">(ll a, ll b, ll mod)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ll ans = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (b)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (b &amp; <span class="number">1</span>)</span><br><span class="line">			ans = ans * a % mod;</span><br><span class="line">		a = a * a % mod;</span><br><span class="line">		b &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="type">int</span> a[maxn][maxn];</span><br><span class="line"><span class="type">int</span> up[maxn][maxn];</span><br><span class="line">ll ans1,ans2;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	IOS;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">			cin&gt;&gt;a[i][j];</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">0</span>;k&lt;<span class="number">31</span>;k++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">mem</span>(up[<span class="number">0</span>],<span class="number">0</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">if</span>(a[i][j]&amp;(<span class="number">1</span>&lt;&lt;k))</span><br><span class="line">					up[i][j]=up[i<span class="number">-1</span>][j]+<span class="number">1</span>;</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">					up[i][j]=<span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			stack&lt;<span class="type">int</span>&gt; s;</span><br><span class="line">			s.<span class="built_in">push</span>(<span class="number">0</span>);</span><br><span class="line">			up[i][<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">			up[i][n+<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">			ll bns=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">			&#123;</span><br><span class="line">				bns+=up[i][j];</span><br><span class="line">				<span class="keyword">while</span>(s.<span class="built_in">size</span>()&amp;&amp;up[i][j]&lt;up[i][s.<span class="built_in">top</span>()])</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="type">int</span> x = s.<span class="built_in">top</span>();</span><br><span class="line">					s.<span class="built_in">pop</span>();</span><br><span class="line">					bns=bns-(x-s.<span class="built_in">top</span>())*(up[i][x]-up[i][j]);</span><br><span class="line">				&#125;</span><br><span class="line">				s.<span class="built_in">push</span>(j);</span><br><span class="line">				ans1=(ans1+(bns&lt;&lt;k))%mod;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">mem</span>(up[<span class="number">0</span>],<span class="number">0</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">if</span>((a[i][j]&amp;(<span class="number">1</span>&lt;&lt;k))==<span class="number">0</span>)</span><br><span class="line">					up[i][j]=up[i<span class="number">-1</span>][j]+<span class="number">1</span>;</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">					up[i][j]=<span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			stack&lt;<span class="type">int</span>&gt; s;</span><br><span class="line">			up[i][<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">			up[i][n+<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">			s.<span class="built_in">push</span>(<span class="number">0</span>);</span><br><span class="line">			ll bns=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">			&#123;</span><br><span class="line">				bns=bns+up[i][j];</span><br><span class="line">				<span class="keyword">while</span>(s.<span class="built_in">size</span>()&amp;&amp;up[i][j]&lt;up[i][s.<span class="built_in">top</span>()])</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="type">int</span> x = s.<span class="built_in">top</span>();</span><br><span class="line">					s.<span class="built_in">pop</span>();</span><br><span class="line">					bns=bns-(x-s.<span class="built_in">top</span>())*(up[i][x]-up[i][j]);</span><br><span class="line">				&#125;</span><br><span class="line">				s.<span class="built_in">push</span>(j);</span><br><span class="line">				ans2=(ans2+((<span class="number">1ll</span>*i*j-bns)&lt;&lt;k))%mod;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;ans1&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;ans2&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>算法竞赛</category>
-        <category>单调栈</category>
-      </categories>
-      <tags>
-        <tag>单调栈</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>破防了</title>
-    <url>/2022/09/02/pofang/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>保研破防</p>
-<span id="more"></span>
-
-<p>有点想说的，正好今天有空就写写吧。</p>
-<p>自从高考失利，谈恋爱失败后，我就把绝大部分心思放在了学习上。但是我现在有些后悔。</p>
-<p>2019年5月份的时候，我降级转专业到了数学学院，在数学院的三年时间里，我基本一心学习和音游。最后拿到了一个说得过去的绩点。虽然在某些考试之前有过没有睡着觉的经历，也有过心态爆炸的时候，但是我觉得都无伤大雅。</p>
-<p>转眼就到了21年5月，各大学校开始了夏令营的招生。我当时想仗着四块ACM银牌的优势跨专业保研到AI或者CS之类的专业。投了fdu，ruc和pku。结果全寄了。</p>
-<p>在全寄了之后，我就在想我到底哪个环节出了问题，后来感觉大家就业普遍减少，深造普遍变多，就导致研究生这条路更卷了。加上我是跨专业，就更加不占优势。所以经过一番考虑之后，我决定回到数学专业读运筹。</p>
-<p>但是此时翻看学校是发现，大部分学校的运筹学专业之开设了直博这一条路，但是我认为我的科研水平几乎为0，加上大部分人说直博都不会很好过，考虑到我之前的心理状态，我比较抵触走直博这条路，因为谁也不知道我会不会读着读着心态就崩了然后去重开。但是考虑到直博中间读不下去的话还可以转硕士，这也是一个可以后退的道路吧。大不了先直博进去，读不动了再quit也是一个选择。</p>
-<p>在此同时，家中的老人得了类风湿病一类的病，腿脚变得非常不方便，和家里人商量后，我们一致认为能在北京读研是最好的。</p>
-<p>在下了这个决定之后，我就叫同学将复习所需要的书都寄回到了家中，开始了复习。期间我逐渐的变得熬夜和睡不着觉，有的时候12点钟躺在床上，翻来覆去，两点半还睡不着觉。有的时候躺下了，想着到时候面试的时候我答不上来的样子，然后就一下子睡意全无了。结果到8月中的时候，精神越来越差，就逐渐开始摆烂了。</p>
-<p>与此同时，有些学校的预推免通知已经出来了，我就回到了济南准备材料。这之间还发生了不少事，不过都是后话了。但是清华的推荐信只要到了一封，剩下还有一封没有老师回我，但是31好就截止了，不知道能不能弄得上去。</p>
-<p>有的时候感觉要是待材料学院就好了，或者想要是在数学院多摆摆烂，混个保研擦边的绩点，留sdu算了。</p>
-<p>还有的时候想找个人倾诉倾诉，发泄一下情绪，又哪里找得到呢。</p>
-<p>不过路已经走到这里了，又哪里有回头的机会呢。</p>
-]]></content>
-  </entry>
-  <entry>
     <title>polya</title>
     <url>/2022/04/16/polya/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><a href="https://www.luogu.com.cn/problem/P4980">传送门</a></p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><a href="https://www.luogu.com.cn/problem/P4980">传送门</a></p>
 <span id="more"></span>
 
 
@@ -133,9 +83,100 @@
       </tags>
   </entry>
   <entry>
+    <title>洛谷 P5300 [GXOI/GZOI2019]与或和</title>
+    <url>/2022/04/26/luogu-P5300/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>单调栈好题</p>
+<span id="more"></span>
+
+<p><a href="https://www.luogu.com.cn/problem/P5300">传送门</a></p>
+<p>大致题意：给你$n\times n$的矩阵$A$，让你求矩阵中所有子矩阵的与$\&amp;$和或$|$的和。<br>数据范围：$n\leq 2000,a_{i,j}\leq 2^{31}-1$</p>
+<p>大致题解：拆位考虑，对于与运算，我们对每一个$a_{i,j}$计算以它为右下角的全1子矩阵个数，对于或运算，我们计算以$a_{i,j}$为右下角的全0子矩阵个数，然后用$i\times j$减去全0子矩阵的个数即可。</p>
+<p>下面讨论怎么使用单调栈来维护以$a_{i,j}$为右下角的全1&#x2F;0子矩阵个数。</p>
+<p>预处理$s_{i,j}$为以$a_{i,j}$上方连续的1&#x2F;0的个数，然后我们依次枚举一个点，计算以它为右下角的全1&#x2F;0的子矩阵的个数。</p>
+<p>我们设$f_{i,j}$是以$a_{i,j}$为右下角的全1&#x2F;0子矩阵的个数，维护一个单调递增的栈，当未发生弹栈的时候，我们有</p>
+<p>$$f_{i,j}&#x3D;f_{i,j-1}+s_{i,j}$$</p>
+<p>其中第一部分是从左边延伸过来的，第二部分是从$a_{i,j}$向上延伸的。</p>
+<p>具体见图：<img src="/2022/04/26/luogu-P5300/image.png"></p>
+<p>当发生弹栈的时候，意味着左边的延伸不过去了，需要减掉，我们有</p>
+<p>$$f_{i,j}&#x3D;f_{i,j}-(s_{i,j}-s_{i,st.top()})*(st.top()-st.(top-1)())$$</p>
+<p>其中$st.(top-1)()$表示栈顶的下一个元素。</p>
+<p>具体见图（3弹栈的时候）：</p>
+<p><img src="/2022/04/26/luogu-P5300/image2.png"></p>
+<p>这样就维护了答案。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> GCC optimize(1)</span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> GCC optimize(2)</span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> GCC optimize(3)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cassert&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;climits&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;functional&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;deque&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> pb push_back</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> se second</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IOS ios::sync_with_stdio(0), cin.tie(0), cout.tie(0)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mem(a,x) memset(a, x, sizeof(a))</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span> ull;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">double</span> ld;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">double</span> db;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;ll, ll&gt; P;</span><br><span class="line"><span class="type">const</span> <span class="type">double</span> pi = <span class="built_in">acos</span>(<span class="number">-1</span>);</span><br><span class="line"><span class="type">const</span> ll mod = <span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="type">const</span> ll INF = <span class="number">2e9</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn=<span class="number">2000</span>+<span class="number">10</span>;</span><br><span class="line"><span class="function">ll <span class="title">qp</span> <span class="params">(ll a, ll b, ll mod)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ll ans = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (b)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (b &amp; <span class="number">1</span>)</span><br><span class="line">			ans = ans * a % mod;</span><br><span class="line">		a = a * a % mod;</span><br><span class="line">		b &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="type">int</span> a[maxn][maxn];</span><br><span class="line"><span class="type">int</span> up[maxn][maxn];</span><br><span class="line">ll ans1,ans2;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	IOS;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">			cin&gt;&gt;a[i][j];</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">0</span>;k&lt;<span class="number">31</span>;k++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">mem</span>(up[<span class="number">0</span>],<span class="number">0</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">if</span>(a[i][j]&amp;(<span class="number">1</span>&lt;&lt;k))</span><br><span class="line">					up[i][j]=up[i<span class="number">-1</span>][j]+<span class="number">1</span>;</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">					up[i][j]=<span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			stack&lt;<span class="type">int</span>&gt; s;</span><br><span class="line">			s.<span class="built_in">push</span>(<span class="number">0</span>);</span><br><span class="line">			up[i][<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">			up[i][n+<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">			ll bns=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">			&#123;</span><br><span class="line">				bns+=up[i][j];</span><br><span class="line">				<span class="keyword">while</span>(s.<span class="built_in">size</span>()&amp;&amp;up[i][j]&lt;up[i][s.<span class="built_in">top</span>()])</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="type">int</span> x = s.<span class="built_in">top</span>();</span><br><span class="line">					s.<span class="built_in">pop</span>();</span><br><span class="line">					bns=bns-(x-s.<span class="built_in">top</span>())*(up[i][x]-up[i][j]);</span><br><span class="line">				&#125;</span><br><span class="line">				s.<span class="built_in">push</span>(j);</span><br><span class="line">				ans1=(ans1+(bns&lt;&lt;k))%mod;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">mem</span>(up[<span class="number">0</span>],<span class="number">0</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">if</span>((a[i][j]&amp;(<span class="number">1</span>&lt;&lt;k))==<span class="number">0</span>)</span><br><span class="line">					up[i][j]=up[i<span class="number">-1</span>][j]+<span class="number">1</span>;</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">					up[i][j]=<span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			stack&lt;<span class="type">int</span>&gt; s;</span><br><span class="line">			up[i][<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">			up[i][n+<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">			s.<span class="built_in">push</span>(<span class="number">0</span>);</span><br><span class="line">			ll bns=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">			&#123;</span><br><span class="line">				bns=bns+up[i][j];</span><br><span class="line">				<span class="keyword">while</span>(s.<span class="built_in">size</span>()&amp;&amp;up[i][j]&lt;up[i][s.<span class="built_in">top</span>()])</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="type">int</span> x = s.<span class="built_in">top</span>();</span><br><span class="line">					s.<span class="built_in">pop</span>();</span><br><span class="line">					bns=bns-(x-s.<span class="built_in">top</span>())*(up[i][x]-up[i][j]);</span><br><span class="line">				&#125;</span><br><span class="line">				s.<span class="built_in">push</span>(j);</span><br><span class="line">				ans2=(ans2+((<span class="number">1ll</span>*i*j-bns)&lt;&lt;k))%mod;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;ans1&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;ans2&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>算法竞赛</category>
+        <category>单调栈</category>
+      </categories>
+      <tags>
+        <tag>单调栈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>破防了</title>
+    <url>/2022/09/02/pofang/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>保研破防</p>
+<span id="more"></span>
+
+<p>有点想说的，正好今天有空就写写吧。</p>
+<p>自从高考失利，谈恋爱失败后，我就把绝大部分心思放在了学习上。但是我现在有些后悔。</p>
+<p>2019年5月份的时候，我降级转专业到了数学学院，在数学院的三年时间里，我基本一心学习和音游。最后拿到了一个说得过去的绩点。虽然在某些考试之前有过没有睡着觉的经历，也有过心态爆炸的时候，但是我觉得都无伤大雅。</p>
+<p>转眼就到了21年5月，各大学校开始了夏令营的招生。我当时想仗着四块ACM银牌的优势跨专业保研到AI或者CS之类的专业。投了fdu，ruc和pku。结果全寄了。</p>
+<p>在全寄了之后，我就在想我到底哪个环节出了问题，后来感觉大家就业普遍减少，深造普遍变多，就导致研究生这条路更卷了。加上我是跨专业，就更加不占优势。所以经过一番考虑之后，我决定回到数学专业读运筹。</p>
+<p>但是此时翻看学校是发现，大部分学校的运筹学专业之开设了直博这一条路，但是我认为我的科研水平几乎为0，加上大部分人说直博都不会很好过，考虑到我之前的心理状态，我比较抵触走直博这条路，因为谁也不知道我会不会读着读着心态就崩了然后去重开。但是考虑到直博中间读不下去的话还可以转硕士，这也是一个可以后退的道路吧。大不了先直博进去，读不动了再quit也是一个选择。</p>
+<p>在此同时，家中的老人得了类风湿病一类的病，腿脚变得非常不方便，和家里人商量后，我们一致认为能在北京读研是最好的。</p>
+<p>在下了这个决定之后，我就叫同学将复习所需要的书都寄回到了家中，开始了复习。期间我逐渐的变得熬夜和睡不着觉，有的时候12点钟躺在床上，翻来覆去，两点半还睡不着觉。有的时候躺下了，想着到时候面试的时候我答不上来的样子，然后就一下子睡意全无了。结果到8月中的时候，精神越来越差，就逐渐开始摆烂了。</p>
+<p>与此同时，有些学校的预推免通知已经出来了，我就回到了济南准备材料。这之间还发生了不少事，不过都是后话了。但是清华的推荐信只要到了一封，剩下还有一封没有老师回我，但是31好就截止了，不知道能不能弄得上去。</p>
+<p>有的时候感觉要是待材料学院就好了，或者想要是在数学院多摆摆烂，混个保研擦边的绩点，留sdu算了。</p>
+<p>还有的时候想找个人倾诉倾诉，发泄一下情绪，又哪里找得到呢。</p>
+<p>不过路已经走到这里了，又哪里有回头的机会呢。</p>
+]]></content>
+      <categories>
+        <category>保研</category>
+      </categories>
+      <tags>
+        <tag>保研</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>保研之路</title>
+    <url>/2022/09/28/%E4%BF%9D%E7%A0%94%E7%BB%8F%E5%8E%86/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>一次神奇而又壮丽的经历</p>
+<span id="more"></span>
+
+<p>大概统计一下：<br>最终去向：中国科学院大学<br>通过复试：清华数学、山大数学、国科大数学<br>未通过复试：北大数学<br>进入复试：浙大cs，国科大数学，武大数学、北师大数学、北理数学<br>未过初审：北大rw</p>
+<h1 id="一些想说的，可能有些语无伦次"><a href="#一些想说的，可能有些语无伦次" class="headerlink" title="一些想说的，可能有些语无伦次"></a>一些想说的，可能有些语无伦次</h1><p>我一直在想我以后要成为一个什么样的人。</p>
+<p>自从挂掉pku rw的夏令营之后，我就变得极度焦虑，睡眠也越来越不好，12点躺在床上之后怎么都睡不着，有的时候睡着的时候天都快蒙蒙亮了。我这个时候就在想这个保研究竟给我带来了什么。在当时来看，明明卷了四年，但是什么都没有得到的我是不是真的就是five。有的时候真的想往空间里倒倒垃圾，但是大部分时间都控制住了自己，但是有的时候憋着真的非常难受（<a href="https://crz-willis.github.io/2022/09/02/pofang/">可以看这里</a>）。结果越难受越憋着，越憋着心态越炸。当时我还对不少人发了脾气，在这里说一声抱歉。</p>
+<p>有的时候我在想我到底适不适合读phd，确实非常纠结。我常常在幻想我读不下来phd的那种绝望的时候，我当时真的在想如果读不出来该怎么回去交代。并且我自认为自己并没有科研天赋，读phd肯定读不出来。所以这也是我拒了thu的一个主要原因。</p>
+<p>这些时间和我家长也有些不合拍，尤其是昨天，感觉是最难绷的一次。主要是还是因为家长想让我读phd然后留校，但是我并不想这样。我每次和家长说的时候都要对线一次，然后家长第二天就忘了，然后就和我说这事。并且不知这件事情，在和家长聊天的时候有的时候就会问之前问过的东西，有的时候还会连着好几天问，这样一是会消磨自己的耐心，二是会感觉家长并不是很关心自己。所以有的时候会和家长渐行渐远。</p>
+<p>其实关于phd这件事，我想说研一读一年，看看自己适不适合，然后再决定自己到底要不要读，但是家长说那个时候就来不及了，让我现在做决定，但是自己毕竟还是一点科研经历都没有的，让我现在做决定属实是太为难自己了。然后家长就说那你想就业的话还不找实习什么的，还说现在大厂裁人很严重，一再让我放弃。我想说的是计算机对口的公司不止有大厂啊，有大厂相对应的也有小厂，是不是。而且我现在学的东西去实习就是在给自己送死，数学院本科学的东西不适合任意一个方向的实习，这也是数学的一个尴尬之处吧。</p>
+<p>我知道我家长都非常成功，但是我可能只是一个平凡的人，接受自己的平凡真的这么难吗？要是家长一而再再而三的这么说的话我感觉就可以直接摆烂了。反正做什么家长都不满意的话不如不做了。</p>
+<h1 id="一些时间点"><a href="#一些时间点" class="headerlink" title="一些时间点"></a>一些时间点</h1><h2 id="5月"><a href="#5月" class="headerlink" title="5月"></a>5月</h2><p>从隔离点回来，在学校健康监测之后，各大学校的夏令营开始陆续报名了。可以出宿舍的时间已经是5月18日了，离某些学校的截止时间很近了。于是匆匆报名了人大信息、复旦cs和北大rw。</p>
+<h2 id="6月"><a href="#6月" class="headerlink" title="6月"></a>6月</h2><p>复旦cs和人大信息挂初审，瞬间开始焦虑。</p>
+<h2 id="7月"><a href="#7月" class="headerlink" title="7月"></a>7月</h2><p>北大rw过了初审，第一步要看论文交报告，顺利通过，杜第二步是入营前面试，挂掉了，于是夏令营还没开始就结束了。</p>
+<p>此时夏令营0offer，已经焦虑的不成样子了。</p>
+<h2 id="8月"><a href="#8月" class="headerlink" title="8月"></a>8月</h2><p>8月初去了长春，缓解缓解压力，在这里感谢yzhh陪我玩了四天。</p>
+<p>8月底为了准备清华和国科大的推荐信和盖章，提前回来了一个礼拜，但是推荐信是线上完成的，只有盖章是线下盖的。</p>
+<p>准备完之后我就开始复习了，在复习中我还在注意着别的学校的招生通知。</p>
+<h2 id="9月"><a href="#9月" class="headerlink" title="9月"></a>9月</h2><h3 id="9-2"><a href="#9-2" class="headerlink" title="9.2"></a>9.2</h3><p>济南出疫情了，学校封校，原本的勤也没法出了，于是晚上开始在宿舍打om。</p>
+<h3 id="9-20"><a href="#9-20" class="headerlink" title="9.20"></a>9.20</h3><p>thu面试，整个过程还算平稳，老师也没特别刁难，整个面试过程平稳结束。最后晚上拿到了offer，但是因为是直博，于是犹豫去不去。</p>
+<h3 id="9-21"><a href="#9-21" class="headerlink" title="9.21"></a>9.21</h3><p>我认为自己不适合直接读博士，所以拒掉了thu的offer，此时还是0offer</p>
+<h3 id="9-22"><a href="#9-22" class="headerlink" title="9.22"></a>9.22</h3><p>上午pku面试，整个过程完全爆炸，最后不出所料地寄了。</p>
+<p>下午sdu面试，因为毕竟是本校，老师都挺和蔼的，平稳渡过，此时终于拿到了一个offer。</p>
+<h3 id="9-23"><a href="#9-23" class="headerlink" title="9.23"></a>9.23</h3><p>ucas专业面试，顺利度过。</p>
+<h3 id="9-26"><a href="#9-26" class="headerlink" title="9.26"></a>9.26</h3><p>ucas英语面试，也顺利度过，此时基本确定去向了。</p>
+]]></content>
+      <categories>
+        <category>保研</category>
+      </categories>
+      <tags>
+        <tag>保研</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>线性系统理论复习</title>
     <url>/2022/06/24/%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%90%86%E8%AE%BA/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>复习线性系统理论</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>复习线性系统理论</p>
 <span id="more"></span>
 
 
@@ -194,7 +235,7 @@
   <entry>
     <title>随机事件复习笔记</title>
     <url>/2022/04/22/%E9%9A%8F%E6%9C%BA%E4%BA%8B%E4%BB%B6%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>随机事件复习笔记</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>随机事件复习笔记</p>
 <span id="more"></span>
 
 <h3 id="概率的公理化定义"><a href="#概率的公理化定义" class="headerlink" title="概率的公理化定义"></a>概率的公理化定义</h3><p>在一个随机现象中，用来表示任一个随机事件$A$发生可能性大小的实数成为该事件的概率，并规定：<br>（1）非负性公理：对任一事件$A$，必有$P(A)\geq 0$<br>（2）正则化公理：必然事件的概率$P(\Omega)&#x3D;1$<br>（3）可列可加性公理：若$A_1,A_2,\cdots$是一列互不相容事件，则有：$P(\bigcup\limits_{n&#x3D;1}^\infty A_i)&#x3D;\sum\limits_{i&#x3D;1}^\infty P(A_i)$</p>
@@ -297,7 +338,7 @@
   <entry>
     <title>随机变量及其分布复习笔记</title>
     <url>/2022/04/23/%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>随机变量及其分布复习笔记</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>随机变量及其分布复习笔记</p>
 <span id="more"></span>
 
 <h2 id="随机变量"><a href="#随机变量" class="headerlink" title="随机变量"></a>随机变量</h2><h3 id="什么是随机变量"><a href="#什么是随机变量" class="headerlink" title="什么是随机变量"></a>什么是随机变量</h3><p>用来表示随机现象结果的变量就是随机变量，常用大写字母$X,Y,Z$表示，而随机变量所取的值常用小写字母 $x,y,z$表示。若用等号或不等号把$X$和$x$联系起来就能表示事件，比如“$X&#x3D;x$”,“$Y\leq y$” , “$z_1&lt; Z \leq z_2$”都是事件。</p>
@@ -390,7 +431,7 @@
   <entry>
     <title>随机变量的数学特征复习笔记</title>
     <url>/2022/05/03/%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E6%95%B0%E5%AD%A6%E7%89%B9%E5%BE%81%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>简要介绍数学期望，方差，矩，分位数</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>简要介绍数学期望，方差，矩，分位数</p>
 <span id="more"></span>
 
 <h2 id="数学期望"><a href="#数学期望" class="headerlink" title="数学期望"></a>数学期望</h2><p>在日常生活中，求平均值是一个很常见的一种运算，例如求平均分，平均工资等。假设我们有$n$个样本，取值分别为$x_1,x_2,\cdots ,x_n$，则他们的平均值即为：<br>$$\bar{x}&#x3D;\frac{x_1+x_2+\cdots +x_n}{n}$$<br>加入我们给这些数一个权值$w_1,w_2,\cdots ,w_n$，则令</p>
@@ -521,7 +562,7 @@
   <entry>
     <title>高等代数拾遗</title>
     <url>/2022/09/05/%E9%AB%98%E7%AD%89%E4%BB%A3%E6%95%B0%E6%8B%BE%E9%81%97/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>查漏补缺前五章</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>查漏补缺前五章</p>
 <p>参考书：高等代数北大第四版</p>
 <span id="more"></span>
 
