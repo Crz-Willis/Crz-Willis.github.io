@@ -47,42 +47,6 @@
       </tags>
   </entry>
   <entry>
-    <title>polya</title>
-    <url>/2022/04/16/polya/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><a href="https://www.luogu.com.cn/problem/P4980">传送门</a></p>
-<span id="more"></span>
-
-
-<p>题目描述：</p>
-<p>给你$n$种颜色，再给你一个正$n$边形的项链，问你有多少种本质不同的染色方案。</p>
-<p>注意本题的本质不同，定义为：<strong>只需要不能通过旋转与别的染色方案相同</strong>。</p>
-<p>输入格式：第一行一个正整数$t$，表示数据组数，之后每一行一个数，代表$n$</p>
-<p>输出格式：对于每一组数据，输出一个数，代表答案对$1e9+7$取模的结果。</p>
-<p>样例输入：</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">5</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td></tr></table></figure>
-
-<p>样例输出：</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">1</span><br><span class="line">3</span><br><span class="line">11</span><br><span class="line">70</span><br><span class="line">629</span><br></pre></td></tr></table></figure>
-
-<p>数据规模约定：$n\leq10^9,t\leq10^3$</p>
-<p>在这里就不介绍Poyla定理的具体内容了，讲一讲应该如何优化。<br>我们不难求得答案是$ans&#x3D;\sum\limits_{i&#x3D;1}^nn^{gcd(i,n)}$</p>
-<p>但是直接枚举复杂度是$O(tnlg^2n)$的，我们想办法优化。</p>
-<p>我们可以发现对于$n$的每一个因子进行枚举可以发现，对于$n$的每一个因子$d$，我们有$n^d$种染色方案，又有$\varphi(\frac{n}{d})$个$gcd(i,n)&#x3D;d$的情况。<br>所以对于每一个$d$，我们将答案加上$n^d\varphi(\frac{n}{d})$</p>
-<p>所以我们枚举$n$的因子即可，这样的复杂度可以变为$O(t(n\sqrt{n})^\frac{1}{2}lgn)$的，但这还不够，我们要继续优化。</p>
-<p>我们可以先筛出每个质因子，然后再求欧拉函数的过程中，直接枚举质数即可。这样的复杂度可以变为$O(t(n^\frac{1}{2}lgn)^\frac{1}{2}lgn)$，就可以过了。</p>
-<p>Code:</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IOS ios::sync_with_stdio(0), cin.tie(0), cout.tie(0)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Pause system(<span class="string">&quot;pause&quot;</span>)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="type">const</span> ll mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn = <span class="number">4e4</span>;</span><br><span class="line"><span class="type">int</span> prime[maxn + <span class="number">10</span>], tot;</span><br><span class="line"><span class="type">bool</span> vis[maxn + <span class="number">10</span>];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">getprime</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt;= maxn; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (!vis[i])</span><br><span class="line">        &#123;</span><br><span class="line">            prime[tot++] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; tot &amp;&amp; i * prime[j] &lt;= maxn; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            vis[i * prime[j]] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (i % prime[j] == <span class="number">0</span>)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">qp</span><span class="params">(ll a, ll b, ll mod)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    a %= mod;</span><br><span class="line">    ll ans = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (b)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (b &amp; <span class="number">1</span>)</span><br><span class="line">            ans = ans * a % mod;</span><br><span class="line">        a = a * a % mod;</span><br><span class="line">        b &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans%mod;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">getphi</span><span class="params">(ll t, ll mod)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ll ans = t;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; <span class="number">1ll</span> * prime[i] * prime[i] &lt;= <span class="number">1ll</span> * t; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (t % prime[i] == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            ans = ans * (prime[i] - <span class="number">1</span>) / prime[i];</span><br><span class="line">            <span class="keyword">while</span> (t % prime[i] == <span class="number">0</span>)</span><br><span class="line">                t /= prime[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (t != <span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        ans = ans * (t - <span class="number">1</span>) / t;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans % mod;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    IOS;</span><br><span class="line">    <span class="built_in">getprime</span>();</span><br><span class="line">    <span class="type">int</span> t;</span><br><span class="line">    cin &gt;&gt; t;</span><br><span class="line">    <span class="keyword">while</span> (t--)</span><br><span class="line">    &#123;</span><br><span class="line">        ll n, ans = <span class="number">0</span>;</span><br><span class="line">        cin &gt;&gt; n;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i * i &lt;= n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (i * i == n)</span><br><span class="line">                ans += <span class="built_in">qp</span>(n, i - <span class="number">1</span>, mod) * <span class="built_in">getphi</span>(i, mod) % mod, ans %= mod;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (n % i == <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                ans += <span class="built_in">qp</span>(n, n / i - <span class="number">1</span>, mod) * <span class="built_in">getphi</span>(i, mod) % mod;</span><br><span class="line">                ans += <span class="built_in">qp</span>(n, i - <span class="number">1</span>, mod) * <span class="built_in">getphi</span>(n / i, mod) % mod;</span><br><span class="line">                ans %= mod;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt;(ans%mod+mod)%mod &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>算法竞赛</category>
-        <category>群论</category>
-      </categories>
-      <tags>
-        <tag>polya</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>洛谷 P5300 [GXOI/GZOI2019]与或和</title>
     <url>/2022/04/26/luogu-P5300/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>单调栈好题</p>
@@ -139,39 +103,50 @@
       </tags>
   </entry>
   <entry>
-    <title>保研之路</title>
-    <url>/2022/09/28/%E4%BF%9D%E7%A0%94%E7%BB%8F%E5%8E%86/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>一次神奇而又壮丽的经历</p>
+    <title>polya</title>
+    <url>/2022/04/16/polya/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><a href="https://www.luogu.com.cn/problem/P4980">传送门</a></p>
 <span id="more"></span>
 
-<p>大概统计一下：<br>最终去向：中国科学院大学<br>通过复试：清华数学、山大数学、国科大数学<br>未通过复试：北大数学<br>进入复试：浙大cs，国科大数学，武大数学、北师大数学、北理数学<br>未过初审：北大rw</p>
-<h1 id="一些想说的，可能有些语无伦次"><a href="#一些想说的，可能有些语无伦次" class="headerlink" title="一些想说的，可能有些语无伦次"></a>一些想说的，可能有些语无伦次</h1><p>我一直在想我以后要成为一个什么样的人。</p>
-<p>自从挂掉pku rw的夏令营之后，我就变得极度焦虑，睡眠也越来越不好，12点躺在床上之后怎么都睡不着，有的时候睡着的时候天都快蒙蒙亮了。我这个时候就在想这个保研究竟给我带来了什么。在当时来看，明明卷了四年，但是什么都没有得到的我是不是真的就是five。有的时候真的想往空间里倒倒垃圾，但是大部分时间都控制住了自己，但是有的时候憋着真的非常难受（<a href="https://crz-willis.github.io/2022/09/02/pofang/">可以看这里</a>）。结果越难受越憋着，越憋着心态越炸。当时我还对不少人发了脾气，在这里说一声抱歉。</p>
-<p>有的时候我在想我到底适不适合读phd，确实非常纠结。我常常在幻想我读不下来phd的那种绝望的时候，我当时真的在想如果读不出来该怎么回去交代。并且我自认为自己并没有科研天赋，读phd肯定读不出来。所以这也是我拒了thu的一个主要原因。</p>
-<p>这些时间和我家长也有些不合拍，尤其是昨天，感觉是最难绷的一次。主要是还是因为家长想让我读phd然后留校，但是我并不想这样。我每次和家长说的时候都要对线一次，然后家长第二天就忘了，然后就和我说这事。并且不知这件事情，在和家长聊天的时候有的时候就会问之前问过的东西，有的时候还会连着好几天问，这样一是会消磨自己的耐心，二是会感觉家长并不是很关心自己。所以有的时候会和家长渐行渐远。</p>
-<p>其实关于phd这件事，我想说研一读一年，看看自己适不适合，然后再决定自己到底要不要读，但是家长说那个时候就来不及了，让我现在做决定，但是自己毕竟还是一点科研经历都没有的，让我现在做决定属实是太为难自己了。然后家长就说那你想就业的话还不找实习什么的，还说现在大厂裁人很严重，一再让我放弃。我想说的是计算机对口的公司不止有大厂啊，有大厂相对应的也有小厂，是不是。而且我现在学的东西去实习就是在给自己送死，数学院本科学的东西不适合任意一个方向的实习，这也是数学的一个尴尬之处吧。</p>
-<p>我知道我家长都非常成功，但是我可能只是一个平凡的人，接受自己的平凡真的这么难吗？要是家长一而再再而三的这么说的话我感觉就可以直接摆烂了。反正做什么家长都不满意的话不如不做了。</p>
-<h1 id="一些时间点"><a href="#一些时间点" class="headerlink" title="一些时间点"></a>一些时间点</h1><h2 id="5月"><a href="#5月" class="headerlink" title="5月"></a>5月</h2><p>从隔离点回来，在学校健康监测之后，各大学校的夏令营开始陆续报名了。可以出宿舍的时间已经是5月18日了，离某些学校的截止时间很近了。于是匆匆报名了人大信息、复旦cs和北大rw。</p>
-<h2 id="6月"><a href="#6月" class="headerlink" title="6月"></a>6月</h2><p>复旦cs和人大信息挂初审，瞬间开始焦虑。</p>
-<h2 id="7月"><a href="#7月" class="headerlink" title="7月"></a>7月</h2><p>北大rw过了初审，第一步要看论文交报告，顺利通过，杜第二步是入营前面试，挂掉了，于是夏令营还没开始就结束了。</p>
-<p>此时夏令营0offer，已经焦虑的不成样子了。</p>
-<h2 id="8月"><a href="#8月" class="headerlink" title="8月"></a>8月</h2><p>8月初去了长春，缓解缓解压力，在这里感谢yzhh陪我玩了四天。</p>
-<p>8月底为了准备清华和国科大的推荐信和盖章，提前回来了一个礼拜，但是推荐信是线上完成的，只有盖章是线下盖的。</p>
-<p>准备完之后我就开始复习了，在复习中我还在注意着别的学校的招生通知。</p>
-<h2 id="9月"><a href="#9月" class="headerlink" title="9月"></a>9月</h2><h3 id="9-2"><a href="#9-2" class="headerlink" title="9.2"></a>9.2</h3><p>济南出疫情了，学校封校，原本的勤也没法出了，于是晚上开始在宿舍打om。</p>
-<h3 id="9-20"><a href="#9-20" class="headerlink" title="9.20"></a>9.20</h3><p>thu面试，整个过程还算平稳，老师也没特别刁难，整个面试过程平稳结束。最后晚上拿到了offer，但是因为是直博，于是犹豫去不去。</p>
-<h3 id="9-21"><a href="#9-21" class="headerlink" title="9.21"></a>9.21</h3><p>我认为自己不适合直接读博士，所以拒掉了thu的offer，此时还是0offer</p>
-<h3 id="9-22"><a href="#9-22" class="headerlink" title="9.22"></a>9.22</h3><p>上午pku面试，整个过程完全爆炸，最后不出所料地寄了。</p>
-<p>下午sdu面试，因为毕竟是本校，老师都挺和蔼的，平稳渡过，此时终于拿到了一个offer。</p>
-<h3 id="9-23"><a href="#9-23" class="headerlink" title="9.23"></a>9.23</h3><p>ucas专业面试，顺利度过。</p>
-<h3 id="9-26"><a href="#9-26" class="headerlink" title="9.26"></a>9.26</h3><p>ucas英语面试，也顺利度过，此时基本确定去向了。</p>
+
+<p>题目描述：</p>
+<p>给你$n$种颜色，再给你一个正$n$边形的项链，问你有多少种本质不同的染色方案。</p>
+<p>注意本题的本质不同，定义为：<strong>只需要不能通过旋转与别的染色方案相同</strong>。</p>
+<p>输入格式：第一行一个正整数$t$，表示数据组数，之后每一行一个数，代表$n$</p>
+<p>输出格式：对于每一组数据，输出一个数，代表答案对$1e9+7$取模的结果。</p>
+<p>样例输入：</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">5</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td></tr></table></figure>
+
+<p>样例输出：</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">1</span><br><span class="line">3</span><br><span class="line">11</span><br><span class="line">70</span><br><span class="line">629</span><br></pre></td></tr></table></figure>
+
+<p>数据规模约定：$n\leq10^9,t\leq10^3$</p>
+<p>在这里就不介绍Poyla定理的具体内容了，讲一讲应该如何优化。<br>我们不难求得答案是$ans&#x3D;\sum\limits_{i&#x3D;1}^nn^{gcd(i,n)}$</p>
+<p>但是直接枚举复杂度是$O(tnlg^2n)$的，我们想办法优化。</p>
+<p>我们可以发现对于$n$的每一个因子进行枚举可以发现，对于$n$的每一个因子$d$，我们有$n^d$种染色方案，又有$\varphi(\frac{n}{d})$个$gcd(i,n)&#x3D;d$的情况。<br>所以对于每一个$d$，我们将答案加上$n^d\varphi(\frac{n}{d})$</p>
+<p>所以我们枚举$n$的因子即可，这样的复杂度可以变为$O(t(n\sqrt{n})^\frac{1}{2}lgn)$的，但这还不够，我们要继续优化。</p>
+<p>我们可以先筛出每个质因子，然后再求欧拉函数的过程中，直接枚举质数即可。这样的复杂度可以变为$O(t(n^\frac{1}{2}lgn)^\frac{1}{2}lgn)$，就可以过了。</p>
+<p>Code:</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IOS ios::sync_with_stdio(0), cin.tie(0), cout.tie(0)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Pause system(<span class="string">&quot;pause&quot;</span>)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="type">const</span> ll mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn = <span class="number">4e4</span>;</span><br><span class="line"><span class="type">int</span> prime[maxn + <span class="number">10</span>], tot;</span><br><span class="line"><span class="type">bool</span> vis[maxn + <span class="number">10</span>];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">getprime</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt;= maxn; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (!vis[i])</span><br><span class="line">        &#123;</span><br><span class="line">            prime[tot++] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; tot &amp;&amp; i * prime[j] &lt;= maxn; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            vis[i * prime[j]] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (i % prime[j] == <span class="number">0</span>)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">qp</span><span class="params">(ll a, ll b, ll mod)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    a %= mod;</span><br><span class="line">    ll ans = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (b)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (b &amp; <span class="number">1</span>)</span><br><span class="line">            ans = ans * a % mod;</span><br><span class="line">        a = a * a % mod;</span><br><span class="line">        b &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans%mod;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">getphi</span><span class="params">(ll t, ll mod)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ll ans = t;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; <span class="number">1ll</span> * prime[i] * prime[i] &lt;= <span class="number">1ll</span> * t; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (t % prime[i] == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            ans = ans * (prime[i] - <span class="number">1</span>) / prime[i];</span><br><span class="line">            <span class="keyword">while</span> (t % prime[i] == <span class="number">0</span>)</span><br><span class="line">                t /= prime[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (t != <span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        ans = ans * (t - <span class="number">1</span>) / t;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans % mod;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    IOS;</span><br><span class="line">    <span class="built_in">getprime</span>();</span><br><span class="line">    <span class="type">int</span> t;</span><br><span class="line">    cin &gt;&gt; t;</span><br><span class="line">    <span class="keyword">while</span> (t--)</span><br><span class="line">    &#123;</span><br><span class="line">        ll n, ans = <span class="number">0</span>;</span><br><span class="line">        cin &gt;&gt; n;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i * i &lt;= n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (i * i == n)</span><br><span class="line">                ans += <span class="built_in">qp</span>(n, i - <span class="number">1</span>, mod) * <span class="built_in">getphi</span>(i, mod) % mod, ans %= mod;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (n % i == <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                ans += <span class="built_in">qp</span>(n, n / i - <span class="number">1</span>, mod) * <span class="built_in">getphi</span>(i, mod) % mod;</span><br><span class="line">                ans += <span class="built_in">qp</span>(n, i - <span class="number">1</span>, mod) * <span class="built_in">getphi</span>(n / i, mod) % mod;</span><br><span class="line">                ans %= mod;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt;(ans%mod+mod)%mod &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
-        <category>保研</category>
+        <category>算法竞赛</category>
+        <category>群论</category>
       </categories>
       <tags>
-        <tag>保研</tag>
+        <tag>polya</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>这是什么</title>
+    <url>/2022/10/30/what/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>这是什么？</p>
+<span id="more"></span>
+
+
+<p><img src="/2022/10/30/what/1.JPG"></p>
+]]></content>
   </entry>
   <entry>
     <title>线性系统理论复习</title>
@@ -230,6 +205,41 @@
       </categories>
       <tags>
         <tag>线性系统理论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>保研之路</title>
+    <url>/2022/09/28/%E4%BF%9D%E7%A0%94%E7%BB%8F%E5%8E%86/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>一次神奇而又壮丽的经历</p>
+<span id="more"></span>
+
+<p>大概统计一下：<br>最终去向：中国科学院大学<br>通过复试：清华数学、山大数学、国科大数学<br>未通过复试：北大数学<br>进入复试：浙大cs，国科大数学，武大数学、北师大数学、北理数学<br>未过初审：北大rw</p>
+<h1 id="一些想说的，可能有些语无伦次"><a href="#一些想说的，可能有些语无伦次" class="headerlink" title="一些想说的，可能有些语无伦次"></a>一些想说的，可能有些语无伦次</h1><p>我一直在想我以后要成为一个什么样的人。</p>
+<p>自从挂掉pku rw的夏令营之后，我就变得极度焦虑，睡眠也越来越不好，12点躺在床上之后怎么都睡不着，有的时候睡着的时候天都快蒙蒙亮了。我这个时候就在想这个保研究竟给我带来了什么。在当时来看，明明卷了四年，但是什么都没有得到的我是不是真的就是five。有的时候真的想往空间里倒倒垃圾，但是大部分时间都控制住了自己，但是有的时候憋着真的非常难受（<a href="https://crz-willis.github.io/2022/09/02/pofang/">可以看这里</a>）。结果越难受越憋着，越憋着心态越炸。当时我还对不少人发了脾气，在这里说一声抱歉。</p>
+<p>有的时候我在想我到底适不适合读phd，确实非常纠结。我常常在幻想我读不下来phd的那种绝望的时候，我当时真的在想如果读不出来该怎么回去交代。并且我自认为自己并没有科研天赋，读phd肯定读不出来。所以这也是我拒了thu的一个主要原因。</p>
+<p>这些时间和我家长也有些不合拍，尤其是昨天，感觉是最难绷的一次。主要是还是因为家长想让我读phd然后留校，但是我并不想这样。我每次和家长说的时候都要对线一次，然后家长第二天就忘了，然后就和我说这事。并且不知这件事情，在和家长聊天的时候有的时候就会问之前问过的东西，有的时候还会连着好几天问，这样一是会消磨自己的耐心，二是会感觉家长并不是很关心自己。所以有的时候会和家长渐行渐远。</p>
+<p>其实关于phd这件事，我想说研一读一年，看看自己适不适合，然后再决定自己到底要不要读，但是家长说那个时候就来不及了，让我现在做决定，但是自己毕竟还是一点科研经历都没有的，让我现在做决定属实是太为难自己了。然后家长就说那你想就业的话还不找实习什么的，还说现在大厂裁人很严重，一再让我放弃。我想说的是计算机对口的公司不止有大厂啊，有大厂相对应的也有小厂，是不是。而且我现在学的东西去实习就是在给自己送死，数学院本科学的东西不适合任意一个方向的实习，这也是数学的一个尴尬之处吧。</p>
+<p>我知道我家长都非常成功，但是我可能只是一个平凡的人，接受自己的平凡真的这么难吗？要是家长一而再再而三的这么说的话我感觉就可以直接摆烂了。反正做什么家长都不满意的话不如不做了。</p>
+<h1 id="一些时间点"><a href="#一些时间点" class="headerlink" title="一些时间点"></a>一些时间点</h1><h2 id="5月"><a href="#5月" class="headerlink" title="5月"></a>5月</h2><p>从隔离点回来，在学校健康监测之后，各大学校的夏令营开始陆续报名了。可以出宿舍的时间已经是5月18日了，离某些学校的截止时间很近了。于是匆匆报名了人大信息、复旦cs和北大rw。</p>
+<h2 id="6月"><a href="#6月" class="headerlink" title="6月"></a>6月</h2><p>复旦cs和人大信息挂初审，瞬间开始焦虑。</p>
+<h2 id="7月"><a href="#7月" class="headerlink" title="7月"></a>7月</h2><p>北大rw过了初审，第一步要看论文交报告，顺利通过，杜第二步是入营前面试，挂掉了，于是夏令营还没开始就结束了。</p>
+<p>此时夏令营0offer，已经焦虑的不成样子了。</p>
+<h2 id="8月"><a href="#8月" class="headerlink" title="8月"></a>8月</h2><p>8月初去了长春，缓解缓解压力，在这里感谢yzhh陪我玩了四天。</p>
+<p>8月底为了准备清华和国科大的推荐信和盖章，提前回来了一个礼拜，但是推荐信是线上完成的，只有盖章是线下盖的。</p>
+<p>准备完之后我就开始复习了，在复习中我还在注意着别的学校的招生通知。</p>
+<h2 id="9月"><a href="#9月" class="headerlink" title="9月"></a>9月</h2><h3 id="9-2"><a href="#9-2" class="headerlink" title="9.2"></a>9.2</h3><p>济南出疫情了，学校封校，原本的勤也没法出了，于是晚上开始在宿舍打om。</p>
+<h3 id="9-20"><a href="#9-20" class="headerlink" title="9.20"></a>9.20</h3><p>thu面试，整个过程还算平稳，老师也没特别刁难，整个面试过程平稳结束。最后晚上拿到了offer，但是因为是直博，于是犹豫去不去。</p>
+<h3 id="9-21"><a href="#9-21" class="headerlink" title="9.21"></a>9.21</h3><p>我认为自己不适合直接读博士，所以拒掉了thu的offer，此时还是0offer</p>
+<h3 id="9-22"><a href="#9-22" class="headerlink" title="9.22"></a>9.22</h3><p>上午pku面试，整个过程完全爆炸，最后不出所料地寄了。</p>
+<p>下午sdu面试，因为毕竟是本校，老师都挺和蔼的，平稳渡过，此时终于拿到了一个offer。</p>
+<h3 id="9-23"><a href="#9-23" class="headerlink" title="9.23"></a>9.23</h3><p>ucas专业面试，顺利度过。</p>
+<h3 id="9-26"><a href="#9-26" class="headerlink" title="9.26"></a>9.26</h3><p>ucas英语面试，也顺利度过，此时基本确定去向了。</p>
+]]></content>
+      <categories>
+        <category>保研</category>
+      </categories>
+      <tags>
+        <tag>保研</tag>
       </tags>
   </entry>
   <entry>
@@ -333,99 +343,6 @@
         <tag>贝叶斯公式</tag>
         <tag>概率</tag>
         <tag>独立性</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>随机变量及其分布复习笔记</title>
-    <url>/2022/04/23/%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>随机变量及其分布复习笔记</p>
-<span id="more"></span>
-
-<h2 id="随机变量"><a href="#随机变量" class="headerlink" title="随机变量"></a>随机变量</h2><h3 id="什么是随机变量"><a href="#什么是随机变量" class="headerlink" title="什么是随机变量"></a>什么是随机变量</h3><p>用来表示随机现象结果的变量就是随机变量，常用大写字母$X,Y,Z$表示，而随机变量所取的值常用小写字母 $x,y,z$表示。若用等号或不等号把$X$和$x$联系起来就能表示事件，比如“$X&#x3D;x$”,“$Y\leq y$” , “$z_1&lt; Z \leq z_2$”都是事件。</p>
-<p>怎么用数学语言表示？</p>
-<p>$Def:$定义在样本空间$\Omega$上的实值函数$X&#x3D;X(\omega)$称为随机变量。在实数集上仅取有限个或可列个孤立点的随机变量成为离散型随机变量，可能取值在实数轴上的一个区间$(a,b)$的随机变量称为连续型随机变量，其中$a$可以是$-\infty$，$b$可以是$+\infty$。</p>
-<p>可以看到，随机变量就是将样本空间上的每一个事件映射到一个实数的函数。</p>
-<p>例如抛出$n(n\geq3)$枚硬币，设随机变量$X$为硬币正面朝上的次数，再设$\omega&#x3D;$朝上的硬币次数为$3$次。则我们可以令$X(\omega)&#x3D;3$。这是非常符合直觉的。</p>
-<h3 id="随机变量的分布函数"><a href="#随机变量的分布函数" class="headerlink" title="随机变量的分布函数"></a>随机变量的分布函数</h3><p>$Def$：设$X$是一个随机变量，对任意实数$x$，事件$X\leq x$的概率是$x$的函数，记为：$F(x)&#x3D;P(X\leq x)$这个函数称为$X$的累积分布函数，简称分布函数。</p>
-<p>分布函数的一些基本性质：<br>（1）$0\leq F(x)\leq 1$（因为$F(x)$是概率）<br>（2）$\lim\limits_{x\rightarrow -\infty} F(x)&#x3D;0$（事件$X&lt;-\infty$是不可能事件）<br>（3）$\lim\limits_{x\rightarrow +\infty} F(x)&#x3D;1$（事件$X&lt;+\infty$是必然事件）<br>（4）$F(x)$是非降函数，即对$\forall x_1&lt;x_2$，有$F(x_1)\leq F(x_2)$。这是因为事件$X\leq x_2$包含$X\leq x_1$。<br>（5）$F(x)$右连续，即$\lim\limits_{x-&gt;x_0^+}F(x)&#x3D;F(x_0)$<br>对（5）的极限成立做一个简要证明。<br>$Proof$：令$A_n&#x3D;{X \leq x_0 +  \frac{1}{n}}$，则$\bigcap\limits_{n&#x3D;1}^\infty A_n&#x3D;{X\leq x_0}$，则<br>$$\lim\limits_{x-&gt;x_0^+}F(x)&#x3D;\lim\limits_{n\rightarrow \infty}F(x_0+\frac{1}{n})&#x3D;\lim\limits_{n\rightarrow \infty}P(A_n)&#x3D;P(\lim\limits_{n\rightarrow \infty}A_n)&#x3D;P(\bigcap\limits_{n&#x3D;1}^\infty A_n)&#x3D;P(X\leq x_0)&#x3D;F(x_0)$$</p>
-<p>注记：上面的推到不严谨，其中第3，4个等号需要证明，感兴趣的读者可以翻阅实变函数中的集合论部分。<br>注记2：对于上面的（3）（4）（5），需要证明极限的存在性，其中（3）（4）的极限存在性可以类似于上面的证明给出，（5）的极限存在性可以用确界定理给出。（这几部分的证明都可以去翻阅实变函数的教材）<br>注记3：分布函数并不是左连续的，反例很容易给出。</p>
-<h2 id="离散型随机变量"><a href="#离散型随机变量" class="headerlink" title="离散型随机变量"></a>离散型随机变量</h2><h3 id="分布列"><a href="#分布列" class="headerlink" title="分布列"></a>分布列</h3><p>$Def$：设$X$是离散随机变量，它的所有可能取值为$x_1,x_2,\cdots , x_n , \cdots$，假如$X$取$x_i$的概率为：$P(X&#x3D;x_i)&#x3D;p(x_i)$，且满足<br>（1）非负性：$p(x_i)\geq 0$<br>（2）正则性：$\sum\limits_{i&#x3D;1}^\infty p(x_i)&#x3D;1$<br>则称这组概率${p(x_i)}$为随机变量$X$的分布列，或$X$的概率分布。</p>
-<p>若已知$X$的分布列，则可以很容易的写出$X$的分布函数：$F(x_0)&#x3D;\sum\limits_{x_i\leq x} p(x_i)$</p>
-<p>离散型随机变量的分布列还可以用如下表格来表示：</p>
-<table>
-<thead>
-<tr>
-<th>$X$</th>
-<th>$x_1$</th>
-<th>$x_2$</th>
-<th>$\cdots$</th>
-<th>$x_n$</th>
-<th>$\cdots$</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>$P$</td>
-<td>$p_1$</td>
-<td>$p_2$</td>
-<td>$\cdots$</td>
-<td>$p_n$</td>
-<td>$\cdots$</td>
-</tr>
-</tbody></table>
-<p>除了表格，其还可以用线条图或者概率分布直方图来表示一个随机变量。</p>
-<h3 id="伯努利概型中的一些分布"><a href="#伯努利概型中的一些分布" class="headerlink" title="伯努利概型中的一些分布"></a>伯努利概型中的一些分布</h3><h4 id="二项分布"><a href="#二项分布" class="headerlink" title="二项分布"></a>二项分布</h4><p>$Def$：令$X$为$n$重伯努利试验中成功出现的次数，则$X$是一个随机变量。用$B_{n,k}$表示$n$重伯努利试验中成功出现$k$次，则有$B_{n,k}&#x3D;$“$X&#x3D;k$”，其中$X$的可能取值为$0,1,\cdots ,n$，它取这些值的概率为：$$P(X&#x3D;k)&#x3D;C_n^k\cdot p^k\cdot (1-p)^{(n-k)},k&#x3D;0,1,\cdots ,n$$我们称这个概率分布为二项分布，记为$b(n,p)$。在概率论中“随机变量$X$的概率分布为二项分布$b(n,p)$”常被说成“随机变量$X$服从二项分布$b(n,p)$，<font color="#dd0000">记做$X\sim b(n,p)$</font>。</p>
-<h4 id="两点分布"><a href="#两点分布" class="headerlink" title="两点分布"></a>两点分布</h4><p>$n&#x3D;1$的二项分布$b(1,p)$就称为两点分布（也称伯努利分布或者0-1分布）。其概率分布为：<br>$$<br>P(X&#x3D;k)&#x3D;\begin{cases}<br>p &amp; k&#x3D;1 \\<br>(1-p) &amp; k&#x3D;0<br>\end{cases}<br>$$</p>
-<h4 id="几何分布"><a href="#几何分布" class="headerlink" title="几何分布"></a>几何分布</h4><p>我们讨论在伯努利试验中首次出现成功出现在第$k$次的概率，记成功的概率为$p$。若想第$k$次试验首次出现成功，我们需要在前$k-1$次试验中均失败，并且恰好在第$k$次试验出现成功。记$$g(k,p)&#x3D;(1-p)^{k-1}p ~~~~ k&#x3D;1,2,\cdots$$<br>我们称这个分布为几何分布</p>
-<p>注记：这个分布的样本空间不是有限的。</p>
-<p>注记2：几何分布具有无记忆性，即$$P(X &#x3D; s+t|X\geq s)&#x3D;\frac{P(x &#x3D;  s+t)}{P(X \geq s)}&#x3D;\frac{(1-p)^{s+t-1}\cdot p}{(1-p)^{s}} &#x3D; (1-p)^{t-1} \cdot p $$<br>这说明假定前$s$次没有出现成功，那么再经过$t$次试验成功的概率和直接进行$t$次试验成功的概率是相同的。与此同时，离散型随机变量中，只有几何分布有无记忆性。</p>
-<h3 id="泊松分布"><a href="#泊松分布" class="headerlink" title="泊松分布"></a>泊松分布</h3><p>如果随机变量$X$有如下的概率分布：</p>
-<p>$$P(X&#x3D;k)&#x3D;\frac{\lambda^k}{k!}e^{-\lambda}$$</p>
-<p>就称$X$服从参数设$\lambda$的泊松分布。<font color="#dd0000">记做$X\sim P(\lambda)$</font>。</p>
-<p>泊松分布的由来？</p>
-<p>先看一个例子：<br>$eg$：某年龄段的保险者中，一年中每个人死亡的概率为$0.005$，现有$10000$个这类人参加保险，保险公司想知道在未来一年中有$40$个人死亡的概率</p>
-<p>我们从二项分布可以知道$b(40;10000,0,005)&#x3D;C_{10000}^{40}(0.005)^{40}(0.995)^{9960}$（<font color="#dd0000">我们用$b(k,n,p)$表示$n$重伯努利试验中$A$出现$k$次的概率</font>）而直接计算这个数值相当困难，我们需要有更好的计算方法。</p>
-<p>于是我们有泊松逼近定理：</p>
-<p>$Th$：在独立试验中，以$p_n$代表事件$A$在试验中出现的概率。它与试验总数$n$有关，如果$np_n\rightarrow\lambda$，则当$n\rightarrow \infty$是，</p>
-<p>$$b(k;n,p_n)\rightarrow\frac{\lambda^k}{k!}e^{-\lambda}$$</p>
-<p>$Proof$：记$\lambda_n&#x3D;np_n$，则<br>$b(k;n,p_n)&#x3D;C_n^kp_n^k(1-p)^{n-k}&#x3D;\frac{n(n-1)\cdots(n-k+1)}{k!}(\frac{\lambda_n}{n})^k(1-\frac{\lambda_n}{n})^{n-k} $<br>$&#x3D;\frac{\lambda_n^k}{k!}(1-\frac{1}{n})\cdots (1-\frac{k-1}{n})(1-\frac{\lambda_n}{n})^{n-k}$</p>
-<p>对于固定的$k$有<br>$$\lim\limits_{n\rightarrow\infty}\lambda_n^k&#x3D;\lambda^k，~~ \lim\limits_{n\rightarrow\infty}(1-\frac{\lambda_n}{n}^{n-k})&#x3D;e^{-\lambda}$$<br>和<br>$$\lim\limits_{n\rightarrow\infty}(1-\frac{1}{n})\cdots (1-\frac{k-1}{n})&#x3D;1$$</p>
-<p>因此$$\lim\limits_{n\rightarrow\infty}b(k;n,p_n)&#x3D;\frac{\lambda^k}{k!}e^{-\lambda}$$</p>
-<p>在应用中，当$p$相当小（一般当$p\leq0.1$时）我们用如下的近似公式：$$b(k;n,p)\approx\frac{(np)^k}{k!}e^{-np}$$</p>
-<p>这就解决了上面二项分布不容易算的问题。</p>
-<p>泊松分布发明不止是用来逼近二项分布的，我们还有如下的泊松过程：</p>
-<p>考虑来到某交换装置的电话呼叫数，假定它具有下面三个性质：<br>（1）平稳性：在$[t_0,t_0+t)$中来到的呼叫数只与时间间隔长度$t$有关而与时间起点$t_0$无关。<br>（2）独立增量性：在$[t_0,t_0+t)$内来到$k$个呼叫这一事件与$t_0$之前发生的事件独立。<br>（3）普通性：在充分晓得时间间隔中，最多来一个呼叫。若记$\psi(t)&#x3D;1-P_0(t)-P_1(t)&#x3D;\sum\limits_{i&#x3D;2}^\infty P_i(t)$，则应有$\lim\limits_{t\rightarrow 0}\frac{\psi(t)}{t}&#x3D;0$</p>
-<p>在这个过程中，可以求得$P_k(t)&#x3D;\frac{(\lambda t)^k}{k!}e^{-\lambda t}$，这正是泊松分布。</p>
-<p>详细证明可以参考概率论教材。</p>
-<h3 id="超几何分布"><a href="#超几何分布" class="headerlink" title="超几何分布"></a>超几何分布</h3><p>假设有$N$个产品组成的总体，其中含有$M$个不合格品，若丛中随机不放回地抽取$n$个，则其中含有不合格品的个数$X$是一个离散随机变量。假如$n\leq M$，则$X$可以取$0,1,\cdots , n$；若$n&gt;M$，则$X$可能取$0,1,\cdots M$。由古典概型可以计算得：<br>$$P(X&#x3D;x)&#x3D;\frac{C_M^xC_{N-M}^{n-x}}{C_N^n} ~~ x&#x3D;0,1,\cdots r$$<br>其中$r&#x3D;min(n,M)$。<font color="#dd0000">这个分布称为超几何分布，它有三个参数$N,M,n$，记为$h(n,N,M)$</font></p>
-<h2 id="连续型随机变量"><a href="#连续型随机变量" class="headerlink" title="连续型随机变量"></a>连续型随机变量</h2><h3 id="概率密度函数"><a href="#概率密度函数" class="headerlink" title="概率密度函数"></a>概率密度函数</h3><p>$Def$：设$p(x)$设定义在整个实数轴上的一个函数，假如它满足如下两个性质：<br>（1）非负性：$p(x)\geq 0$<br>（2）正则性：$\int_{-\infty}^{\infty}p(x)dx&#x3D;1$<br>则称$p(x)$是概率密度函数，或密度函数。若随机变量$X$取值的统计规律性可用某个概率密度函数$p(x)$描述，则称$p(x)$为$X$的概率分布，记为$X\sim p(x)$</p>
-<p>有了概率密度函数之后，随机变量$X$的分布函数就可以写成如下形式：</p>
-<p>$$F(x)&#x3D;\int_{-\infty}^x p(x)dx$$</p>
-<p>注记1：概率密度函数不是概率，即$P(X&#x3D;x)\neq p(x)$，事实上，对于$\forall x$,$$P(X&#x3D;x)&#x3D;\lim_{\Delta x \rightarrow 0}P(x+\Delta x)-P(x) &#x3D; \lim_{\Delta x \rightarrow 0} \int_x^{x+\Delta x}p(x)dx &#x3D; 0$$但是我们在$(x,x+\Delta x)$的概率密度可以用$\int_{x}^{x+\Delta x}p(x)dx$来求。类似的，$P(a\leq X \leq b)&#x3D;\int_{a}^{b}p(x)dx$</p>
-<p>注记2：我们将概率为零的事件称为零概率事件，但是零概率小事件和不可能事件是有差距的：不可能事件一定是零概率事件，但是零概率事件不一定是不可能事件。同样的，必然事件发生的概率为1，但是发生概率为1的事件不一定是必然事件，我们一般称概率为1的事件为几乎必然发生的事件。</p>
-<h3 id="均匀分布"><a href="#均匀分布" class="headerlink" title="均匀分布"></a>均匀分布</h3><p>$Def$：若$a,b(b&gt;a)$为有限数，则由下列函数给定的分布称为均匀分布：<br>$$<br>p(x)&#x3D;\begin{cases}<br>\frac{1}{b-a} &amp; a\leq x \leq b\\<br>0 &amp; otherwise<br>\end{cases}<br>$$</p>
-<p>对应的分布函数为：<br>$$<br>F(x)&#x3D;\begin{cases}<br>0 &amp; x \leq a\\<br>\frac{x-a}{b-a} &amp; a &lt; x \leq b \\<br>1 &amp; b \leq x<br>\end{cases}<br>$$</p>
-<p>注记：我们仍需令其满足分布函数的右连续性，有些课本上将第二个条件写成$a\leq x \leq b$，其实这是不严谨的。</p>
-<h3 id="指数分布"><a href="#指数分布" class="headerlink" title="指数分布"></a>指数分布</h3><p>分布密度函数为</p>
-<p>$$<br>p(x)&#x3D;\begin{cases}<br>\lambda e^{-\lambda x} &amp; x \geq 0 \\<br>0 &amp; x&lt;0<br>\end{cases}<br>$$</p>
-<p>分布函数为</p>
-<p>$$<br>F(x)&#x3D;\begin{cases}<br>1- e^{-\lambda x} &amp; x \geq 0 \\<br>0 &amp; x&lt;0<br>\end{cases}<br>$$</p>
-<p>其中$\lambda &gt;0$，是参数，这种分布称为指数分布，简记为$Exp(\lambda)$</p>
-<p>指数分布有重要的应用，我们常用它来做各种“寿命”的近似，例如电子元器件的寿命等。</p>
-<p>指数分布还有类似于几何分布的无记忆性，设$X$服从指数分布，则对$\forall x&gt;0,t&gt;0$，<br>$$P\{X\geq s+t|X\geq s \} &#x3D; \frac{P\{ X\geq s+t\}}{P\{ X\geq s\}} &#x3D; \frac{e^{-\lambda(s+t)}}{e^{-\lambda s}} &#x3D; e^{-\lambda t}$$</p>
-<h3 id="正态分布"><a href="#正态分布" class="headerlink" title="正态分布"></a>正态分布</h3><p>密度函数为<br>$$p(x)&#x3D;\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}} ~~~ -\infty &lt; x &lt; \infty$$<br>其中$\sigma &gt; 0$，$\mu$和$\sigma$都为常数，相应的分布函数为<br>$$F(x)&#x3D;\int_{-\infty}^x \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(y-\mu)^2}{2\sigma^2}} ~~~ -\infty &lt; y &lt; \infty$$</p>
-<p>这种分布称为正态分布，简记为$N(\mu,\sigma ^2)$</p>
-<p>特别的，当$\mu&#x3D;0,\sigma&#x3D;1$的时候，这个分布称为标准正态分布，记为$N(0,1)$，相应的密度函数和概率分布函数分解记为$\phi(x)$和$\Phi(x)$</p>
-<p>注记：若$X \sim N(\mu,\sigma^2)$，则$U&#x3D;\frac{X-\mu}{\sigma} \sim N(0,1)$。称这样的变换为$X$的标准化变换，称$U$为$X$的标准化随机变量。</p>
-<p>注记2：设$X\sim N(\mu,\sigma^2)$，则<br>$$P(a&lt;X&lt;b)&#x3D;\Phi(\frac{b-\mu}{\sigma})-\Phi(\frac{a-\mu}{\sigma})$$</p>
-<p>注记3：设$X\sim N(0,1)$，则</p>
-<p>$$<br>P(|X-\mu|&lt;k\sigma)&#x3D;\begin{cases}<br>0.6826 &amp; k&#x3D;1 \\<br>0.9544 &amp; k&#x3D;2 \\<br>0.9973 &amp; k&#x3D;3<br>\end{cases}<br>$$<br>我们可以看到落在$3$倍标准差外的样本设很少的，在数据处理的时候一般将其剔除。我们称其为$3\sigma$原则。</p>
-]]></content>
-      <categories>
-        <category>概率论</category>
-        <category>随机变量及其分布</category>
-      </categories>
-      <tags>
-        <tag>随机变量</tag>
       </tags>
   </entry>
   <entry>
@@ -557,6 +474,99 @@
         <tag>数学期望</tag>
         <tag>矩</tag>
         <tag>分位数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>随机变量及其分布复习笔记</title>
+    <url>/2022/04/23/%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>随机变量及其分布复习笔记</p>
+<span id="more"></span>
+
+<h2 id="随机变量"><a href="#随机变量" class="headerlink" title="随机变量"></a>随机变量</h2><h3 id="什么是随机变量"><a href="#什么是随机变量" class="headerlink" title="什么是随机变量"></a>什么是随机变量</h3><p>用来表示随机现象结果的变量就是随机变量，常用大写字母$X,Y,Z$表示，而随机变量所取的值常用小写字母 $x,y,z$表示。若用等号或不等号把$X$和$x$联系起来就能表示事件，比如“$X&#x3D;x$”,“$Y\leq y$” , “$z_1&lt; Z \leq z_2$”都是事件。</p>
+<p>怎么用数学语言表示？</p>
+<p>$Def:$定义在样本空间$\Omega$上的实值函数$X&#x3D;X(\omega)$称为随机变量。在实数集上仅取有限个或可列个孤立点的随机变量成为离散型随机变量，可能取值在实数轴上的一个区间$(a,b)$的随机变量称为连续型随机变量，其中$a$可以是$-\infty$，$b$可以是$+\infty$。</p>
+<p>可以看到，随机变量就是将样本空间上的每一个事件映射到一个实数的函数。</p>
+<p>例如抛出$n(n\geq3)$枚硬币，设随机变量$X$为硬币正面朝上的次数，再设$\omega&#x3D;$朝上的硬币次数为$3$次。则我们可以令$X(\omega)&#x3D;3$。这是非常符合直觉的。</p>
+<h3 id="随机变量的分布函数"><a href="#随机变量的分布函数" class="headerlink" title="随机变量的分布函数"></a>随机变量的分布函数</h3><p>$Def$：设$X$是一个随机变量，对任意实数$x$，事件$X\leq x$的概率是$x$的函数，记为：$F(x)&#x3D;P(X\leq x)$这个函数称为$X$的累积分布函数，简称分布函数。</p>
+<p>分布函数的一些基本性质：<br>（1）$0\leq F(x)\leq 1$（因为$F(x)$是概率）<br>（2）$\lim\limits_{x\rightarrow -\infty} F(x)&#x3D;0$（事件$X&lt;-\infty$是不可能事件）<br>（3）$\lim\limits_{x\rightarrow +\infty} F(x)&#x3D;1$（事件$X&lt;+\infty$是必然事件）<br>（4）$F(x)$是非降函数，即对$\forall x_1&lt;x_2$，有$F(x_1)\leq F(x_2)$。这是因为事件$X\leq x_2$包含$X\leq x_1$。<br>（5）$F(x)$右连续，即$\lim\limits_{x-&gt;x_0^+}F(x)&#x3D;F(x_0)$<br>对（5）的极限成立做一个简要证明。<br>$Proof$：令$A_n&#x3D;{X \leq x_0 +  \frac{1}{n}}$，则$\bigcap\limits_{n&#x3D;1}^\infty A_n&#x3D;{X\leq x_0}$，则<br>$$\lim\limits_{x-&gt;x_0^+}F(x)&#x3D;\lim\limits_{n\rightarrow \infty}F(x_0+\frac{1}{n})&#x3D;\lim\limits_{n\rightarrow \infty}P(A_n)&#x3D;P(\lim\limits_{n\rightarrow \infty}A_n)&#x3D;P(\bigcap\limits_{n&#x3D;1}^\infty A_n)&#x3D;P(X\leq x_0)&#x3D;F(x_0)$$</p>
+<p>注记：上面的推到不严谨，其中第3，4个等号需要证明，感兴趣的读者可以翻阅实变函数中的集合论部分。<br>注记2：对于上面的（3）（4）（5），需要证明极限的存在性，其中（3）（4）的极限存在性可以类似于上面的证明给出，（5）的极限存在性可以用确界定理给出。（这几部分的证明都可以去翻阅实变函数的教材）<br>注记3：分布函数并不是左连续的，反例很容易给出。</p>
+<h2 id="离散型随机变量"><a href="#离散型随机变量" class="headerlink" title="离散型随机变量"></a>离散型随机变量</h2><h3 id="分布列"><a href="#分布列" class="headerlink" title="分布列"></a>分布列</h3><p>$Def$：设$X$是离散随机变量，它的所有可能取值为$x_1,x_2,\cdots , x_n , \cdots$，假如$X$取$x_i$的概率为：$P(X&#x3D;x_i)&#x3D;p(x_i)$，且满足<br>（1）非负性：$p(x_i)\geq 0$<br>（2）正则性：$\sum\limits_{i&#x3D;1}^\infty p(x_i)&#x3D;1$<br>则称这组概率${p(x_i)}$为随机变量$X$的分布列，或$X$的概率分布。</p>
+<p>若已知$X$的分布列，则可以很容易的写出$X$的分布函数：$F(x_0)&#x3D;\sum\limits_{x_i\leq x} p(x_i)$</p>
+<p>离散型随机变量的分布列还可以用如下表格来表示：</p>
+<table>
+<thead>
+<tr>
+<th>$X$</th>
+<th>$x_1$</th>
+<th>$x_2$</th>
+<th>$\cdots$</th>
+<th>$x_n$</th>
+<th>$\cdots$</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$P$</td>
+<td>$p_1$</td>
+<td>$p_2$</td>
+<td>$\cdots$</td>
+<td>$p_n$</td>
+<td>$\cdots$</td>
+</tr>
+</tbody></table>
+<p>除了表格，其还可以用线条图或者概率分布直方图来表示一个随机变量。</p>
+<h3 id="伯努利概型中的一些分布"><a href="#伯努利概型中的一些分布" class="headerlink" title="伯努利概型中的一些分布"></a>伯努利概型中的一些分布</h3><h4 id="二项分布"><a href="#二项分布" class="headerlink" title="二项分布"></a>二项分布</h4><p>$Def$：令$X$为$n$重伯努利试验中成功出现的次数，则$X$是一个随机变量。用$B_{n,k}$表示$n$重伯努利试验中成功出现$k$次，则有$B_{n,k}&#x3D;$“$X&#x3D;k$”，其中$X$的可能取值为$0,1,\cdots ,n$，它取这些值的概率为：$$P(X&#x3D;k)&#x3D;C_n^k\cdot p^k\cdot (1-p)^{(n-k)},k&#x3D;0,1,\cdots ,n$$我们称这个概率分布为二项分布，记为$b(n,p)$。在概率论中“随机变量$X$的概率分布为二项分布$b(n,p)$”常被说成“随机变量$X$服从二项分布$b(n,p)$，<font color="#dd0000">记做$X\sim b(n,p)$</font>。</p>
+<h4 id="两点分布"><a href="#两点分布" class="headerlink" title="两点分布"></a>两点分布</h4><p>$n&#x3D;1$的二项分布$b(1,p)$就称为两点分布（也称伯努利分布或者0-1分布）。其概率分布为：<br>$$<br>P(X&#x3D;k)&#x3D;\begin{cases}<br>p &amp; k&#x3D;1 \\<br>(1-p) &amp; k&#x3D;0<br>\end{cases}<br>$$</p>
+<h4 id="几何分布"><a href="#几何分布" class="headerlink" title="几何分布"></a>几何分布</h4><p>我们讨论在伯努利试验中首次出现成功出现在第$k$次的概率，记成功的概率为$p$。若想第$k$次试验首次出现成功，我们需要在前$k-1$次试验中均失败，并且恰好在第$k$次试验出现成功。记$$g(k,p)&#x3D;(1-p)^{k-1}p ~~~~ k&#x3D;1,2,\cdots$$<br>我们称这个分布为几何分布</p>
+<p>注记：这个分布的样本空间不是有限的。</p>
+<p>注记2：几何分布具有无记忆性，即$$P(X &#x3D; s+t|X\geq s)&#x3D;\frac{P(x &#x3D;  s+t)}{P(X \geq s)}&#x3D;\frac{(1-p)^{s+t-1}\cdot p}{(1-p)^{s}} &#x3D; (1-p)^{t-1} \cdot p $$<br>这说明假定前$s$次没有出现成功，那么再经过$t$次试验成功的概率和直接进行$t$次试验成功的概率是相同的。与此同时，离散型随机变量中，只有几何分布有无记忆性。</p>
+<h3 id="泊松分布"><a href="#泊松分布" class="headerlink" title="泊松分布"></a>泊松分布</h3><p>如果随机变量$X$有如下的概率分布：</p>
+<p>$$P(X&#x3D;k)&#x3D;\frac{\lambda^k}{k!}e^{-\lambda}$$</p>
+<p>就称$X$服从参数设$\lambda$的泊松分布。<font color="#dd0000">记做$X\sim P(\lambda)$</font>。</p>
+<p>泊松分布的由来？</p>
+<p>先看一个例子：<br>$eg$：某年龄段的保险者中，一年中每个人死亡的概率为$0.005$，现有$10000$个这类人参加保险，保险公司想知道在未来一年中有$40$个人死亡的概率</p>
+<p>我们从二项分布可以知道$b(40;10000,0,005)&#x3D;C_{10000}^{40}(0.005)^{40}(0.995)^{9960}$（<font color="#dd0000">我们用$b(k,n,p)$表示$n$重伯努利试验中$A$出现$k$次的概率</font>）而直接计算这个数值相当困难，我们需要有更好的计算方法。</p>
+<p>于是我们有泊松逼近定理：</p>
+<p>$Th$：在独立试验中，以$p_n$代表事件$A$在试验中出现的概率。它与试验总数$n$有关，如果$np_n\rightarrow\lambda$，则当$n\rightarrow \infty$是，</p>
+<p>$$b(k;n,p_n)\rightarrow\frac{\lambda^k}{k!}e^{-\lambda}$$</p>
+<p>$Proof$：记$\lambda_n&#x3D;np_n$，则<br>$b(k;n,p_n)&#x3D;C_n^kp_n^k(1-p)^{n-k}&#x3D;\frac{n(n-1)\cdots(n-k+1)}{k!}(\frac{\lambda_n}{n})^k(1-\frac{\lambda_n}{n})^{n-k} $<br>$&#x3D;\frac{\lambda_n^k}{k!}(1-\frac{1}{n})\cdots (1-\frac{k-1}{n})(1-\frac{\lambda_n}{n})^{n-k}$</p>
+<p>对于固定的$k$有<br>$$\lim\limits_{n\rightarrow\infty}\lambda_n^k&#x3D;\lambda^k，~~ \lim\limits_{n\rightarrow\infty}(1-\frac{\lambda_n}{n}^{n-k})&#x3D;e^{-\lambda}$$<br>和<br>$$\lim\limits_{n\rightarrow\infty}(1-\frac{1}{n})\cdots (1-\frac{k-1}{n})&#x3D;1$$</p>
+<p>因此$$\lim\limits_{n\rightarrow\infty}b(k;n,p_n)&#x3D;\frac{\lambda^k}{k!}e^{-\lambda}$$</p>
+<p>在应用中，当$p$相当小（一般当$p\leq0.1$时）我们用如下的近似公式：$$b(k;n,p)\approx\frac{(np)^k}{k!}e^{-np}$$</p>
+<p>这就解决了上面二项分布不容易算的问题。</p>
+<p>泊松分布发明不止是用来逼近二项分布的，我们还有如下的泊松过程：</p>
+<p>考虑来到某交换装置的电话呼叫数，假定它具有下面三个性质：<br>（1）平稳性：在$[t_0,t_0+t)$中来到的呼叫数只与时间间隔长度$t$有关而与时间起点$t_0$无关。<br>（2）独立增量性：在$[t_0,t_0+t)$内来到$k$个呼叫这一事件与$t_0$之前发生的事件独立。<br>（3）普通性：在充分晓得时间间隔中，最多来一个呼叫。若记$\psi(t)&#x3D;1-P_0(t)-P_1(t)&#x3D;\sum\limits_{i&#x3D;2}^\infty P_i(t)$，则应有$\lim\limits_{t\rightarrow 0}\frac{\psi(t)}{t}&#x3D;0$</p>
+<p>在这个过程中，可以求得$P_k(t)&#x3D;\frac{(\lambda t)^k}{k!}e^{-\lambda t}$，这正是泊松分布。</p>
+<p>详细证明可以参考概率论教材。</p>
+<h3 id="超几何分布"><a href="#超几何分布" class="headerlink" title="超几何分布"></a>超几何分布</h3><p>假设有$N$个产品组成的总体，其中含有$M$个不合格品，若丛中随机不放回地抽取$n$个，则其中含有不合格品的个数$X$是一个离散随机变量。假如$n\leq M$，则$X$可以取$0,1,\cdots , n$；若$n&gt;M$，则$X$可能取$0,1,\cdots M$。由古典概型可以计算得：<br>$$P(X&#x3D;x)&#x3D;\frac{C_M^xC_{N-M}^{n-x}}{C_N^n} ~~ x&#x3D;0,1,\cdots r$$<br>其中$r&#x3D;min(n,M)$。<font color="#dd0000">这个分布称为超几何分布，它有三个参数$N,M,n$，记为$h(n,N,M)$</font></p>
+<h2 id="连续型随机变量"><a href="#连续型随机变量" class="headerlink" title="连续型随机变量"></a>连续型随机变量</h2><h3 id="概率密度函数"><a href="#概率密度函数" class="headerlink" title="概率密度函数"></a>概率密度函数</h3><p>$Def$：设$p(x)$设定义在整个实数轴上的一个函数，假如它满足如下两个性质：<br>（1）非负性：$p(x)\geq 0$<br>（2）正则性：$\int_{-\infty}^{\infty}p(x)dx&#x3D;1$<br>则称$p(x)$是概率密度函数，或密度函数。若随机变量$X$取值的统计规律性可用某个概率密度函数$p(x)$描述，则称$p(x)$为$X$的概率分布，记为$X\sim p(x)$</p>
+<p>有了概率密度函数之后，随机变量$X$的分布函数就可以写成如下形式：</p>
+<p>$$F(x)&#x3D;\int_{-\infty}^x p(x)dx$$</p>
+<p>注记1：概率密度函数不是概率，即$P(X&#x3D;x)\neq p(x)$，事实上，对于$\forall x$,$$P(X&#x3D;x)&#x3D;\lim_{\Delta x \rightarrow 0}P(x+\Delta x)-P(x) &#x3D; \lim_{\Delta x \rightarrow 0} \int_x^{x+\Delta x}p(x)dx &#x3D; 0$$但是我们在$(x,x+\Delta x)$的概率密度可以用$\int_{x}^{x+\Delta x}p(x)dx$来求。类似的，$P(a\leq X \leq b)&#x3D;\int_{a}^{b}p(x)dx$</p>
+<p>注记2：我们将概率为零的事件称为零概率事件，但是零概率小事件和不可能事件是有差距的：不可能事件一定是零概率事件，但是零概率事件不一定是不可能事件。同样的，必然事件发生的概率为1，但是发生概率为1的事件不一定是必然事件，我们一般称概率为1的事件为几乎必然发生的事件。</p>
+<h3 id="均匀分布"><a href="#均匀分布" class="headerlink" title="均匀分布"></a>均匀分布</h3><p>$Def$：若$a,b(b&gt;a)$为有限数，则由下列函数给定的分布称为均匀分布：<br>$$<br>p(x)&#x3D;\begin{cases}<br>\frac{1}{b-a} &amp; a\leq x \leq b\\<br>0 &amp; otherwise<br>\end{cases}<br>$$</p>
+<p>对应的分布函数为：<br>$$<br>F(x)&#x3D;\begin{cases}<br>0 &amp; x \leq a\\<br>\frac{x-a}{b-a} &amp; a &lt; x \leq b \\<br>1 &amp; b \leq x<br>\end{cases}<br>$$</p>
+<p>注记：我们仍需令其满足分布函数的右连续性，有些课本上将第二个条件写成$a\leq x \leq b$，其实这是不严谨的。</p>
+<h3 id="指数分布"><a href="#指数分布" class="headerlink" title="指数分布"></a>指数分布</h3><p>分布密度函数为</p>
+<p>$$<br>p(x)&#x3D;\begin{cases}<br>\lambda e^{-\lambda x} &amp; x \geq 0 \\<br>0 &amp; x&lt;0<br>\end{cases}<br>$$</p>
+<p>分布函数为</p>
+<p>$$<br>F(x)&#x3D;\begin{cases}<br>1- e^{-\lambda x} &amp; x \geq 0 \\<br>0 &amp; x&lt;0<br>\end{cases}<br>$$</p>
+<p>其中$\lambda &gt;0$，是参数，这种分布称为指数分布，简记为$Exp(\lambda)$</p>
+<p>指数分布有重要的应用，我们常用它来做各种“寿命”的近似，例如电子元器件的寿命等。</p>
+<p>指数分布还有类似于几何分布的无记忆性，设$X$服从指数分布，则对$\forall x&gt;0,t&gt;0$，<br>$$P\{X\geq s+t|X\geq s \} &#x3D; \frac{P\{ X\geq s+t\}}{P\{ X\geq s\}} &#x3D; \frac{e^{-\lambda(s+t)}}{e^{-\lambda s}} &#x3D; e^{-\lambda t}$$</p>
+<h3 id="正态分布"><a href="#正态分布" class="headerlink" title="正态分布"></a>正态分布</h3><p>密度函数为<br>$$p(x)&#x3D;\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}} ~~~ -\infty &lt; x &lt; \infty$$<br>其中$\sigma &gt; 0$，$\mu$和$\sigma$都为常数，相应的分布函数为<br>$$F(x)&#x3D;\int_{-\infty}^x \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(y-\mu)^2}{2\sigma^2}} ~~~ -\infty &lt; y &lt; \infty$$</p>
+<p>这种分布称为正态分布，简记为$N(\mu,\sigma ^2)$</p>
+<p>特别的，当$\mu&#x3D;0,\sigma&#x3D;1$的时候，这个分布称为标准正态分布，记为$N(0,1)$，相应的密度函数和概率分布函数分解记为$\phi(x)$和$\Phi(x)$</p>
+<p>注记：若$X \sim N(\mu,\sigma^2)$，则$U&#x3D;\frac{X-\mu}{\sigma} \sim N(0,1)$。称这样的变换为$X$的标准化变换，称$U$为$X$的标准化随机变量。</p>
+<p>注记2：设$X\sim N(\mu,\sigma^2)$，则<br>$$P(a&lt;X&lt;b)&#x3D;\Phi(\frac{b-\mu}{\sigma})-\Phi(\frac{a-\mu}{\sigma})$$</p>
+<p>注记3：设$X\sim N(0,1)$，则</p>
+<p>$$<br>P(|X-\mu|&lt;k\sigma)&#x3D;\begin{cases}<br>0.6826 &amp; k&#x3D;1 \\<br>0.9544 &amp; k&#x3D;2 \\<br>0.9973 &amp; k&#x3D;3<br>\end{cases}<br>$$<br>我们可以看到落在$3$倍标准差外的样本设很少的，在数据处理的时候一般将其剔除。我们称其为$3\sigma$原则。</p>
+]]></content>
+      <categories>
+        <category>概率论</category>
+        <category>随机变量及其分布</category>
+      </categories>
+      <tags>
+        <tag>随机变量</tag>
       </tags>
   </entry>
   <entry>
