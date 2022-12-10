@@ -98,6 +98,36 @@
       </tags>
   </entry>
   <entry>
+    <title>洛谷 P5300 [GXOI/GZOI2019]与或和</title>
+    <url>/2022/04/26/luogu-P5300/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>单调栈好题</p>
+<span id="more"></span>
+
+<p><a href="https://www.luogu.com.cn/problem/P5300">传送门</a></p>
+<p>大致题意：给你$n\times n$的矩阵$A$，让你求矩阵中所有子矩阵的与$\&amp;$和或$|$的和。<br>数据范围：$n\leq 2000,a_{i,j}\leq 2^{31}-1$</p>
+<p>大致题解：拆位考虑，对于与运算，我们对每一个$a_{i,j}$计算以它为右下角的全1子矩阵个数，对于或运算，我们计算以$a_{i,j}$为右下角的全0子矩阵个数，然后用$i\times j$减去全0子矩阵的个数即可。</p>
+<p>下面讨论怎么使用单调栈来维护以$a_{i,j}$为右下角的全1&#x2F;0子矩阵个数。</p>
+<p>预处理$s_{i,j}$为以$a_{i,j}$上方连续的1&#x2F;0的个数，然后我们依次枚举一个点，计算以它为右下角的全1&#x2F;0的子矩阵的个数。</p>
+<p>我们设$f_{i,j}$是以$a_{i,j}$为右下角的全1&#x2F;0子矩阵的个数，维护一个单调递增的栈，当未发生弹栈的时候，我们有</p>
+<p>$$f_{i,j}&#x3D;f_{i,j-1}+s_{i,j}$$</p>
+<p>其中第一部分是从左边延伸过来的，第二部分是从$a_{i,j}$向上延伸的。</p>
+<p>具体见图：<img src="/2022/04/26/luogu-P5300/image.png"></p>
+<p>当发生弹栈的时候，意味着左边的延伸不过去了，需要减掉，我们有</p>
+<p>$$f_{i,j}&#x3D;f_{i,j}-(s_{i,j}-s_{i,st.top()})*(st.top()-st.(top-1)())$$</p>
+<p>其中$st.(top-1)()$表示栈顶的下一个元素。</p>
+<p>具体见图（3弹栈的时候）：</p>
+<p><img src="/2022/04/26/luogu-P5300/image2.png"></p>
+<p>这样就维护了答案。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> GCC optimize(1)</span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> GCC optimize(2)</span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> GCC optimize(3)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cassert&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;climits&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;functional&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;deque&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> pb push_back</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> se second</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IOS ios::sync_with_stdio(0), cin.tie(0), cout.tie(0)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mem(a,x) memset(a, x, sizeof(a))</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span> ull;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">double</span> ld;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">double</span> db;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;ll, ll&gt; P;</span><br><span class="line"><span class="type">const</span> <span class="type">double</span> pi = <span class="built_in">acos</span>(<span class="number">-1</span>);</span><br><span class="line"><span class="type">const</span> ll mod = <span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="type">const</span> ll INF = <span class="number">2e9</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn=<span class="number">2000</span>+<span class="number">10</span>;</span><br><span class="line"><span class="function">ll <span class="title">qp</span> <span class="params">(ll a, ll b, ll mod)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ll ans = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (b)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (b &amp; <span class="number">1</span>)</span><br><span class="line">			ans = ans * a % mod;</span><br><span class="line">		a = a * a % mod;</span><br><span class="line">		b &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="type">int</span> a[maxn][maxn];</span><br><span class="line"><span class="type">int</span> up[maxn][maxn];</span><br><span class="line">ll ans1,ans2;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	IOS;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">			cin&gt;&gt;a[i][j];</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">0</span>;k&lt;<span class="number">31</span>;k++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">mem</span>(up[<span class="number">0</span>],<span class="number">0</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">if</span>(a[i][j]&amp;(<span class="number">1</span>&lt;&lt;k))</span><br><span class="line">					up[i][j]=up[i<span class="number">-1</span>][j]+<span class="number">1</span>;</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">					up[i][j]=<span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			stack&lt;<span class="type">int</span>&gt; s;</span><br><span class="line">			s.<span class="built_in">push</span>(<span class="number">0</span>);</span><br><span class="line">			up[i][<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">			up[i][n+<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">			ll bns=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">			&#123;</span><br><span class="line">				bns+=up[i][j];</span><br><span class="line">				<span class="keyword">while</span>(s.<span class="built_in">size</span>()&amp;&amp;up[i][j]&lt;up[i][s.<span class="built_in">top</span>()])</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="type">int</span> x = s.<span class="built_in">top</span>();</span><br><span class="line">					s.<span class="built_in">pop</span>();</span><br><span class="line">					bns=bns-(x-s.<span class="built_in">top</span>())*(up[i][x]-up[i][j]);</span><br><span class="line">				&#125;</span><br><span class="line">				s.<span class="built_in">push</span>(j);</span><br><span class="line">				ans1=(ans1+(bns&lt;&lt;k))%mod;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">mem</span>(up[<span class="number">0</span>],<span class="number">0</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">if</span>((a[i][j]&amp;(<span class="number">1</span>&lt;&lt;k))==<span class="number">0</span>)</span><br><span class="line">					up[i][j]=up[i<span class="number">-1</span>][j]+<span class="number">1</span>;</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">					up[i][j]=<span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			stack&lt;<span class="type">int</span>&gt; s;</span><br><span class="line">			up[i][<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">			up[i][n+<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">			s.<span class="built_in">push</span>(<span class="number">0</span>);</span><br><span class="line">			ll bns=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">			&#123;</span><br><span class="line">				bns=bns+up[i][j];</span><br><span class="line">				<span class="keyword">while</span>(s.<span class="built_in">size</span>()&amp;&amp;up[i][j]&lt;up[i][s.<span class="built_in">top</span>()])</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="type">int</span> x = s.<span class="built_in">top</span>();</span><br><span class="line">					s.<span class="built_in">pop</span>();</span><br><span class="line">					bns=bns-(x-s.<span class="built_in">top</span>())*(up[i][x]-up[i][j]);</span><br><span class="line">				&#125;</span><br><span class="line">				s.<span class="built_in">push</span>(j);</span><br><span class="line">				ans2=(ans2+((<span class="number">1ll</span>*i*j-bns)&lt;&lt;k))%mod;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;ans1&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;ans2&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>算法竞赛</category>
+        <category>单调栈</category>
+      </categories>
+      <tags>
+        <tag>单调栈</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>破防了</title>
     <url>/2022/09/02/pofang/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>保研破防</p>
@@ -157,36 +187,6 @@
       </categories>
       <tags>
         <tag>polya</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>洛谷 P5300 [GXOI/GZOI2019]与或和</title>
-    <url>/2022/04/26/luogu-P5300/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>单调栈好题</p>
-<span id="more"></span>
-
-<p><a href="https://www.luogu.com.cn/problem/P5300">传送门</a></p>
-<p>大致题意：给你$n\times n$的矩阵$A$，让你求矩阵中所有子矩阵的与$\&amp;$和或$|$的和。<br>数据范围：$n\leq 2000,a_{i,j}\leq 2^{31}-1$</p>
-<p>大致题解：拆位考虑，对于与运算，我们对每一个$a_{i,j}$计算以它为右下角的全1子矩阵个数，对于或运算，我们计算以$a_{i,j}$为右下角的全0子矩阵个数，然后用$i\times j$减去全0子矩阵的个数即可。</p>
-<p>下面讨论怎么使用单调栈来维护以$a_{i,j}$为右下角的全1&#x2F;0子矩阵个数。</p>
-<p>预处理$s_{i,j}$为以$a_{i,j}$上方连续的1&#x2F;0的个数，然后我们依次枚举一个点，计算以它为右下角的全1&#x2F;0的子矩阵的个数。</p>
-<p>我们设$f_{i,j}$是以$a_{i,j}$为右下角的全1&#x2F;0子矩阵的个数，维护一个单调递增的栈，当未发生弹栈的时候，我们有</p>
-<p>$$f_{i,j}&#x3D;f_{i,j-1}+s_{i,j}$$</p>
-<p>其中第一部分是从左边延伸过来的，第二部分是从$a_{i,j}$向上延伸的。</p>
-<p>具体见图：<img src="/2022/04/26/luogu-P5300/image.png"></p>
-<p>当发生弹栈的时候，意味着左边的延伸不过去了，需要减掉，我们有</p>
-<p>$$f_{i,j}&#x3D;f_{i,j}-(s_{i,j}-s_{i,st.top()})*(st.top()-st.(top-1)())$$</p>
-<p>其中$st.(top-1)()$表示栈顶的下一个元素。</p>
-<p>具体见图（3弹栈的时候）：</p>
-<p><img src="/2022/04/26/luogu-P5300/image2.png"></p>
-<p>这样就维护了答案。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> GCC optimize(1)</span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> GCC optimize(2)</span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> GCC optimize(3)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cassert&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;climits&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;functional&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;deque&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> pb push_back</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> se second</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IOS ios::sync_with_stdio(0), cin.tie(0), cout.tie(0)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mem(a,x) memset(a, x, sizeof(a))</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span> ull;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">double</span> ld;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">double</span> db;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;ll, ll&gt; P;</span><br><span class="line"><span class="type">const</span> <span class="type">double</span> pi = <span class="built_in">acos</span>(<span class="number">-1</span>);</span><br><span class="line"><span class="type">const</span> ll mod = <span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="type">const</span> ll INF = <span class="number">2e9</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn=<span class="number">2000</span>+<span class="number">10</span>;</span><br><span class="line"><span class="function">ll <span class="title">qp</span> <span class="params">(ll a, ll b, ll mod)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ll ans = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (b)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (b &amp; <span class="number">1</span>)</span><br><span class="line">			ans = ans * a % mod;</span><br><span class="line">		a = a * a % mod;</span><br><span class="line">		b &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="type">int</span> a[maxn][maxn];</span><br><span class="line"><span class="type">int</span> up[maxn][maxn];</span><br><span class="line">ll ans1,ans2;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	IOS;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">			cin&gt;&gt;a[i][j];</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">0</span>;k&lt;<span class="number">31</span>;k++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">mem</span>(up[<span class="number">0</span>],<span class="number">0</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">if</span>(a[i][j]&amp;(<span class="number">1</span>&lt;&lt;k))</span><br><span class="line">					up[i][j]=up[i<span class="number">-1</span>][j]+<span class="number">1</span>;</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">					up[i][j]=<span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			stack&lt;<span class="type">int</span>&gt; s;</span><br><span class="line">			s.<span class="built_in">push</span>(<span class="number">0</span>);</span><br><span class="line">			up[i][<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">			up[i][n+<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">			ll bns=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">			&#123;</span><br><span class="line">				bns+=up[i][j];</span><br><span class="line">				<span class="keyword">while</span>(s.<span class="built_in">size</span>()&amp;&amp;up[i][j]&lt;up[i][s.<span class="built_in">top</span>()])</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="type">int</span> x = s.<span class="built_in">top</span>();</span><br><span class="line">					s.<span class="built_in">pop</span>();</span><br><span class="line">					bns=bns-(x-s.<span class="built_in">top</span>())*(up[i][x]-up[i][j]);</span><br><span class="line">				&#125;</span><br><span class="line">				s.<span class="built_in">push</span>(j);</span><br><span class="line">				ans1=(ans1+(bns&lt;&lt;k))%mod;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">mem</span>(up[<span class="number">0</span>],<span class="number">0</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">if</span>((a[i][j]&amp;(<span class="number">1</span>&lt;&lt;k))==<span class="number">0</span>)</span><br><span class="line">					up[i][j]=up[i<span class="number">-1</span>][j]+<span class="number">1</span>;</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">					up[i][j]=<span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			stack&lt;<span class="type">int</span>&gt; s;</span><br><span class="line">			up[i][<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">			up[i][n+<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">			s.<span class="built_in">push</span>(<span class="number">0</span>);</span><br><span class="line">			ll bns=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">			&#123;</span><br><span class="line">				bns=bns+up[i][j];</span><br><span class="line">				<span class="keyword">while</span>(s.<span class="built_in">size</span>()&amp;&amp;up[i][j]&lt;up[i][s.<span class="built_in">top</span>()])</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="type">int</span> x = s.<span class="built_in">top</span>();</span><br><span class="line">					s.<span class="built_in">pop</span>();</span><br><span class="line">					bns=bns-(x-s.<span class="built_in">top</span>())*(up[i][x]-up[i][j]);</span><br><span class="line">				&#125;</span><br><span class="line">				s.<span class="built_in">push</span>(j);</span><br><span class="line">				ans2=(ans2+((<span class="number">1ll</span>*i*j-bns)&lt;&lt;k))%mod;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;ans1&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;ans2&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>算法竞赛</category>
-        <category>单调栈</category>
-      </categories>
-      <tags>
-        <tag>单调栈</tag>
       </tags>
   </entry>
   <entry>
@@ -324,99 +324,6 @@
       </categories>
       <tags>
         <tag>线性系统理论</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>随机变量及其分布复习笔记</title>
-    <url>/2022/04/23/%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>随机变量及其分布复习笔记</p>
-<span id="more"></span>
-
-<h2 id="随机变量"><a href="#随机变量" class="headerlink" title="随机变量"></a>随机变量</h2><h3 id="什么是随机变量"><a href="#什么是随机变量" class="headerlink" title="什么是随机变量"></a>什么是随机变量</h3><p>用来表示随机现象结果的变量就是随机变量，常用大写字母$X,Y,Z$表示，而随机变量所取的值常用小写字母 $x,y,z$表示。若用等号或不等号把$X$和$x$联系起来就能表示事件，比如“$X&#x3D;x$”,“$Y\leq y$” , “$z_1&lt; Z \leq z_2$”都是事件。</p>
-<p>怎么用数学语言表示？</p>
-<p>$Def:$定义在样本空间$\Omega$上的实值函数$X&#x3D;X(\omega)$称为随机变量。在实数集上仅取有限个或可列个孤立点的随机变量成为离散型随机变量，可能取值在实数轴上的一个区间$(a,b)$的随机变量称为连续型随机变量，其中$a$可以是$-\infty$，$b$可以是$+\infty$。</p>
-<p>可以看到，随机变量就是将样本空间上的每一个事件映射到一个实数的函数。</p>
-<p>例如抛出$n(n\geq3)$枚硬币，设随机变量$X$为硬币正面朝上的次数，再设$\omega&#x3D;$朝上的硬币次数为$3$次。则我们可以令$X(\omega)&#x3D;3$。这是非常符合直觉的。</p>
-<h3 id="随机变量的分布函数"><a href="#随机变量的分布函数" class="headerlink" title="随机变量的分布函数"></a>随机变量的分布函数</h3><p>$Def$：设$X$是一个随机变量，对任意实数$x$，事件$X\leq x$的概率是$x$的函数，记为：$F(x)&#x3D;P(X\leq x)$这个函数称为$X$的累积分布函数，简称分布函数。</p>
-<p>分布函数的一些基本性质：<br>（1）$0\leq F(x)\leq 1$（因为$F(x)$是概率）<br>（2）$\lim\limits_{x\rightarrow -\infty} F(x)&#x3D;0$（事件$X&lt;-\infty$是不可能事件）<br>（3）$\lim\limits_{x\rightarrow +\infty} F(x)&#x3D;1$（事件$X&lt;+\infty$是必然事件）<br>（4）$F(x)$是非降函数，即对$\forall x_1&lt;x_2$，有$F(x_1)\leq F(x_2)$。这是因为事件$X\leq x_2$包含$X\leq x_1$。<br>（5）$F(x)$右连续，即$\lim\limits_{x-&gt;x_0^+}F(x)&#x3D;F(x_0)$<br>对（5）的极限成立做一个简要证明。<br>$Proof$：令$A_n&#x3D;{X \leq x_0 +  \frac{1}{n}}$，则$\bigcap\limits_{n&#x3D;1}^\infty A_n&#x3D;{X\leq x_0}$，则<br>$$\lim\limits_{x-&gt;x_0^+}F(x)&#x3D;\lim\limits_{n\rightarrow \infty}F(x_0+\frac{1}{n})&#x3D;\lim\limits_{n\rightarrow \infty}P(A_n)&#x3D;P(\lim\limits_{n\rightarrow \infty}A_n)&#x3D;P(\bigcap\limits_{n&#x3D;1}^\infty A_n)&#x3D;P(X\leq x_0)&#x3D;F(x_0)$$</p>
-<p>注记：上面的推到不严谨，其中第3，4个等号需要证明，感兴趣的读者可以翻阅实变函数中的集合论部分。<br>注记2：对于上面的（3）（4）（5），需要证明极限的存在性，其中（3）（4）的极限存在性可以类似于上面的证明给出，（5）的极限存在性可以用确界定理给出。（这几部分的证明都可以去翻阅实变函数的教材）<br>注记3：分布函数并不是左连续的，反例很容易给出。</p>
-<h2 id="离散型随机变量"><a href="#离散型随机变量" class="headerlink" title="离散型随机变量"></a>离散型随机变量</h2><h3 id="分布列"><a href="#分布列" class="headerlink" title="分布列"></a>分布列</h3><p>$Def$：设$X$是离散随机变量，它的所有可能取值为$x_1,x_2,\cdots , x_n , \cdots$，假如$X$取$x_i$的概率为：$P(X&#x3D;x_i)&#x3D;p(x_i)$，且满足<br>（1）非负性：$p(x_i)\geq 0$<br>（2）正则性：$\sum\limits_{i&#x3D;1}^\infty p(x_i)&#x3D;1$<br>则称这组概率${p(x_i)}$为随机变量$X$的分布列，或$X$的概率分布。</p>
-<p>若已知$X$的分布列，则可以很容易的写出$X$的分布函数：$F(x_0)&#x3D;\sum\limits_{x_i\leq x} p(x_i)$</p>
-<p>离散型随机变量的分布列还可以用如下表格来表示：</p>
-<table>
-<thead>
-<tr>
-<th>$X$</th>
-<th>$x_1$</th>
-<th>$x_2$</th>
-<th>$\cdots$</th>
-<th>$x_n$</th>
-<th>$\cdots$</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>$P$</td>
-<td>$p_1$</td>
-<td>$p_2$</td>
-<td>$\cdots$</td>
-<td>$p_n$</td>
-<td>$\cdots$</td>
-</tr>
-</tbody></table>
-<p>除了表格，其还可以用线条图或者概率分布直方图来表示一个随机变量。</p>
-<h3 id="伯努利概型中的一些分布"><a href="#伯努利概型中的一些分布" class="headerlink" title="伯努利概型中的一些分布"></a>伯努利概型中的一些分布</h3><h4 id="二项分布"><a href="#二项分布" class="headerlink" title="二项分布"></a>二项分布</h4><p>$Def$：令$X$为$n$重伯努利试验中成功出现的次数，则$X$是一个随机变量。用$B_{n,k}$表示$n$重伯努利试验中成功出现$k$次，则有$B_{n,k}&#x3D;$“$X&#x3D;k$”，其中$X$的可能取值为$0,1,\cdots ,n$，它取这些值的概率为：$$P(X&#x3D;k)&#x3D;C_n^k\cdot p^k\cdot (1-p)^{(n-k)},k&#x3D;0,1,\cdots ,n$$我们称这个概率分布为二项分布，记为$b(n,p)$。在概率论中“随机变量$X$的概率分布为二项分布$b(n,p)$”常被说成“随机变量$X$服从二项分布$b(n,p)$，<font color="#dd0000">记做$X\sim b(n,p)$</font>。</p>
-<h4 id="两点分布"><a href="#两点分布" class="headerlink" title="两点分布"></a>两点分布</h4><p>$n&#x3D;1$的二项分布$b(1,p)$就称为两点分布（也称伯努利分布或者0-1分布）。其概率分布为：<br>$$<br>P(X&#x3D;k)&#x3D;\begin{cases}<br>p &amp; k&#x3D;1 \\<br>(1-p) &amp; k&#x3D;0<br>\end{cases}<br>$$</p>
-<h4 id="几何分布"><a href="#几何分布" class="headerlink" title="几何分布"></a>几何分布</h4><p>我们讨论在伯努利试验中首次出现成功出现在第$k$次的概率，记成功的概率为$p$。若想第$k$次试验首次出现成功，我们需要在前$k-1$次试验中均失败，并且恰好在第$k$次试验出现成功。记$$g(k,p)&#x3D;(1-p)^{k-1}p ~~~~ k&#x3D;1,2,\cdots$$<br>我们称这个分布为几何分布</p>
-<p>注记：这个分布的样本空间不是有限的。</p>
-<p>注记2：几何分布具有无记忆性，即$$P(X &#x3D; s+t|X\geq s)&#x3D;\frac{P(x &#x3D;  s+t)}{P(X \geq s)}&#x3D;\frac{(1-p)^{s+t-1}\cdot p}{(1-p)^{s}} &#x3D; (1-p)^{t-1} \cdot p $$<br>这说明假定前$s$次没有出现成功，那么再经过$t$次试验成功的概率和直接进行$t$次试验成功的概率是相同的。与此同时，离散型随机变量中，只有几何分布有无记忆性。</p>
-<h3 id="泊松分布"><a href="#泊松分布" class="headerlink" title="泊松分布"></a>泊松分布</h3><p>如果随机变量$X$有如下的概率分布：</p>
-<p>$$P(X&#x3D;k)&#x3D;\frac{\lambda^k}{k!}e^{-\lambda}$$</p>
-<p>就称$X$服从参数设$\lambda$的泊松分布。<font color="#dd0000">记做$X\sim P(\lambda)$</font>。</p>
-<p>泊松分布的由来？</p>
-<p>先看一个例子：<br>$eg$：某年龄段的保险者中，一年中每个人死亡的概率为$0.005$，现有$10000$个这类人参加保险，保险公司想知道在未来一年中有$40$个人死亡的概率</p>
-<p>我们从二项分布可以知道$b(40;10000,0,005)&#x3D;C_{10000}^{40}(0.005)^{40}(0.995)^{9960}$（<font color="#dd0000">我们用$b(k,n,p)$表示$n$重伯努利试验中$A$出现$k$次的概率</font>）而直接计算这个数值相当困难，我们需要有更好的计算方法。</p>
-<p>于是我们有泊松逼近定理：</p>
-<p>$Th$：在独立试验中，以$p_n$代表事件$A$在试验中出现的概率。它与试验总数$n$有关，如果$np_n\rightarrow\lambda$，则当$n\rightarrow \infty$是，</p>
-<p>$$b(k;n,p_n)\rightarrow\frac{\lambda^k}{k!}e^{-\lambda}$$</p>
-<p>$Proof$：记$\lambda_n&#x3D;np_n$，则<br>$b(k;n,p_n)&#x3D;C_n^kp_n^k(1-p)^{n-k}&#x3D;\frac{n(n-1)\cdots(n-k+1)}{k!}(\frac{\lambda_n}{n})^k(1-\frac{\lambda_n}{n})^{n-k} $<br>$&#x3D;\frac{\lambda_n^k}{k!}(1-\frac{1}{n})\cdots (1-\frac{k-1}{n})(1-\frac{\lambda_n}{n})^{n-k}$</p>
-<p>对于固定的$k$有<br>$$\lim\limits_{n\rightarrow\infty}\lambda_n^k&#x3D;\lambda^k，~~ \lim\limits_{n\rightarrow\infty}(1-\frac{\lambda_n}{n}^{n-k})&#x3D;e^{-\lambda}$$<br>和<br>$$\lim\limits_{n\rightarrow\infty}(1-\frac{1}{n})\cdots (1-\frac{k-1}{n})&#x3D;1$$</p>
-<p>因此$$\lim\limits_{n\rightarrow\infty}b(k;n,p_n)&#x3D;\frac{\lambda^k}{k!}e^{-\lambda}$$</p>
-<p>在应用中，当$p$相当小（一般当$p\leq0.1$时）我们用如下的近似公式：$$b(k;n,p)\approx\frac{(np)^k}{k!}e^{-np}$$</p>
-<p>这就解决了上面二项分布不容易算的问题。</p>
-<p>泊松分布发明不止是用来逼近二项分布的，我们还有如下的泊松过程：</p>
-<p>考虑来到某交换装置的电话呼叫数，假定它具有下面三个性质：<br>（1）平稳性：在$[t_0,t_0+t)$中来到的呼叫数只与时间间隔长度$t$有关而与时间起点$t_0$无关。<br>（2）独立增量性：在$[t_0,t_0+t)$内来到$k$个呼叫这一事件与$t_0$之前发生的事件独立。<br>（3）普通性：在充分晓得时间间隔中，最多来一个呼叫。若记$\psi(t)&#x3D;1-P_0(t)-P_1(t)&#x3D;\sum\limits_{i&#x3D;2}^\infty P_i(t)$，则应有$\lim\limits_{t\rightarrow 0}\frac{\psi(t)}{t}&#x3D;0$</p>
-<p>在这个过程中，可以求得$P_k(t)&#x3D;\frac{(\lambda t)^k}{k!}e^{-\lambda t}$，这正是泊松分布。</p>
-<p>详细证明可以参考概率论教材。</p>
-<h3 id="超几何分布"><a href="#超几何分布" class="headerlink" title="超几何分布"></a>超几何分布</h3><p>假设有$N$个产品组成的总体，其中含有$M$个不合格品，若丛中随机不放回地抽取$n$个，则其中含有不合格品的个数$X$是一个离散随机变量。假如$n\leq M$，则$X$可以取$0,1,\cdots , n$；若$n&gt;M$，则$X$可能取$0,1,\cdots M$。由古典概型可以计算得：<br>$$P(X&#x3D;x)&#x3D;\frac{C_M^xC_{N-M}^{n-x}}{C_N^n} ~~ x&#x3D;0,1,\cdots r$$<br>其中$r&#x3D;min(n,M)$。<font color="#dd0000">这个分布称为超几何分布，它有三个参数$N,M,n$，记为$h(n,N,M)$</font></p>
-<h2 id="连续型随机变量"><a href="#连续型随机变量" class="headerlink" title="连续型随机变量"></a>连续型随机变量</h2><h3 id="概率密度函数"><a href="#概率密度函数" class="headerlink" title="概率密度函数"></a>概率密度函数</h3><p>$Def$：设$p(x)$设定义在整个实数轴上的一个函数，假如它满足如下两个性质：<br>（1）非负性：$p(x)\geq 0$<br>（2）正则性：$\int_{-\infty}^{\infty}p(x)dx&#x3D;1$<br>则称$p(x)$是概率密度函数，或密度函数。若随机变量$X$取值的统计规律性可用某个概率密度函数$p(x)$描述，则称$p(x)$为$X$的概率分布，记为$X\sim p(x)$</p>
-<p>有了概率密度函数之后，随机变量$X$的分布函数就可以写成如下形式：</p>
-<p>$$F(x)&#x3D;\int_{-\infty}^x p(x)dx$$</p>
-<p>注记1：概率密度函数不是概率，即$P(X&#x3D;x)\neq p(x)$，事实上，对于$\forall x$,$$P(X&#x3D;x)&#x3D;\lim_{\Delta x \rightarrow 0}P(x+\Delta x)-P(x) &#x3D; \lim_{\Delta x \rightarrow 0} \int_x^{x+\Delta x}p(x)dx &#x3D; 0$$但是我们在$(x,x+\Delta x)$的概率密度可以用$\int_{x}^{x+\Delta x}p(x)dx$来求。类似的，$P(a\leq X \leq b)&#x3D;\int_{a}^{b}p(x)dx$</p>
-<p>注记2：我们将概率为零的事件称为零概率事件，但是零概率小事件和不可能事件是有差距的：不可能事件一定是零概率事件，但是零概率事件不一定是不可能事件。同样的，必然事件发生的概率为1，但是发生概率为1的事件不一定是必然事件，我们一般称概率为1的事件为几乎必然发生的事件。</p>
-<h3 id="均匀分布"><a href="#均匀分布" class="headerlink" title="均匀分布"></a>均匀分布</h3><p>$Def$：若$a,b(b&gt;a)$为有限数，则由下列函数给定的分布称为均匀分布：<br>$$<br>p(x)&#x3D;\begin{cases}<br>\frac{1}{b-a} &amp; a\leq x \leq b\\<br>0 &amp; otherwise<br>\end{cases}<br>$$</p>
-<p>对应的分布函数为：<br>$$<br>F(x)&#x3D;\begin{cases}<br>0 &amp; x \leq a\\<br>\frac{x-a}{b-a} &amp; a &lt; x \leq b \\<br>1 &amp; b \leq x<br>\end{cases}<br>$$</p>
-<p>注记：我们仍需令其满足分布函数的右连续性，有些课本上将第二个条件写成$a\leq x \leq b$，其实这是不严谨的。</p>
-<h3 id="指数分布"><a href="#指数分布" class="headerlink" title="指数分布"></a>指数分布</h3><p>分布密度函数为</p>
-<p>$$<br>p(x)&#x3D;\begin{cases}<br>\lambda e^{-\lambda x} &amp; x \geq 0 \\<br>0 &amp; x&lt;0<br>\end{cases}<br>$$</p>
-<p>分布函数为</p>
-<p>$$<br>F(x)&#x3D;\begin{cases}<br>1- e^{-\lambda x} &amp; x \geq 0 \\<br>0 &amp; x&lt;0<br>\end{cases}<br>$$</p>
-<p>其中$\lambda &gt;0$，是参数，这种分布称为指数分布，简记为$Exp(\lambda)$</p>
-<p>指数分布有重要的应用，我们常用它来做各种“寿命”的近似，例如电子元器件的寿命等。</p>
-<p>指数分布还有类似于几何分布的无记忆性，设$X$服从指数分布，则对$\forall x&gt;0,t&gt;0$，<br>$$P\{X\geq s+t|X\geq s \} &#x3D; \frac{P\{ X\geq s+t\}}{P\{ X\geq s\}} &#x3D; \frac{e^{-\lambda(s+t)}}{e^{-\lambda s}} &#x3D; e^{-\lambda t}$$</p>
-<h3 id="正态分布"><a href="#正态分布" class="headerlink" title="正态分布"></a>正态分布</h3><p>密度函数为<br>$$p(x)&#x3D;\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}} ~~~ -\infty &lt; x &lt; \infty$$<br>其中$\sigma &gt; 0$，$\mu$和$\sigma$都为常数，相应的分布函数为<br>$$F(x)&#x3D;\int_{-\infty}^x \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(y-\mu)^2}{2\sigma^2}} ~~~ -\infty &lt; y &lt; \infty$$</p>
-<p>这种分布称为正态分布，简记为$N(\mu,\sigma ^2)$</p>
-<p>特别的，当$\mu&#x3D;0,\sigma&#x3D;1$的时候，这个分布称为标准正态分布，记为$N(0,1)$，相应的密度函数和概率分布函数分解记为$\phi(x)$和$\Phi(x)$</p>
-<p>注记：若$X \sim N(\mu,\sigma^2)$，则$U&#x3D;\frac{X-\mu}{\sigma} \sim N(0,1)$。称这样的变换为$X$的标准化变换，称$U$为$X$的标准化随机变量。</p>
-<p>注记2：设$X\sim N(\mu,\sigma^2)$，则<br>$$P(a&lt;X&lt;b)&#x3D;\Phi(\frac{b-\mu}{\sigma})-\Phi(\frac{a-\mu}{\sigma})$$</p>
-<p>注记3：设$X\sim N(0,1)$，则</p>
-<p>$$<br>P(|X-\mu|&lt;k\sigma)&#x3D;\begin{cases}<br>0.6826 &amp; k&#x3D;1 \\<br>0.9544 &amp; k&#x3D;2 \\<br>0.9973 &amp; k&#x3D;3<br>\end{cases}<br>$$<br>我们可以看到落在$3$倍标准差外的样本设很少的，在数据处理的时候一般将其剔除。我们称其为$3\sigma$原则。</p>
-]]></content>
-      <categories>
-        <category>概率论</category>
-        <category>随机变量及其分布</category>
-      </categories>
-      <tags>
-        <tag>随机变量</tag>
       </tags>
   </entry>
   <entry>
@@ -801,6 +708,12 @@
 <p>$<br>\begin{cases}<br>\max &amp; w&#x3D;y_1+y_2+y_3 \\<br>s.t. &amp; y_1+3y_2+3y_3 \leq 1 \\<br>     &amp; 4y_1+2y_2+y_3 \leq 1 \\<br>     &amp; 3y_1+2y_2+2y_3 \leq 1 \\<br>     &amp; y_1,y_2,y_3 \geq 0<br>\end{cases}<br>$</p>
 <p>解这对对偶规划，得到最优解：$X&#x3D;(\frac{1}{7},0,\frac{2}{7}),~ Y&#x3D;(\frac{1}{7},\frac{1}{7},\frac{1}{7}),~ V&#x3D;\frac{7}{3}$</p>
 <p>则$X^*&#x3D;(\frac{1}{3},0,\frac{2}{3}), ~ Y^*&#x3D;(\frac{1}{3},\frac{1}{3},\frac{1}{3})$</p>
+<h3 id="策略的优超"><a href="#策略的优超" class="headerlink" title="策略的优超"></a>策略的优超</h3><p>设矩阵对策$A&#x3D;(a_{ij})_{m\times n}$，若</p>
+<p>$a_{kj} \ge a_{ij}, j&#x3D;1,2,\cdots, n$，则称局中人1的策略$k$优超于策略$l$</p>
+<p>$a_{ik} \le a_{il}, i&#x3D;1,2,\cdots, m$，则称局中人2的策略$k$优超于策略$l$</p>
+<p>例：设矩阵$<br> A&#x3D; \begin{pmatrix}<br>   2 &amp; 3 &amp; -2 \\<br>   -2 &amp; 4 &amp; 2 \\<br>   1 &amp; 2 &amp; -3<br>  \end{pmatrix}<br>$。</p>
+<p>考虑第一行和第三行，局中人1绝对不会采取策略3，于是我们说对局中人1来说，策略1优超于策略3。</p>
+<p>考虑第二列和第三列，局中人2绝对不会采取策略2，于是我们说对局中人2来说，策略3优超于策略2。</p>
 <h3 id="2-times-n-或-m-times-2-类型的矩阵对策平衡局势的求法"><a href="#2-times-n-或-m-times-2-类型的矩阵对策平衡局势的求法" class="headerlink" title="$2\times n $ 或 $m \times 2$类型的矩阵对策平衡局势的求法"></a>$2\times n $ 或 $m \times 2$类型的矩阵对策平衡局势的求法</h3><h4 id="2-times-n-类型的矩阵对策"><a href="#2-times-n-类型的矩阵对策" class="headerlink" title="$2\times n$类型的矩阵对策"></a>$2\times n$类型的矩阵对策</h4><p>Step1: 平面直角坐标系中做两条直线：$I:x&#x3D;0$以及$II:x&#x3D;1$</p>
 <p>Step2: 在直线$I$处按照第二行矩阵的值标纵坐标，在直线$II$处按矩阵第一行的值标纵坐标；其意义是当局中人一采用某种纯策略时，局中人二各策略的赢得值。</p>
 <p>Step3: 按列的方向将各对应纵坐标连成直线。</p>
@@ -828,7 +741,19 @@
 <img src=13.jpg width="50%">
 
 <p>作图如上，按照和上例类似的方法即可求出平衡局势。</p>
-<h3 id="连续对策"><a href="#连续对策" class="headerlink" title="连续对策"></a>连续对策</h3><p><font color="#dd0000">待更</font><br /> </p>
+<h2 id="连续对策"><a href="#连续对策" class="headerlink" title="连续对策"></a>连续对策</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>设两人进行对策，每个人的对策均为$[0,1]$的单位区间，当局中人1在$[0,1]$选取一个点$x$，局中人2在$[0,1]$选取一个点$y$，此时局中人1的支付函数为$P(x,y)$，局中人2的支付函数为$-P(x,y)$。称这类对策为两人无限零和对策（对抗对策）$P(x,y)$称为局中人1的支付函数。</p>
+<p>局中人1期望达到的状态，即最多获得$\max\limits_{x \in [0,1]} \min\limits_{ y\in [0,1]} P(x,y)$</p>
+<p>局中人2期望达到的状态，即最多失去$\min\limits_{y \in  [0,1]} \max\limits_{x \in [0,1]} P(x,y)$</p>
+<p>如果$\max\limits_{x \in [0,1]} \min\limits_{ y\in [0,1]} P(x,y) &#x3D; \min\limits_{y \in  [0,1]} \max\limits_{x \in [0,1]} P(x,y) $则称该矩阵对策有解，上式共同的值称为对策的值，记为$V$</p>
+<p>但是并非所有对抗对策都有平衡局势，于是我们要引入混合扩充的概念。</p>
+<h3 id="混合扩充"><a href="#混合扩充" class="headerlink" title="混合扩充"></a>混合扩充</h3><p>设$F(x)$为$[0,1]$上的一个分布函数，并且记$[0,1]$上的所有分布函数组成的集合为$D$</p>
+<p>设局中人1选取混合策略$F(x)\in D$，局中人2选取混合策略$G(y)\in D$，于是局中人1的对策期望值为$\int_0^1 \int _0^1 P(x,y)dF(x)dG(y)$，这里的积分为Stieltjes积分。</p>
+<p>Th:设单位正方形上对策的支付函数$P(x,y)$是$[0,1]\times [0,1]$上的连续函数，则下述$v_1$和$v_2$存在且相等。<br>$v_1 &#x3D; \max\limits_{F\in D} \min\limits_{G\in D}\int_0^1 \int _0^1 P(x,y) dF(x) dG(y)$</p>
+<p>$v_2 &#x3D; \min\limits_{G\in D} \max\limits_{F\in D} \int_0^1 \int_0^1 P(x,y) dF(x) dG(y)$</p>
+<p>Th:设$P(x,y)$为连续对策的支付函数，又设实数$v$及分布函数$F_0(x)$和$G_0(y)$，对$[0,1]$上的任何$x,y$，有$\int_0^1P(x,y)dG_0(y) \le v \le \int_0^1 P(x,y)dF_0(x)$，其中$v$是对策的值，$F_0(x),G_0(y)$分别是局中人1和局中人2的最优策略。</p>
+<p>eg:设连续对策的支付函数为$P(x,y)&#x3D;\frac{3}{3+2(x-y)^2} , 0\le x \le 1, 0 \le y \le 1$，求证：对策的值为$\frac{6}{7}$，且$I_{\frac{1}{2}}(x)$和$\frac{1}{2}I_0(y)+\frac{1}{2} I_1(y)$为局中人1和局中人2的最优策略。</p>
+<p>只需证明$\int_0^1 \frac{3}{3+2(x-y)^2} d(\frac{1}{2}I_0(y)+\frac{1}{2} I_1(y)) \le \frac{6}{7} \le \int_0^1 \frac{3}{3+2(x-y)^2} d(I_{\frac{1}{2}}(x))$即可。</p>
+<p>而$\int_0^1 \frac{3}{3+2(x-y)^2} d(\frac{1}{2}I_0(y)+\frac{1}{2} I_1(y)) &#x3D; \frac{1}{2}\frac{3}{3+2x^2} + \frac{1}{2}\frac{3}{2(x-1)^2}$</p>
 <h1 id="随机型需求的投资项目决策"><a href="#随机型需求的投资项目决策" class="headerlink" title="随机型需求的投资项目决策"></a>随机型需求的投资项目决策</h1><h2 id="项目选择准则"><a href="#项目选择准则" class="headerlink" title="项目选择准则"></a>项目选择准则</h2><p>在正态需求的情况下，对互斥方案的择优标准是什么？我们提出以下几条供决策者参考。</p>
 <ol>
 <li>盈利的可能性要有较大的把握，即盈利在99%以上</li>
@@ -1014,126 +939,96 @@
       </tags>
   </entry>
   <entry>
-    <title>高等代数拾遗</title>
-    <url>/2022/09/05/%E9%AB%98%E7%AD%89%E4%BB%A3%E6%95%B0%E6%8B%BE%E9%81%97/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>查漏补缺前五章</p>
-<p>参考书：高等代数北大第四版</p>
+    <title>随机变量及其分布复习笔记</title>
+    <url>/2022/04/23/%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>随机变量及其分布复习笔记</p>
 <span id="more"></span>
 
-<p>这里讨论的多项式，向量组，矩阵都是在数域$P$上的。</p>
-<h2 id="多项式"><a href="#多项式" class="headerlink" title="多项式"></a>多项式</h2><p>这里列出两个重要的定理：</p>
-<p>$Th1:$如果不可约多项式$p(x)$是$f(x)$的$k$重因式$(k\geq 1)$，那么他是微商$f’(x)$的$k-1$重因式。</p>
-<p>$Cor:$多项式$f(x)$没有重因式的充分必要条件是$f(x)$与$f’(x)$互素。</p>
-<p>$Th2:$设$f(x)&#x3D;a_nx^n+a_{n-1}x^{n-1}+\cdots + a_0$是一个整系数多项式。如果有一个素数$p$，使得<br>$(1):p \nmid a_n$<br>$(2):p|a_{n-1},a_{n-2},\cdots, a_0$<br>$(3):p^2 \nmid a_0$<br>那么$f(x)$在有理数域上不可约。</p>
-<p>一个经典的例子是$x^n+2$在有理数域上不可约，从而任意次多项式都可能再有理数域上不可约。</p>
-<h2 id="行列式"><a href="#行列式" class="headerlink" title="行列式"></a>行列式</h2><p>本章主要是如何计算行列式，下面列出几个经典例子：</p>
-<p>1.计算：<br>$$<br>D_n&#x3D;\begin{vmatrix}<br>        a_1-b_1 &amp; a_1-b_2 &amp; \cdots &amp; a_1-b_n \\<br>        a_2-b_1 &amp; a_2-b_2 &amp; \cdots &amp; ya_2-b_n \\<br>        \vdots &amp; \vdots &amp; &amp;  \vdots \\<br>        a_n-b_1 &amp; a_n-b_2 &amp; \cdots &amp; a_n-b_n \\<br>\end{vmatrix}<br>$$</p>
-<p>在这里不列出详细过程，只列出答案：</p>
-<p>$n&#x3D;1$时，行列式值为$a_1-b_1$</p>
-<p>$n&#x3D;2$时，行列式值为$(a_1-a_2)(b_1-b_2)$</p>
-<p>$n\geq 3$时，行列式值为 $0$</p>
-<p>注记：计算行列式时，注意是否需要分类讨论。</p>
-<br>
-<br>
-
-<p>2.计算：<br>$$<br>D_n&#x3D;\begin{vmatrix}<br>        x &amp; y &amp; y &amp; \cdots &amp; y &amp; y \\<br>        z &amp; x &amp; y &amp; \cdots &amp; y &amp; y \\<br>        z &amp; z &amp; x &amp; \cdots &amp; y &amp; y \\<br>        \vdots &amp; \vdots &amp; \vdots &amp; &amp; \vdots &amp; \vdots \\<br>        z &amp; z &amp; z &amp; \cdots &amp; x &amp; y \\<br>        z &amp; z &amp; z &amp; \cdots &amp; z &amp; x<br>\end{vmatrix}<br>$$</p>
-<p>解：$x&#x3D;y$时，可以得到$D_n&#x3D;(x+(n-1)y)(x-y)^{n-1}$</p>
-<p>$x\neq y$时，一个很经典的算法是将行列式化为$<br>\begin{vmatrix}<br>        x-y &amp; y &amp; y &amp; \cdots &amp; y &amp; y \\<br>        z-x &amp; x &amp; y &amp; \cdots &amp; y &amp; y \\<br>        0 &amp; z &amp; x &amp; \cdots &amp; y &amp; y \\<br>        \vdots &amp; \vdots &amp; \vdots &amp; &amp; \vdots &amp; \vdots \\<br>        0 &amp; z &amp; z &amp; \cdots &amp; x &amp; y \\<br>        0 &amp; z &amp; z &amp; \cdots &amp; z &amp; x<br>\end{vmatrix}<br>$后按照第一列展开，得到递推式：$D_n&#x3D;(x-y)D_{n-1}-y<br>\begin{vmatrix}<br>        1 &amp; 1 &amp; \cdots &amp; 1 &amp; 1 \\<br>        z &amp; x &amp; \cdots &amp; y &amp; y \\<br>        \vdots &amp; \vdots &amp; &amp; \vdots &amp; \vdots \\<br>        z &amp; z &amp; \cdots &amp; x &amp; y \\<br>        z &amp; z &amp; \cdots &amp; z &amp; x<br>\end{vmatrix}<br>$<br>$&#x3D;<br>(x-y)D_{n-1}-y<br>\begin{vmatrix}<br>        1 &amp; 1 &amp; \cdots &amp; 1 &amp; 1 \\<br>        0 &amp; x-z &amp; \cdots &amp; y-z &amp; y-z \\<br>        \vdots &amp; \vdots &amp; &amp; \vdots &amp; \vdots \\<br>        0 &amp; 0 &amp; \cdots &amp; x-z &amp; y-z \\<br>        0 &amp; 0 &amp; \cdots &amp; 0 &amp; x-z<br>\end{vmatrix}<br>$</p>
-<p>$&#x3D;(x-y)D_{n-1}-y(x-z)^{n-1}$</p>
-<p>用同样的方法还可得到$D_n&#x3D;(x-z)D_{n-1}-z(x-y)^{n-1}$</p>
-<p>化简即有$D_n&#x3D;\frac{y(x-z)^n-z(x-y)^n}{y-z}$</p>
-<br>
-<br>
-
-<p>3.计算</p>
-<p>$$D_1&#x3D;\begin{vmatrix}<br>        1 &amp; 1 &amp; \cdots &amp; 1 \\<br>        x_1 &amp; x_2 &amp; \cdots &amp; x_{n} \\<br>        x_1^2 &amp; x_2^2 &amp; \cdots &amp; x_n^2 \\<br>        \vdots &amp; \vdots &amp; &amp; \vdots \\<br>        x_1^{n-2} &amp; x_2^{n-2} &amp; \cdots &amp; x_n^{n-2} \\<br>        x_1^{n} &amp; x_2^{n} &amp; \cdots &amp; x_n^{n}<br>\end{vmatrix}$$</p>
-<p>解：将其扩充为</p>
-<p>$D&#x3D;\begin{vmatrix}<br>        1 &amp; 1 &amp; \cdots &amp; 1 &amp; 1 \\<br>        x_1 &amp; x_2 &amp; \cdots &amp; x_{n} &amp; x_{n+1} \\<br>        x_1^2 &amp; x_2^2 &amp; \cdots &amp; x_n^2 &amp; x_{n+1}^2 \\<br>        \vdots &amp; \vdots &amp; &amp; \vdots &amp; \vdots \\<br>        x_1^{n-2} &amp; x_2^{n-2} &amp; \cdots &amp; x_n^{n-2} &amp; x_{n+1}^{n-2} \\<br>        x_1^{n-1} &amp; x_2^{n-1} &amp; \cdots &amp; x_n^{n-1} &amp; x_{n+1}^{n-1} \\<br>        x_1^{n} &amp; x_2^{n} &amp; \cdots &amp; x_n^{n} &amp; x_{n+1}^{n}<br>\end{vmatrix}$</p>
-<p>此行列式的值为$\prod\limits_{1\leq i &lt; j \leq n+1} (x_j-x_i)&#x3D;\prod\limits_{1\leq i &lt; j \leq n} (x_j-x_i) \times \prod\limits_{k&#x3D;1}^n(x_{n+1}-x_k)$<br>将扩充后的行列式按照最后一列展开，有<br>$D&#x3D;(-1)^{1+n+1}d_{1,n+1}+(-1)^{2+n+1}d_{2,n+1}+\cdots + (-1)^{n+1+n+1}d_{n+1,n+1}$<br>比较两边系数，有$(-1)^{n+n+1}D_1&#x3D;[x_{n+1}^{n-1}]D$，其中$[x^k]$表示$x^k$的系数。<br>$D_1&#x3D;(-1)^{n+n+1}\prod\limits_{1\leq i &lt; j \leq n} (x_j-x_i)\sum\limits_{k&#x3D;1}^n(-x_k)&#x3D;\prod\limits_{1\leq i &lt; j \leq n} (x_j-x_i)\sum\limits_{k&#x3D;1}^n x_k$</p>
-<p>注记：对于一个不熟悉的行列式来说，我们要将其往我们熟悉的行列式上靠。</p>
-<h2 id="线性方程组"><a href="#线性方程组" class="headerlink" title="线性方程组"></a>线性方程组</h2><p>这一章关于向量组的零碎的定理与推论较多，下面列出一些重要的和容易遗忘的：</p>
-<p>1.设$\pmb{\alpha}_1,\pmb{\alpha}_2,\cdots, \pmb{\alpha}_r$与$\pmb{\beta}_1,\pmb{\beta}_2,\cdots,\pmb{\beta}_s$是两个向量组，如果<br>(1):向量组$\pmb{\alpha}_1,\pmb{\alpha}_2,\cdots, \pmb{\alpha}_r$可由$\pmb{\beta}_1,\pmb{\beta}_2,\cdots,\pmb{\beta}_s$线性表出<br>(2):$r&gt;s$<br>则$\pmb{\alpha}_1,\pmb{\alpha}_2,\cdots, \pmb{\alpha}_r$一定线性相关。</p>
-<p>Cor1:如果向量组$\pmb{\alpha}_1,\pmb{\alpha}_2,\cdots, \pmb{\alpha}_r$可由$\pmb{\beta}_1,\pmb{\beta}_2,\cdots,\pmb{\beta}_s$线性表出，且$\pmb{\alpha}_1,\pmb{\alpha}_2,\cdots, \pmb{\alpha}_r$线性无关，则$r\leq s$</p>
-<p>Cor2:任意$n+1$个$n$维向量一定线性相关。</p>
-<p>Cor3:两个线性无关的等价向量组一定含有相同个数的向量。</p>
-<p>Cor4:假设向量$\pmb{\beta}$可以经向量组$\pmb{\alpha}_1,\pmb{\alpha}_2,\cdots, \pmb{\alpha}_r$线性表出，则表示法唯一的充要条件为$\pmb{\alpha}_1,\pmb{\alpha}_2,\cdots, \pmb{\alpha}_r$线性无关。</p>
-<p>注记：如果一个向量组成的向量组线性相关，那么它一定是零向量。</p>
-<br>
-
-<p>2.一个向量组的极大线性无关组都含有相同个数的向量。</p>
-<p>据此我们可以定义向量组的秩：向量组的极大无关组所含的向量个数称为此向量组的秩。</p>
-<br>
-
-<p>3.矩阵的行秩就是将矩阵行向量组的秩，类似的可以定义矩阵的列秩。</p>
-<p>Th1:矩阵的行秩与列秩相等，统称为矩阵的秩。</p>
-<p>Th2:一个$n\times n$的方阵的行列式为0的充要条件是其秩小于$n$</p>
-<p>3.5:在一个$s\times n$的矩阵$\pmb{A}$中任意选定$k$行和$k$列，位于这些选定的行和列的交点上的$k^2$个元素按照原来的次序所组成的$k$级行列式，称为$\pmb{A}$的一个$k$级子式。</p>
-<p>Th3:一个矩阵秩为$r$的充要条件为矩阵中有一个$r$级子式不为0，但是所有$r+1$级子式全为0。</p>
-<p>Th4:线性方程组$\pmb{Ax}&#x3D;\pmb{b}$有解的充要条件是$rank(\pmb{A})&#x3D;rank(\bar{\pmb{A}})$，这里的$\bar{\pmb{A}}$为$A$的增广矩阵。</p>
-<br>
-
-<p>4.线性方程组$\pmb{Ax}&#x3D;\pmb{b}$的导出组定义为$\pmb{Ax}&#x3D;\pmb{0}$</p>
-<p>定义其次线性方程组$\pmb{Ax}&#x3D;\pmb{0}$的基础解系$\pmb{\eta}_1,\pmb{\eta}_2,\cdots,\pmb{\eta}_r$如下：<br>(1):$\pmb{Ax}&#x3D;\pmb{0}$的任意一个解都可以表示为$\pmb{\eta}_1,\pmb{\eta}_2,\cdots,\pmb{\eta}_r$的线性组合。<br>(2):$\pmb{\eta}_1,\pmb{\eta}_2,\cdots,\pmb{\eta}_r$线性无关。</p>
-<p>Th1:其次线性方程组基础解系中的向量个数等于$n-rank(\pmb{A})$</p>
-<p>Cor1:与基础解系等价的线性无关的向量组也是基础解系。</p>
-<p>Th2:如果 $\pmb{\gamma}_0$ 是 $\pmb{Ax}&#x3D;\pmb{b}$ 的一个特解，那么 $\pmb{Ax}&#x3D;\pmb{b}$ 的任一解可表示为 $\pmb{\gamma}&#x3D;\pmb{\gamma}_0+\pmb{\eta}$ ，其中 $\pmb{\eta}$ 为导出组一解。因此当 $\pmb{\eta}$ 取遍导出组的全部解时，上式就取遍了 $\pmb{Ax}&#x3D;\pmb{b}$ 的全部解。</p>
-<p>Cor2：方程组 $\pmb{Ax}&#x3D;\pmb{b}$ 有解时，解是唯一的充要条件时它的导出组只有零解。</p>
-<p>下面列出两个习题：</p>
-<p>1.线性方程组 $\pmb{Ax}&#x3D;\pmb{0}$ 的系数矩阵为：</p>
-<p>$$\pmb{A}&#x3D;\begin{pmatrix}<br>        a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \\<br>        a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} \\<br>        \vdots &amp; \vdots &amp; &amp; \vdots \\<br>        a_{n-1,1} &amp; a_{n-1,2} &amp; \cdots &amp; a_{n-1,n}<br>\end{pmatrix}$$</p>
-<p>设$M_i$时从矩阵 $\pmb{A}$ 中划第 $i$ 列所剩下的 $(n-1)\times(n-1)$ 矩阵的行列式，证明：<br>(1): $(M_1,-M_2,\cdots (-1)^{n-1}M_n)$ 是方程组的一个解。<br>(2):如果$\pmb{A}$的秩为$n-1$，那么方程组的解全是 $(M_1,-M_2,\cdots (-1)^{n-1}M_n)$ 的倍数。</p>
-<p>证明：<br>(1):考虑行列式<br>$$A_i&#x3D;\begin{vmatrix}<br>        a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \\<br>        a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} \\<br>        \vdots &amp; \vdots &amp; &amp; \vdots \\<br>        a_{n-1,1} &amp; a_{n-1,2} &amp; \cdots &amp; a_{n-1,n} \\<br>        a_{i1} &amp; a_{i2} &amp; \cdots &amp; a_{in}<br>\end{vmatrix}&#x3D;0,i&#x3D;1,2,\cdots, n$$<br>按照最后一行展开，就有 $a_{i1}M_1-a_{i2}M_2+\cdots + (-1)^{n-1}a_{in}M_n&#x3D;0$<br>即 $(M_1,-M_2,\cdots (-1)^{n-1}M_n)$ 是原方程的一个解。<br>(2):若 $r(\pmb{A})&#x3D;n-1$，则其基础解系里只有一个解，所有解都为其倍数。所以只需证明(1)中求的一解非零即可。注意到 $r(\pmb{A})&#x3D;n-1$，则 $\pmb{A}$有一个$n-1$级子式不为 $0$，即(1)求的的解为非零解。<br><br></p>
-<p>2.设<br>$$A&#x3D;\begin{pmatrix}<br>        a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \\<br>        a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} \\<br>        \vdots &amp; \vdots &amp; &amp; \vdots \\<br>        a_{n1} &amp; a_{n2} &amp; \cdots &amp; a_{nn}<br>\end{pmatrix}$$<br>为一实数域上的矩阵，证明：<br>(1):如果 $|a_{ii}|&gt;\sum\limits_{j\neq i} |a_{ij}|, i&#x3D;1,2,\cdots,n $，那么 $|A|\neq 0$<br>(2):如果 $a_{ii}&gt;\sum\limits_{j\neq i} |a_{ij}|, i&#x3D;1,2,\cdots,n$ ，那么 $|A| &gt; 0$</p>
-<p>证明：<br>(1)只需证明 $\pmb{Ax}&#x3D;\pmb{0}$ 的解只有零解即可。<br>对于上述方程任一非零解 $\pmb{c}&#x3D;(c_1,c_2,\cdots,c_n)$ ，总可以选出 $c_i&gt;0$ 使得 $|c_i|\geq |c_j| , j&#x3D;1,2,\cdots,n$，那么 $|a_{i1}c_1+a_{i2}c_2+\cdots + a_{in}c_n| \geq |a_{ii}||c_i| - \sum\limits_{j\neq i}|a_{ij}c_i|  \geq |c_i|(|a_{ii}|-\sum\limits_{j\neq i}|a_{ij}|)&gt;0$<br>所以$\pmb{Ax}&#x3D;\pmb{0}$只有零解，这就证明了我们的结论。</p>
-<p>(2)运用数学归纳法证明。<br>$n&#x3D;1$ 时， $|\pmb{A}|&#x3D;a_{11}&gt;0$ ，结论对 $n&#x3D;1$ 成立。<br>假设结论对 $n-1$ 成立，下面我们对 $n$ 证明结论。<br>取$A$的第一行$n$个代数余子式$A_{11},A_{12},\cdots,A_{1n}$，则有<br>$$a_{11}A_{11}+a_{12}A_{12}+\cdots+a_{1n}A_{1n}&#x3D;|\pmb{A}|$$<br>$$a_{i1}A_{11}+a_{i2}A_{12}+\cdots+a_{in}A_{1n}&#x3D;0, i\neq 1$$<br>由(1)有： $|A|\neq 0$ ，所以 $A_{11},\cdots,A_{1n}$ 至少有一个不为0。<br>下面我们证明 $|A_{11}|\geq|A_{1i}|,i&#x3D;1,2,3,\cdots n$。<br>事实上，假若存在 $i\neq 1$ ，使得 $|A_{1i}|\geq |A_{1j}|, j&#x3D;1,2,\cdots, n$，此时必然有$|A_{1i}|&gt;0$，则<br>$$0&#x3D;|a_{i1}A_{11}+a_{i2}A_{12}+\cdots+a_{in}A_{1n}| $$<br>$$\geq |a_{ii}||A_{1i}|-\sum\limits_{j\neq i}|a_{ij}||A_{1j}|$$<br>$$\geq |a_{ii}||A_{1i}|-\sum\limits_{j\neq i}|a_{ij}||A_{1i}|$$<br>$$&#x3D; |A_{1i}|-(|a_{ii}|-\sum\limits_{j\neq i}|a_{ij}|)&gt;0$$<br>矛盾了，所以 $|A_{11}|\geq|A_{1i}|,i&#x3D;1,2,3,\cdots n$。<br>由归纳假设有$A_{11}&gt;0$，故$a_{11}A_{11}&gt;0$，于是<br>所以 $|\pmb{A}|&#x3D;a_{11}A_{11}+\sum\limits_{i&#x3D;2}^n a_{1i}A_{1i}\geq a_{11}A_{11}-\sum\limits_{i&#x3D;2}^n|a_{1i}||A_{1i}|\geq (a_{11}-\sum\limits{i&#x3D;2}^n|a_{1i}|)A_{11}&gt;0$<br>这就完成了归纳法。</p>
-<p>注记：形如(1)类型的矩阵称为严格对角占优矩阵，事实上，对于对称的严格对角占优的矩阵，我们可以证明其一定是正定矩阵。<br>这类矩阵在数值分析中也有重要的作用，例如其可以进行LU分解，也可以进行Jacobi迭代和G-S迭代和$0 &lt;\omega \leq 1$的松弛迭代等。</p>
-<h2 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h2><p>这一章关于矩阵的零碎的定理与推论较多，下面列出一些重要的和容易遗忘的：</p>
-<p>1.关于矩阵的秩：<br>(1):$rank(\pmb{A}+\pmb{B})\leq rank(\pmb{A})+rank(\pmb{B})$<br>(2):$rank(\pmb{AB})\leq min(rank(\pmb{A}),rank(\pmb{B}))$<br>(3):如果 $\pmb{A} &#x3D; \pmb{A_1} \pmb{A_2} \cdots  \pmb{A_t}$，那么 $rank(\pmb{A})\leq \min\limits_{1\leq j\leq t }rank(\pmb{A}_j)$<br>(4):设$\pmb{A}$是$s\times n$矩阵，如果$\pmb{P}$是$s\times s$可逆矩阵，$\pmb{Q}$是$n\times n$可逆矩阵，那么$rank(\pmb{A})&#x3D;rank(\pmb{PA})&#x3D;rank(\pmb{AQ})$<br>(5):设$\pmb{A}$,$\pmb{B}$是$n\times n$矩阵，如果$\pmb{AB}&#x3D;\pmb{0}$，那么$rank(\pmb{A})+rank(\pmb{B}) \leq n$<br>(6):设$\pmb{A}$是$s\times n$矩阵，$\pmb{B}$是$n\times m$矩阵，则$rank(\pmb{AB})\geq rank(\pmb{A})+rank(\pmb{B})-n$<br>(7):$rank(\pmb{A}^*)&#x3D;\begin{cases}<br>n&amp; rank(\pmb{A})&#x3D;n \\<br>1&amp; rank(\pmb{A})&#x3D;n-1 \\<br>0&amp; rank(\pmb{A})&lt; n-1 \\<br>\end{cases}<br>$</p>
-<br>
-
-<p>2.关于逆矩阵：下面均假设矩阵可逆<br>(1):如果$|\pmb{A}|&#x3D;d$，那么$|\pmb{A}^{-1}|&#x3D;d^{-1}$<br>(2):如果矩阵$\pmb{A},\pmb{B}$可逆，那么$\pmb{A}’$和$\pmb{AB}$也可逆，且成立$(\pmb{A}’)^{-1}&#x3D;(\pmb{A}^{-1})’$，$(\pmb{AB})^{-1}&#x3D;\pmb{B}^{-1}\pmb{A}^{-1}$<br>(3): $\pmb{A}^{-1}&#x3D;\frac{1}{d}\pmb{A}^*$<br>(4): $|\pmb{A}^*|&#x3D;|\pmb{A}|^{n-1}$<br>(5): $(\pmb{A}^*)^*&#x3D;|\pmb{A}|^{n-2}\pmb{A}$</p>
-<br>
-
-<p>3.关于初等矩阵<br>(1):矩阵$\pmb{A}$与$\pmb{B}$称作等价的，如果$\pmb{B}$可以由$\pmb{A}$经过一系列初等变换得到。<br>(2):任何一$s\times n$矩阵都与一形式为 $\begin{pmatrix}<br>        \pmb{E}_r &amp;  0 \\<br>        0 &amp; 0 \\<br>\end{pmatrix}$等价，其中$r$是矩阵的秩。<br>(3):矩阵$\pmb{A}$与$\pmb{B}$等价的充要条件是有初等矩阵$\pmb{P}_1, \pmb{P}_2, \cdots, \pmb{P}_l, \pmb{Q}_1,\pmb{Q}_2\cdots,\pmb{Q}_t$，使得$\pmb{A}&#x3D;\pmb{P}_1 \pmb{P}_2 \cdots \pmb{P}_l \pmb{B} \pmb{Q}_1 \pmb{Q}_2 \cdots \pmb{Q}_t$<br>(4):两个$s\times n$矩阵$\pmb{A},\pmb{B}$等价的充要条件为，存在可逆的$s$级矩阵$\pmb{P}$和可逆的$n$级矩阵$\pmb{Q}$，使得$\pmb{A}&#x3D;\pmb{PBQ}$<br>(5):$n$级矩阵$\pmb{A}$可逆的充要条件为他能成一系列初等矩阵的乘积。</p>
-<br>
-
-<p>4.经典结论<br>(1):设$\pmb{A},\pmb{B}$分别是$n\times m, m\times n$矩阵，则：<br>$$\begin{vmatrix}<br>        \pmb{E}_m &amp;  \pmb{B} \\<br>        \pmb{A} &amp; \pmb{E}_n \\<br>\end{vmatrix}&#x3D;|\pmb{E}_n-\pmb{AB}|&#x3D;|\pmb{E}_m-\pmb{BA}|$$</p>
-<p>Cor:设$\pmb{A},\pmb{B}$分别是$n\times m, m\times n$矩阵，则：<br>$$|\lambda \pmb{E}_n-\pmb{AB}|&#x3D;\lambda^{n-m}|\lambda\pmb{E}_m-\pmb{BA}|$$<br>提示：考虑$|\pmb{E}_n-(\frac{\pmb{A}}{\lambda})\pmb{B}|$，再用(1).</p>
-<p>(2):设$\pmb{A}$为$2\times 2$矩阵，证明：如果$\exists l \geq 2,s.t. \pmb{A}^l&#x3D;\pmb{0}$，那么$\pmb{A}^2&#x3D;\pmb{0}$</p>
-<p>提示：分$rank(\pmb{A})&#x3D;0$或者$1$讨论，注意$rank(\pmb{A})&#x3D;1$时，有$\pmb{A}^2&#x3D;k\pmb{A}$</p>
-<p>注记：本题有许多种做法，一个经典的做法是使用Jordan型，由此可以推出$n$阶幂零矩阵的幂零指数不超过$n$。</p>
-<p>(3):设$\pmb{A}$为$n\times n$矩阵，证明：如果$\pmb{A}^2&#x3D;\pmb{E}$，那么$rank(\pmb{A}+\pmb{E})+rank(\pmb{A}-\pmb{E})&#x3D;n$</p>
-<p>提示：考虑$(\pmb A-\pmb{E})(\pmb{A}+\pmb{E})&#x3D;\pmb{0}$以及$(\pmb{A}+\pmb{E})+(\pmb{A}-\pmb{E})&#x3D;2\pmb{A}$</p>
-<h2 id="二次型"><a href="#二次型" class="headerlink" title="二次型"></a>二次型</h2><p>我们用对称矩阵的角度来看二次型。</p>
-<p>(1):合同关系<br>两个$n\times n$矩阵$\pmb A, \pmb B$称作合同的，如果有可逆的$n\times n$矩阵$\pmb{C}$，使得$\pmb{B}&#x3D;\pmb{C}’\pmb{AC}$。<br>合同关系是一个等价关系。<br>任意一个对称矩阵都合同于一个对角矩阵，即$\exists \pmb{C}$，使得$\pmb{C}’\pmb{AC}$是对角型矩阵。<br>注记：进一步的，我们可以要求$C$是正交的。</p>
-<br>
-
-<p>(2):规范形<br>任意一个复系数的对称矩阵$\pmb{A}$合同于一个形式为 $\begin{pmatrix}<br>        \pmb{E}_r &amp;  0 \\<br>        0 &amp; 0 \\<br>\end{pmatrix}$的对角矩阵，从而有任意两个复数对称矩阵合同的充要条件是他们的秩相等。</p>
-<p>任意一个实系数的对称矩阵$\pmb{A}$合同于一个形式为 $\begin{pmatrix}<br>        \pmb{E_p} &amp;  0 &amp; 0 \\<br>        0 &amp; -\pmb{E_{r-p}} &amp; 0 \\<br>        0 &amp; 0 &amp; 0 \\\end{pmatrix}$的对角矩阵，其中对角线上$1$的个数$p$和$-1$的个数$r-p$都是唯一确定的，分别称为$\pmb{A}$的正、负惯性指数，它们的差$2p-r$称做$A$的符号差。</p>
-<br>
-(3):正定性
-
-<p>1.实二次型$\pmb{X}’\pmb{AX}$是正定的充要条件是矩阵$A$的顺序主子式全大于零。</p>
-<p>2.实二次型$\pmb{X}’\pmb{AX}$，其中$A$是对称矩阵，则下面命题等价：<br>(1)$\pmb{X}’\pmb{AX}$ 是半正定的；<br>(2)它的正惯性指数与秩相等；<br>(3)有可逆实矩阵$\pmb{C}$，使得$\pmb{C}’\pmb{AC}&#x3D;diag\{d_1,d_2,\cdots, d_n\},d_i \geq 0, i&#x3D;1,2,\cdots n$；<br>(4)有实矩阵$\pmb{C}$，使得$\pmb{A}&#x3D;\pmb{C}’\pmb{C}$；<br>(5)$\pmb{A}$的所有主子式皆大于零或等于零。</p>
-<p>注记：在(5)中，不能只要求顺序主子式全大于或等于零。</p>
-<p>列出几个习题：</p>
-<p>(1):设$\pmb{A}$是反对称矩阵，证明：$\pmb{A}$合同于</p>
-<p>$$\begin{pmatrix}<br>        0  &amp; 1 \\<br>        -1 &amp; 0 \\<br>           &amp;   &amp; 0 &amp; 1 \\<br>           &amp;   &amp; -1&amp; 0 \\<br>           &amp;   &amp;   &amp;  &amp; \ddots \\<br>           &amp;   &amp;   &amp;  &amp;       &amp; 0 &amp; 1 \\<br>           &amp;   &amp;   &amp;  &amp;       &amp; -1&amp; 0 \\<br>           &amp;   &amp;   &amp;  &amp;       &amp;   &amp;  &amp; 0 \\<br>           &amp;   &amp;   &amp;  &amp;       &amp;   &amp;  &amp;  &amp; \ddots \\<br>           &amp;   &amp;   &amp;  &amp;       &amp;   &amp;  &amp;  &amp; &amp; 0\\<br>\end{pmatrix}$$</p>
-<p>提示：可以使用归纳法证明。</p>
-<br>
-
-<p>(2):证明$rank(\pmb{A}’\pmb{A})&#x3D;rank(\pmb{A})$</p>
-<p>提示：可以从$\pmb{A}’\pmb{A}\pmb{X}&#x3D;0$和$\pmb{AX}&#x3D;\pmb{0}$的解的角度考虑。</p>
-<br>
-<br>
-
-<p>先写这么多吧，后面五章看看有没有时间，有时间再写吧。</p>
+<h2 id="随机变量"><a href="#随机变量" class="headerlink" title="随机变量"></a>随机变量</h2><h3 id="什么是随机变量"><a href="#什么是随机变量" class="headerlink" title="什么是随机变量"></a>什么是随机变量</h3><p>用来表示随机现象结果的变量就是随机变量，常用大写字母$X,Y,Z$表示，而随机变量所取的值常用小写字母 $x,y,z$表示。若用等号或不等号把$X$和$x$联系起来就能表示事件，比如“$X&#x3D;x$”,“$Y\leq y$” , “$z_1&lt; Z \leq z_2$”都是事件。</p>
+<p>怎么用数学语言表示？</p>
+<p>$Def:$定义在样本空间$\Omega$上的实值函数$X&#x3D;X(\omega)$称为随机变量。在实数集上仅取有限个或可列个孤立点的随机变量成为离散型随机变量，可能取值在实数轴上的一个区间$(a,b)$的随机变量称为连续型随机变量，其中$a$可以是$-\infty$，$b$可以是$+\infty$。</p>
+<p>可以看到，随机变量就是将样本空间上的每一个事件映射到一个实数的函数。</p>
+<p>例如抛出$n(n\geq3)$枚硬币，设随机变量$X$为硬币正面朝上的次数，再设$\omega&#x3D;$朝上的硬币次数为$3$次。则我们可以令$X(\omega)&#x3D;3$。这是非常符合直觉的。</p>
+<h3 id="随机变量的分布函数"><a href="#随机变量的分布函数" class="headerlink" title="随机变量的分布函数"></a>随机变量的分布函数</h3><p>$Def$：设$X$是一个随机变量，对任意实数$x$，事件$X\leq x$的概率是$x$的函数，记为：$F(x)&#x3D;P(X\leq x)$这个函数称为$X$的累积分布函数，简称分布函数。</p>
+<p>分布函数的一些基本性质：<br>（1）$0\leq F(x)\leq 1$（因为$F(x)$是概率）<br>（2）$\lim\limits_{x\rightarrow -\infty} F(x)&#x3D;0$（事件$X&lt;-\infty$是不可能事件）<br>（3）$\lim\limits_{x\rightarrow +\infty} F(x)&#x3D;1$（事件$X&lt;+\infty$是必然事件）<br>（4）$F(x)$是非降函数，即对$\forall x_1&lt;x_2$，有$F(x_1)\leq F(x_2)$。这是因为事件$X\leq x_2$包含$X\leq x_1$。<br>（5）$F(x)$右连续，即$\lim\limits_{x-&gt;x_0^+}F(x)&#x3D;F(x_0)$<br>对（5）的极限成立做一个简要证明。<br>$Proof$：令$A_n&#x3D;{X \leq x_0 +  \frac{1}{n}}$，则$\bigcap\limits_{n&#x3D;1}^\infty A_n&#x3D;{X\leq x_0}$，则<br>$$\lim\limits_{x-&gt;x_0^+}F(x)&#x3D;\lim\limits_{n\rightarrow \infty}F(x_0+\frac{1}{n})&#x3D;\lim\limits_{n\rightarrow \infty}P(A_n)&#x3D;P(\lim\limits_{n\rightarrow \infty}A_n)&#x3D;P(\bigcap\limits_{n&#x3D;1}^\infty A_n)&#x3D;P(X\leq x_0)&#x3D;F(x_0)$$</p>
+<p>注记：上面的推到不严谨，其中第3，4个等号需要证明，感兴趣的读者可以翻阅实变函数中的集合论部分。<br>注记2：对于上面的（3）（4）（5），需要证明极限的存在性，其中（3）（4）的极限存在性可以类似于上面的证明给出，（5）的极限存在性可以用确界定理给出。（这几部分的证明都可以去翻阅实变函数的教材）<br>注记3：分布函数并不是左连续的，反例很容易给出。</p>
+<h2 id="离散型随机变量"><a href="#离散型随机变量" class="headerlink" title="离散型随机变量"></a>离散型随机变量</h2><h3 id="分布列"><a href="#分布列" class="headerlink" title="分布列"></a>分布列</h3><p>$Def$：设$X$是离散随机变量，它的所有可能取值为$x_1,x_2,\cdots , x_n , \cdots$，假如$X$取$x_i$的概率为：$P(X&#x3D;x_i)&#x3D;p(x_i)$，且满足<br>（1）非负性：$p(x_i)\geq 0$<br>（2）正则性：$\sum\limits_{i&#x3D;1}^\infty p(x_i)&#x3D;1$<br>则称这组概率${p(x_i)}$为随机变量$X$的分布列，或$X$的概率分布。</p>
+<p>若已知$X$的分布列，则可以很容易的写出$X$的分布函数：$F(x_0)&#x3D;\sum\limits_{x_i\leq x} p(x_i)$</p>
+<p>离散型随机变量的分布列还可以用如下表格来表示：</p>
+<table>
+<thead>
+<tr>
+<th>$X$</th>
+<th>$x_1$</th>
+<th>$x_2$</th>
+<th>$\cdots$</th>
+<th>$x_n$</th>
+<th>$\cdots$</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$P$</td>
+<td>$p_1$</td>
+<td>$p_2$</td>
+<td>$\cdots$</td>
+<td>$p_n$</td>
+<td>$\cdots$</td>
+</tr>
+</tbody></table>
+<p>除了表格，其还可以用线条图或者概率分布直方图来表示一个随机变量。</p>
+<h3 id="伯努利概型中的一些分布"><a href="#伯努利概型中的一些分布" class="headerlink" title="伯努利概型中的一些分布"></a>伯努利概型中的一些分布</h3><h4 id="二项分布"><a href="#二项分布" class="headerlink" title="二项分布"></a>二项分布</h4><p>$Def$：令$X$为$n$重伯努利试验中成功出现的次数，则$X$是一个随机变量。用$B_{n,k}$表示$n$重伯努利试验中成功出现$k$次，则有$B_{n,k}&#x3D;$“$X&#x3D;k$”，其中$X$的可能取值为$0,1,\cdots ,n$，它取这些值的概率为：$$P(X&#x3D;k)&#x3D;C_n^k\cdot p^k\cdot (1-p)^{(n-k)},k&#x3D;0,1,\cdots ,n$$我们称这个概率分布为二项分布，记为$b(n,p)$。在概率论中“随机变量$X$的概率分布为二项分布$b(n,p)$”常被说成“随机变量$X$服从二项分布$b(n,p)$，<font color="#dd0000">记做$X\sim b(n,p)$</font>。</p>
+<h4 id="两点分布"><a href="#两点分布" class="headerlink" title="两点分布"></a>两点分布</h4><p>$n&#x3D;1$的二项分布$b(1,p)$就称为两点分布（也称伯努利分布或者0-1分布）。其概率分布为：<br>$$<br>P(X&#x3D;k)&#x3D;\begin{cases}<br>p &amp; k&#x3D;1 \\<br>(1-p) &amp; k&#x3D;0<br>\end{cases}<br>$$</p>
+<h4 id="几何分布"><a href="#几何分布" class="headerlink" title="几何分布"></a>几何分布</h4><p>我们讨论在伯努利试验中首次出现成功出现在第$k$次的概率，记成功的概率为$p$。若想第$k$次试验首次出现成功，我们需要在前$k-1$次试验中均失败，并且恰好在第$k$次试验出现成功。记$$g(k,p)&#x3D;(1-p)^{k-1}p ~~~~ k&#x3D;1,2,\cdots$$<br>我们称这个分布为几何分布</p>
+<p>注记：这个分布的样本空间不是有限的。</p>
+<p>注记2：几何分布具有无记忆性，即$$P(X &#x3D; s+t|X\geq s)&#x3D;\frac{P(x &#x3D;  s+t)}{P(X \geq s)}&#x3D;\frac{(1-p)^{s+t-1}\cdot p}{(1-p)^{s}} &#x3D; (1-p)^{t-1} \cdot p $$<br>这说明假定前$s$次没有出现成功，那么再经过$t$次试验成功的概率和直接进行$t$次试验成功的概率是相同的。与此同时，离散型随机变量中，只有几何分布有无记忆性。</p>
+<h3 id="泊松分布"><a href="#泊松分布" class="headerlink" title="泊松分布"></a>泊松分布</h3><p>如果随机变量$X$有如下的概率分布：</p>
+<p>$$P(X&#x3D;k)&#x3D;\frac{\lambda^k}{k!}e^{-\lambda}$$</p>
+<p>就称$X$服从参数设$\lambda$的泊松分布。<font color="#dd0000">记做$X\sim P(\lambda)$</font>。</p>
+<p>泊松分布的由来？</p>
+<p>先看一个例子：<br>$eg$：某年龄段的保险者中，一年中每个人死亡的概率为$0.005$，现有$10000$个这类人参加保险，保险公司想知道在未来一年中有$40$个人死亡的概率</p>
+<p>我们从二项分布可以知道$b(40;10000,0,005)&#x3D;C_{10000}^{40}(0.005)^{40}(0.995)^{9960}$（<font color="#dd0000">我们用$b(k,n,p)$表示$n$重伯努利试验中$A$出现$k$次的概率</font>）而直接计算这个数值相当困难，我们需要有更好的计算方法。</p>
+<p>于是我们有泊松逼近定理：</p>
+<p>$Th$：在独立试验中，以$p_n$代表事件$A$在试验中出现的概率。它与试验总数$n$有关，如果$np_n\rightarrow\lambda$，则当$n\rightarrow \infty$是，</p>
+<p>$$b(k;n,p_n)\rightarrow\frac{\lambda^k}{k!}e^{-\lambda}$$</p>
+<p>$Proof$：记$\lambda_n&#x3D;np_n$，则<br>$b(k;n,p_n)&#x3D;C_n^kp_n^k(1-p)^{n-k}&#x3D;\frac{n(n-1)\cdots(n-k+1)}{k!}(\frac{\lambda_n}{n})^k(1-\frac{\lambda_n}{n})^{n-k} $<br>$&#x3D;\frac{\lambda_n^k}{k!}(1-\frac{1}{n})\cdots (1-\frac{k-1}{n})(1-\frac{\lambda_n}{n})^{n-k}$</p>
+<p>对于固定的$k$有<br>$$\lim\limits_{n\rightarrow\infty}\lambda_n^k&#x3D;\lambda^k，~~ \lim\limits_{n\rightarrow\infty}(1-\frac{\lambda_n}{n}^{n-k})&#x3D;e^{-\lambda}$$<br>和<br>$$\lim\limits_{n\rightarrow\infty}(1-\frac{1}{n})\cdots (1-\frac{k-1}{n})&#x3D;1$$</p>
+<p>因此$$\lim\limits_{n\rightarrow\infty}b(k;n,p_n)&#x3D;\frac{\lambda^k}{k!}e^{-\lambda}$$</p>
+<p>在应用中，当$p$相当小（一般当$p\leq0.1$时）我们用如下的近似公式：$$b(k;n,p)\approx\frac{(np)^k}{k!}e^{-np}$$</p>
+<p>这就解决了上面二项分布不容易算的问题。</p>
+<p>泊松分布发明不止是用来逼近二项分布的，我们还有如下的泊松过程：</p>
+<p>考虑来到某交换装置的电话呼叫数，假定它具有下面三个性质：<br>（1）平稳性：在$[t_0,t_0+t)$中来到的呼叫数只与时间间隔长度$t$有关而与时间起点$t_0$无关。<br>（2）独立增量性：在$[t_0,t_0+t)$内来到$k$个呼叫这一事件与$t_0$之前发生的事件独立。<br>（3）普通性：在充分晓得时间间隔中，最多来一个呼叫。若记$\psi(t)&#x3D;1-P_0(t)-P_1(t)&#x3D;\sum\limits_{i&#x3D;2}^\infty P_i(t)$，则应有$\lim\limits_{t\rightarrow 0}\frac{\psi(t)}{t}&#x3D;0$</p>
+<p>在这个过程中，可以求得$P_k(t)&#x3D;\frac{(\lambda t)^k}{k!}e^{-\lambda t}$，这正是泊松分布。</p>
+<p>详细证明可以参考概率论教材。</p>
+<h3 id="超几何分布"><a href="#超几何分布" class="headerlink" title="超几何分布"></a>超几何分布</h3><p>假设有$N$个产品组成的总体，其中含有$M$个不合格品，若丛中随机不放回地抽取$n$个，则其中含有不合格品的个数$X$是一个离散随机变量。假如$n\leq M$，则$X$可以取$0,1,\cdots , n$；若$n&gt;M$，则$X$可能取$0,1,\cdots M$。由古典概型可以计算得：<br>$$P(X&#x3D;x)&#x3D;\frac{C_M^xC_{N-M}^{n-x}}{C_N^n} ~~ x&#x3D;0,1,\cdots r$$<br>其中$r&#x3D;min(n,M)$。<font color="#dd0000">这个分布称为超几何分布，它有三个参数$N,M,n$，记为$h(n,N,M)$</font></p>
+<h2 id="连续型随机变量"><a href="#连续型随机变量" class="headerlink" title="连续型随机变量"></a>连续型随机变量</h2><h3 id="概率密度函数"><a href="#概率密度函数" class="headerlink" title="概率密度函数"></a>概率密度函数</h3><p>$Def$：设$p(x)$设定义在整个实数轴上的一个函数，假如它满足如下两个性质：<br>（1）非负性：$p(x)\geq 0$<br>（2）正则性：$\int_{-\infty}^{\infty}p(x)dx&#x3D;1$<br>则称$p(x)$是概率密度函数，或密度函数。若随机变量$X$取值的统计规律性可用某个概率密度函数$p(x)$描述，则称$p(x)$为$X$的概率分布，记为$X\sim p(x)$</p>
+<p>有了概率密度函数之后，随机变量$X$的分布函数就可以写成如下形式：</p>
+<p>$$F(x)&#x3D;\int_{-\infty}^x p(x)dx$$</p>
+<p>注记1：概率密度函数不是概率，即$P(X&#x3D;x)\neq p(x)$，事实上，对于$\forall x$,$$P(X&#x3D;x)&#x3D;\lim_{\Delta x \rightarrow 0}P(x+\Delta x)-P(x) &#x3D; \lim_{\Delta x \rightarrow 0} \int_x^{x+\Delta x}p(x)dx &#x3D; 0$$但是我们在$(x,x+\Delta x)$的概率密度可以用$\int_{x}^{x+\Delta x}p(x)dx$来求。类似的，$P(a\leq X \leq b)&#x3D;\int_{a}^{b}p(x)dx$</p>
+<p>注记2：我们将概率为零的事件称为零概率事件，但是零概率小事件和不可能事件是有差距的：不可能事件一定是零概率事件，但是零概率事件不一定是不可能事件。同样的，必然事件发生的概率为1，但是发生概率为1的事件不一定是必然事件，我们一般称概率为1的事件为几乎必然发生的事件。</p>
+<h3 id="均匀分布"><a href="#均匀分布" class="headerlink" title="均匀分布"></a>均匀分布</h3><p>$Def$：若$a,b(b&gt;a)$为有限数，则由下列函数给定的分布称为均匀分布：<br>$$<br>p(x)&#x3D;\begin{cases}<br>\frac{1}{b-a} &amp; a\leq x \leq b\\<br>0 &amp; otherwise<br>\end{cases}<br>$$</p>
+<p>对应的分布函数为：<br>$$<br>F(x)&#x3D;\begin{cases}<br>0 &amp; x \leq a\\<br>\frac{x-a}{b-a} &amp; a &lt; x \leq b \\<br>1 &amp; b \leq x<br>\end{cases}<br>$$</p>
+<p>注记：我们仍需令其满足分布函数的右连续性，有些课本上将第二个条件写成$a\leq x \leq b$，其实这是不严谨的。</p>
+<h3 id="指数分布"><a href="#指数分布" class="headerlink" title="指数分布"></a>指数分布</h3><p>分布密度函数为</p>
+<p>$$<br>p(x)&#x3D;\begin{cases}<br>\lambda e^{-\lambda x} &amp; x \geq 0 \\<br>0 &amp; x&lt;0<br>\end{cases}<br>$$</p>
+<p>分布函数为</p>
+<p>$$<br>F(x)&#x3D;\begin{cases}<br>1- e^{-\lambda x} &amp; x \geq 0 \\<br>0 &amp; x&lt;0<br>\end{cases}<br>$$</p>
+<p>其中$\lambda &gt;0$，是参数，这种分布称为指数分布，简记为$Exp(\lambda)$</p>
+<p>指数分布有重要的应用，我们常用它来做各种“寿命”的近似，例如电子元器件的寿命等。</p>
+<p>指数分布还有类似于几何分布的无记忆性，设$X$服从指数分布，则对$\forall x&gt;0,t&gt;0$，<br>$$P\{X\geq s+t|X\geq s \} &#x3D; \frac{P\{ X\geq s+t\}}{P\{ X\geq s\}} &#x3D; \frac{e^{-\lambda(s+t)}}{e^{-\lambda s}} &#x3D; e^{-\lambda t}$$</p>
+<h3 id="正态分布"><a href="#正态分布" class="headerlink" title="正态分布"></a>正态分布</h3><p>密度函数为<br>$$p(x)&#x3D;\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}} ~~~ -\infty &lt; x &lt; \infty$$<br>其中$\sigma &gt; 0$，$\mu$和$\sigma$都为常数，相应的分布函数为<br>$$F(x)&#x3D;\int_{-\infty}^x \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(y-\mu)^2}{2\sigma^2}} ~~~ -\infty &lt; y &lt; \infty$$</p>
+<p>这种分布称为正态分布，简记为$N(\mu,\sigma ^2)$</p>
+<p>特别的，当$\mu&#x3D;0,\sigma&#x3D;1$的时候，这个分布称为标准正态分布，记为$N(0,1)$，相应的密度函数和概率分布函数分解记为$\phi(x)$和$\Phi(x)$</p>
+<p>注记：若$X \sim N(\mu,\sigma^2)$，则$U&#x3D;\frac{X-\mu}{\sigma} \sim N(0,1)$。称这样的变换为$X$的标准化变换，称$U$为$X$的标准化随机变量。</p>
+<p>注记2：设$X\sim N(\mu,\sigma^2)$，则<br>$$P(a&lt;X&lt;b)&#x3D;\Phi(\frac{b-\mu}{\sigma})-\Phi(\frac{a-\mu}{\sigma})$$</p>
+<p>注记3：设$X\sim N(0,1)$，则</p>
+<p>$$<br>P(|X-\mu|&lt;k\sigma)&#x3D;\begin{cases}<br>0.6826 &amp; k&#x3D;1 \\<br>0.9544 &amp; k&#x3D;2 \\<br>0.9973 &amp; k&#x3D;3<br>\end{cases}<br>$$<br>我们可以看到落在$3$倍标准差外的样本设很少的，在数据处理的时候一般将其剔除。我们称其为$3\sigma$原则。</p>
 ]]></content>
       <categories>
-        <category>高等代数</category>
+        <category>概率论</category>
+        <category>随机变量及其分布</category>
       </categories>
       <tags>
-        <tag>高等代数</tag>
+        <tag>随机变量</tag>
       </tags>
   </entry>
   <entry>
@@ -1266,5 +1161,133 @@
         <tag>矩</tag>
         <tag>分位数</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>高等代数拾遗</title>
+    <url>/2022/09/05/%E9%AB%98%E7%AD%89%E4%BB%A3%E6%95%B0%E6%8B%BE%E9%81%97/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>查漏补缺前五章</p>
+<p>参考书：高等代数北大第四版</p>
+<span id="more"></span>
+
+<p>这里讨论的多项式，向量组，矩阵都是在数域$P$上的。</p>
+<h2 id="多项式"><a href="#多项式" class="headerlink" title="多项式"></a>多项式</h2><p>这里列出两个重要的定理：</p>
+<p>$Th1:$如果不可约多项式$p(x)$是$f(x)$的$k$重因式$(k\geq 1)$，那么他是微商$f’(x)$的$k-1$重因式。</p>
+<p>$Cor:$多项式$f(x)$没有重因式的充分必要条件是$f(x)$与$f’(x)$互素。</p>
+<p>$Th2:$设$f(x)&#x3D;a_nx^n+a_{n-1}x^{n-1}+\cdots + a_0$是一个整系数多项式。如果有一个素数$p$，使得<br>$(1):p \nmid a_n$<br>$(2):p|a_{n-1},a_{n-2},\cdots, a_0$<br>$(3):p^2 \nmid a_0$<br>那么$f(x)$在有理数域上不可约。</p>
+<p>一个经典的例子是$x^n+2$在有理数域上不可约，从而任意次多项式都可能再有理数域上不可约。</p>
+<h2 id="行列式"><a href="#行列式" class="headerlink" title="行列式"></a>行列式</h2><p>本章主要是如何计算行列式，下面列出几个经典例子：</p>
+<p>1.计算：<br>$$<br>D_n&#x3D;\begin{vmatrix}<br>        a_1-b_1 &amp; a_1-b_2 &amp; \cdots &amp; a_1-b_n \\<br>        a_2-b_1 &amp; a_2-b_2 &amp; \cdots &amp; ya_2-b_n \\<br>        \vdots &amp; \vdots &amp; &amp;  \vdots \\<br>        a_n-b_1 &amp; a_n-b_2 &amp; \cdots &amp; a_n-b_n \\<br>\end{vmatrix}<br>$$</p>
+<p>在这里不列出详细过程，只列出答案：</p>
+<p>$n&#x3D;1$时，行列式值为$a_1-b_1$</p>
+<p>$n&#x3D;2$时，行列式值为$(a_1-a_2)(b_1-b_2)$</p>
+<p>$n\geq 3$时，行列式值为 $0$</p>
+<p>注记：计算行列式时，注意是否需要分类讨论。</p>
+<br>
+<br>
+
+<p>2.计算：<br>$$<br>D_n&#x3D;\begin{vmatrix}<br>        x &amp; y &amp; y &amp; \cdots &amp; y &amp; y \\<br>        z &amp; x &amp; y &amp; \cdots &amp; y &amp; y \\<br>        z &amp; z &amp; x &amp; \cdots &amp; y &amp; y \\<br>        \vdots &amp; \vdots &amp; \vdots &amp; &amp; \vdots &amp; \vdots \\<br>        z &amp; z &amp; z &amp; \cdots &amp; x &amp; y \\<br>        z &amp; z &amp; z &amp; \cdots &amp; z &amp; x<br>\end{vmatrix}<br>$$</p>
+<p>解：$x&#x3D;y$时，可以得到$D_n&#x3D;(x+(n-1)y)(x-y)^{n-1}$</p>
+<p>$x\neq y$时，一个很经典的算法是将行列式化为$<br>\begin{vmatrix}<br>        x-y &amp; y &amp; y &amp; \cdots &amp; y &amp; y \\<br>        z-x &amp; x &amp; y &amp; \cdots &amp; y &amp; y \\<br>        0 &amp; z &amp; x &amp; \cdots &amp; y &amp; y \\<br>        \vdots &amp; \vdots &amp; \vdots &amp; &amp; \vdots &amp; \vdots \\<br>        0 &amp; z &amp; z &amp; \cdots &amp; x &amp; y \\<br>        0 &amp; z &amp; z &amp; \cdots &amp; z &amp; x<br>\end{vmatrix}<br>$后按照第一列展开，得到递推式：$D_n&#x3D;(x-y)D_{n-1}-y<br>\begin{vmatrix}<br>        1 &amp; 1 &amp; \cdots &amp; 1 &amp; 1 \\<br>        z &amp; x &amp; \cdots &amp; y &amp; y \\<br>        \vdots &amp; \vdots &amp; &amp; \vdots &amp; \vdots \\<br>        z &amp; z &amp; \cdots &amp; x &amp; y \\<br>        z &amp; z &amp; \cdots &amp; z &amp; x<br>\end{vmatrix}<br>$<br>$&#x3D;<br>(x-y)D_{n-1}-y<br>\begin{vmatrix}<br>        1 &amp; 1 &amp; \cdots &amp; 1 &amp; 1 \\<br>        0 &amp; x-z &amp; \cdots &amp; y-z &amp; y-z \\<br>        \vdots &amp; \vdots &amp; &amp; \vdots &amp; \vdots \\<br>        0 &amp; 0 &amp; \cdots &amp; x-z &amp; y-z \\<br>        0 &amp; 0 &amp; \cdots &amp; 0 &amp; x-z<br>\end{vmatrix}<br>$</p>
+<p>$&#x3D;(x-y)D_{n-1}-y(x-z)^{n-1}$</p>
+<p>用同样的方法还可得到$D_n&#x3D;(x-z)D_{n-1}-z(x-y)^{n-1}$</p>
+<p>化简即有$D_n&#x3D;\frac{y(x-z)^n-z(x-y)^n}{y-z}$</p>
+<br>
+<br>
+
+<p>3.计算</p>
+<p>$$D_1&#x3D;\begin{vmatrix}<br>        1 &amp; 1 &amp; \cdots &amp; 1 \\<br>        x_1 &amp; x_2 &amp; \cdots &amp; x_{n} \\<br>        x_1^2 &amp; x_2^2 &amp; \cdots &amp; x_n^2 \\<br>        \vdots &amp; \vdots &amp; &amp; \vdots \\<br>        x_1^{n-2} &amp; x_2^{n-2} &amp; \cdots &amp; x_n^{n-2} \\<br>        x_1^{n} &amp; x_2^{n} &amp; \cdots &amp; x_n^{n}<br>\end{vmatrix}$$</p>
+<p>解：将其扩充为</p>
+<p>$D&#x3D;\begin{vmatrix}<br>        1 &amp; 1 &amp; \cdots &amp; 1 &amp; 1 \\<br>        x_1 &amp; x_2 &amp; \cdots &amp; x_{n} &amp; x_{n+1} \\<br>        x_1^2 &amp; x_2^2 &amp; \cdots &amp; x_n^2 &amp; x_{n+1}^2 \\<br>        \vdots &amp; \vdots &amp; &amp; \vdots &amp; \vdots \\<br>        x_1^{n-2} &amp; x_2^{n-2} &amp; \cdots &amp; x_n^{n-2} &amp; x_{n+1}^{n-2} \\<br>        x_1^{n-1} &amp; x_2^{n-1} &amp; \cdots &amp; x_n^{n-1} &amp; x_{n+1}^{n-1} \\<br>        x_1^{n} &amp; x_2^{n} &amp; \cdots &amp; x_n^{n} &amp; x_{n+1}^{n}<br>\end{vmatrix}$</p>
+<p>此行列式的值为$\prod\limits_{1\leq i &lt; j \leq n+1} (x_j-x_i)&#x3D;\prod\limits_{1\leq i &lt; j \leq n} (x_j-x_i) \times \prod\limits_{k&#x3D;1}^n(x_{n+1}-x_k)$<br>将扩充后的行列式按照最后一列展开，有<br>$D&#x3D;(-1)^{1+n+1}d_{1,n+1}+(-1)^{2+n+1}d_{2,n+1}+\cdots + (-1)^{n+1+n+1}d_{n+1,n+1}$<br>比较两边系数，有$(-1)^{n+n+1}D_1&#x3D;[x_{n+1}^{n-1}]D$，其中$[x^k]$表示$x^k$的系数。<br>$D_1&#x3D;(-1)^{n+n+1}\prod\limits_{1\leq i &lt; j \leq n} (x_j-x_i)\sum\limits_{k&#x3D;1}^n(-x_k)&#x3D;\prod\limits_{1\leq i &lt; j \leq n} (x_j-x_i)\sum\limits_{k&#x3D;1}^n x_k$</p>
+<p>注记：对于一个不熟悉的行列式来说，我们要将其往我们熟悉的行列式上靠。</p>
+<h2 id="线性方程组"><a href="#线性方程组" class="headerlink" title="线性方程组"></a>线性方程组</h2><p>这一章关于向量组的零碎的定理与推论较多，下面列出一些重要的和容易遗忘的：</p>
+<p>1.设$\pmb{\alpha}_1,\pmb{\alpha}_2,\cdots, \pmb{\alpha}_r$与$\pmb{\beta}_1,\pmb{\beta}_2,\cdots,\pmb{\beta}_s$是两个向量组，如果<br>(1):向量组$\pmb{\alpha}_1,\pmb{\alpha}_2,\cdots, \pmb{\alpha}_r$可由$\pmb{\beta}_1,\pmb{\beta}_2,\cdots,\pmb{\beta}_s$线性表出<br>(2):$r&gt;s$<br>则$\pmb{\alpha}_1,\pmb{\alpha}_2,\cdots, \pmb{\alpha}_r$一定线性相关。</p>
+<p>Cor1:如果向量组$\pmb{\alpha}_1,\pmb{\alpha}_2,\cdots, \pmb{\alpha}_r$可由$\pmb{\beta}_1,\pmb{\beta}_2,\cdots,\pmb{\beta}_s$线性表出，且$\pmb{\alpha}_1,\pmb{\alpha}_2,\cdots, \pmb{\alpha}_r$线性无关，则$r\leq s$</p>
+<p>Cor2:任意$n+1$个$n$维向量一定线性相关。</p>
+<p>Cor3:两个线性无关的等价向量组一定含有相同个数的向量。</p>
+<p>Cor4:假设向量$\pmb{\beta}$可以经向量组$\pmb{\alpha}_1,\pmb{\alpha}_2,\cdots, \pmb{\alpha}_r$线性表出，则表示法唯一的充要条件为$\pmb{\alpha}_1,\pmb{\alpha}_2,\cdots, \pmb{\alpha}_r$线性无关。</p>
+<p>注记：如果一个向量组成的向量组线性相关，那么它一定是零向量。</p>
+<br>
+
+<p>2.一个向量组的极大线性无关组都含有相同个数的向量。</p>
+<p>据此我们可以定义向量组的秩：向量组的极大无关组所含的向量个数称为此向量组的秩。</p>
+<br>
+
+<p>3.矩阵的行秩就是将矩阵行向量组的秩，类似的可以定义矩阵的列秩。</p>
+<p>Th1:矩阵的行秩与列秩相等，统称为矩阵的秩。</p>
+<p>Th2:一个$n\times n$的方阵的行列式为0的充要条件是其秩小于$n$</p>
+<p>3.5:在一个$s\times n$的矩阵$\pmb{A}$中任意选定$k$行和$k$列，位于这些选定的行和列的交点上的$k^2$个元素按照原来的次序所组成的$k$级行列式，称为$\pmb{A}$的一个$k$级子式。</p>
+<p>Th3:一个矩阵秩为$r$的充要条件为矩阵中有一个$r$级子式不为0，但是所有$r+1$级子式全为0。</p>
+<p>Th4:线性方程组$\pmb{Ax}&#x3D;\pmb{b}$有解的充要条件是$rank(\pmb{A})&#x3D;rank(\bar{\pmb{A}})$，这里的$\bar{\pmb{A}}$为$A$的增广矩阵。</p>
+<br>
+
+<p>4.线性方程组$\pmb{Ax}&#x3D;\pmb{b}$的导出组定义为$\pmb{Ax}&#x3D;\pmb{0}$</p>
+<p>定义其次线性方程组$\pmb{Ax}&#x3D;\pmb{0}$的基础解系$\pmb{\eta}_1,\pmb{\eta}_2,\cdots,\pmb{\eta}_r$如下：<br>(1):$\pmb{Ax}&#x3D;\pmb{0}$的任意一个解都可以表示为$\pmb{\eta}_1,\pmb{\eta}_2,\cdots,\pmb{\eta}_r$的线性组合。<br>(2):$\pmb{\eta}_1,\pmb{\eta}_2,\cdots,\pmb{\eta}_r$线性无关。</p>
+<p>Th1:其次线性方程组基础解系中的向量个数等于$n-rank(\pmb{A})$</p>
+<p>Cor1:与基础解系等价的线性无关的向量组也是基础解系。</p>
+<p>Th2:如果 $\pmb{\gamma}_0$ 是 $\pmb{Ax}&#x3D;\pmb{b}$ 的一个特解，那么 $\pmb{Ax}&#x3D;\pmb{b}$ 的任一解可表示为 $\pmb{\gamma}&#x3D;\pmb{\gamma}_0+\pmb{\eta}$ ，其中 $\pmb{\eta}$ 为导出组一解。因此当 $\pmb{\eta}$ 取遍导出组的全部解时，上式就取遍了 $\pmb{Ax}&#x3D;\pmb{b}$ 的全部解。</p>
+<p>Cor2：方程组 $\pmb{Ax}&#x3D;\pmb{b}$ 有解时，解是唯一的充要条件时它的导出组只有零解。</p>
+<p>下面列出两个习题：</p>
+<p>1.线性方程组 $\pmb{Ax}&#x3D;\pmb{0}$ 的系数矩阵为：</p>
+<p>$$\pmb{A}&#x3D;\begin{pmatrix}<br>        a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \\<br>        a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} \\<br>        \vdots &amp; \vdots &amp; &amp; \vdots \\<br>        a_{n-1,1} &amp; a_{n-1,2} &amp; \cdots &amp; a_{n-1,n}<br>\end{pmatrix}$$</p>
+<p>设$M_i$时从矩阵 $\pmb{A}$ 中划第 $i$ 列所剩下的 $(n-1)\times(n-1)$ 矩阵的行列式，证明：<br>(1): $(M_1,-M_2,\cdots (-1)^{n-1}M_n)$ 是方程组的一个解。<br>(2):如果$\pmb{A}$的秩为$n-1$，那么方程组的解全是 $(M_1,-M_2,\cdots (-1)^{n-1}M_n)$ 的倍数。</p>
+<p>证明：<br>(1):考虑行列式<br>$$A_i&#x3D;\begin{vmatrix}<br>        a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \\<br>        a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} \\<br>        \vdots &amp; \vdots &amp; &amp; \vdots \\<br>        a_{n-1,1} &amp; a_{n-1,2} &amp; \cdots &amp; a_{n-1,n} \\<br>        a_{i1} &amp; a_{i2} &amp; \cdots &amp; a_{in}<br>\end{vmatrix}&#x3D;0,i&#x3D;1,2,\cdots, n$$<br>按照最后一行展开，就有 $a_{i1}M_1-a_{i2}M_2+\cdots + (-1)^{n-1}a_{in}M_n&#x3D;0$<br>即 $(M_1,-M_2,\cdots (-1)^{n-1}M_n)$ 是原方程的一个解。<br>(2):若 $r(\pmb{A})&#x3D;n-1$，则其基础解系里只有一个解，所有解都为其倍数。所以只需证明(1)中求的一解非零即可。注意到 $r(\pmb{A})&#x3D;n-1$，则 $\pmb{A}$有一个$n-1$级子式不为 $0$，即(1)求的的解为非零解。<br><br></p>
+<p>2.设<br>$$A&#x3D;\begin{pmatrix}<br>        a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \\<br>        a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} \\<br>        \vdots &amp; \vdots &amp; &amp; \vdots \\<br>        a_{n1} &amp; a_{n2} &amp; \cdots &amp; a_{nn}<br>\end{pmatrix}$$<br>为一实数域上的矩阵，证明：<br>(1):如果 $|a_{ii}|&gt;\sum\limits_{j\neq i} |a_{ij}|, i&#x3D;1,2,\cdots,n $，那么 $|A|\neq 0$<br>(2):如果 $a_{ii}&gt;\sum\limits_{j\neq i} |a_{ij}|, i&#x3D;1,2,\cdots,n$ ，那么 $|A| &gt; 0$</p>
+<p>证明：<br>(1)只需证明 $\pmb{Ax}&#x3D;\pmb{0}$ 的解只有零解即可。<br>对于上述方程任一非零解 $\pmb{c}&#x3D;(c_1,c_2,\cdots,c_n)$ ，总可以选出 $c_i&gt;0$ 使得 $|c_i|\geq |c_j| , j&#x3D;1,2,\cdots,n$，那么 $|a_{i1}c_1+a_{i2}c_2+\cdots + a_{in}c_n| \geq |a_{ii}||c_i| - \sum\limits_{j\neq i}|a_{ij}c_i|  \geq |c_i|(|a_{ii}|-\sum\limits_{j\neq i}|a_{ij}|)&gt;0$<br>所以$\pmb{Ax}&#x3D;\pmb{0}$只有零解，这就证明了我们的结论。</p>
+<p>(2)运用数学归纳法证明。<br>$n&#x3D;1$ 时， $|\pmb{A}|&#x3D;a_{11}&gt;0$ ，结论对 $n&#x3D;1$ 成立。<br>假设结论对 $n-1$ 成立，下面我们对 $n$ 证明结论。<br>取$A$的第一行$n$个代数余子式$A_{11},A_{12},\cdots,A_{1n}$，则有<br>$$a_{11}A_{11}+a_{12}A_{12}+\cdots+a_{1n}A_{1n}&#x3D;|\pmb{A}|$$<br>$$a_{i1}A_{11}+a_{i2}A_{12}+\cdots+a_{in}A_{1n}&#x3D;0, i\neq 1$$<br>由(1)有： $|A|\neq 0$ ，所以 $A_{11},\cdots,A_{1n}$ 至少有一个不为0。<br>下面我们证明 $|A_{11}|\geq|A_{1i}|,i&#x3D;1,2,3,\cdots n$。<br>事实上，假若存在 $i\neq 1$ ，使得 $|A_{1i}|\geq |A_{1j}|, j&#x3D;1,2,\cdots, n$，此时必然有$|A_{1i}|&gt;0$，则<br>$$0&#x3D;|a_{i1}A_{11}+a_{i2}A_{12}+\cdots+a_{in}A_{1n}| $$<br>$$\geq |a_{ii}||A_{1i}|-\sum\limits_{j\neq i}|a_{ij}||A_{1j}|$$<br>$$\geq |a_{ii}||A_{1i}|-\sum\limits_{j\neq i}|a_{ij}||A_{1i}|$$<br>$$&#x3D; |A_{1i}|-(|a_{ii}|-\sum\limits_{j\neq i}|a_{ij}|)&gt;0$$<br>矛盾了，所以 $|A_{11}|\geq|A_{1i}|,i&#x3D;1,2,3,\cdots n$。<br>由归纳假设有$A_{11}&gt;0$，故$a_{11}A_{11}&gt;0$，于是<br>所以 $|\pmb{A}|&#x3D;a_{11}A_{11}+\sum\limits_{i&#x3D;2}^n a_{1i}A_{1i}\geq a_{11}A_{11}-\sum\limits_{i&#x3D;2}^n|a_{1i}||A_{1i}|\geq (a_{11}-\sum\limits{i&#x3D;2}^n|a_{1i}|)A_{11}&gt;0$<br>这就完成了归纳法。</p>
+<p>注记：形如(1)类型的矩阵称为严格对角占优矩阵，事实上，对于对称的严格对角占优的矩阵，我们可以证明其一定是正定矩阵。<br>这类矩阵在数值分析中也有重要的作用，例如其可以进行LU分解，也可以进行Jacobi迭代和G-S迭代和$0 &lt;\omega \leq 1$的松弛迭代等。</p>
+<h2 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h2><p>这一章关于矩阵的零碎的定理与推论较多，下面列出一些重要的和容易遗忘的：</p>
+<p>1.关于矩阵的秩：<br>(1):$rank(\pmb{A}+\pmb{B})\leq rank(\pmb{A})+rank(\pmb{B})$<br>(2):$rank(\pmb{AB})\leq min(rank(\pmb{A}),rank(\pmb{B}))$<br>(3):如果 $\pmb{A} &#x3D; \pmb{A_1} \pmb{A_2} \cdots  \pmb{A_t}$，那么 $rank(\pmb{A})\leq \min\limits_{1\leq j\leq t }rank(\pmb{A}_j)$<br>(4):设$\pmb{A}$是$s\times n$矩阵，如果$\pmb{P}$是$s\times s$可逆矩阵，$\pmb{Q}$是$n\times n$可逆矩阵，那么$rank(\pmb{A})&#x3D;rank(\pmb{PA})&#x3D;rank(\pmb{AQ})$<br>(5):设$\pmb{A}$,$\pmb{B}$是$n\times n$矩阵，如果$\pmb{AB}&#x3D;\pmb{0}$，那么$rank(\pmb{A})+rank(\pmb{B}) \leq n$<br>(6):设$\pmb{A}$是$s\times n$矩阵，$\pmb{B}$是$n\times m$矩阵，则$rank(\pmb{AB})\geq rank(\pmb{A})+rank(\pmb{B})-n$<br>(7):$rank(\pmb{A}^*)&#x3D;\begin{cases}<br>n&amp; rank(\pmb{A})&#x3D;n \\<br>1&amp; rank(\pmb{A})&#x3D;n-1 \\<br>0&amp; rank(\pmb{A})&lt; n-1 \\<br>\end{cases}<br>$</p>
+<br>
+
+<p>2.关于逆矩阵：下面均假设矩阵可逆<br>(1):如果$|\pmb{A}|&#x3D;d$，那么$|\pmb{A}^{-1}|&#x3D;d^{-1}$<br>(2):如果矩阵$\pmb{A},\pmb{B}$可逆，那么$\pmb{A}’$和$\pmb{AB}$也可逆，且成立$(\pmb{A}’)^{-1}&#x3D;(\pmb{A}^{-1})’$，$(\pmb{AB})^{-1}&#x3D;\pmb{B}^{-1}\pmb{A}^{-1}$<br>(3): $\pmb{A}^{-1}&#x3D;\frac{1}{d}\pmb{A}^*$<br>(4): $|\pmb{A}^*|&#x3D;|\pmb{A}|^{n-1}$<br>(5): $(\pmb{A}^*)^*&#x3D;|\pmb{A}|^{n-2}\pmb{A}$</p>
+<br>
+
+<p>3.关于初等矩阵<br>(1):矩阵$\pmb{A}$与$\pmb{B}$称作等价的，如果$\pmb{B}$可以由$\pmb{A}$经过一系列初等变换得到。<br>(2):任何一$s\times n$矩阵都与一形式为 $\begin{pmatrix}<br>        \pmb{E}_r &amp;  0 \\<br>        0 &amp; 0 \\<br>\end{pmatrix}$等价，其中$r$是矩阵的秩。<br>(3):矩阵$\pmb{A}$与$\pmb{B}$等价的充要条件是有初等矩阵$\pmb{P}_1, \pmb{P}_2, \cdots, \pmb{P}_l, \pmb{Q}_1,\pmb{Q}_2\cdots,\pmb{Q}_t$，使得$\pmb{A}&#x3D;\pmb{P}_1 \pmb{P}_2 \cdots \pmb{P}_l \pmb{B} \pmb{Q}_1 \pmb{Q}_2 \cdots \pmb{Q}_t$<br>(4):两个$s\times n$矩阵$\pmb{A},\pmb{B}$等价的充要条件为，存在可逆的$s$级矩阵$\pmb{P}$和可逆的$n$级矩阵$\pmb{Q}$，使得$\pmb{A}&#x3D;\pmb{PBQ}$<br>(5):$n$级矩阵$\pmb{A}$可逆的充要条件为他能成一系列初等矩阵的乘积。</p>
+<br>
+
+<p>4.经典结论<br>(1):设$\pmb{A},\pmb{B}$分别是$n\times m, m\times n$矩阵，则：<br>$$\begin{vmatrix}<br>        \pmb{E}_m &amp;  \pmb{B} \\<br>        \pmb{A} &amp; \pmb{E}_n \\<br>\end{vmatrix}&#x3D;|\pmb{E}_n-\pmb{AB}|&#x3D;|\pmb{E}_m-\pmb{BA}|$$</p>
+<p>Cor:设$\pmb{A},\pmb{B}$分别是$n\times m, m\times n$矩阵，则：<br>$$|\lambda \pmb{E}_n-\pmb{AB}|&#x3D;\lambda^{n-m}|\lambda\pmb{E}_m-\pmb{BA}|$$<br>提示：考虑$|\pmb{E}_n-(\frac{\pmb{A}}{\lambda})\pmb{B}|$，再用(1).</p>
+<p>(2):设$\pmb{A}$为$2\times 2$矩阵，证明：如果$\exists l \geq 2,s.t. \pmb{A}^l&#x3D;\pmb{0}$，那么$\pmb{A}^2&#x3D;\pmb{0}$</p>
+<p>提示：分$rank(\pmb{A})&#x3D;0$或者$1$讨论，注意$rank(\pmb{A})&#x3D;1$时，有$\pmb{A}^2&#x3D;k\pmb{A}$</p>
+<p>注记：本题有许多种做法，一个经典的做法是使用Jordan型，由此可以推出$n$阶幂零矩阵的幂零指数不超过$n$。</p>
+<p>(3):设$\pmb{A}$为$n\times n$矩阵，证明：如果$\pmb{A}^2&#x3D;\pmb{E}$，那么$rank(\pmb{A}+\pmb{E})+rank(\pmb{A}-\pmb{E})&#x3D;n$</p>
+<p>提示：考虑$(\pmb A-\pmb{E})(\pmb{A}+\pmb{E})&#x3D;\pmb{0}$以及$(\pmb{A}+\pmb{E})+(\pmb{A}-\pmb{E})&#x3D;2\pmb{A}$</p>
+<h2 id="二次型"><a href="#二次型" class="headerlink" title="二次型"></a>二次型</h2><p>我们用对称矩阵的角度来看二次型。</p>
+<p>(1):合同关系<br>两个$n\times n$矩阵$\pmb A, \pmb B$称作合同的，如果有可逆的$n\times n$矩阵$\pmb{C}$，使得$\pmb{B}&#x3D;\pmb{C}’\pmb{AC}$。<br>合同关系是一个等价关系。<br>任意一个对称矩阵都合同于一个对角矩阵，即$\exists \pmb{C}$，使得$\pmb{C}’\pmb{AC}$是对角型矩阵。<br>注记：进一步的，我们可以要求$C$是正交的。</p>
+<br>
+
+<p>(2):规范形<br>任意一个复系数的对称矩阵$\pmb{A}$合同于一个形式为 $\begin{pmatrix}<br>        \pmb{E}_r &amp;  0 \\<br>        0 &amp; 0 \\<br>\end{pmatrix}$的对角矩阵，从而有任意两个复数对称矩阵合同的充要条件是他们的秩相等。</p>
+<p>任意一个实系数的对称矩阵$\pmb{A}$合同于一个形式为 $\begin{pmatrix}<br>        \pmb{E_p} &amp;  0 &amp; 0 \\<br>        0 &amp; -\pmb{E_{r-p}} &amp; 0 \\<br>        0 &amp; 0 &amp; 0 \\\end{pmatrix}$的对角矩阵，其中对角线上$1$的个数$p$和$-1$的个数$r-p$都是唯一确定的，分别称为$\pmb{A}$的正、负惯性指数，它们的差$2p-r$称做$A$的符号差。</p>
+<br>
+(3):正定性
+
+<p>1.实二次型$\pmb{X}’\pmb{AX}$是正定的充要条件是矩阵$A$的顺序主子式全大于零。</p>
+<p>2.实二次型$\pmb{X}’\pmb{AX}$，其中$A$是对称矩阵，则下面命题等价：<br>(1)$\pmb{X}’\pmb{AX}$ 是半正定的；<br>(2)它的正惯性指数与秩相等；<br>(3)有可逆实矩阵$\pmb{C}$，使得$\pmb{C}’\pmb{AC}&#x3D;diag\{d_1,d_2,\cdots, d_n\},d_i \geq 0, i&#x3D;1,2,\cdots n$；<br>(4)有实矩阵$\pmb{C}$，使得$\pmb{A}&#x3D;\pmb{C}’\pmb{C}$；<br>(5)$\pmb{A}$的所有主子式皆大于零或等于零。</p>
+<p>注记：在(5)中，不能只要求顺序主子式全大于或等于零。</p>
+<p>列出几个习题：</p>
+<p>(1):设$\pmb{A}$是反对称矩阵，证明：$\pmb{A}$合同于</p>
+<p>$$\begin{pmatrix}<br>        0  &amp; 1 \\<br>        -1 &amp; 0 \\<br>           &amp;   &amp; 0 &amp; 1 \\<br>           &amp;   &amp; -1&amp; 0 \\<br>           &amp;   &amp;   &amp;  &amp; \ddots \\<br>           &amp;   &amp;   &amp;  &amp;       &amp; 0 &amp; 1 \\<br>           &amp;   &amp;   &amp;  &amp;       &amp; -1&amp; 0 \\<br>           &amp;   &amp;   &amp;  &amp;       &amp;   &amp;  &amp; 0 \\<br>           &amp;   &amp;   &amp;  &amp;       &amp;   &amp;  &amp;  &amp; \ddots \\<br>           &amp;   &amp;   &amp;  &amp;       &amp;   &amp;  &amp;  &amp; &amp; 0\\<br>\end{pmatrix}$$</p>
+<p>提示：可以使用归纳法证明。</p>
+<br>
+
+<p>(2):证明$rank(\pmb{A}’\pmb{A})&#x3D;rank(\pmb{A})$</p>
+<p>提示：可以从$\pmb{A}’\pmb{A}\pmb{X}&#x3D;0$和$\pmb{AX}&#x3D;\pmb{0}$的解的角度考虑。</p>
+<br>
+<br>
+
+<p>先写这么多吧，后面五章看看有没有时间，有时间再写吧。</p>
+]]></content>
+      <categories>
+        <category>高等代数</category>
+      </categories>
+      <tags>
+        <tag>高等代数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>传递函数与干预分析模型复习</title>
+    <url>/2022/12/10/%E4%BC%A0%E9%80%92%E5%87%BD%E6%95%B0%E4%B8%8E%E5%B9%B2%E9%A2%84%E5%88%86%E6%9E%90%E6%A8%A1%E5%9E%8B%E5%A4%8D%E4%B9%A0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
   </entry>
 </search>
