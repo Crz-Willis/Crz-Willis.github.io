@@ -20,14 +20,17 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"crz-willis.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="article">
+    <meta name="description" content="复习传递函数与干预分析模型 参考书：经济预测与决策技术 武汉大学出版社 第四版">
+<meta property="og:type" content="article">
 <meta property="og:title" content="传递函数与干预分析模型复习">
 <meta property="og:url" content="https://crz-willis.github.io/2022/12/10/%E4%BC%A0%E9%80%92%E5%87%BD%E6%95%B0%E4%B8%8E%E5%B9%B2%E9%A2%84%E5%88%86%E6%9E%90%E6%A8%A1%E5%9E%8B%E5%A4%8D%E4%B9%A0/index.html">
 <meta property="og:site_name" content="Crz-Willis&#39;s blog">
+<meta property="og:description" content="复习传递函数与干预分析模型 参考书：经济预测与决策技术 武汉大学出版社 第四版">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-12-10T02:28:29.000Z">
-<meta property="article:modified_time" content="2022-12-10T02:28:30.000Z">
+<meta property="article:modified_time" content="2022-12-25T07:12:32.000Z">
 <meta property="article:author" content="Willis">
+<meta property="article:tag" content="经济预测技术">
 <meta name="twitter:card" content="summary">
 
 
@@ -87,7 +90,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fhome fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签<span class="badge">16</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类<span class="badge">12</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fhome fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签<span class="badge">17</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类<span class="badge">13</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -131,7 +134,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -144,6 +147,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BC%A0%E9%80%92%E5%87%BD%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">传递函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%A0%E9%80%92%E5%87%BD%E6%95%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">传递函数的基本模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%92%E5%8D%8F%E6%96%B9%E5%B7%AE%E4%B8%8E%E4%BA%92%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.2.</span> <span class="nav-text">互协方差与互相关函数的基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E4%BA%92%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="nav-number">1.3.</span> <span class="nav-text">一些互相关函数的例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%A0%E9%80%92%E5%87%BD%E6%95%B0%E6%A8%A1%E5%9E%8B%E7%9A%84%E8%AF%86%E5%88%AB%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.4.</span> <span class="nav-text">传递函数模型的识别步骤</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B9%B2%E9%A2%84%E6%A8%A1%E5%9E%8B%E5%88%86%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">干预模型分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%B2%E9%A2%84%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%BD%B1%E5%93%8D%E7%AA%81%E7%84%B6%E5%BC%80%E5%A7%8B%EF%BC%8C%E9%95%BF%E6%9C%9F%E6%8C%81%E7%BB%AD%E4%B8%8B%E5%8E%BB%E7%9A%84%E6%A8%A1%E5%9E%8B%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">干预事件的影响突然开始，长期持续下去的模型：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%B2%E9%A2%84%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%BD%B1%E5%93%8D%E9%80%90%E6%B8%90%E5%BC%80%E5%A7%8B%EF%BC%8C%E9%95%BF%E6%9C%9F%E6%8C%81%E7%BB%AD%E4%B8%8B%E5%8E%BB"><span class="nav-number">2.2.</span> <span class="nav-text">干预事件的影响逐渐开始，长期持续下去</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%B2%E9%A2%84%E7%AA%81%E7%84%B6%E5%BC%80%E5%A7%8B%E5%B8%A6%E6%9D%A5%E6%9A%82%E6%97%B6%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="nav-number">2.3.</span> <span class="nav-text">干预突然开始带来暂时的影响</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%B2%E9%A2%84%E9%80%90%E6%B8%90%E5%BC%80%E5%A7%8B%E4%BA%A7%E7%94%9F%E7%9F%AD%E6%9A%82%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="nav-number">2.4.</span> <span class="nav-text">干预逐渐开始产生短暂的影响</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -158,18 +162,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -250,9 +254,28 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2022-12-10 10:28:29 / 修改时间：10:28:30" itemprop="dateCreated datePublished" datetime="2022-12-10T10:28:29+08:00">2022-12-10</time>
+      <time title="创建时间：2022-12-10 10:28:29" itemprop="dateCreated datePublished" datetime="2022-12-10T10:28:29+08:00">2022-12-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-12-25 15:12:32" itemprop="dateModified" datetime="2022-12-25T15:12:32+08:00">2022-12-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BB%8F%E6%B5%8E%E9%A2%84%E6%B5%8B%E4%B8%8E%E5%86%B3%E7%AD%96/" itemprop="url" rel="index"><span itemprop="name">经济预测与决策</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BB%8F%E6%B5%8E%E9%A2%84%E6%B5%8B%E4%B8%8E%E5%86%B3%E7%AD%96/%E7%BB%8F%E6%B5%8E%E9%A2%84%E6%B5%8B%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">经济预测技术</span></a>
+        </span>
     </span>
 
   
@@ -272,7 +295,98 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        
+        <p>复习传递函数与干预分析模型</p>
+<p>参考书：经济预测与决策技术 武汉大学出版社 第四版</p>
+<span id="more"></span>
+
+<h1 id="传递函数"><a href="#传递函数" class="headerlink" title="传递函数"></a>传递函数</h1><h2 id="传递函数的基本模型"><a href="#传递函数的基本模型" class="headerlink" title="传递函数的基本模型"></a>传递函数的基本模型</h2><p>设$Y_t&#x3D;\nu(B)X_t+e_t$，这里</p>
+<p>$Y_t$为输出序列，是因变量<br>$X_t$为输入序列，是解释变量<br>$e_t$为噪声。</p>
+<p>$\nu(B)$是一个算子多项式，$B$是一个后移算子，$\nu_0,\nu_1,\cdots$称为脉冲响应权或传递函数的权，$e_t$是一个随机变量，其均值为0，方差固定，而且与$X_t,X_{t-1},\cdots$独立。</p>
+<p>$X_t$在模型中不仅是解释变量，而且时间上对$Y_t$上来说，还是一个领先指标。例如，广告费用支出$X_t$将影响销售收入$Y_{t+k},Y_{t_k+1}$等等，也就是说，$X_t$对$Y_t$的影响提前$k$个时期。</p>
+<p>但是算子多项式$\nu(B)$有无限多项，不符合节省的建模原则。对此，Jorgenson指出：在某些一般性的条件下，可以用算子$B$的两个有限的有理多项式之比来估计$\nu(B)$，即</p>
+<p>$\nu(B)&#x3D;\frac{\omega(B)}{\delta(B)}$<br>$\omega(B)&#x3D;\omega_0-\omega_1 B - \cdots - \omega_s B^s$<br>$\delta(B)&#x3D;1-\delta_1 B - \cdots - \delta_r B^r$</p>
+<p>设$b$为$X_t$对$Y_t$影响的超前时期，那么传递函数模型就可以写成$Y_t&#x3D;\frac{\omega(B)}{\delta(B)}X_{t-b}+e_t$</p>
+<p>但是$e_t$不一定是白噪声，但是假定$e_t$是同解释变量$X_t$是统计独立的，因而用$ARMA(p,q)$模型去表示$e_t$是完全有可能的，即是有$\nabla^d e_t &#x3D; \frac{\theta(B)}{\varphi(B)}a_t$，$\nabla^d$是$d$阶连续差分算子。<br>引入他的目的在于使$e(t)$满足平稳性，$a_t$是白噪声，$\varphi(B)$与$\theta(B)$分别满足平稳性与可逆性条件。</p>
+<p>这样传递函数模型就可以写成：</p>
+<p>$$y_t &#x3D; \frac{\omega(B)}{\delta(B)}x_{t-b}+\frac{\theta(B)}{\varphi(B)}a_t$$</p>
+<p>其中<br>$y_t&#x3D;\nabla ^{d’}Y_t,x_t&#x3D;\nabla ^d X_t$，均表示为平稳的随机过程。<br>$d’$是使$y_t$平稳的连续差分算子的阶数，$d$是使$X_t$平稳的连续差分算子的阶数。<br>并且为了满足平稳性与可逆性条件，$\omega_i(B),\delta_i(B),\varphi(B),\theta(B)$的跟均在单位圆外。</p>
+<p>完整的传递函数模型如下：</p>
+<img src=1.jpg width="50%">
+
+
+<p>上述模型可以推广到含多个解释变量的情况，因而更一般的传递函数模型可以写成：</p>
+<p>$$y_t&#x3D;\sum\limits_{i&#x3D;1}^m \frac{\omega_i(B)}{\delta_i(B)}x_{it-b}+\frac{\theta(B)}{\varphi(B)}a_t$$</p>
+<p>这里$m$是解释变量的个数。同时假定$\omega_i(B),\delta_i(B),\varphi(B),\theta(B)$的根都在单位圆外。</p>
+<h2 id="互协方差与互相关函数的基本概念"><a href="#互协方差与互相关函数的基本概念" class="headerlink" title="互协方差与互相关函数的基本概念"></a>互协方差与互相关函数的基本概念</h2><p>设$x_t,y_t$是平稳序列，$x_t$是输入，$y_t$是输出。已知$Ex_t &#x3D; m_x, Ey_t &#x3D; m_y$</p>
+<p>则称$r_{xy}(k)&#x3D;E(x_t-m_x)(y_{t+k}-m_y)$为平稳序列$x_t$与$y_t$的互协方差函数。</p>
+<p>互协方差函数和自协方差函数有很大的区别，例如互协方差函数$r_{xy}(k)$没有关于$k$的对称性，即$r_{xy}(k) \neq r_{xy}(-k)$</p>
+<p>两平稳序列的互相关函数是由互协方差函数定义的，记为$\rho_{xy}(k)$</p>
+<p>$$\rho_{xy}(k)&#x3D;\frac{r_{xy}(k)}{\sigma_x \sigma_y} , k&#x3D;0,\pm 1,\pm 2,\cdots$$</p>
+<p>我们不仅关注理论上的两个变量之间的互协方差和互相关，更关心样本互协方差和互相关，样本互协方差定义为</p>
+<p>$$\hat{r_{xy}}(k) &#x3D; \begin{cases}<br>\frac{1}{n} \sum_{t&#x3D;1}^{n-k} (x_t - \bar{x})(y_{t+k}-\bar{y}) &amp; k&#x3D;0,1,2,\cdots  \\<br>\frac{1}{n} \sum_{t&#x3D;1-k}^{n} (x_t - \bar{x})(y_{t+k}-\bar{y}) &amp; k&#x3D;-1,-2,\cdots \\<br>\end{cases}$$</p>
+<p>这里$\bar{x},\bar{y}$是样本$x_t,y_t$的均值，$n$是原始数据经过差分运算化为平稳数据的有效观测数据数，由此，得到样本的互相关函数为<br>$$\hat{\rho_{xy}}(k)&#x3D;\frac{\hat{r_{xy}}(k)}{S_xS_y}$$<br>其中$S_x,S_y$分别表示$x_t,y_t$的样本标准差</p>
+<p>回忆：样本标准差$S&#x3D;\sqrt{\frac{1}{n-1}\sum\limits_{k&#x3D;1}^n(x_k - \bar{x})^2}$</p>
+<h2 id="一些互相关函数的例子"><a href="#一些互相关函数的例子" class="headerlink" title="一些互相关函数的例子"></a>一些互相关函数的例子</h2><p>下面均假设$x_t,y_t$是零均值的平稳随机序列，以及输入$x_t$与未来噪声$e_{t+k}$不相关，即$Ex_te_{t+k}&#x3D;0,k&gt;0$。</p>
+<p>eg1:设$x_t$是白噪声，满足$y_t &#x3D; \omega_0x_{t-b}+e_t$，$e_t$是误差，$x_t$与未来的误差$e_{t+k}$无关，计算$x_t$和$y_t$的互协方差函数与互相关函数。</p>
+<p>$r_{xy}(k)&#x3D;Ex_ty_{t+k}&#x3D;E x_t(\omega_0x_{t+k-b}+e_{t+k})&#x3D;\omega_0Ex_tx_{t+k-b}$</p>
+<p>由于$x_t$是白噪声，故协方差函数为：</p>
+<p>$$r_{xy}(k)&#x3D;\begin{cases}<br>\omega_0 \sigma_x^2 &amp; k&#x3D;b  \\<br>0 &amp; otherwise \\<br>\end{cases}$$</p>
+<p>$\sigma_x^2$是$x_t$的方差，其互相关函数为</p>
+<p>$$\rho_{xy}(k)&#x3D;\begin{cases}<br>\omega_0 \frac{\sigma_x}{\sigma_y} &amp; k&#x3D;b  \\<br>0 &amp; otherwise \\<br>\end{cases}$$</p>
+<p>eg2:计算$y_t&#x3D;\frac{\omega_0}{1-\delta_1B}x_{t-b}+e_t$的互协方差和互相关</p>
+<p>若$|\delta_1|&lt;1$，可将此模型写成无穷序列和的形式</p>
+<p>$$y_t&#x3D;\omega_0\sum_{i&#x3D;0}^\infty \delta_1^ix_{t-b-i}+e_t$$</p>
+<p>则互协方差函数$r_{xy}(k)$可写成</p>
+<p>$$r_{xy}(k)&#x3D;Ex_t(\omega_0\sum_{i&#x3D;0}^\infty \delta_1^ix_{t+k-b-i})$$</p>
+<p>由于$x_t$与$e_{t+k}$无关，且$x_t$是白噪声，故</p>
+<p>$$r_{xy}(k)&#x3D;E(\omega_0 \sum_{i&#x3D;0}^\infty \delta_1^i x_t x_{t+k-b-i}) &#x3D; \omega_0E_tx_{t+k-b}+\omega_0 \delta_1 Ex_tx_{t+k-b-1} + \cdots $$</p>
+<p>因此有</p>
+<p>$$r_{xy}(k)&#x3D;\begin{cases}<br>0 &amp; k&lt;b \\<br>\omega_0 \sigma_x^2 &amp; k&#x3D;b  \\<br>\omega_0 \delta_1^j \sigma_x^2  &amp; k&#x3D;b+j, j&gt;0 \\<br>\end{cases}$$</p>
+<p>$$\rho_{xy}(k)&#x3D;\begin{cases}<br>0 &amp; k&lt;b \\<br>\omega_0 \frac{\sigma_x}{\sigma_y} &amp; k&#x3D;b  \\<br>\omega_0 \delta_1^j \frac{\sigma_x}{\sigma_y}  &amp; k&#x3D;b+j, j&gt;0 \\<br>\end{cases}$$</p>
+<p>eg3:计算$y_t &#x3D; \omega_0 x_{t-b} - \omega_1x_{t-b-1}+e_t$的互协方差和互相关</p>
+<p>$r_{xy}(k)&#x3D;Ex_t(\omega_0x_{t+k-b} - \omega_1 x_{t+k-b-1} + e_{t+k}) &#x3D; \omega_0Ex_tx_{t+k-b} - \omega_1 Ex_t x_{t+k-b-1}$</p>
+<p>因此有</p>
+<p>$$r_{xy}(k)&#x3D;\begin{cases}<br>\omega_0 \sigma_x^2 &amp; k&#x3D;b  \\<br>-\omega_1  \sigma_x^2  &amp; k&#x3D;b+1 \\<br>0 &amp; otherwise \\<br>\end{cases}$$</p>
+<p>$$\rho_{xy}(k)&#x3D;\begin{cases}<br>\omega_0 \frac{\sigma_x}{\sigma_y} &amp; k&#x3D;b  \\<br>-\omega_1  \frac{\sigma_x}{\sigma_y}  &amp; k&#x3D;b+1 \\<br>0 &amp; otherwise \\<br>\end{cases}$$</p>
+<p>eg4:计算$y_0&#x3D;\frac{\omega_0-\omega_1B}{1-\delta_1B}x_{t-b}+e_t$的互协方差和互相关函数</p>
+<p>上式可以拆为:$y_0 &#x3D; \frac{\omega_0}{1-\delta_1B}x_{t-b} - \frac{\omega_1}{1-\delta_1B} x_{t-b-1} + e_t &#x3D; \omega_0 \sum\limits_{i&#x3D;0}^\infty \delta_1^i x_{t-b-i} + \omega_1 \sum\limits_{i&#x3D;0}^\infty \delta_1^i x_{t-b-i-1} + e_t$</p>
+<p>$r_{xy}(k)&#x3D;E\omega_0x_t\sum\limits_{i&#x3D;0}^\infty \delta_1^i x_{t+k-b-i} - E\omega_1x_t \sum\limits_{i&#x3D;0}^\infty x_{t+k-b-i-1}$</p>
+<p>因此有<br>$$r_{xy}(k)&#x3D;\begin{cases}<br>0 &amp; k&lt;b \\<br>\omega_0 \sigma_x^2 &amp; k&#x3D;b  \\<br>\omega_0 \delta_1 \sigma_x^2-\omega_1  \sigma_x^2  &amp; k&#x3D;b+1 \\<br>\omega_0 \delta_1^j\sigma_x^2 - \omega_1 \delta_1^{j-1}\sigma_x^2 &amp; k&#x3D;b+j,j&gt;0<br>\end{cases}$$</p>
+<p>$$\rho_{xy}(k)&#x3D;\begin{cases}<br>0 &amp; k&lt;b \\<br>\omega_0 \frac{\sigma_x}{\sigma_y} &amp; k&#x3D;b  \\<br>\omega_0 \delta_1 \frac{\sigma_x}{\sigma_y}-\omega_1  \frac{\sigma_x}{\sigma_y}  &amp; k&#x3D;b+1 \\<br>\omega_0 \delta_1^j\frac{\sigma_x}{\sigma_y} - \omega_1 \delta_1^{j-1}\frac{\sigma_x}{\sigma_y}&amp; k&#x3D;b+j,j&gt;0<br>\end{cases}$$</p>
+<h2 id="传递函数模型的识别步骤"><a href="#传递函数模型的识别步骤" class="headerlink" title="传递函数模型的识别步骤"></a>传递函数模型的识别步骤</h2><p>step1:对原始的输入输出序列进行平稳性处理<br>step2:白化输入序列与漂白输出序列<br>step3:计算白化序列$\alpha_t$与漂白序列$\beta_t$的互相关<br>step4:估计脉冲响应权<br>step5:对$(r,s,b)$的识别<br>step6:噪声序列$e_t$的计算<br>step7:对噪声序列$e_t$进行识别，建立$ARMA(p,q)$模型</p>
+<h1 id="干预模型分析"><a href="#干预模型分析" class="headerlink" title="干预模型分析"></a>干预模型分析</h1><p>干预分析模型的基本变量都是干预变量，它由阶跃函数和点函数表示，即</p>
+<p>$$S_t^T &#x3D;\begin{cases}<br>0 &amp; 干预事件发生之前，即当t&lt;T时 \\<br>1 &amp; 干预事件发生之后，即当t \ge T时<br>\end{cases}$$</p>
+<img src=2.jpg width="30%">
+
+<p>这种干预变量一旦发生，就会长期产生影响，故称这种变量为持续的干预变量。</p>
+<p>但是，有些干预影响只有暂时性，而无持续性</p>
+<p>例如：某种促销广告，进在某一段时间内影响销售量，这种干预变量可表示为：</p>
+<p>$$P_t^T &#x3D;\begin{cases}<br>0 &amp; 干预事件发生之前，即当t&#x3D;T时 \\<br>1 &amp; 干预事件发生之后，即当t \ne T时<br>\end{cases}$$</p>
+<img src=3.jpg width="30%">
+
+<p>上述两类干预变量虽然表示形式不同，但是他们之间有如下的内在联系，即$(1-B)S_t^T &#x3D; P_t^T$</p>
+<p>这里的$B$是后移算子，有$BS_t^T &#x3D; S_{t-1}^T$</p>
+<h2 id="干预事件的影响突然开始，长期持续下去的模型："><a href="#干预事件的影响突然开始，长期持续下去的模型：" class="headerlink" title="干预事件的影响突然开始，长期持续下去的模型："></a>干预事件的影响突然开始，长期持续下去的模型：</h2><p>设干预对因变量的影响是固定的，从某一时刻$T$开始，但影响的程度是未知的，单因变量的大小是位置的。这种影响可以概括为以下的干预模型：<br>$$Y_t &#x3D; \omega S_t^T$$<br>这里的$Y_t$是干预的输出，$\omega$是位置参数。值得注意的是有的时候$Y_t$不一定是平稳的，而且要求通过差分化为平稳，这样就把干预模型调整为<br>$$(1-B)Y_t &#x3D; \omega S_t^T$$<br>有的时候不一定干预出现就立即产生影响，甚至要滞后若干个时期才产生影响，如$b$个时期，那么模型就可以修改为<br>$$Y_t &#x3D; \omega B^bS_t^T$$</p>
+<img src=4.jpg width="30%">
+
+
+<h2 id="干预事件的影响逐渐开始，长期持续下去"><a href="#干预事件的影响逐渐开始，长期持续下去" class="headerlink" title="干预事件的影响逐渐开始，长期持续下去"></a>干预事件的影响逐渐开始，长期持续下去</h2><p>有的时候干预事件突然发生，并不能立刻产生完全的影响，而是随着时间的推移，逐渐地感到这种影响的存在，其模型方程如下：<br>$$Y_t &#x3D; \frac{\omega B}{1-\delta B}S_t^T$$</p>
+<img src=5.jpg width="30%">
+
+<p>更一般的模型是：<br>$$Y_t &#x3D; \frac{\omega B^b}{1-\delta_1B - \cdots - \delta_rB^r} S_t^T$$</p>
+<h2 id="干预突然开始带来暂时的影响"><a href="#干预突然开始带来暂时的影响" class="headerlink" title="干预突然开始带来暂时的影响"></a>干预突然开始带来暂时的影响</h2><p>在广告对销售量的实例中，我们注意到如下事实：在广告促销活动开始后的第某个月，例如在第$b$个月，销售量突然上升，此后影响逐渐减弱，直到消失，这类干预现象可以用数学模型描述如下：</p>
+<p>$$Y_t &#x3D; \frac{\omega B^b}{1-\delta B} P_t^T$$</p>
+<p>当$\delta&#x3D;0$的时候，干预的影响只存在一个时期；当$\delta&#x3D;1$时，干预的影响将长期存在。</p>
+<img src=6.jpg width="30%">
+
+<p>若在逐渐地降低冲击影响之后期望一个持久的影响，干预模型则有如下的形式：</p>
+<p>$$Y_t &#x3D; (\frac{\omega_1 B}{1-\delta B} + \frac{\omega_2 B}{1-B}) P_t^T$$</p>
+<img src=7.jpg width="30%">
+
+<h2 id="干预逐渐开始产生短暂的影响"><a href="#干预逐渐开始产生短暂的影响" class="headerlink" title="干预逐渐开始产生短暂的影响"></a>干预逐渐开始产生短暂的影响</h2><p>干预的影响逐渐增加，在某个时刻达到高峰，然后又逐以减弱以致消失。这类干预现象可以用以下模型去描绘：</p>
+<p>$$Y_t &#x3D; \frac{\omega_0}{1-\delta_1B - \cdots - \delta_r B^r} P_t^T$$</p>
+<p>$r$的值一般大于等于2，因为$r&#x3D;1$不能描绘和模拟此模型。</p>
+<img src=8.jpg width="30%">
     </div>
 
     
@@ -280,6 +394,9 @@
     
 
     <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%BB%8F%E6%B5%8E%E9%A2%84%E6%B5%8B%E6%8A%80%E6%9C%AF/" rel="tag"># 经济预测技术</a>
+          </div>
 
         
 
@@ -290,6 +407,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2022/12/22/%E7%BB%8F%E6%B5%8E%E9%A2%84%E6%B5%8B%E5%A4%8D%E4%B9%A0/" rel="next" title="经济预测复习">
+                  经济预测复习 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>

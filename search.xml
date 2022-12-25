@@ -3,7 +3,7 @@
   <entry>
     <title>ICPC 2022 沈阳游记</title>
     <url>/2022/11/11/icpc-shenyang-2022/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>本以为要退役了，没想到才刚刚开始</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>圆满下班</p>
 <span id="more"></span>
 
 <h1 id="inf-Days-before-Day-inf"><a href="#inf-Days-before-Day-inf" class="headerlink" title="inf Days before Day -inf"></a>inf Days before Day -inf</h1><p>由于我的算法竞赛中还没有一块金牌，所以决定这个学期再打两站（ICPC沈阳和CCPC广州），想再冲一冲。</p>
@@ -197,7 +197,8 @@
 
 
 <p><img src="/2022/10/30/what/1.JPG"></p>
-<p><img src="/2022/10/30/what/5.PNG"></p>
+<img src=5.PNG width="80%">
+
 <h1 id="一些常用的"><a href="#一些常用的" class="headerlink" title="一些常用的"></a>一些常用的</h1><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
@@ -230,6 +231,7 @@
 <td></td>
 </tr>
 </tbody></table>
+<p><font color="#dd0000"> abc</font></p>
 ]]></content>
   </entry>
   <entry>
@@ -333,7 +335,7 @@
 <p>参考书：经济预测与决策技术 武汉大学出版社 第六版</p>
 <span id="more"></span>
 
-<h1 id="决策学概论"><a href="#决策学概论" class="headerlink" title="决策学概论"></a>决策学概论</h1><h2 id="决策的概念及决策应遵循的基本原则："><a href="#决策的概念及决策应遵循的基本原则：" class="headerlink" title="决策的概念及决策应遵循的基本原则："></a>决策的概念及决策应遵循的基本原则：</h2><p>我们认为决策有侠义和广义之分。狭义地理解就是通常所讲的对未来事物所做的决定，仅限于对不同方案选出最佳方案；广义地理解就是把决策看作一个管理过程，是人们为了实现特定的目标，运用科学的理论与方法，系统地分析主客观条件，提出各种预选方案，从中选出最佳方案，并对最佳方案的实施进行监控，掌握决策的实施情况，强调系统的优化。</p>
+<h1 id="决策学概论"><a href="#决策学概论" class="headerlink" title="决策学概论"></a>决策学概论</h1><h2 id="决策的概念及决策应遵循的基本原则："><a href="#决策的概念及决策应遵循的基本原则：" class="headerlink" title="决策的概念及决策应遵循的基本原则："></a>决策的概念及决策应遵循的基本原则：</h2><p>我们认为决策有狭义和广义之分。狭义地理解就是通常所讲的对未来事物所做的决定，仅限于对不同方案选出最佳方案；广义地理解就是把决策看作一个管理过程，是人们为了实现特定的目标，运用科学的理论与方法，系统地分析主客观条件，提出各种预选方案，从中选出最佳方案，并对最佳方案的实施进行监控，掌握决策的实施情况，强调系统的优化。</p>
 <p>不管是狭义的决策还是广义的决策，都主张决策必须遵从一些基本的原则。这些原则是：</p>
 <ol>
 <li><p>最优化原则</p>
@@ -602,12 +604,12 @@
 <p>计算出结果如下：</p>
 <img src=19.jpg width="50%">
 
-<p>可以看出$\min E(D_2) &lt; 0 , ~~ \min E(D_3) &lt; 0$，所以方案$A_2,A_1$对方案3都有严优势</p>
+<p>可以看出$\min E(D_2) &gt; 0 , ~~ \min E(D_3) &gt; 0$，所以方案$A_2,A_1$对方案3都有严优势</p>
 <p>另外，$\max E(D_1) &lt; 0$，所以$\min E(A_2 - A_1) &#x3D; -\max E(D_2) &gt;0$</p>
 <p>因此在概率严排序的规则下，$A_2对A_1$也有严优势。</p>
 <p>最优方案即为$A_2$</p>
 <h4 id="弱优势条件"><a href="#弱优势条件" class="headerlink" title="弱优势条件"></a>弱优势条件</h4><p>对于方案$D&#x3D;A_1-A_2$和$D’&#x3D;A_2-A_1$</p>
-<p>若$\max E(D) &gt; \max E(D”)$，则称方案$A_1$对方案$A_2$有弱优势。</p>
+<p>若$\max E(D) &gt; \max E(D’)$，则称方案$A_1$对方案$A_2$有弱优势。</p>
 <p>例子</p>
 <img src=20.jpg width="50%">
 
@@ -1288,6 +1290,326 @@
   <entry>
     <title>传递函数与干预分析模型复习</title>
     <url>/2022/12/10/%E4%BC%A0%E9%80%92%E5%87%BD%E6%95%B0%E4%B8%8E%E5%B9%B2%E9%A2%84%E5%88%86%E6%9E%90%E6%A8%A1%E5%9E%8B%E5%A4%8D%E4%B9%A0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>复习传递函数与干预分析模型</p>
+<p>参考书：经济预测与决策技术 武汉大学出版社 第四版</p>
+<span id="more"></span>
+
+<h1 id="传递函数"><a href="#传递函数" class="headerlink" title="传递函数"></a>传递函数</h1><h2 id="传递函数的基本模型"><a href="#传递函数的基本模型" class="headerlink" title="传递函数的基本模型"></a>传递函数的基本模型</h2><p>设$Y_t&#x3D;\nu(B)X_t+e_t$，这里</p>
+<p>$Y_t$为输出序列，是因变量<br>$X_t$为输入序列，是解释变量<br>$e_t$为噪声。</p>
+<p>$\nu(B)$是一个算子多项式，$B$是一个后移算子，$\nu_0,\nu_1,\cdots$称为脉冲响应权或传递函数的权，$e_t$是一个随机变量，其均值为0，方差固定，而且与$X_t,X_{t-1},\cdots$独立。</p>
+<p>$X_t$在模型中不仅是解释变量，而且时间上对$Y_t$上来说，还是一个领先指标。例如，广告费用支出$X_t$将影响销售收入$Y_{t+k},Y_{t_k+1}$等等，也就是说，$X_t$对$Y_t$的影响提前$k$个时期。</p>
+<p>但是算子多项式$\nu(B)$有无限多项，不符合节省的建模原则。对此，Jorgenson指出：在某些一般性的条件下，可以用算子$B$的两个有限的有理多项式之比来估计$\nu(B)$，即</p>
+<p>$\nu(B)&#x3D;\frac{\omega(B)}{\delta(B)}$<br>$\omega(B)&#x3D;\omega_0-\omega_1 B - \cdots - \omega_s B^s$<br>$\delta(B)&#x3D;1-\delta_1 B - \cdots - \delta_r B^r$</p>
+<p>设$b$为$X_t$对$Y_t$影响的超前时期，那么传递函数模型就可以写成$Y_t&#x3D;\frac{\omega(B)}{\delta(B)}X_{t-b}+e_t$</p>
+<p>但是$e_t$不一定是白噪声，但是假定$e_t$是同解释变量$X_t$是统计独立的，因而用$ARMA(p,q)$模型去表示$e_t$是完全有可能的，即是有$\nabla^d e_t &#x3D; \frac{\theta(B)}{\varphi(B)}a_t$，$\nabla^d$是$d$阶连续差分算子。<br>引入他的目的在于使$e(t)$满足平稳性，$a_t$是白噪声，$\varphi(B)$与$\theta(B)$分别满足平稳性与可逆性条件。</p>
+<p>这样传递函数模型就可以写成：</p>
+<p>$$y_t &#x3D; \frac{\omega(B)}{\delta(B)}x_{t-b}+\frac{\theta(B)}{\varphi(B)}a_t$$</p>
+<p>其中<br>$y_t&#x3D;\nabla ^{d’}Y_t,x_t&#x3D;\nabla ^d X_t$，均表示为平稳的随机过程。<br>$d’$是使$y_t$平稳的连续差分算子的阶数，$d$是使$X_t$平稳的连续差分算子的阶数。<br>并且为了满足平稳性与可逆性条件，$\omega_i(B),\delta_i(B),\varphi(B),\theta(B)$的跟均在单位圆外。</p>
+<p>完整的传递函数模型如下：</p>
+<img src=1.jpg width="50%">
+
+
+<p>上述模型可以推广到含多个解释变量的情况，因而更一般的传递函数模型可以写成：</p>
+<p>$$y_t&#x3D;\sum\limits_{i&#x3D;1}^m \frac{\omega_i(B)}{\delta_i(B)}x_{it-b}+\frac{\theta(B)}{\varphi(B)}a_t$$</p>
+<p>这里$m$是解释变量的个数。同时假定$\omega_i(B),\delta_i(B),\varphi(B),\theta(B)$的根都在单位圆外。</p>
+<h2 id="互协方差与互相关函数的基本概念"><a href="#互协方差与互相关函数的基本概念" class="headerlink" title="互协方差与互相关函数的基本概念"></a>互协方差与互相关函数的基本概念</h2><p>设$x_t,y_t$是平稳序列，$x_t$是输入，$y_t$是输出。已知$Ex_t &#x3D; m_x, Ey_t &#x3D; m_y$</p>
+<p>则称$r_{xy}(k)&#x3D;E(x_t-m_x)(y_{t+k}-m_y)$为平稳序列$x_t$与$y_t$的互协方差函数。</p>
+<p>互协方差函数和自协方差函数有很大的区别，例如互协方差函数$r_{xy}(k)$没有关于$k$的对称性，即$r_{xy}(k) \neq r_{xy}(-k)$</p>
+<p>两平稳序列的互相关函数是由互协方差函数定义的，记为$\rho_{xy}(k)$</p>
+<p>$$\rho_{xy}(k)&#x3D;\frac{r_{xy}(k)}{\sigma_x \sigma_y} , k&#x3D;0,\pm 1,\pm 2,\cdots$$</p>
+<p>我们不仅关注理论上的两个变量之间的互协方差和互相关，更关心样本互协方差和互相关，样本互协方差定义为</p>
+<p>$$\hat{r_{xy}}(k) &#x3D; \begin{cases}<br>\frac{1}{n} \sum_{t&#x3D;1}^{n-k} (x_t - \bar{x})(y_{t+k}-\bar{y}) &amp; k&#x3D;0,1,2,\cdots  \\<br>\frac{1}{n} \sum_{t&#x3D;1-k}^{n} (x_t - \bar{x})(y_{t+k}-\bar{y}) &amp; k&#x3D;-1,-2,\cdots \\<br>\end{cases}$$</p>
+<p>这里$\bar{x},\bar{y}$是样本$x_t,y_t$的均值，$n$是原始数据经过差分运算化为平稳数据的有效观测数据数，由此，得到样本的互相关函数为<br>$$\hat{\rho_{xy}}(k)&#x3D;\frac{\hat{r_{xy}}(k)}{S_xS_y}$$<br>其中$S_x,S_y$分别表示$x_t,y_t$的样本标准差</p>
+<p>回忆：样本标准差$S&#x3D;\sqrt{\frac{1}{n-1}\sum\limits_{k&#x3D;1}^n(x_k - \bar{x})^2}$</p>
+<h2 id="一些互相关函数的例子"><a href="#一些互相关函数的例子" class="headerlink" title="一些互相关函数的例子"></a>一些互相关函数的例子</h2><p>下面均假设$x_t,y_t$是零均值的平稳随机序列，以及输入$x_t$与未来噪声$e_{t+k}$不相关，即$Ex_te_{t+k}&#x3D;0,k&gt;0$。</p>
+<p>eg1:设$x_t$是白噪声，满足$y_t &#x3D; \omega_0x_{t-b}+e_t$，$e_t$是误差，$x_t$与未来的误差$e_{t+k}$无关，计算$x_t$和$y_t$的互协方差函数与互相关函数。</p>
+<p>$r_{xy}(k)&#x3D;Ex_ty_{t+k}&#x3D;E x_t(\omega_0x_{t+k-b}+e_{t+k})&#x3D;\omega_0Ex_tx_{t+k-b}$</p>
+<p>由于$x_t$是白噪声，故协方差函数为：</p>
+<p>$$r_{xy}(k)&#x3D;\begin{cases}<br>\omega_0 \sigma_x^2 &amp; k&#x3D;b  \\<br>0 &amp; otherwise \\<br>\end{cases}$$</p>
+<p>$\sigma_x^2$是$x_t$的方差，其互相关函数为</p>
+<p>$$\rho_{xy}(k)&#x3D;\begin{cases}<br>\omega_0 \frac{\sigma_x}{\sigma_y} &amp; k&#x3D;b  \\<br>0 &amp; otherwise \\<br>\end{cases}$$</p>
+<p>eg2:计算$y_t&#x3D;\frac{\omega_0}{1-\delta_1B}x_{t-b}+e_t$的互协方差和互相关</p>
+<p>若$|\delta_1|&lt;1$，可将此模型写成无穷序列和的形式</p>
+<p>$$y_t&#x3D;\omega_0\sum_{i&#x3D;0}^\infty \delta_1^ix_{t-b-i}+e_t$$</p>
+<p>则互协方差函数$r_{xy}(k)$可写成</p>
+<p>$$r_{xy}(k)&#x3D;Ex_t(\omega_0\sum_{i&#x3D;0}^\infty \delta_1^ix_{t+k-b-i})$$</p>
+<p>由于$x_t$与$e_{t+k}$无关，且$x_t$是白噪声，故</p>
+<p>$$r_{xy}(k)&#x3D;E(\omega_0 \sum_{i&#x3D;0}^\infty \delta_1^i x_t x_{t+k-b-i}) &#x3D; \omega_0E_tx_{t+k-b}+\omega_0 \delta_1 Ex_tx_{t+k-b-1} + \cdots $$</p>
+<p>因此有</p>
+<p>$$r_{xy}(k)&#x3D;\begin{cases}<br>0 &amp; k&lt;b \\<br>\omega_0 \sigma_x^2 &amp; k&#x3D;b  \\<br>\omega_0 \delta_1^j \sigma_x^2  &amp; k&#x3D;b+j, j&gt;0 \\<br>\end{cases}$$</p>
+<p>$$\rho_{xy}(k)&#x3D;\begin{cases}<br>0 &amp; k&lt;b \\<br>\omega_0 \frac{\sigma_x}{\sigma_y} &amp; k&#x3D;b  \\<br>\omega_0 \delta_1^j \frac{\sigma_x}{\sigma_y}  &amp; k&#x3D;b+j, j&gt;0 \\<br>\end{cases}$$</p>
+<p>eg3:计算$y_t &#x3D; \omega_0 x_{t-b} - \omega_1x_{t-b-1}+e_t$的互协方差和互相关</p>
+<p>$r_{xy}(k)&#x3D;Ex_t(\omega_0x_{t+k-b} - \omega_1 x_{t+k-b-1} + e_{t+k}) &#x3D; \omega_0Ex_tx_{t+k-b} - \omega_1 Ex_t x_{t+k-b-1}$</p>
+<p>因此有</p>
+<p>$$r_{xy}(k)&#x3D;\begin{cases}<br>\omega_0 \sigma_x^2 &amp; k&#x3D;b  \\<br>-\omega_1  \sigma_x^2  &amp; k&#x3D;b+1 \\<br>0 &amp; otherwise \\<br>\end{cases}$$</p>
+<p>$$\rho_{xy}(k)&#x3D;\begin{cases}<br>\omega_0 \frac{\sigma_x}{\sigma_y} &amp; k&#x3D;b  \\<br>-\omega_1  \frac{\sigma_x}{\sigma_y}  &amp; k&#x3D;b+1 \\<br>0 &amp; otherwise \\<br>\end{cases}$$</p>
+<p>eg4:计算$y_0&#x3D;\frac{\omega_0-\omega_1B}{1-\delta_1B}x_{t-b}+e_t$的互协方差和互相关函数</p>
+<p>上式可以拆为:$y_0 &#x3D; \frac{\omega_0}{1-\delta_1B}x_{t-b} - \frac{\omega_1}{1-\delta_1B} x_{t-b-1} + e_t &#x3D; \omega_0 \sum\limits_{i&#x3D;0}^\infty \delta_1^i x_{t-b-i} + \omega_1 \sum\limits_{i&#x3D;0}^\infty \delta_1^i x_{t-b-i-1} + e_t$</p>
+<p>$r_{xy}(k)&#x3D;E\omega_0x_t\sum\limits_{i&#x3D;0}^\infty \delta_1^i x_{t+k-b-i} - E\omega_1x_t \sum\limits_{i&#x3D;0}^\infty x_{t+k-b-i-1}$</p>
+<p>因此有<br>$$r_{xy}(k)&#x3D;\begin{cases}<br>0 &amp; k&lt;b \\<br>\omega_0 \sigma_x^2 &amp; k&#x3D;b  \\<br>\omega_0 \delta_1 \sigma_x^2-\omega_1  \sigma_x^2  &amp; k&#x3D;b+1 \\<br>\omega_0 \delta_1^j\sigma_x^2 - \omega_1 \delta_1^{j-1}\sigma_x^2 &amp; k&#x3D;b+j,j&gt;0<br>\end{cases}$$</p>
+<p>$$\rho_{xy}(k)&#x3D;\begin{cases}<br>0 &amp; k&lt;b \\<br>\omega_0 \frac{\sigma_x}{\sigma_y} &amp; k&#x3D;b  \\<br>\omega_0 \delta_1 \frac{\sigma_x}{\sigma_y}-\omega_1  \frac{\sigma_x}{\sigma_y}  &amp; k&#x3D;b+1 \\<br>\omega_0 \delta_1^j\frac{\sigma_x}{\sigma_y} - \omega_1 \delta_1^{j-1}\frac{\sigma_x}{\sigma_y}&amp; k&#x3D;b+j,j&gt;0<br>\end{cases}$$</p>
+<h2 id="传递函数模型的识别步骤"><a href="#传递函数模型的识别步骤" class="headerlink" title="传递函数模型的识别步骤"></a>传递函数模型的识别步骤</h2><p>step1:对原始的输入输出序列进行平稳性处理<br>step2:白化输入序列与漂白输出序列<br>step3:计算白化序列$\alpha_t$与漂白序列$\beta_t$的互相关<br>step4:估计脉冲响应权<br>step5:对$(r,s,b)$的识别<br>step6:噪声序列$e_t$的计算<br>step7:对噪声序列$e_t$进行识别，建立$ARMA(p,q)$模型</p>
+<h1 id="干预模型分析"><a href="#干预模型分析" class="headerlink" title="干预模型分析"></a>干预模型分析</h1><p>干预分析模型的基本变量都是干预变量，它由阶跃函数和点函数表示，即</p>
+<p>$$S_t^T &#x3D;\begin{cases}<br>0 &amp; 干预事件发生之前，即当t&lt;T时 \\<br>1 &amp; 干预事件发生之后，即当t \ge T时<br>\end{cases}$$</p>
+<img src=2.jpg width="30%">
+
+<p>这种干预变量一旦发生，就会长期产生影响，故称这种变量为持续的干预变量。</p>
+<p>但是，有些干预影响只有暂时性，而无持续性</p>
+<p>例如：某种促销广告，进在某一段时间内影响销售量，这种干预变量可表示为：</p>
+<p>$$P_t^T &#x3D;\begin{cases}<br>0 &amp; 干预事件发生之前，即当t&#x3D;T时 \\<br>1 &amp; 干预事件发生之后，即当t \ne T时<br>\end{cases}$$</p>
+<img src=3.jpg width="30%">
+
+<p>上述两类干预变量虽然表示形式不同，但是他们之间有如下的内在联系，即$(1-B)S_t^T &#x3D; P_t^T$</p>
+<p>这里的$B$是后移算子，有$BS_t^T &#x3D; S_{t-1}^T$</p>
+<h2 id="干预事件的影响突然开始，长期持续下去的模型："><a href="#干预事件的影响突然开始，长期持续下去的模型：" class="headerlink" title="干预事件的影响突然开始，长期持续下去的模型："></a>干预事件的影响突然开始，长期持续下去的模型：</h2><p>设干预对因变量的影响是固定的，从某一时刻$T$开始，但影响的程度是未知的，单因变量的大小是位置的。这种影响可以概括为以下的干预模型：<br>$$Y_t &#x3D; \omega S_t^T$$<br>这里的$Y_t$是干预的输出，$\omega$是位置参数。值得注意的是有的时候$Y_t$不一定是平稳的，而且要求通过差分化为平稳，这样就把干预模型调整为<br>$$(1-B)Y_t &#x3D; \omega S_t^T$$<br>有的时候不一定干预出现就立即产生影响，甚至要滞后若干个时期才产生影响，如$b$个时期，那么模型就可以修改为<br>$$Y_t &#x3D; \omega B^bS_t^T$$</p>
+<img src=4.jpg width="30%">
+
+
+<h2 id="干预事件的影响逐渐开始，长期持续下去"><a href="#干预事件的影响逐渐开始，长期持续下去" class="headerlink" title="干预事件的影响逐渐开始，长期持续下去"></a>干预事件的影响逐渐开始，长期持续下去</h2><p>有的时候干预事件突然发生，并不能立刻产生完全的影响，而是随着时间的推移，逐渐地感到这种影响的存在，其模型方程如下：<br>$$Y_t &#x3D; \frac{\omega B}{1-\delta B}S_t^T$$</p>
+<img src=5.jpg width="30%">
+
+<p>更一般的模型是：<br>$$Y_t &#x3D; \frac{\omega B^b}{1-\delta_1B - \cdots - \delta_rB^r} S_t^T$$</p>
+<h2 id="干预突然开始带来暂时的影响"><a href="#干预突然开始带来暂时的影响" class="headerlink" title="干预突然开始带来暂时的影响"></a>干预突然开始带来暂时的影响</h2><p>在广告对销售量的实例中，我们注意到如下事实：在广告促销活动开始后的第某个月，例如在第$b$个月，销售量突然上升，此后影响逐渐减弱，直到消失，这类干预现象可以用数学模型描述如下：</p>
+<p>$$Y_t &#x3D; \frac{\omega B^b}{1-\delta B} P_t^T$$</p>
+<p>当$\delta&#x3D;0$的时候，干预的影响只存在一个时期；当$\delta&#x3D;1$时，干预的影响将长期存在。</p>
+<img src=6.jpg width="30%">
+
+<p>若在逐渐地降低冲击影响之后期望一个持久的影响，干预模型则有如下的形式：</p>
+<p>$$Y_t &#x3D; (\frac{\omega_1 B}{1-\delta B} + \frac{\omega_2 B}{1-B}) P_t^T$$</p>
+<img src=7.jpg width="30%">
+
+<h2 id="干预逐渐开始产生短暂的影响"><a href="#干预逐渐开始产生短暂的影响" class="headerlink" title="干预逐渐开始产生短暂的影响"></a>干预逐渐开始产生短暂的影响</h2><p>干预的影响逐渐增加，在某个时刻达到高峰，然后又逐以减弱以致消失。这类干预现象可以用以下模型去描绘：</p>
+<p>$$Y_t &#x3D; \frac{\omega_0}{1-\delta_1B - \cdots - \delta_r B^r} P_t^T$$</p>
+<p>$r$的值一般大于等于2，因为$r&#x3D;1$不能描绘和模拟此模型。</p>
+<img src=8.jpg width="30%">]]></content>
+      <categories>
+        <category>经济预测与决策</category>
+        <category>经济预测技术</category>
+      </categories>
+      <tags>
+        <tag>经济预测技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>经济预测复习</title>
+    <url>/2022/12/22/%E7%BB%8F%E6%B5%8E%E9%A2%84%E6%B5%8B%E5%A4%8D%E4%B9%A0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>复习经济预测技术</p>
+<p>参考书：经济预测与决策技术 武汉大学出版社 第六版</p>
+<span id="more"></span>
+
+<h1 id="经济预测的基本原理"><a href="#经济预测的基本原理" class="headerlink" title="经济预测的基本原理"></a>经济预测的基本原理</h1><h2 id="经济预测的概念"><a href="#经济预测的概念" class="headerlink" title="经济预测的概念"></a>经济预测的概念</h2><p>1.什么是经济预测</p>
+<p>经济预测是一门研究经济发展过程及其变动趋势的学科，它是综合运用哲学、社会学、经济学、统计学、数学以及系统工程和电子计算技术等学科的有关理论和方法，根据学科自身的逻辑性，对经济现象之间的联系以及作用机制作出科学分析，并对经济过程及其各要素的变动趋势做出客观描述，从而对未来的经济发展轨迹，做出科学的判断和预见。</p>
+<p>2.经济预测与计划和决策之间的关系</p>
+<p>经济预测和经济计划都是经济管理的重要组成部分，两者既有共同点，又有不同点。共同点是两者的工作对象都是未来的经济状态；不同点是前者仅是对未来经济状态的一种估计或陈述。后者说明的问题是，如果不进行任何经济、政策或行政手段的干预，未来将有什么样的变化，经济状态将会变成怎样。而经济决策的目标又是由经济预测的结果确定的。</p>
+<h2 id="预测的要素"><a href="#预测的要素" class="headerlink" title="预测的要素"></a>预测的要素</h2><p>数据要素、方法要素、分析要素、判断要素</p>
+<h2 id="经济预测的步骤"><a href="#经济预测的步骤" class="headerlink" title="经济预测的步骤"></a>经济预测的步骤</h2><p>step1:确定预测目标的预测期限<br>step2:确定预测因子<br>step3:进行经济调查<br>step4:选择合适的预测方法<br>step5:对预测的结果进行分析和评估<br>step6:指出根据最新的经济动态和新到来的经济数据，可否重新调整原来的预测值，并提高预测精度<br>step7:写好预测报告</p>
+<h1 id="判断预测技术"><a href="#判断预测技术" class="headerlink" title="判断预测技术"></a>判断预测技术</h1><h2 id="头脑风暴法"><a href="#头脑风暴法" class="headerlink" title="头脑风暴法"></a>头脑风暴法</h2><p>1.头脑风暴法是通过一组专家共同开会讨论，进行信息交流和互相启发，从而诱发专家们发挥其创造性思维，促进他们产生“思维共振”，以达到互相补充，并产生“组合效应”的预测方法。</p>
+<p>2.头脑风暴法有创业头脑风暴和质疑头脑风暴两种。<br>创业头脑风暴就是组织专家对所要解决的问题，开会讨论，各抒己见地、自由地发表意见，集思广益，解决所要提出问题的具体解决方案。<br>质疑头脑风暴就是对已制定的某种计划方案或工作文件，召开专家会议，由专家提出质疑，去掉不合理或不科学的部分，补充不具体或不全面的部分，使报告或计划趋于完善。</p>
+<p>3.专家的选择要与预测的对象相一致，而且要有一些知识渊博，对问题理解较深的专家参加。<br>一般来说，要有以下几方面专家参加会议，即<font color="#dd0000"> 方法论学者</font>，也就是预测专家；<font color="#dd0000"> “设想”产生者</font>，也就是专业领域内的专家，<font color="#dd0000"> 分析者</font>，是指专业领域的高级专家，<font color="#dd0000"> 演绎者</font>，是指有较高推断思维能力的专家。</p>
+<p>4.对头脑风暴法的评价<br>优点：<br>(1).通过信息交流，产生思维共振，进而激发创造型思维，能在短期内得到创造性的成果。<br>(2).通过头脑风暴会议，获取的信息量大，考虑的预测因素多，提供的方案也比较全面和广泛。<br>缺点：<br>(1).专家会议，易受权威的影响，不利于充分发表意见<br>(2).易受表达能力的影响<br>(3).易受心理因素的影响<br>(4).容易随大流</p>
+<h2 id="特尔斐-Delphi-法"><a href="#特尔斐-Delphi-法" class="headerlink" title="特尔斐(Delphi)法"></a>特尔斐(Delphi)法</h2><p>1.特尔斐法的基本原理<br>特尔斐法的应用过程是由主持预测的机构确定课题并选定专家，人数多少视具体情况而定，一般为10-50人。<font color="#dd0000"> 预测机构与专家联系的主要方式是函询，专家之间彼此匿名，不发生任何横向联系</font>。通过函询收集专家意见，加以综合、整理后，再反馈给各位专家，征求意见。这样反复经过四至五轮，尽管每个专家发表的意见各有差异，但由于参与讨论的专家意见的人数较多，会出现一种趋于统计的稳定性，使专家意见趋于一致，作为最后预测的根据。</p>
+<p>2.挑选专家的方法<br>这里所称的“专家”，是指对所要预测的目标比较了解，并有丰富的实践经验或较高的理论水平，对目标有一定见解的人。这些人既可以是教授、理论研究人员或者是工程师，也可以是有一定年龄的工人或管理人员。</p>
+<p>3.专家意见的统计处理<br>通常采取中位数作为有代表性的预测值，把上、下四分位数作为有50%以上把握的预测区间。</p>
+<p>4.对特尔斐法的评价</p>
+<p>第一是匿名性，第二是反馈性，第三是收敛性。</p>
+<h2 id="趋势判断预测法"><a href="#趋势判断预测法" class="headerlink" title="趋势判断预测法"></a>趋势判断预测法</h2><h3 id="趋势判断的基本原理"><a href="#趋势判断的基本原理" class="headerlink" title="趋势判断的基本原理"></a>趋势判断的基本原理</h3><p>总共调查了$n&#x3D;21$个厂，其中甲级厂$6$个，乙级厂$6$个，丙级厂$9$个，调查结果如下</p>
+<p>其中甲级厂的销售额为$1000$万元，乙级厂$800$万元，丙级厂500万元，因此可选丙级厂做基准，令$W_3&#x3D;1$，则$W_2&#x3D;1.6$，$W_1&#x3D;2$</p>
+<p>其中$W$代表权重，若$P1-P3&gt;0$则代表投资趋势为增加，$&#x3D;0$则代表不变，$&lt;0$则代表减少。</p>
+<p>由下图可知，$P_1-P_3 &#x3D; 0.12 &gt; 0$</p>
+<img src=1.jpg width="80%">
+
+<h3 id="综合趋势判断"><a href="#综合趋势判断" class="headerlink" title="综合趋势判断"></a>综合趋势判断</h3><p>对于多行业的综合投资趋势预测，我们称为综合趋势判断。</p>
+<p>假设在制造业中包含$N$个具体行业，对于某个具体的行业$k$，可按上面介绍的方法求出$P_1,P_2,P_3$，并作趋势判断。对于这$N$个具体行业，假定已按照上面的方法分别求出了$P_{ki}$</p>
+<img src=2.jpg width="80%">
+
+<p>若$P_1-P_3&gt;0$，则判断整个制造业未来投资将增加<br>若$P_1-P_3&lt;0$，则判断整个制造业未来投资将减少</p>
+<h3 id="定量预测增加（减少）趋势的百分数"><a href="#定量预测增加（减少）趋势的百分数" class="headerlink" title="定量预测增加（减少）趋势的百分数"></a>定量预测增加（减少）趋势的百分数</h3><p>设甲级厂有$h$个厂未来投资将增加，$n$个厂未来投资将减少。增加、减少的百分数分别是$l_{11},l_{12},\cdots,l_{1h}$和$m_{11},m_{12},\cdots, m_{1n}$类似可调查乙厂、丙厂的 未来投资增加或减少的百分数。</p>
+<img src=3.jpg width="80%">
+
+<p>令<br>$$\frac{\sum_{i&#x3D;1}^3W_iL_i}{\sum_{i&#x3D;1}^3 W_i}&#x3D;\pi_{k1} , \frac{\sum_{j&#x3D;1}^3W_jL_j}{\sum_{j&#x3D;1}^3 W_j}&#x3D;\pi_{k3}$$<br>在这里,$\pi_{k1}$代表第$k$个行业认为未来投资会“增加”的百分数，$\pi_{k3}$则表示未来投资将会“减少”的百分数。</p>
+<p>计算出各行业的增加和减少的百分数后，就可以对整个行业的总体投资趋势进行综合分析。</p>
+<img src=4.jpg width="80%">
+
+<h2 id="PERT预测法"><a href="#PERT预测法" class="headerlink" title="PERT预测法"></a>PERT预测法</h2><p>假如某某百货公司从某种商品有销售人员3人和正、副经理2人，他们对下一季度的商品销售量分别作了如下估计：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>最高销售量</th>
+<th>最可能销售量</th>
+<th>最低销售量</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>甲</td>
+<td>800</td>
+<td>600</td>
+<td>400</td>
+</tr>
+<tr>
+<td>乙</td>
+<td>900</td>
+<td>700</td>
+<td>500</td>
+</tr>
+<tr>
+<td>丙</td>
+<td>1000</td>
+<td>800</td>
+<td>480</td>
+</tr>
+</tbody></table>
+<p>我们可以用如下公式来求平均值和方差</p>
+<p>$平均销售量&#x3D;\frac{最高销售量+4\times 平均销售量 + 最低销售量}{6}$<br>$\sigma^2&#x3D;\frac{(最高销售量-最低销售量)^2}{36}$</p>
+<p>因此</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>平均销售量</th>
+<th>标准差</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>甲</td>
+<td>600</td>
+<td>66.7</td>
+</tr>
+<tr>
+<td>乙</td>
+<td>700</td>
+<td>66.7</td>
+</tr>
+<tr>
+<td>丙</td>
+<td>780</td>
+<td>86.7</td>
+</tr>
+</tbody></table>
+<p>则销售人员的预测为$(600+700+780)&#x2F;3&#x3D;693$件，标准差为$\frac{\sqrt{66.7^2+66.7^2+86.7^2}}{3} &#x3D; 42.7$<br>如果有权重，例如$W_1&#x3D;2,W_2&#x3D;3,W_3&#x3D;1$，则预测为$(600\times 2+700 \times 3+780)&#x2F;6&#x3D;680$，标准差为$\frac{\sqrt{4\times 66.7^2 + 9 \times 66.7^2 + 86.7^2}}{6} &#x3D; 42.6$</p>
+<h2 id="销售人员判断预测综合法"><a href="#销售人员判断预测综合法" class="headerlink" title="销售人员判断预测综合法"></a>销售人员判断预测综合法</h2><p>现给出三个人员的预测结果</p>
+<p>甲：最可能销售量为250单位，销售量在200-300单位之间的可能性为85%<br>乙：最可能销售量为200单位，销售量在160-240单位之间的可能性为90%<br>丙：最可能销售量为220单位，销售量在170-270单位之间的可能性为80%</p>
+<p>假设销售量成正态分布，则有<br>对于甲来说：平均销售量为250单位，现来计算标准差<br>$2\Phi(\frac{300-250}{\sigma_甲})-1&#x3D;0.85$，计算得$\Phi(\frac{50}{\sigma_甲}) &#x3D; 0.925$<br>查表得$\frac{50}{\sigma_甲}&#x3D;1.44$，于是$\sigma_甲&#x3D;34.72$</p>
+<p>计算出<br>甲的销售预测值得平均值为250单位，标准差为34.72<br>乙的销售预测值得平均值为200单位，标准差为24.24<br>丙的销售预测值的平均值为220单位，标准差为37.06</p>
+<p>总的销售预测值为223.3单位，标准差为19.2</p>
+<h1 id="一元回归预测技术"><a href="#一元回归预测技术" class="headerlink" title="一元回归预测技术"></a>一元回归预测技术</h1><h2 id="简便求估方法"><a href="#简便求估方法" class="headerlink" title="简便求估方法"></a>简便求估方法</h2><p>1.目估作图法<br>2.平均值法</p>
+<h2 id="精确求估方法"><a href="#精确求估方法" class="headerlink" title="精确求估方法"></a>精确求估方法</h2><p>设回归方程为$\hat{y}&#x3D;\hat{a}+\hat{b}x$</p>
+<p>用$x_i$代替$x$就得到了$y_i$的预估值：$\hat{y_i}&#x3D;\hat{a}+\hat{b}x_i$</p>
+<p>残差为$e_i&#x3D;y_i-\hat{y_i}$</p>
+<p>令$Q&#x3D;\sum_{i&#x3D;1}^n e_i^2 &#x3D; \sum_{i&#x3D;1}^n (y_i-\hat{y_i})^2 &#x3D; \sum_{i&#x3D;1}^n (y_i-\hat{a} - \hat{b}x_i)^2$</p>
+<p>使$Q$达到最小以估计$\hat{a},\hat{b}$的方法称为最小二乘法</p>
+<p>对$\hat{a},\hat{b}$求偏导可知</p>
+<p>$<br>\begin{cases}<br>\frac{\partial Q}{\partial \hat{a}}&#x3D;-2 \sum\limits_{i&#x3D;1}^n(y_i - \hat{a} - \hat{b}x_i)&#x3D;0 \\<br>\frac{\partial Q}{\partial \hat{b}}&#x3D;-2 \sum\limits_{i&#x3D;1}^n(y_i - \hat{a} - \hat{b}x_i)x_i&#x3D;0<br>\end{cases}<br>$</p>
+<p>整理得</p>
+<p>$<br>\begin{cases}<br>n\hat{a} +\hat{b} \sum\limits_{i&#x3D;1}^n &#x3D; \sum\limits_{i&#x3D;1}^n y_i \\<br>(\sum\limits_{i&#x3D;1}^n x_i) \hat{a} + \hat{b} \sum\limits_{i&#x3D;1}^n x_i^2 &#x3D; \sum\limits_{i&#x3D;1}^n x_iy_i<br>\end{cases}<br>$</p>
+<p>求解得</p>
+<p>$<br>\begin{cases}<br>\hat{a} &#x3D; \bar{y}-\hat{b}\bar{x} \\<br>\hat{b} &#x3D; \frac{\sum\limits_{i&#x3D;1}^n x_iy_i - \bar{x}\sum\limits_{i&#x3D;1}^n y_i}{\sum\limits_{i&#x3D;1}^n x_i^2 - \bar{x} \sum\limits_{i&#x3D;1}^n x_i}<br>\end{cases}<br>$</p>
+<p>可以证明$\hat{a},\hat{b},\hat{\sigma}^2&#x3D;\frac{Q}{n-2}$是$a,b,\sigma^2$的无偏估计。</p>
+<h1 id="时间序列趋势外推预测"><a href="#时间序列趋势外推预测" class="headerlink" title="时间序列趋势外推预测"></a>时间序列趋势外推预测</h1><h2 id="样本具有水平趋势的外推预测"><a href="#样本具有水平趋势的外推预测" class="headerlink" title="样本具有水平趋势的外推预测"></a>样本具有水平趋势的外推预测</h2><p>1.朴素预测法：以本月销售量作为下月销售量的预测值<br>2.平均数预测法：将样本序列值$y_1,y_2,\cdots , y_k$做算术平均，以此作为$y_{k+1}$的预测值</p>
+<h2 id="样本具有非水平趋势的外推预测"><a href="#样本具有非水平趋势的外推预测" class="headerlink" title="样本具有非水平趋势的外推预测"></a>样本具有非水平趋势的外推预测</h2><h3 id="加权滑动平均法"><a href="#加权滑动平均法" class="headerlink" title="加权滑动平均法"></a>加权滑动平均法</h3><p>用$ \hat{y_n} (1) $ 代表 $y_{n+1}$ 的预测值，滑动平均说的是</p>
+<p>$$\hat{y_n}(1)&#x3D;\frac{y_n+y_{n-1}+\cdots + y_{n-N+1}}{N}$$</p>
+<p>$N$是滑动平均时段长</p>
+<p>加权滑动平均说的是</p>
+<p>$$\hat{y_n}(1)&#x3D;\frac{\alpha_0 y_n+\alpha_1 y_{n-1}+\cdots + \alpha_{N-1}y_{n-N+1}}{N}$$</p>
+<p>其中$\alpha_0,\cdots \alpha_{N-1}$为加权滑动因子，满足$\sum\limits_{i&#x3D;0}^{N-1}\alpha_i &#x3D; N$</p>
+<img src=5.jpg width="80%">
+
+<h3 id="指数平滑预测法"><a href="#指数平滑预测法" class="headerlink" title="指数平滑预测法"></a>指数平滑预测法</h3><p>$$\hat{y_n}(1) &#x3D; \alpha y_n + (1-\alpha)\hat{y_{n-1}}(1) , 0 &lt; \alpha &lt; 1 $$</p>
+<p>为使得误差平方和$Q(\alpha)&#x3D;\sum_{t&#x3D;1}^n(y_t - \hat{y_{t-1}}(1))^2$最小，需要合适的选取$\alpha$<br>如何选取$\alpha$？<br>1:穷举法<br>2:优选法（0.618法）<br>3:直观法，若序列变化较慢，则宜选取较小的$\alpha$，反之，若序列变化叫迅速，则应选取较大的$\alpha$</p>
+<p>初始预测值如何确定？<br>1.样本序列较长，可取$\hat{y_0}(1)&#x3D;1&#x2F;n \times (y_1+\cdots + y_n)$<br>2.若样本序列不长也不短，可取$\hat{y_0}(1)&#x3D;y_1$<br>3.取$y_1$的反向预测值，运用反向平滑预测公式$\hat{y_{t-1}}(1)&#x3D;\alpha y_{t+1}+(1-\alpha)\hat{y_t}(1)$<br>4.当序列长度充分大时，可以任意确定<br>5.例题中，初始预测值选择了前两个月销售额的平均值</p>
+<img src=6.jpg width="80%">
+
+
+<h2 id="样本具有线性趋势的外推预测"><a href="#样本具有线性趋势的外推预测" class="headerlink" title="样本具有线性趋势的外推预测"></a>样本具有线性趋势的外推预测</h2><p>设线性趋势方程为$y_t&#x3D;a+b_t$，这里$a,b$是常数。</p>
+<h3 id="二次滑动平均值预测法"><a href="#二次滑动平均值预测法" class="headerlink" title="二次滑动平均值预测法"></a>二次滑动平均值预测法</h3><p>所谓二次滑动平均值，就是在一次滑动平均值再做一次滑动平均得到的值。</p>
+<p>设一次滑动平均值为$\hat{y_t}$，两次滑动平均值为$\hat{\hat{y_t}}$，可以得到</p>
+<p>$<br>\begin{cases}<br>b_t &#x3D; 2(\hat{y_{t+1}} - \hat{\hat{y_{t+1}}})&#x2F;(N+1) \\<br>a_t &#x3D; 2\hat{y_{t+1}} - \hat{\hat{y_{t+1}}} - b_t<br>\end{cases}<br>$</p>
+<img src=7.jpg width="80%">
+
+<p>假设现在是2015年，我们要预测2017年的GDP，预测期$T&#x3D;2$，那么有<br>$\hat{y_{2015}}(2)&#x3D;680.6+69.94 \times 2&#x3D;820.48$（亿元）</p>
+<h3 id="二次指数平滑预测"><a href="#二次指数平滑预测" class="headerlink" title="二次指数平滑预测"></a>二次指数平滑预测</h3><p>指对一次指数平滑后的序列数据再做一次指数平滑</p>
+<p>$<br>\begin{cases}<br>b_t &#x3D; \frac{\alpha}{1-\alpha} (\hat{y_t}-\hat{\hat{y_t}}) \\<br>a_t &#x3D; 2\hat{y_{t}} - \hat{\hat{y_{t}}}<br>\end{cases}<br>$</p>
+<img src=8.jpg width="80%">
+
+<h2 id="样本具有二次曲线趋势的外推预测"><a href="#样本具有二次曲线趋势的外推预测" class="headerlink" title="样本具有二次曲线趋势的外推预测"></a>样本具有二次曲线趋势的外推预测</h2><p>二次曲线趋势可以写成$\hat{y_{t+\tau}’} &#x3D; a_t + b_t \tau + c_t \tau^2$，其中$\tau$为预测期</p>
+<p>可以采用三次指数平滑方法确定参数，也可使用三和法确定参数</p>
+<h2 id="样本具有线性趋势和季节波动的外推预测"><a href="#样本具有线性趋势和季节波动的外推预测" class="headerlink" title="样本具有线性趋势和季节波动的外推预测"></a>样本具有线性趋势和季节波动的外推预测</h2><p>假定时间序列受以下因素影响：</p>
+<p>1.趋势变化因素：当时间序列依时间变化时出现某种倾向，按某种规律稳步增长或下降或在某一水平线上上下波动<br>2.季节变化因素：这是一种周期性变化因素的影响，这种周期时固定的，例如一年四季<br>3.随机因素影响：它是由许多不可控制的因素影响而引起的变化，这种周期是固定的，例如一年四季。</p>
+<p>时间序列$y_t$的结构有以下三种模式：<br>1.加法模式$y_t&#x3D;T_t+S_t+\epsilon_t$<br>这里要求满足条件：<br>(1):$y_t,T_t,S_t,\epsilon_t$具有相同的量纲<br>(2):$\sum_{t&#x3D;1}^k S_t &#x3D; 0$，$k$为季节周长，例如$k&#x3D;4$或者$k&#x3D;12$<br>(3):$\epsilon_t$是独立的随机序列，服从$N(0,\sigma^2)$</p>
+<p>2.乘法模式$y_t&#x3D;T_tS_te^{\epsilon_t}$<br>这里要求满足条件：<br>(1):$y_t$和$T_t$有相同的量纲，$S_t$是季节指数，$S_t&gt;0$是比例数<br>(2):$\sum_{t&#x3D;1}^kS_t&#x3D;k$，例如$k&#x3D;4,\sum_{t&#x3D;1}^4 S_t&#x3D;4$<br>(3):$\epsilon_t$是独立的随机变量序列，服从$N(0,\sigma^2)$</p>
+<p>3.混合模式$y_t &#x3D; T_tS_t+\epsilon_t$<br>这里要求满足条件：<br>(1):$y_t$与$T_t,\epsilon_t$有相同的量纲，$S_t$是季节指数，是比例数<br>(2):$\sum_{t&#x3D;1}^kS_t&#x3D;k$，例如$k&#x3D;4,\sum_{t&#x3D;1}^4 S_t&#x3D;4$<br>(3):$\epsilon_t$是独立的随机变量序列，服从$N(0,\sigma^2)$</p>
+<h3 id="加法型序列的趋势外推预测法"><a href="#加法型序列的趋势外推预测法" class="headerlink" title="加法型序列的趋势外推预测法"></a>加法型序列的趋势外推预测法</h3><p>假设样本序列为$y_1,y_2,\cdots, y_n$，序列$y_t$是加法型，即$y_t&#x3D;T_t+S_t+\epsilon_t$，季节长度为4，$T_t$具有线性趋势，$S_1,S_2,S_3,S_4$为季节分量，满足$\sum_{i&#x3D;1}^4 S_i&#x3D;0, S_i &#x3D; S_{i+4t}$，$\epsilon_t$服从$N(0,\sigma^2)$，求$y_n+T$的预测值，预测步骤如下<br>step1:对样本做长度为3的滑动平均，削去随机干扰，记滑动平均后的序列为$\bar{y_t}$<br>step2:对$\hat{y_t}$，求出趋势线$\hat{T_t}&#x3D;a+bt$，这一步可以用一元回归的简便&#x2F;精确求估方法得到<br>step3:将序列$y_t$消除趋势因素的影响，求出消去趋势线后的序列值$M_t&#x3D;y_t-\hat{T_t}$<br>step4:将$M_t$按照季节次序重排，对每个季度的$M_t$算出平均值，依次记为$\bar{S_1},\bar{S_2},\bar{S_3},\bar{S_4}$，分别为样本序列的季节指数<br>step5:对样本季节指数进行检验，若$\sum_{i&#x3D;1}^4 \bar{S_i}&#x3D;0$，则符合季节指数的条件，否则进行修正，修正公式为：$S_i &#x3D; \bar{S_i} - \frac{\sum_{i&#x3D;1}^4 \bar{S_i}}{4}$。<br>step6:运用已求得的$T_t,S_t$即可进行预测，由于$\epsilon_t$是不可预测的随机干扰，由此得到$\hat{y_{n+T}}&#x3D;\hat{T_{n+T}}+S_{n+T} &#x3D; [a+b(n+T)] +S_{n+T} &#x3D; [a+b(n+T)] +S_{i+4n} &#x3D; [a+b(n+T)] +S_{i}$</p>
+<h3 id="乘法型序列的趋势外推预测法"><a href="#乘法型序列的趋势外推预测法" class="headerlink" title="乘法型序列的趋势外推预测法"></a>乘法型序列的趋势外推预测法</h3><p>设$y_t&#x3D;T_t \times S_t \times e^{\epsilon_t}$，样本序列为$y_1,y_2,\cdots, y_n$</p>
+<p>step1:对$y_t$序列值分解出长期因素，假设季节长度为4，只要将序列做滑动长度为4的滑动平均，即可消除随机干扰和季节波动的影响。记滑动平均值为$MAy_t &#x3D; (y_t+y_{t-1} + y_{t-2} + y_{t-3})&#x2F;4 $<br>step2:对$y_t$分解出季节因素与随机因素，用$MAy_t$去除$y_t$，得到$ \frac{y_t}{MAy_t} &#x3D; \frac{T_t\times S_t \times e^{\epsilon_t}}{T_t}  &#x3D; S_t e^\epsilon_t$<br>step3:从$S_te^{\epsilon_t}$中分解出季节因素$S_t$，将$S_t e^{\epsilon_t}$ 按照春夏秋冬重排，将所有季节指数相加求平均值，得到$\bar{S_1},\bar{S_2},\bar{S_3},\bar{S_4}$，若与标准季节指数$\sum_{i&#x3D;1}^4S_i&#x3D;400$有差异，则进行修正，修正公式为：$S_i&#x3D;\bar{S_i} \times \frac{\sum_{i&#x3D;1}^4 {S_i}}{\sum_{i&#x3D;1}^4 \bar{S_i}}$<br>step4:利用滑动平均所得到的序列建立线性趋势方程，记为$\hat{T_t} &#x3D; \hat{a}+\hat{b}t$<br>step5:根据step3,4所得到的季节指数$S_t,T_t$，按要求进行预测，公式为<br>$\hat{y_{n+T}} &#x3D; \hat{T_{n+T}}\bar{S_{i+4m}}&#x3D;\hat{T_{n+T}}\bar{S_{i}}$</p>
+<img src=9.jpg width="80%">
+
+<img src=10.jpg width="80%">
+
+<h3 id="考虑循环因素影响有线性趋势和季节波动的时间序列模型"><a href="#考虑循环因素影响有线性趋势和季节波动的时间序列模型" class="headerlink" title="考虑循环因素影响有线性趋势和季节波动的时间序列模型"></a>考虑循环因素影响有线性趋势和季节波动的时间序列模型</h3><p>1.加法型:$y_t&#x3D;T_t+S_t+C_t+\epsilon_t$<br>2.乘法型:$y_t&#x3D;T_tS_tC_te^{\epsilon_t}$<br>3.混合型:$y_t&#x3D;T_tS_tC_t+\epsilon_t$</p>
+<h2 id="注记：三和法和三点法"><a href="#注记：三和法和三点法" class="headerlink" title="注记：三和法和三点法"></a>注记：三和法和三点法</h2><p>所谓三和法就是将整个增长序列分为三个相等的时间周期，并对每一个时间周期的数据求和以估计参数，估计参数的方法是求解方程组</p>
+<p>所谓三点法就是假定曲线通过已知的三个点，即增长序列的始点，中间点和终点。同时，要求相邻两点时间距离相等，即$t&#x3D;0,n,2n$。</p>
+<h1 id="马尔科夫决策"><a href="#马尔科夫决策" class="headerlink" title="马尔科夫决策"></a>马尔科夫决策</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>转移概率矩阵$P&#x3D;(p_{ij})_{n\times n}$ ， $p_{ij}$表示从状态$i$转移到状态$j$的概率</p>
+<p>转移概率矩阵有如下性质：<br>(1):$p_{ij} \ge 0$，即每个元素是非负的<br>(2):$\sum_{j&#x3D;1}^N p_{ij}&#x3D;1,i&#x3D;1,2,\cdots,n$即矩阵的每行元素和为1</p>
+<p>经过$n$步转移，在时刻$t_n$时处于$j$，这种转移的可能性的数量指标称为$n$步转移概率，记为$P(x_n&#x3D;j|x_0&#x3D;i)&#x3D;p_{ij}(n)$，并记$P(n)&#x3D;P^n$为$n$步转移矩阵。</p>
+<p>$n$步转移矩阵同$1$步转移概率一样有上述两个性质，性质(1)是显然的，性质(2)可以用归纳法证明</p>
+<h2 id="状态转移概率的估算"><a href="#状态转移概率的估算" class="headerlink" title="状态转移概率的估算"></a>状态转移概率的估算</h2><p>有销售状态数据如下：</p>
+<img src=11.jpg width="80%">
+
+<p>上表中有24个季度数据，其中有14个季度畅销，9个季度滞销，其中最后一个季度没有下个季度的新消息，故不考虑。</p>
+<p>其中由畅销转畅销有$7$个季度，由畅销转滞销有$7$个季度，其中由滞销转畅销有$7$个季度，其中由滞销转滞销有$2$个季度</p>
+<p>则状态转移矩阵可写为$P&#x3D;\begin{pmatrix}0.5 &amp; 0.5 \\0.78 &amp; 0.22 \\ \end{pmatrix} $</p>
+<h2 id="带利润的马尔科夫链"><a href="#带利润的马尔科夫链" class="headerlink" title="带利润的马尔科夫链"></a>带利润的马尔科夫链</h2><p>$n$步转移利润为$v_i(n)&#x3D;\sum_{j&#x3D;1}^n (r_{ij}+v_j(n-1))p_{ij}$，其中$n&#x3D;1$时，$v_j(0)&#x3D;0$</p>
+<p>称一步转移的期望利润为即时的期望利润，并记$v_i(1)&#x3D;q_i$</p>
+<h2 id="市场占有率预测"><a href="#市场占有率预测" class="headerlink" title="市场占有率预测"></a>市场占有率预测</h2><p>设初始状态为$c$，则$k$步转移后的状态为$c(k)&#x3D;c^T P^k$</p>
+<p>所谓稳定的市场平衡状态，就是满足$<br>\begin{cases}<br>X &#x3D; PX \\<br>\sum X &#x3D; 1<br>\end{cases}<br>$的向量$X$</p>
+<h1 id="景气预测与预警系统"><a href="#景气预测与预警系统" class="headerlink" title="景气预测与预警系统"></a>景气预测与预警系统</h1><h2 id="景气循环的基本概念"><a href="#景气循环的基本概念" class="headerlink" title="景气循环的基本概念"></a>景气循环的基本概念</h2><p>1.景气是对经济发展状况的一种综合性描述，用以说明经济活跃程度的概念。所谓经济景气，是指总体经济呈上升发展趋势，呈现出市场繁荣，购销两旺的景气状态。经济不景气是指总体经济呈下滑的发展趋势，绝大部分经济活动处于收缩或半收缩状态，表现出市场疲软，经济效益下降，许多企业破产倒闭，失业人数增加等现象。</p>
+<p>2.景气循环又称经济波动，是指经济活动高潮与低潮时期的相互交替。一般说来，景气上升阶段，生产、就业、投资、物价、利润都向上发展，市场上购销两旺。景气下降阶段则相反，表现为增长率下降，失业和企业倒闭增加，在市场上出现销售疲软，经济效益下降。<br>景气循环通常分为四个阶段，具体为：复苏期、扩张期、收缩期、萧条期</p>
+<h2 id="扩散指数DI的编制与应用"><a href="#扩散指数DI的编制与应用" class="headerlink" title="扩散指数DI的编制与应用"></a>扩散指数DI的编制与应用</h2><p>step1:选取景气指标<br>step2:确定各被选指标在各时期的扩张或收缩<br>step3:求出扩散指数DI<br>step4:绘制出扩散指数变化图</p>
+<h2 id="综合指数CI的编制"><a href="#综合指数CI的编制" class="headerlink" title="综合指数CI的编制"></a>综合指数CI的编制</h2><p>step1:求出单个指标的对称变化率<br>step2:求标准化的平均变化率<br>step3:求初始综合指标<br>step4:求趋势调整<br>step5:求综合指数CI</p>
+<h1 id="随机事件序列的线性模型"><a href="#随机事件序列的线性模型" class="headerlink" title="随机事件序列的线性模型"></a>随机事件序列的线性模型</h1><h2 id="随机序列线性模型的基本形式"><a href="#随机序列线性模型的基本形式" class="headerlink" title="随机序列线性模型的基本形式"></a>随机序列线性模型的基本形式</h2><h3 id="自回归模型"><a href="#自回归模型" class="headerlink" title="自回归模型"></a>自回归模型</h3><p>序列值可以表示成它的先前值和一个冲击值$a_t$的线性函数</p>
+<p>$y_t &#x3D; \varphi_1y_{t-1}+\varphi_2y_{t-2}+\cdots + \varphi_p y_{t-p}+a_t$ ，记为$AR(p)$</p>
+<p>令$B$为后移算子<br>$By_t&#x3D;y_t-1,BC&#x3D;C$<br>$B^my_t &#x3D; y_{t-m} , B^mC&#x3D;C$</p>
+<p>则$AR(p)$模型可以写为$(1-\varphi_1B-\varphi_2B^2+\cdots - \varphi_pB^p)y_t&#x3D;a_t$</p>
+<p>记$(1-\varphi_1B-\varphi_2B^2+\cdots - \varphi_pB^p) &#x3D; \varphi(B)$，则$AR(p)$模型可以写为$\varphi(B)y_t&#x3D;a_t$</p>
+<p>平稳性条件是$\varphi(B)&#x3D;0$的根全在单位圆外，并且其一定可逆</p>
+<p>本身就是逆转形式，传递形式为$y_t&#x3D;\varphi^{-1}(B)a_t$</p>
+<h3 id="滑动平均模型"><a href="#滑动平均模型" class="headerlink" title="滑动平均模型"></a>滑动平均模型</h3><p>序列值是现在和过去的误差或冲击值$a_t$的线性组合</p>
+<p>$y_t&#x3D;a_t-\theta_1a_{t-1}-\theta_2a_{t-2}-\cdots - \theta_q a_{t-q}$，记为$MA(q)$</p>
+<p>使用后移算子符号，可以写成$y_t&#x3D;(1-\theta_1B-\theta_2B^2-\cdots -\theta_qB^q)a_t$</p>
+<p>记$(1-\theta_1B-\theta_2B^2-\cdots -\theta_qB^q)&#x3D;\theta(B)$，则$MA(q)$模型可以写为$y_t&#x3D;\theta(B)a_t$</p>
+<p>可逆性条件是$\theta(B)&#x3D;0$的根全在单位圆外，并且其一定平稳</p>
+<p>本身就是传递形式，逆转形式为$\theta^{-1}(B)a_t&#x3D;y_t$</p>
+<h3 id="自回归滑动平均模型"><a href="#自回归滑动平均模型" class="headerlink" title="自回归滑动平均模型"></a>自回归滑动平均模型</h3><p>序列值$y_t$是现在和过去的误差或冲击值$a_t$以及先前的序列值的线性组合</p>
+<p>$y_t&#x3D;\varphi_1y_{t-1}+\varphi_2y_{t-2}+\cdots + \varphi_p y_{t-p} +a_t - \theta_1a_{t-1}-\theta_2a_{t-2}-\cdots - \theta_q a_{t-q}$</p>
+<p>又可以写为$\varphi(B)y_t&#x3D;\theta(B)a_t$，记作$ARMA(p,q)$</p>
+<p>平稳可逆的条件是$\varphi(B)&#x3D;0$和$\theta(B)&#x3D;0$的根全在单位圆外。</p>
+<p>传递形式为$y_t&#x3D;\varphi^{-1}(B)\theta(B)a_t$，逆转形式为$a_t&#x3D;\theta^{-1}(B)\varphi(B)y_t$</p>
+<h2 id="非平稳序列的平稳化方法"><a href="#非平稳序列的平稳化方法" class="headerlink" title="非平稳序列的平稳化方法"></a>非平稳序列的平稳化方法</h2><h3 id="消除趋势的方法"><a href="#消除趋势的方法" class="headerlink" title="消除趋势的方法"></a>消除趋势的方法</h3><p>进行$d$阶差分，之后的模型记为$ARIMA(p,d,q)$模型</p>
+<h3 id="消除季节影响"><a href="#消除季节影响" class="headerlink" title="消除季节影响"></a>消除季节影响</h3><p>通过季节差分，可以消除季节影响。若季节长度为$S$，序列值为$Z_t$，则一阶季节差分可以写为$\nabla_S Z_t &#x3D; Z_t - Z_{t-s}$，高阶的可以类比</p>
+<h3 id="消除不平稳方差"><a href="#消除不平稳方差" class="headerlink" title="消除不平稳方差"></a>消除不平稳方差</h3><p>可以采用对数变换$y_t&#x3D;lgZ_t$或者开平方根$y_t&#x3D;\sqrt{Z_t}$</p>
+<h2 id="季节模型"><a href="#季节模型" class="headerlink" title="季节模型"></a>季节模型</h2><h3 id="季节自回归模型"><a href="#季节自回归模型" class="headerlink" title="季节自回归模型"></a>季节自回归模型</h3><p>$y_t&#x3D;\Phi_1y_{t-s}+a_t$，称为一阶季节自回归模型，简记为$SAR(1)$模型</p>
+<p>一般的自回归模型，可以写为$\Phi(B^s)W_t&#x3D;a_t$<br>其中$\Phi(B^s)&#x3D;1-\Phi_1B^s-\Phi_2B^{2s}- \cdots - \Phi_pB^{ps}$<br>$W_t &#x3D; \nabla_s^D \nabla^d {y_t}$</p>
+<p>其中$\nabla^d$为$d$阶连续差分，$\nabla_s^D$为$D$阶季节差分，$S$为季节跨度长。</p>
+<h3 id="季节滑动平均模型"><a href="#季节滑动平均模型" class="headerlink" title="季节滑动平均模型"></a>季节滑动平均模型</h3><p>$y_t&#x3D;a_t-\Theta_1a_{t-s}$，称为一阶季节滑动平均模型，简记为$SMA(1)$</p>
+<p>一般的滑动平均模型，可以写为$W_t&#x3D;\Theta(B^s)a_t$<br>其中$\Theta(B^s)&#x3D;1-\Theta_1B^s-\Theta_2B^{2s} - \cdots - \Theta_QB^{Qs}$<br>$W_t &#x3D; \nabla_s^D \nabla^d {y_t}$</p>
+<h3 id="季节自回归混合滑动平均模型"><a href="#季节自回归混合滑动平均模型" class="headerlink" title="季节自回归混合滑动平均模型"></a>季节自回归混合滑动平均模型</h3><p>$\Phi(B^s)W_t&#x3D;\Theta(B^s)a_t$</p>
+<p>其中<br>$\Phi(B^s)&#x3D;1-\Phi_1B^s-\Phi_2B^{2s}- \cdots - \Phi_pB^{ps}$<br>$\Theta(B^s)&#x3D;1-\Theta_1B^s-\Theta_2B^{2s} - \cdots - \Theta_QB^{Qs}$<br>$W_t &#x3D; \nabla_s^D \nabla^d {y_t}$</p>
+<p>简记上述模型为$ARMA(P,D,Q)$，这里<br>$P$为季节自回归过程的阶数<br>$Q$为季节滑动平均过程的阶数<br>$D$为季节差分的阶数<br>$S$为季节跨度长</p>
+<h1 id="随机事件序列模型的识别"><a href="#随机事件序列模型的识别" class="headerlink" title="随机事件序列模型的识别"></a>随机事件序列模型的识别</h1><h2 id="自相关函数"><a href="#自相关函数" class="headerlink" title="自相关函数"></a>自相关函数</h2><h3 id="AR-p-的自相关函数"><a href="#AR-p-的自相关函数" class="headerlink" title="$AR(p)$的自相关函数"></a>$AR(p)$的自相关函数</h3><p>首先研究$AR(1)$模型，设$y_t&#x3D;\varphi_1y_{t-1}+a_t$，它的自协方差函数为</p>
+<p>$r_1&#x3D;Ey_ty_{t-1}&#x3D;E(\varphi_1y_{t-1}+a_t)y_{t-1}&#x3D;\varphi_1Ey_{t-1}^2 + Ea_ty_{t-1} &#x3D; \varphi_1r_0$</p>
+<p>$r_2&#x3D;Ey_ty_{t-2}&#x3D;E(\varphi_1y_{t-1}+a_t)y_{t-2}&#x3D;E(\varphi_1(\varphi_1y_{t-2} + a_{t-1})+a_t)y_{t-2} &#x3D; \varphi_1^2 r_0$</p>
+<p>同理可得$r_k&#x3D;\varphi_1^kr_0$，$\rho_k&#x3D;\varphi_1^k$，即当$|\varphi|&lt;1$时，$\rho_k \rightarrow 0$，但是不等于$0$，这种现象称为拖尾。</p>
+<p>对于更一般的情形，可以从Yule Walker方程得到。</p>
+<h3 id="MA-q-的自相关函数"><a href="#MA-q-的自相关函数" class="headerlink" title="$MA(q)$的自相关函数"></a>$MA(q)$的自相关函数</h3><p>设$MA(q)$序列$y_t$的模型方程为$y_t&#x3D;a_t-\theta_1a_{t-1}-\theta_2a_{t-2}-\cdots - \theta_q a_{t-q}$<br>则他的自协方差函数为<br>$r_k&#x3D;Ey_{t+k}y_k&#x3D;E(a_{t+k}-\theta_1 a_{t+k-1} - \theta_2 a_{t+k-2} - \cdots - \theta_{q} a_{t+k-q})(a_t - \theta_1 a_{t-1} - \cdots - \theta_q a_{t-q})$<br>由于$Ea_t&#x3D;0,Ea_{t+j}a_t&#x3D;\begin{cases}<br>0 &amp; j\ne 0\\<br>\sigma_a^2  &amp; j&#x3D;0<br>\end{cases}$<br>所以$r_0&#x3D;\sigma_a^2(1+\theta_1^2 + \theta_2^2 + \cdots + \theta_q^2)$<br>$r_k&#x3D;0, k&gt;q$<br>$r_k&#x3D;\sigma_a^2(-\theta_k+\theta_1 \theta_{k+1} + \cdots + \theta_{q-k}\theta_q) , 0&lt;k\le q$</p>
+<p>$$\rho_k &#x3D; \begin{cases}<br>1 &amp; k&#x3D;0\\<br>\frac{-\theta_k + \theta_1\theta_k+1 + \cdots + \theta_{q-k}\theta_q}{1+\theta_1^2 + \cdots + \theta_q^2} &amp; 1\le k \le q<br>0 &amp; k&gt;q<br>\end{cases}$$</p>
+<p>可见：$k&gt;q$时，$\rho_k &#x3D;0$，即$y_t$和$y_{t+k}$不相关，这种现象称为截尾。</p>
+<img src=12.jpg width="80%">]]></content>
+      <categories>
+        <category>经济预测与决策</category>
+        <category>经济预测技术</category>
+      </categories>
+      <tags>
+        <tag>经济预测技术</tag>
+      </tags>
   </entry>
 </search>
